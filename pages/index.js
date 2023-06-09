@@ -1,14 +1,27 @@
-//import { Inter } from 'next/font/google'
+//import { Inter } from 'next/fonts/google'
 import {getProductsInCollection} from "../lib/shopify";
 import ProductList from "../components/ProductList";
-
+import {Card} from "@aws-amplify/ui-react";
 //const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({products}) {
-    console.log(products)
+    //console.log(products)
     return (
         <>
-            <ProductList products = {products} />
+            {/*<ProductList products = {products} />*/}
+            <div className="mx-6 md:mx-20 lg:mx-50 flex justify-center items-center min-h-screen">
+                <Card style={{width: '60%', height: '100px'}} className="flex flex-col justify-center">
+                    <div className="flex-grow">
+                        <div className="h-2"></div>
+                    </div>
+                    <div className="font-neue-haas-grotesk font-bold text-gray-900 flex-grow flex items-center">
+                        <h1 className="w-full text-center text-2xl">
+                            COMING SOON
+                        </h1>
+                    </div>
+                    <div className="flex-grow"></div>
+                </Card>
+            </div>
         </>
     )
 }

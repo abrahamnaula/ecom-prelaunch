@@ -25,3 +25,31 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+/*
+With these settings, 'Neue Haas Grotesk' will render with the correct font file based on the font-weight specified. In this cas
+font-weight: 700; (font weight for Bold) will use NHaasGroteskTXPro-75Bd.ttf,
+font-weight: 500; (font weight for Medium) will use NHaasGroteskTXPro-65Md.ttf,
+font-weight: 400; (font weight for Regular) will use NHaasGroteskTXPro-55Rg.ttf.
+*/
+@font-face {
+  font-family: 'Neue Haas Grotesk';
+  src: url('../public/fonts/NHaasGroteskTXPro-75Bd.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Grotesk';
+  src: url('../public/fonts/NHaasGroteskTXPro-65Md.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk';
+  src: url('../public/fonts/NHaasGroteskTXPro-55Rg.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
