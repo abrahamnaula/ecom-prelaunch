@@ -10,6 +10,16 @@ module.exports = {
       fontFamily: {
         'neue-haas-grotesk': ['Neue Haas Grotesk', 'sans-serif'],
       },
+      colors: {
+        grayBkg: '#2e2e2e',
+      },
+      height:{
+        '125': '7.813rem',
+      },
+      spacing: {
+        '5px': '5px',
+
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

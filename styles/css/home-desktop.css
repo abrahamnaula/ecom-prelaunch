@@ -1,0 +1,381 @@
+/* screen - home-desktop */
+
+.home-desktop {
+  align-items: flex-end;
+  background-color: var(--black);
+  border: 1.33px none;
+  display: flex;
+  flex-direction: column;
+  height: 1657px;
+  overflow: hidden;
+  width: 1920px;
+}
+
+.home-desktop .screen-shot-2023-02-28-at-1204-1 {
+  height: 1589px;
+  margin-right: -4591.67px;
+  margin-top: -3706px;
+  object-fit: cover;
+  width: 2709px;
+}
+
+.home-desktop .wrapper-header {
+  background-color: var(--white);
+  height: 75px;
+  margin-right: -4px;
+  margin-top: 2116px;
+  opacity: 0;
+  width: 1924px;
+}
+
+.home-desktop .wrapper-header.animate-enter {
+  animation: animate-enter-frames 0.40s ease-in 0.00s 1 normal forwards;
+  opacity: 0;
+}
+
+@keyframes animate-enter-frames {
+  from{opacity: 0;
+}
+to{opacity: 1;
+}
+}
+
+.home-desktop .div-container {
+  align-items: flex-start;
+  background-color: #d9d9d9;
+  border: 1px solid;
+  border-color: var(--black);
+  display: flex;
+  flex-direction: column;
+  min-height: 119px;
+}
+
+.home-desktop .div-announcementbar {
+  border-bottom-style: solid;
+  border-bottom-width: 1.33px;
+  border-color: #20201b;
+  display: flex;
+  height: 35px;
+  margin-left: -1px;
+  margin-top: -1px;
+  width: 1920px;
+}
+
+.home-desktop .divmarquee-announcement-bar {
+  background: linear-gradient(180deg, rgb(46, 46, 46) 0%, rgb(32, 32, 27) 100%);
+  display: flex;
+  height: 34.67px;
+  width: 1920px;
+}
+
+.home-desktop .free-shipping-on-all-orders-over-150 {
+  color: #f5f5f5;
+  font-family: var(--font-family-neue_haas_grotesk_display_pro-65medium);
+  font-size: var(--font-size-xl);
+  font-weight: 500;
+  height: 17.33px;
+  letter-spacing: 0.94px;
+  line-height: normal;
+  margin-left: 629.3px;
+  margin-top: 7.5px;
+  text-align: center;
+  white-space: nowrap;
+  width: 660.93px;
+}
+
+.home-desktop .divheader-default {
+  align-items: flex-start;
+  background-color: #efefef;
+  border: 0.5px solid;
+  border-color: var(--black);
+  display: flex;
+  height: 40px;
+  margin-left: -1px;
+  padding: 0px 10px 0px 0px;
+  position: relative;
+  width: 1920px;
+}
+
+.home-desktop .div_-logo-branding {
+  align-self: stretch;
+  display: flex;
+  height: 39px;
+  min-width: 749px;
+  position: relative;
+}
+
+.home-desktop .surname {
+  height: 21px;
+  letter-spacing: 0.72px;
+  line-height: normal;
+  margin-left: 23.5px;
+  margin-top: 9.5px;
+  text-align: center;
+  white-space: nowrap;
+  width: 90px;
+}
+
+.home-desktop .div_-shop-all {
+  align-self: stretch;
+  flex: 1;
+  height: 39px;
+  min-width: 495.67px;
+  position: relative;
+}
+
+.home-desktop .div_-search-bar {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  gap: 18.67px;
+  position: relative;
+  width: 530px;
+}
+
+.home-desktop .svg_-search-icon {
+  height: 18.87px;
+  min-width: 18.14px;
+  position: relative;
+}
+
+.home-desktop .search {
+  color: #000000b2;
+  font-family: var(--font-family-neue_haas_grotesk_display_pro-65medium);
+  font-size: var(--font-size-xxl);
+  font-weight: 500;
+  letter-spacing: 0.72px;
+  line-height: normal;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.home-desktop .div_-cart {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  gap: 13.33px;
+  overflow: hidden;
+  padding: 0px 0px 0px 59px;
+  position: relative;
+  width: fit-content;
+}
+
+.home-desktop .div_-cart-item {
+  letter-spacing: 0.72px;
+  line-height: normal;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.home-desktop .div-container-1 {
+  height: 1582px;
+  position: relative;
+  width: 1920px;
+}
+
+.home-desktop .div-footer {
+  height: 276px;
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 1306px;
+  width: 1920px;
+}
+
+.home-desktop .div-footer.animate-enter1 {
+  animation: animate-enter1-frames 0.20s ease-in 0.00s 1 normal forwards;
+  opacity: 0;
+}
+
+@keyframes animate-enter1-frames {
+  from{opacity: 0;
+}
+to{opacity: 1;
+}
+}
+
+.home-desktop .div-footer-1 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 282px;
+}
+
+.home-desktop .overlap-group {
+  height: 128px;
+  margin-top: -3px;
+}
+
+.home-desktop .rectangle-7 {
+  background-color: #2e2e2e70;
+  height: 125px;
+  left: 0;
+  position: absolute;
+  top: 3px;
+}
+
+.home-desktop .rectangle-8 {
+  background: linear-gradient(180deg, rgb(221, 221, 221) 0%, rgb(194.69, 194.69, 194.69) 44.27%, rgb(180.72, 180.72, 180.72) 48.96%, rgb(158.97, 158.97, 158.97) 56.25%, rgb(143.44, 143.44, 143.44) 61.46%, rgb(184.44, 184.44, 184.44) 80.21%, rgb(194.69, 194.69, 194.69) 84.9%, rgb(162.56, 162.56, 162.56) 100%);
+  border: 1px solid;
+  border-color: var(--black);
+  height: 151px;
+}
+
+.home-desktop .div-hero11 {
+  align-items: center;
+  background-color: var(--black);
+  border: 1px solid;
+  border-color: #c1252566;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: fit-content;
+}
+
+.home-desktop .center-pane {
+  background-image: url(../../public/img/background-image-color.png);
+  background-size: 100% 100%;
+  height: 1311px;
+  min-width: 1920px;
+  position: relative;
+}
+
+.home-desktop .overlap-group3 {
+  background-color: #0000006e;
+  height: 1306px;
+  top: 5px;
+}
+
+.home-desktop .grayera-container {
+  height: 81px;
+  left: 745px;
+  position: absolute;
+  top: 543px;
+  width: 427px;
+}
+
+.home-desktop .grayera {
+  height: 81px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 397px;
+}
+
+.home-desktop .grayera-1 {
+  height: 81px;
+  left: 22px;
+  position: absolute;
+  top: 0;
+  width: 397px;
+}
+
+.home-desktop .grayera-2 {
+  height: 79px;
+  left: 10px;
+  position: absolute;
+  top: 1px;
+  width: 396px;
+}
+
+.home-desktop .grayera-3 {
+  height: 74px;
+  left: 36px;
+  position: absolute;
+  top: 3px;
+  width: 391px;
+}
+
+.home-desktop .grayera-4 {
+  height: 74px;
+  left: 14px;
+  position: absolute;
+  top: 6px;
+  width: 388px;
+}
+
+.home-desktop .shop-all {
+  color: #efefef;
+  font-family: var(--font-family-neue_haas_grotesk_display_pro-65medium);
+  font-size: var(--font-size-l);
+  font-weight: 500;
+  height: 93px;
+  left: 815px;
+  letter-spacing: 0.58px;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 616px;
+  width: 289px;
+}
+
+.home-desktop .button-container {
+  left: 815px;
+  top: 616px;
+}
+
+.home-desktop .button {
+  background-color: var(--black);
+  cursor: pointer;
+  height: 37px;
+  left: 54px;
+  opacity: 0;
+  position: absolute;
+  top: 29px;
+  transition: all 0.2s ease;
+  width: 182px;
+}
+
+.home-desktop .button.animate-enter2 {
+  animation: animate-enter2-frames 0.40s ease-in-out 0.00s 1 normal forwards;
+  opacity: 0;
+}
+
+@keyframes animate-enter2-frames {
+  from{opacity: 0;
+}
+to{opacity: 1;
+}
+}
+
+.home-desktop .button:hover {
+  transform: translate(0, -5px);
+box-shadow: 0px 5px 5px -8px rgba(0,0,0,0.2);
+}
+
+.home-desktop .button-text {
+  color: #d9d9d9;
+  font-family: var(--font-family-neue_haas_grotesk_display_pro-65medium);
+  font-size: var(--font-size-l);
+  font-weight: 500;
+  left: 0;
+  letter-spacing: 0.58px;
+  line-height: normal;
+  text-align: center;
+  top: 0;
+}
+
+.home-desktop .button-1 {
+  height: 93px;
+  position: absolute;
+  width: 289px;
+}
+
+.home-desktop .overlap {
+  position: relative;
+  width: 1920px;
+}
+
+.home-desktop .rectangle {
+  -webkit-backdrop-filter: blur(8px) brightness(100%);
+  backdrop-filter: blur(8px) brightness(100%);
+  width: 1920px;
+}

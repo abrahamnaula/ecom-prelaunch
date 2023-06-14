@@ -1,0 +1,388 @@
+/* screen - homeDesktop */
+
+.homeDesktop {
+    align-items: flex-end;
+    background-color: var(--black);
+    border: 1.33px none;
+    display: flex;
+    flex-direction: column;
+    height: 1657px;
+    overflow: hidden;
+    width: 1920px;
+}
+
+.screenShot20230228At12041 {
+    height: 1589px;
+    margin-right: -4591.67px;
+    margin-top: -3706px;
+    object-fit: cover;
+    width: 2709px;
+}
+
+.wrapperHeader {
+    background-color: var(--white);
+    height: 75px;
+    margin-right: -4px;
+    margin-top: 2116px;
+    opacity: 0;
+    width: 1924px;
+}
+
+.wrapperHeaderAnimateEnter {
+    animation: animateEnterFrames 0.40s ease-in 0.00s 1 normal forwards;
+    opacity: 0;
+}
+
+@keyframes animateEnterFrames {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.divContainer {
+    align-items: flex-start;
+    background-color: #d9d9d9;
+    border: 1px solid;
+    border-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    min-height: 119px;
+}
+
+.divAnnouncementbar {
+    border-bottom-style: solid;
+    border-bottom-width: 1.33px;
+    border-color: #20201b;
+    display: flex;
+    height: 35px;
+    margin-left: -1px;
+    margin-top: -1px;
+    width: 1920px;
+}
+
+.divmarqueeAnnouncementBar {
+    background: linear-gradient(180deg, rgb(46, 46, 46) 0%, rgb(32, 32, 27) 100%);
+    display: flex;
+    height: 34.67px;
+    width: 1920px;
+}
+
+.freeShippingOnAllOrdersOver150 {
+    color: #f5f5f5;
+    font-family: var(--font-family-neue_haas_grotesk_display_pro-65medium);
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    height: 17.33px;
+    letter-spacing: 0.94px;
+    line-height: normal;
+    margin-left: 629.3px;
+    margin-top: 7.5px;
+    text-align: center;
+    white-space: nowrap;
+    width: 660.93px;
+}
+
+.divheaderDefault {
+    align-items: flex-start;
+    background-color: #efefef;
+    border: 0.5px solid;
+    border-color: var(--black);
+    display: flex;
+    height: 40px;
+    margin-left: -1px;
+    padding: 0px 10px 0px 0px;
+    position: relative;
+    width: 1920px;
+}
+
+.divLogoBranding {
+    align-self: stretch;
+    display: flex;
+    height: 39px;
+    min-width: 749px;
+    position: relative;
+}
+
+.surname {
+    height: 21px;
+    letter-spacing: 0.72px;
+    line-height: normal;
+    margin-left: 23.5px;
+    margin-top: 9.5px;
+    text-align: center;
+    white-space: nowrap;
+    width: 90px;
+}
+
+.divShopAll {
+    align-self: stretch;
+    flex: 1;
+    height: 39px;
+    min-width: 495.67px;
+    position: relative;
+}
+
+.divSearchBar {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    gap: 18.67px;
+    position: relative;
+    width: 530px;
+}
+
+.svgSearchIcon {
+    height: 18.87px;
+    min-width: 18.14px;
+    position: relative;
+}
+
+.search {
+    color: #000000b2;
+    font-family: var(--font-family-neue_haas_grotesk_display_pro-65medium);
+    font-size: var(--font-size-xxl);
+    font-weight: 500;
+    letter-spacing: 0.72px;
+    line-height: normal;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.divCart {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    gap: 13.33px;
+    overflow: hidden;
+    padding: 0px 0px 0px 59px;
+    position: relative;
+    width: fit-content;
+}
+
+.divCartItem {
+    letter-spacing: 0.72px;
+    line-height: normal;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.divContainer1 {
+    height: 1582px;
+    position: relative;
+    width: 1920px;
+}
+
+.divFooter {
+    height: 276px;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 1306px;
+    width: 1920px;
+}
+
+.divFooterAnimateEnter1 {
+    animation: animateEnter1Frames 0.20s ease-in 0.00s 1 normal forwards;
+    opacity: 0;
+}
+
+@keyframes animateEnter1Frames {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.divFooter1 {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    height: 282px;
+}
+
+.overlapGroup {
+    height: 128px;
+    margin-top: -3px;
+}
+
+.rectangle7 {
+    background-color: #2e2e2e70;
+    height: 125px;
+    left: 0;
+    position: absolute;
+    top: 3px;
+}
+
+.rectangle8 {
+    background: linear-gradient(180deg, rgb(221, 221, 221) 0%, rgb(194.69, 194.69, 194.69) 44.27%, rgb(180.72, 180.72, 180.72) 48.96%, rgb(158.97, 158.97, 158.97) 56.25%, rgb(143.44, 143.44, 143.44) 61.46%, rgb(184.44, 184.44, 184.44) 80.21%, rgb(194.69, 194.69, 194.69) 84.9%, rgb(162.56, 162.56, 162.56) 100%);
+    border: 1px solid;
+    border-color: var(--black);
+    height: 151px;
+}
+
+.divHero11 {
+    align-items: center;
+    background-color: var(--black);
+    border: 1px solid;
+    border-color: #c1252566;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: fit-content;
+}
+
+.centerPane {
+    background-image: url(../public/img/background-image-color.png);
+    background-size: 100% 100%;
+    height: 1311px;
+    min-width: 1920px;
+    position: relative;
+}
+
+.overlapGroup3 {
+    background-color: #0000006e;
+    height: 1306px;
+    top: 5px;
+}
+
+.grayeraContainer {
+    height: 81px;
+    left: 745px;
+    position: absolute;
+    top: 543px;
+    width: 427px;
+}
+
+.grayera {
+    height: 81px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 397px;
+}
+
+.grayera1 {
+    height: 81px;
+    left: 22px;
+    position: absolute;
+    top: 0;
+    width: 397px;
+}
+
+.grayera2 {
+    height: 79px;
+    left: 10px;
+    position: absolute;
+    top: 1px;
+    width: 396px;
+}
+
+.grayera3 {
+    height: 74px;
+    left: 36px;
+    position: absolute;
+    top: 3px;
+    width: 391px;
+}
+
+.grayera4 {
+    height: 74px;
+    left: 14px;
+    position: absolute;
+    top: 6px;
+    width: 388px;
+}
+
+.shopAll {
+    color: #efefef;
+    font-family: var(--font-family-neue_haas_grotesk_display_pro-65medium);
+    font-size: var(--font-size-l);
+    font-weight: 500;
+    height: 93px;
+    left: 815px;
+    letter-spacing: 0.58px;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 616px;
+    width: 289px;
+}
+
+.buttonContainer {
+    left: 815px;
+    top: 616px;
+}
+
+.button {
+    background-color: var(--black);
+    cursor: pointer;
+    height: 37px;
+    left: 54px;
+    opacity: 0;
+    position: absolute;
+    top: 29px;
+    transition: all 0.2s ease;
+    width: 182px;
+}
+
+.buttonAnimateEnter2 {
+    animation: animateEnter2Frames 0.40s ease-in-out 0.00s 1 normal forwards;
+    opacity: 0;
+}
+
+@keyframes animateEnter2Frames {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.button:hover {
+    transform: translate(0, -5px);
+    box-shadow: 0px 5px 5px -8px rgba(0,0,0,0.2);
+}
+
+.buttonText {
+    color: #d9d9d9;
+    font-family: var(--font-family-neue_haas_grotesk_display_pro-65medium);
+    font-size: var(--font-size-l);
+    font-weight: 500;
+    left: 0;
+    letter-spacing: 0.58px;
+    line-height: normal;
+    text-align: center;
+    top: 0;
+}
+
+.button1 {
+    height: 93px;
+    position: absolute;
+    width: 289px;
+}
+
+.overlap {
+    position: absolute;
+    top: 0;
+}
+
+.shopAll2 {
+    height: 93px;
+    position: absolute;
+    top: 0;
+    width: 289px;
+}

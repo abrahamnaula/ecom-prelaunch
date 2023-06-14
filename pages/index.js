@@ -2,13 +2,28 @@
 import {getProductsInCollection} from "../lib/shopify";
 import ProductList from "../components/ProductList";
 import {Card} from "@aws-amplify/ui-react";
+import React from "react";
+import DivAnnouncementbar from "../components/DivAnnouncementbar";
+import HomeDesktop from "./HomeDesktop";
 //const inter = Inter({ subsets: ['latin'] })
 
+export default function Home() {
+    return(
+        <>
+            <DivAnnouncementbar>FREE SHIPPING ON ALL ORDERS OVER $150</DivAnnouncementbar>
+        </>
+    )
+
+}
+
+
+
+/*
 export default function Home({products}) {
-    //console.log(products)
+    console.log(products)
     return (
         <>
-            {/*<ProductList products = {products} />*/}
+            <ProductList products = {products} />
             <div className="mx-6 md:mx-20 lg:mx-50 flex justify-center items-center min-h-screen">
                 <Card style={{width: '60%', height: '100px'}} className="flex flex-col justify-center">
                     <div className="flex-grow">
@@ -22,7 +37,7 @@ export default function Home({products}) {
                     <div className="flex-grow"></div>
                 </Card>
             </div>
-        </>
+        </DivAnnouncementbar>
     )
 }
 
@@ -32,3 +47,4 @@ export async function getStaticProps() {
         props: {products},
     }
 }
+*/
