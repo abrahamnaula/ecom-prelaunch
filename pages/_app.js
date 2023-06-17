@@ -1,4 +1,5 @@
 import '@aws-amplify/ui-react/styles.css';
+import '../styles/globals.css'
 import DivAnnouncementbar from "../components/DivAnnouncementbar";
 
 import HomeDesktop from "./HomeDesktop";

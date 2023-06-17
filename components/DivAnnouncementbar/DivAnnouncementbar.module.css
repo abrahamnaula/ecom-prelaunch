@@ -6,14 +6,16 @@
     height: 35px;
     margin-left: -1px;
     margin-top: -1px;
-    width: 1920px;
+    width: 100%;
 }
 
 .divmarquee-announcement-bar {
     background: linear-gradient(180deg, rgb(46, 46, 46) 0%, rgb(32, 32, 27) 100%);
     display: flex;
+    justify-content: center;
+    align-items: center;
     height: 34.67px;
-    width: 1920px;
+    width: 100%;
 }
 
 .free-shipping-on-all-orders-over-150 {
@@ -24,10 +26,9 @@
     height: 17.33px;
     letter-spacing: 0.94px;
     line-height: normal;
-    margin-left: 629.3px;
-    margin-top: 7.5px;
     text-align: center;
     white-space: nowrap;
-    width: 660.93px;
+    width: 100%; /* take the full width of the parent */
 }
+
 
