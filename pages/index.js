@@ -4,15 +4,20 @@ import ProductList from "../components/ProductList";
 import {Card} from "@aws-amplify/ui-react";
 import React from "react";
 import DivAnnouncementbar from "../components/DivAnnouncementbar";
-import HomeDesktop from "./HomeDesktop";
-import BottomFooter from "../components/BottomFooter";
+//import BottomFooter from "../components/BottomFooter";
+import TopHeader from "../components/TopHeader";
+import FullFooter from "../components/FullFooter";
+import GrowingText from "../components/GrowingText";
 //const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
     return(
         <>
             <DivAnnouncementbar>FREE SHIPPING ON ALL ORDERS OVER $150</DivAnnouncementbar>
-            <BottomFooter></BottomFooter>
+            <TopHeader/>
+            <GrowingText />
+            <FullFooter />
+
         </>
     )
 

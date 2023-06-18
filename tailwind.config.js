@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'neue-haas-grotesk': ['Neue Haas Grotesk', 'sans-serif'],
+        'nhg': ['Neue Haas Grotesk', 'sans-serif'],
       },
       colors: {
         grayBkg: '#2e2e2e',
@@ -28,5 +28,22 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '@keyframes grow': {
+          '0%': { transform: 'scale(0.5)', opacity: '0' }, // Change scale as needed
+          '100%': { transform: 'scale(5)', opacity: '1'},
+        },
+        '.grow': {
+          animationName: 'grow',
+          animationDuration: '4s',
+          animationTimingFunction: 'linear',
+          animationFillMode: 'forwards',
+        },
+      }
+
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    },
+  ],
 }

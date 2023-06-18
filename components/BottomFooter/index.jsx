@@ -17,7 +17,7 @@ function BottomFooter() {
         <footer className="fixed bottom-0 left-0 w-full py-1 bg-grayBkg text-white
                            border-b-2 border-black bg-gradient-to-b from-grayBd to-grayBkg">
             <div className="p-2">
-                <span className="font-neue-haas-grotesk-display-pro-65medium text-base font-medium tracking-wide">
+                <span className="font-ngh text-base font-medium tracking-wide pl-3">
                   © GRAY ERA 2023
                 </span>
             </div>
