@@ -5,12 +5,14 @@ import {Card} from "@aws-amplify/ui-react";
 import React from "react";
 import DivAnnouncementbar from "../components/DivAnnouncementbar";
 import HomeDesktop from "./HomeDesktop";
+import BottomFooter from "../components/BottomFooter";
 //const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
     return(
         <>
             <DivAnnouncementbar>FREE SHIPPING ON ALL ORDERS OVER $150</DivAnnouncementbar>
+            <BottomFooter></BottomFooter>
         </>
     )
 
