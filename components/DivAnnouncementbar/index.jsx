@@ -13,3 +13,4 @@ function DivAnnouncementbar(props) {
 }
 
 export default DivAnnouncementbar;
+//pre redo for home
