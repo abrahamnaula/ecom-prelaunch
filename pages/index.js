@@ -13,14 +13,13 @@ import GrowingText from "../components/GrowingText";
 export default function Home() {
     return(
         <>
+            <div id="top-element" />
             <DivAnnouncementbar>FREE SHIPPING ON ALL ORDERS OVER $150</DivAnnouncementbar>
             <TopHeader/>
             <GrowingText />
             <FullFooter />
-
         </>
     )
-
 }
 
 
