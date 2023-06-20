@@ -19,7 +19,11 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
+@layer components {
+  .calc-h-screen {
+    height: calc(100vh - 40px);
+  }
+}
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

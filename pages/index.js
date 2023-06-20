@@ -16,7 +16,6 @@ export default function Home() {
         <div className="relative">
             <div id="top-element" />
             <DivAnnouncementbar>FREE SHIPPING ON ALL ORDERS OVER $150</DivAnnouncementbar>
-            <BackgroundVideo />
             <TopHeader />
             <GrowingText />
             <FullFooter />
@@ -35,7 +34,7 @@ export default function Home() {
                 muted
                 playsInline // Add playsInline attribute
             >
-                <source src="/ge-bkgvid-vert.mp4" type="video/mp4" />
+                <source src="/ge-bkg-ver.mp4" type="video/mp4" />
             </video>
 */
 

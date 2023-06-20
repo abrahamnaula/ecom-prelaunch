@@ -10,10 +10,12 @@ function GrowingText() {
     }, []);
 
     return (
-        <div className={`z-10 flex items-center justify-center h-screen transition-opacity duration-1000 ease-in-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`z-10 flex items-center justify-center h-screen transition-opacity duration-1000 ease-in-out -mt-16 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
             <Image src="/new-ge-logo.png" alt="gray era logo" height={66} width={415}/>
         </div>
     );
 }
 
 export default GrowingText;
+
+
