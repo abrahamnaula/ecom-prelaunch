@@ -4,7 +4,7 @@ function DivAnnouncementbar(props) {
     const { children } = props;
 
     return (
-        <div className={styles["div-announcementbar"]}>
+        <div className={`z-10 ${styles["div-announcementbar"]}`}>
             <div className={styles["divmarquee-announcement-bar"]}>
                 <p className={styles["free-shipping-on-all-orders-over-150"]}>{children}</p>
             </div>
@@ -14,3 +14,4 @@ function DivAnnouncementbar(props) {
 
 export default DivAnnouncementbar;
 //pre redo for home
+

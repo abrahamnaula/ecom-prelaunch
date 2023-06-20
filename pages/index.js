@@ -8,21 +8,36 @@ import DivAnnouncementbar from "../components/DivAnnouncementbar";
 import TopHeader from "../components/TopHeader";
 import FullFooter from "../components/FullFooter";
 import GrowingText from "../components/GrowingText";
+import BackgroundVideo from "../components/BackgroundVideo";
 //const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-    return(
-        <>
+    return (
+        <div className="relative">
             <div id="top-element" />
             <DivAnnouncementbar>FREE SHIPPING ON ALL ORDERS OVER $150</DivAnnouncementbar>
-            <TopHeader/>
+            <BackgroundVideo />
+            <TopHeader />
             <GrowingText />
             <FullFooter />
-        </>
+        </div>
     )
 }
 
 
+/*
+
+            <video
+                className="fixed top-0 left-0 w-full h-full object-cover z-[-1]"
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline // Add playsInline attribute
+            >
+                <source src="/ge-bkgvid-vert.mp4" type="video/mp4" />
+            </video>
+*/
 
 /*
 export default function Home({products}) {

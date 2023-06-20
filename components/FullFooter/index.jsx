@@ -25,7 +25,7 @@ function FullFooter() {
     }, []);
 
     return (
-        <footer className={`fixed bottom-0 left-0 w-full h-40 bg-gray-400 flex flex-col justify-between font-nhg transition-all duration-500 ease-in-out transform ${isFooterVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
+        <footer className={`z-10 fixed bottom-0 left-0 w-full h-40 bg-gray-400 flex flex-col justify-between font-nhg transition-all duration-500 ease-in-out transform ${isFooterVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
             <div className={"flex flex-col font-normal pt-1.5"}>
                 <p className={"font-ngh text-base tracking-wide pl-5 text-sm"}>ABOUT & CONTACT</p>
                 <p className={"font-ngh text-base tracking-wide pl-5 text-sm"}>SHIPPING & RETURNS</p>
