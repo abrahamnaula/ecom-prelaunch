@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import ShopAllButton from "../ShopAllButton/ShopAllButton";
 
 function Logo() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -10,12 +11,13 @@ function Logo() {
     }, []);
 
     return (
-        <div className={`z-10 flex items-center justify-center h-screen transition-opacity duration-1000 ease-in-out -mt-16 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`fixed flex justify-center items-center w-full h-screen transition-opacity duration-1000 ease-in-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
             <Image src="/new-ge-logo.png" alt="gray era logo" height={66} width={250}/>
         </div>
     );
 }
 
 export default Logo;
+
 
 

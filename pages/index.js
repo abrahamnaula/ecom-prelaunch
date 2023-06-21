@@ -1,26 +1,27 @@
-//import { Inter } from 'next/fonts/google'
 import {getProductsInCollection} from "../lib/shopify";
 import ProductList from "../components/ProductList";
-import {Card} from "@aws-amplify/ui-react";
 import React from "react";
-import DivAnnouncementbar from "../components/DivAnnouncementbar";
 import TopHeader from "../components/TopHeader";
 import FullFooter from "../components/FullFooter";
-import Logo from "../components/Logo";
 import Header from "../components/Header";
+import ShopAllButton from "../components/ShopAllButton/ShopAllButton";
+import BackgroundVideo from "../components/BackgroundVideo";
+import Logo from "../components/Logo";
 
 export default function Home() {
     return (
         <div className="relative">
             <div id="top-element" />
-            {/*<DivAnnouncementbar></DivAnnouncementbar>*/}
+            <BackgroundVideo />
+            <Logo />
             <Header />
             <TopHeader />
-            <Logo />
+            <ShopAllButton />
             <FullFooter />
         </div>
     )
 }
+
 
 
 /*
