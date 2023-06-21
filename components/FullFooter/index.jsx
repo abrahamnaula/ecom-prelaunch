@@ -25,15 +25,24 @@ function FullFooter() {
     }, []);
 
     return (
-        <footer className={`z-10 fixed bottom-0 left-0 w-full h-40 bg-gray-400 flex flex-col justify-between font-nhg transition-all duration-500 ease-in-out transform ${isFooterVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
-            <div className={"flex flex-col font-normal pt-1.5"}>
-                <p className={"font-ngh text-base tracking-wide pl-5 text-sm"}>ABOUT & CONTACT</p>
-                <p className={"font-ngh text-base tracking-wide pl-5 text-sm"}>SHIPPING & RETURNS</p>
-                <p className={"font-ngh text-base tracking-wide pl-5 text-sm"}>SIZING</p>
-                <p className={"font-ngh text-base tracking-wide pl-5 text-sm"}>PRIVACY POLICY</p>
-                <p className={"font-ngh text-base tracking-wide pl-5 text-sm"}>TERMS OF SERVICE</p>
+        <footer className={`z-10 fixed bottom-0 left-0 w-full h-32 bg-gray-600 bg-opacity-50 flex flex-col justify-between font-nhg transition-all duration-500 ease-in-out transform ${isFooterVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
+            <div className="flex">  {/* Added "flex" class here */}
+                <div className="w-1/3 flex flex-col font-normal pt-3.5 mb-0.5">
+                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-0.5 leading-tight">ABOUT & CONTACT</p>
+                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-0.5 leading-tight">SHIPPING & RETURNS</p>
+                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-0.5 leading-tight">SIZING</p>
+                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-0.5 leading-tight">PRIVACY POLICY</p>
+                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-0.5 leading-tight">TERMS OF SERVICE</p>
+                </div>
+
+                <div className="w-1/3 flex justify-center items-center py-0.5">  {/* Added "w-1/2" class here */}
+                    <p className="font-ngh text-base text-xs">INSTAGRAM</p>
+                    <span className="mx-2 text-gray-400"> </span>
+                    <p className="font-ngh text-base text-xs">TIKTOK</p>
+                </div>
             </div>
-            <BottomFooter/>
+
+            <BottomFooter />
         </footer>
     );
 }

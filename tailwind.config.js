@@ -11,6 +11,9 @@ module.exports = {
       fontFamily: {
         'nhg': ['Neue Haas Grotesk', 'sans-serif'],
       },
+      fontSize: {
+        'xxs': '0.625rem',
+      },
       colors: {
         grayBkg: '#2e2e2e',
         grayBd: '#20201b',

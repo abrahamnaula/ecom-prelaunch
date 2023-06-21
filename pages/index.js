@@ -15,7 +15,7 @@ export default function Home() {
     return (
         <div className="relative">
             <div id="top-element" />
-            <DivAnnouncementbar>FREE SHIPPING ON ALL ORDERS OVER $150</DivAnnouncementbar>
+            <DivAnnouncementbar></DivAnnouncementbar>
             <TopHeader />
             <GrowingText />
             <FullFooter />
