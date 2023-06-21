@@ -6,7 +6,9 @@ const BackgroundVideo = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            const isMobile = window.innerWidth <= 412 && window.innerHeight <= 915;
+            const isMobile =
+                window.innerWidth <= 412 && window.innerHeight <= 915 ||
+                window.innerWidth === 414 && window.innerHeight === 896;
             if (isMobileDevice !== isMobile) {
                 setIsMobileDevice(isMobile);
                 setVideoKey(Date.now()); // Force video reload when source changes
