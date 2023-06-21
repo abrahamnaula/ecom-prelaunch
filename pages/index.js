@@ -4,12 +4,9 @@ import ProductList from "../components/ProductList";
 import {Card} from "@aws-amplify/ui-react";
 import React from "react";
 import DivAnnouncementbar from "../components/DivAnnouncementbar";
-//import BottomFooter from "../components/BottomFooter";
 import TopHeader from "../components/TopHeader";
 import FullFooter from "../components/FullFooter";
-import GrowingText from "../components/GrowingText";
-import BackgroundVideo from "../components/BackgroundVideo";
-//const inter = Inter({ subsets: ['latin'] })
+import Logo from "../components/Logo";
 
 export default function Home() {
     return (
@@ -17,7 +14,7 @@ export default function Home() {
             <div id="top-element" />
             <DivAnnouncementbar></DivAnnouncementbar>
             <TopHeader />
-            <GrowingText />
+            <Logo />
             <FullFooter />
         </div>
     )
