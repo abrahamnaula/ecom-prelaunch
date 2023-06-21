@@ -6,7 +6,7 @@
     height: 35px;
     margin-left: 0;
     margin-top: 0;
-    width: 100%;
+    width: fit-content;
 }
 
 .divmarquee-announcement-bar {
@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: center;
     height: 34.67px;
-    width: 100%;
+    width: fit-content;
 }
 
 .free-shipping-on-all-orders-over-150 {

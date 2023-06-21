@@ -7,12 +7,14 @@ import DivAnnouncementbar from "../components/DivAnnouncementbar";
 import TopHeader from "../components/TopHeader";
 import FullFooter from "../components/FullFooter";
 import Logo from "../components/Logo";
+import Header from "../components/Header";
 
 export default function Home() {
     return (
         <div className="relative">
             <div id="top-element" />
-            <DivAnnouncementbar></DivAnnouncementbar>
+            {/*<DivAnnouncementbar></DivAnnouncementbar>*/}
+            <Header />
             <TopHeader />
             <Logo />
             <FullFooter />
