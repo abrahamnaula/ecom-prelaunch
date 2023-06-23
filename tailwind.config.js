@@ -17,6 +17,7 @@ module.exports = {
       colors: {
         grayBkg: '#2e2e2e',
         grayBd: '#20201b',
+        whiteSmk: '#EFEFEF',
       },
       height:{
         '125': '7.813rem',
