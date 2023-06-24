@@ -24,7 +24,8 @@ module.exports = {
       },
       spacing: {
         '5px': '5px',
-
+        '130':'32.5rem',
+        '140': '35rem',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

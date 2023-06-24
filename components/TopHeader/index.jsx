@@ -8,9 +8,9 @@ function TopHeader() {
 
     return (
         <div className="py-2 bg-whiteSmk w-screen flex justify-between">
-            <div className="text-sm font-nhg text-black pl-1">GRAY ERA</div>
-            <div className="pr-6">
-                <SearchBar onSearch={handleSearch} />
+            <div className="font-nhg font-medium text-black pl-1">GRAY ERA</div>
+            <div className="pr-6 z-50">
+                <SearchBar className="z-20" onSearch={handleSearch} />
             </div>
         </div>
     );

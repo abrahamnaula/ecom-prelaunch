@@ -32,6 +32,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 /*
 With these settings, 'Neue Haas Grotesk' will render with the correct font file based on the font-weight specified. In this cas

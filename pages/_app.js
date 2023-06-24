@@ -1,4 +1,3 @@
-import '@aws-amplify/ui-react/styles.css';
 import '../styles/globals.css'
 import BackgroundVideo from "../components/BackgroundVideo";
 import Logo from "../components/Logo";

@@ -1,22 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaSearch } from "react-icons/fa";
 
 function SearchBar({ onSearch }) {
-    const [searchTerm, setSearchTerm] = React.useState('');
+    const [inputValue, setInputValue] = useState('');
 
-    const handleChange = (event) => {
-        setSearchTerm(event.target.value);
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        onSearch(searchTerm);
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            onSearch(inputValue);
+        }
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" value={searchTerm} onChange={handleChange} />
-            <input type="submit" value="Search" />
-        </form>
+        <div className="flex items-center">
+            <FaSearch className="mr-2 fill-black"/>
+            <input
+                className="placeholder-grayBkg font-nhg font-medium text-grayBkg bg-transparent outline-none"
+                placeholder="SEARCH"
+                value={inputValue}
+                onChange={handleInputChange}
+                onKeyPress={handleKeyPress}
+            />
+        </div>
     )
 }
 

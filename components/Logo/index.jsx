@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import ShopAllButton from "../ShopAllButton/ShopAllButton";
 
 function Logo() {
     const [isLoaded, setIsLoaded] = useState(false);
