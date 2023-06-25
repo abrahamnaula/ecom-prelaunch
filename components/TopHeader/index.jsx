@@ -1,4 +1,5 @@
 import SearchBar from "../SearchBar";
+import Link from 'next/link'
 
 function TopHeader() {
     const handleSearch = (searchTerm) => {
@@ -7,8 +8,10 @@ function TopHeader() {
     }
 
     return (
-        <div className="py-2 bg-whiteSmk w-screen flex justify-between">
-            <div className="font-nhg font-medium text-black pl-1">GRAY ERA</div>
+        <div className="sticky z-50 py-2 bg-whiteSmk w-screen flex justify-between">
+            <Link href="/" passHref>
+                <div className="font-nhg font-medium text-black pl-2">GRAY ERA</div>
+            </Link>
             <div className="pr-6 z-50">
                 <SearchBar className="z-20" onSearch={handleSearch} />
             </div>

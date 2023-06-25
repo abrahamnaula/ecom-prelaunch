@@ -1,9 +1,9 @@
 //import {getProductsInCollection} from "../lib/shopify";
 //import ProductList from "../components/ProductList";
 import React from "react";
-import TopHeader from "../components/TopHeader";
+//import TopHeader from "../components/TopHeader";
 import FullFooter from "../components/FullFooter";
-import Header from "../components/Header";
+//import Header from "../components/Header";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Logo from "../components/Logo";
 
@@ -16,8 +16,8 @@ export default function Home() {
             <BackgroundVideo />
             <Logo />
             <ShopButton />
-            <Header />
-            <TopHeader />
+            {/*<Header />*/}
+            {/*<TopHeader />*/}
             <Scrollable/>
             <FullFooter />
         </div>
