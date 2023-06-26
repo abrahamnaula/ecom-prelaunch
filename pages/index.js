@@ -6,7 +6,6 @@ import FullFooter from "../components/FullFooter";
 import Header from "../components/Header";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Logo from "../components/Logo";
-
 import Scrollable from "../components/Scrollable";
 import ShopButton from "../components/ShopButton/ShopButton";
 export default function Home() {
@@ -22,13 +21,9 @@ export default function Home() {
             <FullFooter />
         </div>
     )
-}
-
-
-
+};
 /*
-
-            <video
+    <video
                 className="fixed top-0 left-0 w-full h-full object-cover z-[-1]"
                 ref={videoRef}
                 autoPlay

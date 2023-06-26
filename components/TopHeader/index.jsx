@@ -8,7 +8,7 @@ function TopHeader() {
     }
 
     return (
-        <div className="z-50 py-2 bg-whiteSmk w-screen flex justify-between">
+        <div className="h-29px bg-whiteSmk w-screen flex items-center justify-between">
             <Link href="/" passHref>
                 <div className="font-nhg font-medium text-black pl-2">GRAY ERA</div>
             </Link>

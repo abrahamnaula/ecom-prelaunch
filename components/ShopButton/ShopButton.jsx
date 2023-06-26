@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Link from "next/link";
 
 function ShopButton() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -11,10 +12,13 @@ function ShopButton() {
     return (
 
         <div className="fixed flex justify-center items-center w-full h-screen">
-            <button className={` mt-32 w-32 h-8 bg-whiteSmk font-nhg font-medium text-black transition-opacity duration-1000
+            <Link href="/collections-menu">
+                <button className={`mt-32 w-32 h-8 bg-whiteSmk font-nhg font-medium text-black transition-opacity duration-1000
                             ease-in-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-                SHOP
-            </button>
+                    SHOP
+                </button>
+            </Link>
+
         </div>
 
     );
