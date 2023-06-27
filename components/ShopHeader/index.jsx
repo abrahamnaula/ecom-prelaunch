@@ -9,14 +9,15 @@ function ShopHeader(){
     return(
         <>
             {/*Top WHite Header*/}
-            <div className="h-29px bg-whiteSmk w-screen flex items-center justify-between">
-                <Link href="/" passHref>
-                    <div className="font-nhg font-medium text-black pl-2">GRAY ERA</div>
+            <div className="h-29px bg-whiteSmk w-full min-w-full overflow-hidden flex items-center justify-between">
+
+            <Link href="/" passHref>
+                    <div className="font-nhg font-medium text-black text-xxs sm:text-base pl-2">GRAY ERA</div>
                 </Link>
 
                 <div className="flex items-center">
-                    <div className="text-black font-nhg font-medium">SHOP ALL</div>
-                    <img src="/img/arrow.png" alt="Arrow" className="ml-2" />
+                    <div className="text-black font-nhg font-medium text-xxs sm:text-base">SHOP ALL</div>
+                    <img src="/img/arrow.png" alt="Arrow" className="ml-2 h-2 sm:h-3" />
                 </div>
 
 
@@ -25,7 +26,8 @@ function ShopHeader(){
                 </div>
                 <div className="pr-5 text-black font-nhg font-medium">BAG 00</div>
             </div>
-            <div className="w-screen z-10 h-8 bg-whiteSmk border-t border-gray-400 flex items-center justify-between">
+            {/*BOTTOM HEADER*/}
+            <div className="w-full z-10 h-8 bg-whiteSmk border-t border-gray-400 flex items-center justify-between">
                 <div className="text-black font-nhg font-medium pl-2">REFINE +</div>
                 <div className="text-black font-nhg font-medium pr-5">SORT</div>
             </div>

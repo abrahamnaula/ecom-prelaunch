@@ -36,7 +36,9 @@ function FullFooter() {
                 </div>
 
                 <div className="w-1/3 flex justify-center items-center py-0.5">  {/* Added "w-1/2" class here */}
-                    <p className="font-ngh text-base text-xs">INSTAGRAM</p>
+                    <a href="https://www.instagram.com/gray_era/" target="_blank" rel="noopener noreferrer" className="font-ngh text-base text-xs">
+                        INSTAGRAM
+                    </a>
                     <span className="mx-2 text-gray-400"> </span>
                     <p className="font-ngh text-base text-xs">TIKTOK</p>
                 </div>
