@@ -16,9 +16,10 @@ function SearchBar({ onSearch }) {
 
     return (
         <div className="flex items-center">
-            <FaSearch className="mr-2 fill-black"/>
+            <FaSearch className="mr-2 fill-black h-2 sm:h-3"/>
             <input
-                className="placeholder-grayBkg font-nhg font-medium text-grayBkg bg-transparent outline-none"
+                className="placeholder-grayBkg font-nhg font-medium text-grayBkg text-xxs sm:text-base
+                            sm:font-nhg sm:text-grayBkg sm:font-medium bg-transparent outline-none"
                 placeholder="SEARCH"
                 value={inputValue}
                 onChange={handleInputChange}

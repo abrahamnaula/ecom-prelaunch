@@ -8,13 +8,6 @@ export default function CollectionsMenu() {
             <Header/>
             <ShopHeader/>
 
-            <div className="mt-140">swag</div>
-            <div className="mt-140">swag</div>
-
-            <div>swag</div>
-            <div>swag</div>
-            <div>swag</div>
-            <div>swag</div>
             <div id="top-element"></div>
             <DefaultFooter/>
         </>
