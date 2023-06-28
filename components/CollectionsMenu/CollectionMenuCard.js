@@ -41,7 +41,7 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
                         <ul className="text-white text-center">
                             {(title === "COLLECTIONS" ? collections : categories).map(
                                 (item, index) => (
-                                    <li key={index} className="font-nhg font-medium text-sm sm:text-xl">{item}</li>
+                                    <li key={index} className="font-nhg font-medium text-sm sm:text-xl mb-3">{item}</li>
                                 )
                             )}
                         </ul>

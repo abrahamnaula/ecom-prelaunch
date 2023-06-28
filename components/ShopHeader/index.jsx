@@ -16,19 +16,19 @@ function ShopHeader(){
                 </Link>
 
                 <div className="flex items-center">
-                    <div className="text-black font-nhg font-medium text-xxs sm:text-sm">SHOP ALL</div>
-                    <img src="/img/arrow.png" alt="Arrow" className="ml-2 h-2 sm:h-3" />
+                    <div className="font-nhg font-medium text-black text-xxs sm:text-sm">SHOP ALL</div>
+                    <img src="/img/arrow.png" alt="Arrow" className="ml-2 h-1.5 sm:h-3" />
                 </div>
 
 
                 <div className=" pr-0 z-50">
                     <SearchBar className="z-20" onSearch={handleSearch} />
                 </div>
-                <div className="pr-5 text-black text-xxs font-nhg font-medium sm:text-sm sm:text-black
-                                sm:font-nhg sm:font-medium">BAG 00</div>
+                <div className="pr-5 font-nhg font-medium text-black text-xxs sm:font-nhg sm:font-medium
+                                sm:text-sm sm:text-black">BAG 00</div>
             </div>
             {/*BOTTOM HEADER*/}
-            <div className="w-full z-10 h-8 bg-whiteSmk border-t border-gray-400 flex items-center justify-between">
+            <div className="w-full z-10 h-29px bg-whiteSmk border-t border-gray-400 flex items-center justify-between">
                 <div className="text-black text-xxs font-nhg font-medium sm:text-black sm:text-sm sm:font-nhg
                                 sm:font-medium pl-2">REFINE +</div>
                 <div className="text-black text-xxs font-nhg font-medium sm:text-black sm:text-sm sm:font-nhg

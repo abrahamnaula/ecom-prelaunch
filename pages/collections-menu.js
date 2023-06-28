@@ -13,7 +13,11 @@ export default function CollectionsMenu({ collections }) {
                 <Header/>
                 <ShopHeader/>
             </div>
+            <div className="h-29px"></div>
+            <div className="h-29px"></div>
+            <div className="h-29px"></div>
             <CollectionMenuList collections={collections} />
+            <div className="h-29px"></div>
             <div id="top-element"></div>
             <DefaultFooter/>
         </>
