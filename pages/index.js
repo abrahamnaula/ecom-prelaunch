@@ -13,10 +13,13 @@ export default function Home() {
         <div className="relative">
             <div id="top-element" />
             <BackgroundVideo />
+            <div className="sticky top-0 z-50">
+                <Header />
+                <TopHeader />
+            </div>
+
             <Logo />
             <ShopButton />
-            <Header />
-            <TopHeader />
             <Scrollable/>
             <FullFooter />
         </div>
