@@ -9,8 +9,10 @@ import { fetchCollections } from '../lib/shopify';
 export default function CollectionsMenu({ collections }) {
     return (
         <>
-            <Header/>
-            <ShopHeader/>
+            <div className="fixed top-0 w-full z-50">
+                <Header/>
+                <ShopHeader/>
+            </div>
             <CollectionMenuList collections={collections} />
             <div id="top-element"></div>
             <DefaultFooter/>
