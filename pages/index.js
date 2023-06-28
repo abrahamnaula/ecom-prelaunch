@@ -18,7 +18,7 @@ export default function Home() {
                 <Header />
                 <TopHeader />
             </div>
-            <div className="sm:h-1/2">
+            <div className="-mt-32 sm:mt-0 sm:h-1/2">
                 <Logo />
                 <ShopButton />
             </div>
