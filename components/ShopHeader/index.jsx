@@ -12,11 +12,11 @@ function ShopHeader(){
             <div className="h-29px bg-whiteSmk w-full min-w-full overflow-hidden flex items-center justify-between">
 
             <Link href="/" passHref>
-                    <div className="font-nhg font-medium text-black text-xxs sm:text-base pl-2">GRAY ERA</div>
+                    <div className="font-nhg font-medium text-black text-xxs sm:text-sm pl-2">GRAY ERA</div>
                 </Link>
 
                 <div className="flex items-center">
-                    <div className="text-black font-nhg font-medium text-xxs sm:text-base">SHOP ALL</div>
+                    <div className="text-black font-nhg font-medium text-xxs sm:text-sm">SHOP ALL</div>
                     <img src="/img/arrow.png" alt="Arrow" className="ml-2 h-2 sm:h-3" />
                 </div>
 
@@ -24,14 +24,14 @@ function ShopHeader(){
                 <div className=" pr-0 z-50">
                     <SearchBar className="z-20" onSearch={handleSearch} />
                 </div>
-                <div className="pr-5 text-black text-xxs font-nhg font-medium sm:text-base sm:text-black
+                <div className="pr-5 text-black text-xxs font-nhg font-medium sm:text-sm sm:text-black
                                 sm:font-nhg sm:font-medium">BAG 00</div>
             </div>
             {/*BOTTOM HEADER*/}
             <div className="w-full z-10 h-8 bg-whiteSmk border-t border-gray-400 flex items-center justify-between">
-                <div className="text-black text-xxs font-nhg font-medium sm:text-black sm:text-base sm:font-nhg
+                <div className="text-black text-xxs font-nhg font-medium sm:text-black sm:text-sm sm:font-nhg
                                 sm:font-medium pl-2">REFINE +</div>
-                <div className="text-black text-xxs font-nhg font-medium sm:text-black sm:text-base sm:font-nhg
+                <div className="text-black text-xxs font-nhg font-medium sm:text-black sm:text-sm sm:font-nhg
                                 sm:font-medium pr-5">SORT</div>
             </div>
 

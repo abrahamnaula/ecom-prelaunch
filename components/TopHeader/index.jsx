@@ -10,7 +10,7 @@ function TopHeader() {
     return (
         <div className="h-29px bg-whiteSmk w-screen flex items-center justify-between">
             <Link href="/" passHref>
-                <div className="font-nhg font-medium text-black pl-2">GRAY ERA</div>
+                <div className="font-nhg font-medium text-black text-sm pl-2">GRAY ERA</div>
             </Link>
             <div className="pr-6 z-50">
                 <SearchBar className="z-20" onSearch={handleSearch} />
