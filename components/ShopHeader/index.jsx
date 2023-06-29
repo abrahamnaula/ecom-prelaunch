@@ -17,7 +17,7 @@ function ShopHeader(){
 
                 <div className="flex items-center">
                     <div className="font-nhg font-medium text-black text-xxs sm:text-sm">SHOP ALL</div>
-                    <img src="/img/arrow.png" alt="Arrow" className="ml-2 h-1.5 sm:h-3" />
+                    <img src="/img/arrow.png" alt="Arrow" className="ml-2 h-1.5 sm:h-2" />
                 </div>
 
 

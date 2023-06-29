@@ -17,8 +17,8 @@ export default function CollectionsMenu({ collections }) {
             <div className="h-29px"></div>
             <div className="h-29px"></div>
             <CollectionMenuList collections={collections} />
-            <div className="h-29px"></div>
-            <div id="top-element"></div>
+            <div className="h-29px sm:h-0"></div>
+            <div id="top-element" className="bg-black"></div>
             <DefaultFooter/>
         </>
     );
