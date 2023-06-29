@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function CollectionMenuCard({ title, image, animationClass }) {
     const [hover, setHover] = useState(false);
@@ -6,7 +6,7 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
     const cardRef = useRef(); // This will hold the reference to your card div
 
     useEffect(() => {
-        if (title === "COLLECTIONS" || title === "CATEGORIES") {
+        if (title === "COLLECTIONS" || title === "CATEGORIES" || title === "BY ERA") {
             setIsSmallScreen(window.innerWidth <= 640);
 
             const handleResize = () => {
@@ -27,8 +27,6 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
         }
     }, [hover, isSmallScreen]);
 
-
-
     const categories = [
         "SHIRTS",
         "TEES",
@@ -46,6 +44,14 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
         "WOMEN",
     ];
 
+    const byEra = [
+        "Y2K",
+        "1990s",
+        "1980s",
+        "1970s",
+        "PRE 1970s",
+    ]
+
     return (
         <div
             ref={cardRef} // add the ref here
@@ -62,11 +68,11 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
             <div
                 className="absolute inset-0 flex items-center justify-center"
             >
-                {(title === "COLLECTIONS" || title === "CATEGORIES") && hover ? (
+                {(title === "COLLECTIONS" || title === "CATEGORIES" || title === "BY ERA") && hover ? (
                     <div className="opacity-0 transform transition-all duration-300"
                          style={{ opacity: hover ? 1 : 0, transition: "opacity 0.5s ease-in-out" }}>
                         <ul className="text-white text-center">
-                            {(title === "COLLECTIONS" ? collections : categories).map(
+                            {(title === "COLLECTIONS" ? collections : title === "CATEGORIES" ? categories : byEra).map(
                                 (item, index) => (
                                     <li key={index} className="font-nhg font-medium tracking-wide text-sm sm:text-xl
                                                                 mb-10">{item}</li>
