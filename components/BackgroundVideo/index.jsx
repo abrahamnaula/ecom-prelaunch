@@ -7,8 +7,8 @@ const BackgroundVideo = () => {
     useEffect(() => {
         const handleResize = () => {
             const isMobile =
-                window.innerWidth <= 412 && window.innerHeight <= 915 ||
-                window.innerWidth === 414 && window.innerHeight === 896;
+                (window.innerWidth <= 430 && window.innerHeight <= 932) || // include new dimensions
+                (window.innerWidth === 428 && window.innerHeight === 926); // include new dimensions
             if (isMobileDevice !== isMobile) {
                 setIsMobileDevice(isMobile);
                 setVideoKey(Date.now()); // Force video reload when source changes
@@ -26,7 +26,7 @@ const BackgroundVideo = () => {
         };
     }, [isMobileDevice]);
 
-    const videoSource = isMobileDevice ? "/ge-bkg-ver.mp4" : "/ge-bkg-hor.mp4";
+    const videoSource = isMobileDevice ? "/ge-bkg-vert.mp4" : "/ge-bkg-hor.mp4";
 
     return (
         <video
