@@ -1,7 +1,33 @@
-import { useState } from "react";
+import {useState, useEffect, useRef} from "react";
 
 export default function CollectionMenuCard({ title, image, animationClass }) {
     const [hover, setHover] = useState(false);
+    const [isSmallScreen, setIsSmallScreen] = useState(false); // Initialize to false
+    const cardRef = useRef(); // This will hold the reference to your card div
+
+    useEffect(() => {
+        if (title === "COLLECTIONS" || title === "CATEGORIES") {
+            setIsSmallScreen(window.innerWidth <= 640);
+
+            const handleResize = () => {
+                setIsSmallScreen(window.innerWidth <= 640);
+            };
+
+            window.addEventListener('resize', handleResize);
+
+            return () => {
+                window.removeEventListener('resize', handleResize);
+            };
+        }
+    }, [title]);
+
+    useEffect(() => {
+        if (hover && isSmallScreen && cardRef.current) {
+            cardRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, [hover, isSmallScreen]);
+
+
 
     const categories = [
         "SHIRTS",
@@ -22,7 +48,8 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
 
     return (
         <div
-            className={`w-full sm:w-1/5 sm:h-screen h-52 relative overflow-hidden mb-1 ml-1 mr-1 ${animationClass}`}
+            ref={cardRef} // add the ref here
+            className={`w-full sm:w-1/5 h-52 ${hover && isSmallScreen ? 'h-screen' : 'sm:h-screen'} relative overflow-hidden mb-1 ml-1 mr-1 ${animationClass}`}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >
@@ -41,7 +68,8 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
                         <ul className="text-white text-center">
                             {(title === "COLLECTIONS" ? collections : categories).map(
                                 (item, index) => (
-                                    <li key={index} className="font-nhg font-medium text-sm sm:text-xl mb-3">{item}</li>
+                                    <li key={index} className="font-nhg font-medium tracking-wide text-sm sm:text-xl
+                                                                mb-10">{item}</li>
                                 )
                             )}
                         </ul>
