@@ -25,14 +25,14 @@ function FullFooter() {
     }, []);
 
     return (
-        <footer className={`fixed bottom-0 left-0 w-full h-32 bg-gray-600 bg-opacity-50 flex flex-col justify-between font-nhg transition-all duration-500 ease-in-out transform ${isFooterVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
+        <footer className={`fixed bottom-0 left-0 w-full h-40 sm:h-32 bg-gray-600 bg-opacity-50 flex flex-col justify-between font-nhg transition-all duration-500 ease-in-out transform ${isFooterVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
             <div className="flex">  {/* Added "flex" class here */}
                 <div className="w-1/3 flex flex-col font-normal pt-3.5 mb-0.5">
-                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-0.5 leading-tight">ABOUT & CONTACT</p>
-                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-0.5 leading-tight">SHIPPING & RETURNS</p>
-                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-0.5 leading-tight">SIZING</p>
-                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-0.5 leading-tight">PRIVACY POLICY</p>
-                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-0.5 leading-tight">TERMS OF SERVICE</p>
+                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-2 sm:mb-0.5 leading-tight">ABOUT & CONTACT</p>
+                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-2 sm:mb-0.5 leading-tight">SHIPPING & RETURNS</p>
+                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-2 sm:mb-0.5 leading-tight">SIZING</p>
+                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-2 sm:mb-0.5 leading-tight">PRIVACY POLICY</p>
+                    <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-2 sm:mb-0.5 leading-tight">TERMS OF SERVICE</p>
                 </div>
 
                 <div className="w-1/3 flex justify-center items-center py-0.5">  {/* Added "w-1/2" class here */}
