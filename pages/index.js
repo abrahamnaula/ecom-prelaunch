@@ -14,17 +14,12 @@ export default function Home() {
             <div id="top-element" />
 
             <BackgroundVideo />
-            <div className="sticky top-0 z-50">
-                <Header />
-                <TopHeader />
-            </div>
+
             <div className="-mt-32 sm:mt-0 sm:h-1/2">
                 <Logo />
                 <ShopButton />
             </div>
 
-            <Scrollable/>
-            <FullFooter />
         </div>
     )
 };
