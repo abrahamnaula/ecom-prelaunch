@@ -55,7 +55,7 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
     return (
         <div
             ref={cardRef} // add the ref here
-            className={`w-full sm:w-1/5 h-52 ${hover && isSmallScreen ? 'h-screen' : 'sm:h-screen'} relative overflow-hidden mb-1 ml-1 mr-1 ${animationClass}`}
+            className={`w-full sm:w-1/5 h-52 ${hover && isSmallScreen ? 'h-screen' : 'sm:h-screen'} relative overflow-hidden mb-1 mr-1 ${animationClass}`}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >
