@@ -4,7 +4,7 @@ import CollectionMenuCard from './CollectionMenuCard';
 
 export default function CollectionMenuList({ collections }) {
     return (
-        <div className="flex flex-col sm:flex-row pb-5 hide-scrollbar">
+        <div className="flex flex-col sm:flex-row hide-scrollbar">
             {collections.map((collection, index) => (
                 <CollectionMenuCard
                     key={index}
