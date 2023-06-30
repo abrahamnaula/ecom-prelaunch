@@ -2,25 +2,36 @@ import { useState, useEffect, useRef } from "react";
 
 export default function CollectionMenuCard({ title, image, animationClass }) {
     const [hover, setHover] = useState(false);
-    const [isSmallScreen, setIsSmallScreen] = useState(false); // Initialize to false
-    const cardRef = useRef(); // This will hold the reference to your card div
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+    const cardRef = useRef();
+    const [cardHeight, setCardHeight] = useState('100vh');
 
     useEffect(() => {
-        if (title === "COLLECTIONS" || title === "CATEGORIES" || title === "BY ERA") {
-            setIsSmallScreen(window.innerWidth <= 640);
+        const handleResize = () => {
+            const isSmall = window.innerWidth <= 640;
+            setIsSmallScreen(isSmall);
 
-            const handleResize = () => {
-                setIsSmallScreen(window.innerWidth <= 640);
-            };
+            if (isSmall) {
+                setCardHeight(`${window.innerHeight / 5}px`);
+            } else {
+                setCardHeight('100vh');
+            }
+        };
 
-            window.addEventListener('resize', handleResize);
+        handleResize();
 
-            return () => {
-                window.removeEventListener('resize', handleResize);
-            };
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (hover && isSmallScreen && cardRef.current) {
+            cardRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-    }, [title]);
-
+    }, [hover, isSmallScreen]);
     useEffect(() => {
         if (hover && isSmallScreen && cardRef.current) {
             cardRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -55,11 +66,13 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
 
     return (
         <div
-            ref={cardRef} // add the ref here
-            className={`w-full sm:w-1/5 h-52 ${hover && isSmallScreen ? 'h-screen' : 'sm:h-screen'} relative overflow-hidden mb-1 mr-1 ${animationClass}`}
+            ref={cardRef}
+            className={`w-full sm:w-1/5 relative overflow-hidden mb-1 mr-1 ${animationClass}`}
+            style={{height: cardHeight}}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >
+
             <img className="object-cover w-full h-full" src={image} alt={title} />
             <div className="absolute inset-0 bg-black opacity-25"></div>
             <div
@@ -76,7 +89,7 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
                             {(title === "COLLECTIONS" ? collections : title === "CATEGORIES" ? categories : byEra).map(
                                 (item, index) => (
                                     <li key={index} className="font-nhg font-medium tracking-wide text-xs sm:text-xl
-                                                                mb-10">{item}</li>
+                                                                mb-2 sm:mb-10">{item}</li>
                                 )
                             )}
                         </ul>
