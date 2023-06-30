@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 export default function CollectionMenuCard({ title, image, animationClass }) {
     const [hover, setHover] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
+    const [isSelected, setIsSelected] = useState(false); // Add state to keep track of card selection
     const cardRef = useRef();
     const [cardHeight, setCardHeight] = useState('100vh');
 
@@ -62,14 +63,19 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
         "1970s",
         "PRE 1970s",
     ]
-
+    const handleCardClick = () => {
+        if (title === "COLLECTIONS" || title === "CATEGORIES" || title === "BY ERA") {
+            setIsSelected(!isSelected); // Toggle selection when the card is clicked
+        }
+    }
     return (
         <div
             ref={cardRef}
             className={`w-full sm:w-1/5 relative overflow-hidden mb-1 mr-1 ${animationClass}`}
-            style={{height: cardHeight}}
+            style={{height: isSelected ? '100vh' : cardHeight}} // Change height based on isSelected state
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
+            onClick={handleCardClick} // Add click handler
         >
 
             <img className="object-cover w-full h-full" src={image} alt={title} />
@@ -88,7 +94,7 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
                             {(title === "COLLECTIONS" ? collections : title === "CATEGORIES" ? categories : byEra).map(
                                 (item, index) => (
                                     <li key={index} className="font-nhg font-medium tracking-wide text-xxs sm:text-xl
-                                                                mb-1 sm:mb-10">{item}</li>
+                                                                mb-8 sm:mb-10">{item}</li>
                                 )
                             )}
                         </ul>
