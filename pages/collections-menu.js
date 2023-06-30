@@ -15,17 +15,7 @@ export default function CollectionsMenu({ collections }) {
 
     return (
         <>
-            <div className="fixed top-0 w-full z-50">
-                <Header/>
-                <ShopHeader/>
-            </div>
-            <div className="h-29px"></div>
-            <div className="h-29px"></div>
-            <div className="h-29px"></div>
             <CollectionMenuList collections={orderedCollections} />
-            <div className="h-29px bg-black sm:bg-black sm:h-0"></div>
-            <div id="top-element" className="-z-50 sm:bg-black"></div>
-            <DefaultFooter/>
         </>
     );
 }
