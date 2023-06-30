@@ -30,7 +30,8 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
     const categories = [
         "SHIRTS",
         "TEES",
-        "BOTTOMS OUTERWEAR",
+        "BOTTOMS",
+        "OUTERWEAR",
         "SWEATSHIRTS",
         "HEADWEAR",
         "EVERYTHING ELSE",
