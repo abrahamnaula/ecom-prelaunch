@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-
 export default function CollectionMenuCard({ title, image, animationClass }) {
     const [hover, setHover] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -88,8 +87,8 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
                         <ul className="text-white text-center">
                             {(title === "COLLECTIONS" ? collections : title === "CATEGORIES" ? categories : byEra).map(
                                 (item, index) => (
-                                    <li key={index} className="font-nhg font-medium tracking-wide text-xs sm:text-xl
-                                                                mb-2 sm:mb-10">{item}</li>
+                                    <li key={index} className="font-nhg font-medium tracking-wide text-xxs sm:text-xl
+                                                                mb-1 sm:mb-10">{item}</li>
                                 )
                             )}
                         </ul>
