@@ -74,14 +74,14 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
                         <ul className="text-white text-center">
                             {(title === "COLLECTIONS" ? collections : title === "CATEGORIES" ? categories : byEra).map(
                                 (item, index) => (
-                                    <li key={index} className="font-nhg font-medium tracking-wide text-sm sm:text-xl
+                                    <li key={index} className="font-nhg font-medium tracking-wide text-xs sm:text-xl
                                                                 mb-10">{item}</li>
                                 )
                             )}
                         </ul>
                     </div>
                 ) : (
-                    <span className={`font-nhg font-medium text-sm sm:text-white sm:text-xl
+                    <span className={`font-nhg font-medium text-xs sm:text-white sm:text-xl
                                     sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}>
                         {title}
                     </span>
