@@ -42,14 +42,14 @@ font-weight: 400; (font weight for Regular) will use NHaasGroteskTXPro-55Rg.ttf.
 */
 @font-face {
   font-family: 'Neue Haas Grotesk';
-  src: url('/public/fonts/NHaasGroteskTXPro-75Bd.ttf') format('truetype');
+  src: url('../public/fonts/NHaasGroteskTXPro-75Bd.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Neue Haas Grotesk';
-  src: url('/public/fonts/NHaasGroteskTXPro-65Md.ttf') format('truetype');
+  src: url('../public/fonts/NHaasGroteskTXPro-65Md.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -57,7 +57,7 @@ font-weight: 400; (font weight for Regular) will use NHaasGroteskTXPro-55Rg.ttf.
 
 @font-face {
   font-family: 'Neue Haas Grotesk';
-  src: url('/public/fonts/NHaasGroteskTXPro-55Rg.ttf') format('truetype');
+  src: url('../public/fonts/NHaasGroteskTXPro-55Rg.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
