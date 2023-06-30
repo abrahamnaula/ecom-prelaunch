@@ -11,7 +11,7 @@ function Logo() {
 
     return (
         <div className={`fixed flex justify-center items-center w-full h-screen transition-opacity duration-1000 ease-in-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-            <Image src="/new-ge-logo.png" alt="gray era logo" height={66} width={250}/>
+            <Image src="/new-ge-logo.png" alt="gray era logo" height={199} width={199}/>
         </div>
     );
 }

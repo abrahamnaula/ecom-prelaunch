@@ -11,9 +11,9 @@ function ShopButton() {
 
     return (
 
-        <div className="fixed flex justify-center items-center w-full h-screen">
+        <div className="fixed flex justify-center items-center w-full">
             <Link href="/collections-menu">
-                <button className={`mt-32 w-32 h-8 bg-whiteSmk font-nhg font-medium text-black transition-opacity duration-1000
+                <button className={`w-40 h-10 bg-whiteSmk font-nhg font-medium text-black text-xs transition-opacity duration-1000
                             ease-in-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
                     SHOP
                 </button>

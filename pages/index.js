@@ -10,19 +10,24 @@ import Scrollable from "../components/Scrollable";
 import ShopButton from "../components/ShopButton/ShopButton";
 export default function Home() {
     return (
-        <div className="relative">
+        <div className="relative flex flex-col justify-center h-screen">
             <div id="top-element" />
 
             <BackgroundVideo />
 
-            <div className="-mt-32 sm:mt-0 sm:h-1/2">
+            <div className="flex justify-between items-center -mt-32 sm:fixed sm:flex sm:justify-center sm:items-center sm:w-full sm:h-screen">
                 <Logo />
-                <ShopButton />
             </div>
 
+
+
+            <div className="flex justify-center mt-16 sm:mt-28 ">
+                <ShopButton />
+            </div>
         </div>
-    )
-};
+    );
+}
+
 /*
     <video
                 className="fixed top-0 left-0 w-full h-full object-cover z-[-1]"
