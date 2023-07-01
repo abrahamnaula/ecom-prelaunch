@@ -90,21 +90,21 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
             <div
                 className="absolute inset-0 flex items-center justify-center"
             >
-                {(title === "COLLECTIONS" || title === "CATEGORIES" || title === "BY ERA") && hover ? (
+                {(title === "COLLECTIONS" || title === "CATEGORIES" || title === "BY ERA") && hover && isSelected ? (
                     <div className="opacity-0 transform transition-all duration-300"
                          style={{ opacity: hover ? 1 : 0, transition: "opacity 0.5s ease-in-out" }}>
                         <ul className="text-white text-center">
                             {(title === "COLLECTIONS" ? collections : title === "CATEGORIES" ? categories : byEra).map(
                                 (item, index) => (
                                     <li key={index} className="font-nhg font-medium tracking-wide text-xxs sm:text-xl
-                                                                mb-8 sm:mb-10">{item}</li>
+                                                mb-8 sm:mb-10">{item}</li>
                                 )
                             )}
                         </ul>
                     </div>
                 ) : (
                     <span className={`font-nhg font-medium text-xs sm:text-white sm:text-xl
-                                    sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}>
+                        sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}>
                         {title}
                     </span>
                 )}
