@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-export default function CollectionMenuCard({ title, image, animationClass }) {
+export default function CollectionMenuCard({ title, image, animationClass, isSelected, setSelectedCard }) {
     const [hover, setHover] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
-    const [isSelected, setIsSelected] = useState(false); // Add state to keep track of card selection
     const cardRef = useRef();
-    const [cardHeight, setCardHeight] = useState('100vh');
+    const [cardHeight, setCardHeight] = useState("100vh");
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -67,10 +67,10 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
         "PRE 1970s",
     ]
     const handleCardClick = () => {
-        if (title === "COLLECTIONS" || title === "CATEGORIES" || title === "BY ERA") {
-            setIsSelected(!isSelected); // Toggle selection when the card is clicked
+        if (["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title)) {
+            setSelectedCard(isSelected ? null : title); // If this card was selected, deselect it. Otherwise, select this card.
         }
-    }
+    };
     return (
         <div
             ref={cardRef}
