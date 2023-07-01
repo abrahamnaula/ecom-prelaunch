@@ -32,11 +32,14 @@ export default function CollectionMenuCard({ title, image, animationClass }) {
             cardRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }, [hover, isSmallScreen]);
+
+    // New effect for handling scroll on card selection
     useEffect(() => {
-        if (hover && isSmallScreen && cardRef.current) {
-            cardRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (isSelected && cardRef.current) {
+            cardRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-    }, [hover, isSmallScreen]);
+    }, [isSelected]);
+
 
     const categories = [
         "SHIRTS",
