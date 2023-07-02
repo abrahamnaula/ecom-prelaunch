@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
+
 export default function CollectionMenuCard({ title, image, animationClass, isSelected, setSelectedCard }) {
     const [hover, setHover] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const cardRef = useRef();
     const [cardHeight, setCardHeight] = useState("100vh");
-
 
     useEffect(() => {
         const handleResize = () => {
@@ -33,13 +33,14 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
         }
     }, [hover, isSmallScreen]);
 
-    // New effect for handling scroll on card selection
     useEffect(() => {
         if (isSelected && cardRef.current) {
             cardRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
         }
     }, [isSelected]);
-
 
     const categories = [
         "SHIRTS",
@@ -66,20 +67,37 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
         "1970s",
         "PRE 1970s",
     ]
-    const handleCardClick = () => {
-        if (["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title)) {
-            setSelectedCard(isSelected ? null : title); // If this card was selected, deselect it. Otherwise, select this card.
+
+    const handleCardClick = (event) => {
+        if (!isSelected && ["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title)) {
+            setSelectedCard(isSelected ? null : title);
         }
     };
+
+    const handleCloseClick = (event) => {
+        event.stopPropagation();
+        setSelectedCard(null);
+    };
+
+    const shouldDisplayList = ["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title) && isSelected;
+
     return (
         <div
             ref={cardRef}
             className={`w-full sm:w-1/5 relative overflow-hidden mb-1 mr-1 ${animationClass}`}
-            style={{height: isSelected ? '100vh' : cardHeight}} // Change height based on isSelected state
+            style={{height: isSelected ? '100vh' : cardHeight}}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
-            onClick={handleCardClick} // Add click handler
+            onClick={handleCardClick}
         >
+            {isSelected && (
+                <button
+                    className="absolute top-0 left-0 m-10 font-nhg font-medium tracking-wide text-xxs z-50"
+                    onClick={handleCloseClick}
+                >
+                    BACK
+                </button>
+            )}
 
             <img className="object-cover w-full h-full" src={image} alt={title} />
             <div className="absolute inset-0 bg-black opacity-25"></div>
@@ -90,9 +108,9 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
             <div
                 className="absolute inset-0 flex items-center justify-center"
             >
-                {(title === "COLLECTIONS" || title === "CATEGORIES" || title === "BY ERA") && hover && isSelected ? (
+                {shouldDisplayList ? (
                     <div className="opacity-0 transform transition-all duration-300"
-                         style={{ opacity: hover ? 1 : 0, transition: "opacity 0.5s ease-in-out" }}>
+                         style={{ opacity: hover || isSelected ? 1 : 0, transition: "opacity 0.5s ease-in-out" }}>
                         <ul className="text-white text-center">
                             {(title === "COLLECTIONS" ? collections : title === "CATEGORIES" ? categories : byEra).map(
                                 (item, index) => (
