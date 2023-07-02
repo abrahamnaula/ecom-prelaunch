@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import {FaArrowLeft} from "react-icons/fa";
 
 export default function CollectionMenuCard({ title, image, animationClass, isSelected, setSelectedCard }) {
     const [hover, setHover] = useState(false);
@@ -92,10 +93,10 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
         >
             {isSelected && (
                 <button
-                    className="absolute top-0 left-0 m-10 font-nhg font-medium tracking-wide text-xxs z-50"
+                    className="absolute top-0 left-0 m-10 font-nhg font-medium tracking-wide text-white text-xxs z-50 flex items-center"
                     onClick={handleCloseClick}
                 >
-                    BACK
+                    <FaArrowLeft className="mr-2" />BACK
                 </button>
             )}
 
