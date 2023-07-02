@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import {FaArrowLeft} from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
 
 export default function CollectionMenuCard({ title, image, animationClass, isSelected, setSelectedCard }) {
     const [hover, setHover] = useState(false);
@@ -67,7 +67,7 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
         "1980s",
         "1970s",
         "PRE 1970s",
-    ]
+    ];
 
     const handleCardClick = (event) => {
         if (!isSelected && ["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title)) {
@@ -81,6 +81,7 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
     };
 
     const shouldDisplayList = ["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title) && isSelected;
+    const shouldDisplayBackButton = isSelected && isSmallScreen;
 
     return (
         <div
@@ -91,7 +92,7 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
             onMouseLeave={() => setHover(false)}
             onClick={handleCardClick}
         >
-            {isSelected && (
+            {shouldDisplayBackButton && (
                 <button
                     className="absolute top-0 left-0 m-10 font-nhg font-medium tracking-wide text-white text-xxs z-50 flex items-center"
                     onClick={handleCloseClick}
