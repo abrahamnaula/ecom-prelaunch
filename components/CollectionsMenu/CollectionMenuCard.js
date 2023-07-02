@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import {FaArrowLeft} from "react-icons/fa";
+
 
 export default function CollectionMenuCard({ title, image, animationClass, isSelected, setSelectedCard }) {
     const [hover, setHover] = useState(false);
