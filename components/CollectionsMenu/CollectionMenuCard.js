@@ -127,14 +127,17 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
                 ) : (
                     <span
                         className={`font-nhg font-medium text-xs sm:text-white sm:text-xl
-                            sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}
+        sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}
                         onClick={(event) => {
-                            event.stopPropagation();
-                            router.push(`/collections/${title.toLowerCase().replace(/\s+/g, '-')}`);
+                            if (!["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title)) {
+                                event.stopPropagation();
+                                router.push(`/collections/${title.toLowerCase().replace(/\s+/g, '-')}`);
+                            }
                         }}
                     >
-                        {title}
-                    </span>
+    {title}
+</span>
+
                 )}
             </div>
         </div>
