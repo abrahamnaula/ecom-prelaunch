@@ -25,6 +25,7 @@ module.exports = {
         '125': '7.813rem',
         '29px': '1.812rem',
         '58px' : '3.625rem',
+        screen: 'calc(var(--vh, 1vh) * 100)',
       },
       spacing: {
         '5px': '5px',
