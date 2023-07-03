@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 import { FaArrowLeft } from "react-icons/fa";
+import { useRouter } from 'next/router';
 
 
 export default function CollectionMenuCard({ title, image, animationClass, isSelected, setSelectedCard }) {
@@ -8,6 +9,7 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const cardRef = useRef();
     const [cardHeight, setCardHeight] = useState("100vh");
+    const router = useRouter();
 
     useEffect(() => {
         const handleResize = () => {
@@ -119,14 +121,30 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
                             {(title === "COLLECTIONS" ? collections : title === "CATEGORIES" ? categories : byEra).map(
                                 (item, index) => (
                                     <li key={index} className="font-nhg font-medium tracking-wide text-xxs sm:text-xl
-                                                mb-8 sm:mb-10">{item}</li>
+                        mb-8 sm:mb-10 cursor-pointer"
+                                        onClick={(event) => {
+                                            event.stopPropagation();
+                                            router.push(`/collections/${item.toLowerCase().replace(/\s+/g, '-')}`);
+                                        }}
+                                    >
+                                        {item}
+                                    </li>
                                 )
                             )}
                         </ul>
+
                     </div>
                 ) : (
-                    <span className={`font-nhg font-medium text-xs sm:text-white sm:text-xl
-                        sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}>
+                    <span
+                        className={`font-nhg font-medium text-xs sm:text-white sm:text-xl
+                                    sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}
+                        onClick={(event) => {
+                            if (!["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title)) {
+                                event.stopPropagation();
+                                router.push(`/collections/${title.toLowerCase().replace(/\s+/g, '-')}`);
+                            }
+                        }}
+                    >
                         {title}
                     </span>
                 )}

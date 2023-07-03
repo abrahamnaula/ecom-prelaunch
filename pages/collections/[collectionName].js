@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import {ParamShopifyData } from '../../lib/shopify'
 import ShopHeader from "../../components/ShopHeader";
 import Header from "../../components/Header";
+import NewFooter from "../../components/NewFooter";
 
 export default function Collection({ products }) {
     const router = useRouter()
@@ -13,20 +14,27 @@ export default function Collection({ products }) {
     }
 
     return (
-        <>
-            <Header/>
-            <ShopHeader/>
+        <div className="flex flex-col min-h-screen">
+            <div className="fixed w-full top-0 z-50 bg-white">
+                <Header/>
+                <ShopHeader/>
+            </div>
 
-            <div className="bg-black text-white">
+            <main className="bg-black text-white flex-grow pt-[totalHeightOfHeaders]">
+                <div className="h-29px"></div>
+                <div className="h-29px"></div>
+                <div className="h-29px"></div>
+
                 <h1>{collectionName}</h1>
                 <ul>
                     {products.map((product) => (
                         <li key={product.id}>{product.title}</li>
                     ))}
                 </ul>
-            </div>
-        </>
+            </main>
 
+            <NewFooter/>
+        </div>
     )
 }
 
@@ -70,7 +78,6 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-    // Here we are fetching all possible paths for the collections
     const query = `
         query {
             collections(first: 100) {
@@ -85,8 +92,6 @@ export async function getStaticPaths() {
 
     const { data } = await ParamShopifyData(query)
 
-    console.log(data) // Add this line to log the returned data
-
     if (!data || !data.collections || !data.collections.edges || data.collections.edges.length === 0) {
         console.error('No data returned from Shopify API')
         return { paths: [], fallback: true }
@@ -99,4 +104,3 @@ export async function getStaticPaths() {
     // We'll pre-render only these paths at build time.
     return { paths, fallback: true }
 }
-
