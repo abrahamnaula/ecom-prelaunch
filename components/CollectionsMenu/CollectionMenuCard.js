@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { FaArrowLeft } from "react-icons/fa";
+import { useRouter } from 'next/router';
 
 export default function CollectionMenuCard({ title, image, animationClass, isSelected, setSelectedCard }) {
     const [hover, setHover] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const cardRef = useRef();
     const [cardHeight, setCardHeight] = useState("100vh");
+    const router = useRouter();
 
     useEffect(() => {
         const handleResize = () => {
@@ -123,8 +125,14 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
                         </ul>
                     </div>
                 ) : (
-                    <span className={`font-nhg font-medium text-xs sm:text-white sm:text-xl
-                        sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}>
+                    <span
+                        className={`font-nhg font-medium text-xs sm:text-white sm:text-xl
+                            sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            router.push(`/collections/${title.toLowerCase().replace(/\s+/g, '-')}`);
+                        }}
+                    >
                         {title}
                     </span>
                 )}
