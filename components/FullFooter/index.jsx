@@ -44,7 +44,7 @@ function FullFooter() {
                 </div>
             </div>
 
-            <BottomFooter />
+
         </footer>
     );
 }

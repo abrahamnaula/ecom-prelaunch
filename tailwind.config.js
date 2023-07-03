@@ -18,6 +18,8 @@ module.exports = {
         grayBkg: '#2e2e2e',
         grayBd: '#20201b',
         whiteSmk: '#EFEFEF',
+        metallicLeft: '#D9D9D9',
+        metallicRight: '#2e2e2e',
       },
       height:{
         '125': '7.813rem',
@@ -30,12 +32,21 @@ module.exports = {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-linear': 'linear-gradient(var(--tw-gradient-stops))',
       },
       transitionProperty: {
         'opacity': 'opacity',
       },
+      gradientColorStops: theme => ({
+        ...theme('colors'),
+        'grayBkg': '#2e2e2e',
+        'grayBd': '#20201b',
+      }),
+      linearGradientColors: {
+        metallic: ['to-r', 'metallicLeft', 'metallicRight'],
+      },
+
     },
   },
   plugins: [

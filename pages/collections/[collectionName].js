@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import {ParamShopifyData } from '../../lib/shopify'
 import ShopHeader from "../../components/ShopHeader";
 import Header from "../../components/Header";
+import NewFooter from "../../components/NewFooter";
 
 export default function Collection({ products }) {
     const router = useRouter()
@@ -25,6 +26,7 @@ export default function Collection({ products }) {
                     ))}
                 </ul>
             </div>
+            <NewFooter/>
         </>
 
     )
