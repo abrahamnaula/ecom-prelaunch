@@ -2,7 +2,7 @@ import React from 'react';
 
 function NewFooter() {
     return (
-        <footer className={`w-full h-32 bg-gray-600 bg-opacity-50 flex flex-col justify-between font-ngh transition-all duration-500 ease-in-out transform`}>
+        <footer className={`fixed bottom-0 left-0 w-full h-32 bg-gray-600 bg-opacity-50 flex flex-col justify-between font-nhg transition-all duration-500 ease-in-out transform`}>
             <div className="bg-grayBkg flex">
                 <div className="w-1/3 flex flex-col font-normal pt-3.5 mb-0.5">
                     <p className="font-ngh text-base tracking-wide pl-2 text-xxs mb-0.5 leading-tight">ABOUT & CONTACT</p>
