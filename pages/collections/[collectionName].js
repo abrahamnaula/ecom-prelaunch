@@ -36,9 +36,6 @@ export default function Collection({ products }) {
             <NewFooter/>
         </div>
     )
-
-
-
 }
 
 export async function getStaticProps(context) {
@@ -81,7 +78,6 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-    // Here we are fetching all possible paths for the collections
     const query = `
         query {
             collections(first: 100) {
@@ -96,8 +92,6 @@ export async function getStaticPaths() {
 
     const { data } = await ParamShopifyData(query)
 
-    console.log(data) // Add this line to log the returned data
-
     if (!data || !data.collections || !data.collections.edges || data.collections.edges.length === 0) {
         console.error('No data returned from Shopify API')
         return { paths: [], fallback: true }
@@ -110,4 +104,3 @@ export async function getStaticPaths() {
     // We'll pre-render only these paths at build time.
     return { paths, fallback: true }
 }
-
