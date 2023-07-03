@@ -119,15 +119,23 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
                             {(title === "COLLECTIONS" ? collections : title === "CATEGORIES" ? categories : byEra).map(
                                 (item, index) => (
                                     <li key={index} className="font-nhg font-medium tracking-wide text-xxs sm:text-xl
-                                                mb-8 sm:mb-10">{item}</li>
+                        mb-8 sm:mb-10 cursor-pointer"
+                                        onClick={(event) => {
+                                            event.stopPropagation();
+                                            router.push(`/collections/${item.toLowerCase().replace(/\s+/g, '-')}`);
+                                        }}
+                                    >
+                                        {item}
+                                    </li>
                                 )
                             )}
                         </ul>
+
                     </div>
                 ) : (
                     <span
                         className={`font-nhg font-medium text-xs sm:text-white sm:text-xl
-        sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}
+                                    sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}
                         onClick={(event) => {
                             if (!["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title)) {
                                 event.stopPropagation();
@@ -135,9 +143,8 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
                             }
                         }}
                     >
-    {title}
-</span>
-
+                        {title}
+                    </span>
                 )}
             </div>
         </div>
