@@ -23,7 +23,8 @@ module.exports = {
       },
       height:{
         '125': '7.813rem',
-        '29px': '1.812rem'
+        '29px': '1.812rem',
+        '58px' : '3.625rem',
       },
       spacing: {
         '5px': '5px',

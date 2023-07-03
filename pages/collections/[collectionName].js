@@ -14,22 +14,31 @@ export default function Collection({ products }) {
     }
 
     return (
-        <>
-            <Header/>
-            <ShopHeader/>
+        <div className="flex flex-col min-h-screen">
+            <div className="fixed w-full top-0 z-50 bg-white">
+                <Header/>
+                <ShopHeader/>
+            </div>
 
-            <div className="bg-black text-white">
+            <main className="bg-black text-white flex-grow pt-[totalHeightOfHeaders]">
+                <div className="h-29px"></div>
+                <div className="h-29px"></div>
+                <div className="h-29px"></div>
+
                 <h1>{collectionName}</h1>
                 <ul>
                     {products.map((product) => (
                         <li key={product.id}>{product.title}</li>
                     ))}
                 </ul>
-            </div>
-            <NewFooter/>
-        </>
+            </main>
 
+            <NewFooter/>
+        </div>
     )
+
+
+
 }
 
 export async function getStaticProps(context) {
