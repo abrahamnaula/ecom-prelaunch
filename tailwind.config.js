@@ -52,6 +52,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('@tailwindcss/aspect-ratio'),
     function({ addUtilities }) {
       const newUtilities = {
         '@keyframes grow': {
