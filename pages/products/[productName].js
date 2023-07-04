@@ -5,6 +5,7 @@ import Header from "../../components/Header"
 import NewFooter from "../../components/NewFooter"
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
+import ShopHeader from "../../components/ShopHeader";
 //const CollapsibleSection = dynamic(() => import('../../components/CollapsibleSection'), { ssr: false })
 //const AddToCart = dynamic(() => import('../../components/AddToCart'), { ssr: false })
 
@@ -24,8 +25,12 @@ export default function Product({ product }) {
         <div className="flex flex-col min-h-screen bg-white">
             <div className="fixed w-full top-0 z-50">
                 <Header />
+                <ShopHeader/>
             </div>
             <div className="h-29px"></div>
+            <div className="h-29px"></div>
+            <div className="h-29px"></div>
+
             <main className="flex-grow pt-[totalHeightOfHeaders]">
                 <div className="grid lg:grid-cols-2 gap-4">
                     {/* Product image */}
