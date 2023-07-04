@@ -8,17 +8,21 @@ export default function ProductCard({ product }) {
     const price = priceRange.minVariantPrice.amount;
     const size = variants.edges[0]?.node?.title;
 
+    const aspectRatio = 1;
+
     return (
         <div className="border rounded-md p-4 bg-white">
-            <div className="relative h-64 w-full">
+            <div className="relative h-52 w-full">
                 <Image
                     src={imageUrl}
                     alt={altText}
-                    layout="fill"
-                    objectFit="contain"
+                    sizing="responsive"
+                    width={10000}
+                    height={10000}
+                    fit="contain"
                 />
             </div>
-            <div className="mt-4">
+            <div className="mt-1">
                 <h2 className="text-lg font-medium">{title}</h2>
                 <p className="text-gray-500">{price} / {size}</p>
             </div>
