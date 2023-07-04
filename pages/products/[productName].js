@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import {ParamShopifyData } from '../../lib/shopify'
 import Header from "../../components/Header";
 import NewFooter from "../../components/NewFooter";
+import ShopHeader from "../../components/ShopHeader";
 
 export default function Product({ product }) {
     const router = useRouter()
@@ -16,6 +17,7 @@ export default function Product({ product }) {
         <div className="flex flex-col min-h-screen bg-white">
             <div className="fixed w-full top-0 z-50">
                 <Header />
+                <ShopHeader/>
             </div>
             <div className="h-29px"></div>
             <main className="flex-grow pt-[totalHeightOfHeaders]">
