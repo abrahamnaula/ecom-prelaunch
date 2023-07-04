@@ -11,20 +11,20 @@ export default function ProductCard({ product }) {
     const aspectRatio = 1;
 
     return (
-        <div className="border rounded-md p-4 bg-white">
-            <div className="relative h-52 w-full">
+        <div className="p-1 bg-white">
+            <div className="relative h-56 w-full">
                 <Image
                     src={imageUrl}
                     alt={altText}
                     sizing="responsive"
-                    width={10000}
-                    height={10000}
+                    width={1920}
+                    height={2120}
                     fit="contain"
                 />
             </div>
             <div className="mt-1">
-                <h2 className="text-lg font-medium">{title}</h2>
-                <p className="text-gray-500">{price} / {size}</p>
+                <h2 className="font-nhg font-medium text-black text-xs">{title}</h2>
+                <p className="font-nhg font-medium text-black text-xs">{price} / {size}</p>
             </div>
         </div>
     );

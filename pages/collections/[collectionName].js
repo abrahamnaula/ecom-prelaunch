@@ -22,7 +22,7 @@ export default function Collection({ products }) {
             </div>
             <div className="h-29px"></div>
             <main className="flex-grow pt-[totalHeightOfHeaders]">
-                <h1 className="text-center text-2xl p-4">{collectionName}</h1>
+                <h1 className="text-center text-2xl p-4 text-black">{collectionName}</h1>
                 <ProductList products={products} />
             </main>
 
