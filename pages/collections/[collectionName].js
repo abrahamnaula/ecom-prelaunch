@@ -4,39 +4,33 @@ import {ParamShopifyData } from '../../lib/shopify'
 import ShopHeader from "../../components/ShopHeader";
 import Header from "../../components/Header";
 import NewFooter from "../../components/NewFooter";
+import ProductList from "../../components/Products/ProductList";
 
 export default function Collection({ products }) {
     const router = useRouter()
     const { collectionName } = router.query
 
-    if(router.isFallback) {
+    if (router.isFallback) {
         return <div>Loading...</div> // You can replace this with a loading spinner or related component
     }
 
     return (
-        <div className="flex flex-col min-h-screen">
-            <div className="fixed w-full top-0 z-50 bg-white">
-                <Header/>
-                <ShopHeader/>
+        <div className="flex flex-col min-h-screen bg-white">
+            <div className="fixed w-full top-0 z-50">
+                <Header />
+                <ShopHeader />
             </div>
-
-            <main className="bg-black text-white flex-grow pt-[totalHeightOfHeaders]">
-                <div className="h-29px"></div>
-                <div className="h-29px"></div>
-                <div className="h-29px"></div>
-
-                <h1>{collectionName}</h1>
-                <ul>
-                    {products.map((product) => (
-                        <li key={product.id}>{product.title}</li>
-                    ))}
-                </ul>
+            <div className="h-29px"></div>
+            <main className="flex-grow pt-[totalHeightOfHeaders]">
+                <h1 className="text-center text-2xl p-4">{collectionName}</h1>
+                <ProductList products={products} />
             </main>
 
-            <NewFooter/>
+            <NewFooter />
         </div>
     )
 }
+
 
 export async function getStaticProps(context) {
     const { collectionName } = context.params
@@ -55,6 +49,26 @@ export async function getStaticProps(context) {
                   id
                   title
                   handle
+                  images(first: 1) {
+                    edges {
+                      node {
+                        altText
+                        originalSrc
+                      }
+                    }
+                  }
+                  priceRange {
+                    minVariantPrice {
+                      amount
+                    }
+                  }
+                  variants(first: 1) {
+                    edges {
+                      node {
+                        title
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -76,6 +90,7 @@ export async function getStaticProps(context) {
         props: { products: data.collections.edges[0].node.products.edges.map(edge => edge.node) },
     }
 }
+
 
 export async function getStaticPaths() {
     const query = `
