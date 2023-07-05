@@ -43,7 +43,8 @@ export default function Product({ product }) {
                 <div className="flex-grow lg:w-1/2 h-full overflow-auto">
                     {/* Product details */}
                     <div>
-                        <h1 className="text-xxs md:text-sm sm:text-sm font-medium font-nhg p-4 text-black">{title}</h1>
+                        <h1 className="text-xxs md:text-sm sm:text-sm font-medium font-nhg p-4 text-black
+                                        text-transform: uppercase">{title}</h1>
 
                         {/* Price and size boxes */}
                         <div className="grid grid-cols-2 mb-4 px-4 ">
