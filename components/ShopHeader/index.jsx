@@ -11,9 +11,10 @@ function ShopHeader(){
     return(
         <>
             {/*Top WHite Header*/}
-            <div className="h-29px bg-whiteSmk w-full min-w-full overflow-hidden flex items-center justify-between">
+            <div className="h-29px bg-whiteSmk w-full min-w-full overflow-hidden flex items-center justify-between
+                            border-x border-gray-400">
 
-            <Link href="/" passHref>
+                <Link href="/" passHref>
                     <div className="font-nhg font-medium text-black text-xxs sm:text-xxs pl-2">GRAY ERA</div>
                 </Link>
 

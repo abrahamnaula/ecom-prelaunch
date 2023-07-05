@@ -2,9 +2,9 @@ import React from 'react';
 
 function NewFooter() {
     return (
-        <footer className={`w-full h-32 bg-gray-600 bg-opacity-50 flex flex-col justify-between font-ngh transition-all duration-500 ease-in-out transform`}>
+        <footer>
             <div className="bg-grayBkg flex">
-                <div className="w-1/3 flex flex-col font-normal pt-3.5 mb-0.5">
+                <div className="w-1/3 flex flex-col font-normal py-2 mb-0.5 mt-0">
                     <p className="font-ngh text-base tracking-wide pl-2 text-xxs text-white mb-0.5 leading-tight">ABOUT & CONTACT</p>
                     <p className="font-ngh text-base tracking-wide pl-2 text-xxs text-white mb-0.5 leading-tight">SHIPPING & RETURNS</p>
                     <p className="font-ngh text-base tracking-wide pl-2 text-xxs text-white mb-0.5 leading-tight">SIZING</p>
@@ -18,7 +18,7 @@ function NewFooter() {
                     <p className="font-ngh text-base text-xxs text-white">TIKTOK</p>
                 </div>
             </div>
-            <div className="h-10 bg-gradient-to-r from-metallicLeft to-metallicRight -mt-1"></div> {/* Notice the '-mt-1' class */}
+            <div className="h-10 sm:h-24 bg-gradient-to-r from-metallicLeft to-metallicRight"></div> {/* Notice the '-mt-1' class */}
         </footer>
     );
 }
