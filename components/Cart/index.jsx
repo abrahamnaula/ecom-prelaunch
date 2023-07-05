@@ -129,7 +129,7 @@ export default function Cart({open, setOpen}) {
                                                     href="#"
                                                     className="flex items-center justify-center border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-800"
                                                 >
-                                                    Checkout
+                                                    CHECKOUT
                                                 </a>
                                             </div>
                                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
