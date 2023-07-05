@@ -48,9 +48,9 @@ export default function Product({ product }) {
                         <h1 className="text-xxs md:text-sm sm:text-sm font-medium font-nhg p-4 text-black">{title}</h1>
 
                         {/* Price and size boxes */}
-                        <div className="grid grid-cols-2 mb-4 px-4">
-                            <div className="border-3/4 border-gray-400 pr-2 p-4 text-black text-xxs sm:text-sm font-medium font-nhg">{formatter.format(price)}</div>
-                            <div className="border-r-3/4 border-t-3/4 border-b-3/4 border-gray-400 pl-2 p-4 text-black text-xxs sm:text-sm font-medium font-nhg">{sizeOptions.join(', ')}</div>
+                        <div className="grid grid-cols-2 mb-4 px-4 ">
+                            <div className="flex justify-center items-center border-3/4 border-gray-400 pr-2 p-4 text-black text-xxs sm:text-sm font-medium font-nhg">{formatter.format(price)}</div>
+                            <div className="flex justify-center items-center border-r-3/4 border-t-3/4 border-b-3/4 border-gray-400 pl-2 p-4 text-black text-xxs sm:text-sm font-medium font-nhg">{sizeOptions.join(', ')}</div>
                         </div>
 
                         {/* Add to cart component*/}
