@@ -32,19 +32,18 @@ export default function Product({ product }) {
             <div className="h-29px"></div>
             <div className="h-29px"></div>
 
-            <main className="flex-grow">
-                <div className="grid lg:grid-cols-2 gap-4">
+            <main className="flex-grow flex flex-col lg:flex-row">
+                <div className="flex flex-grow">
                     {/* Product image */}
-                    <div className="flex justify-center">
-                        <Image
-                            src={mainImage.url}
-                            alt={mainImage.altText}
-                            width={600}
-                            height={600}
-                            objectFit="contain"
-                        />
-                    </div>
-
+                    <Image
+                        src={mainImage.url}
+                        alt={mainImage.altText}
+                        width={600}
+                        height={600}
+                        objectFit="contain"
+                    />
+                </div>
+                <div className="flex-grow lg:w-1/2 h-full overflow-auto">
                     {/* Product details */}
                     <div>
                         <h1 className="text-xxs md:text-sm sm:text-sm font-medium font-nhg p-4 text-black">{title}</h1>
@@ -54,7 +53,6 @@ export default function Product({ product }) {
                             <div className="border-3/4 border-gray-400 pr-2 p-4 text-black text-xxs sm:text-sm font-medium font-nhg">{formatter.format(price)}</div>
                             <div className="border-r-3/4 border-t-3/4 border-b-3/4 border-gray-400 pl-2 p-4 text-black text-xxs sm:text-sm font-medium font-nhg">{sizeOptions.join(', ')}</div>
                         </div>
-
 
                         {/* Add to cart component*/}
                         <div className="px-4">
@@ -72,14 +70,12 @@ export default function Product({ product }) {
                             <CollapsibleSection
                                 title="TERMS & DETAILS"
                                 content={`Sizing is determined by measurements not by the garment tag.
-                                          Please be aware that all garments are vintage or secondhand. 
-                                          Each item may show varying degrees of wear and natural distressing. 
-                                          We intentionally document every available detail to insure listing accuracy. Returns or exchanges are not accepted at this time. All sales are final. Visit our terms and conditions page for additional details, including our shipping policy.`}
+                                      Please be aware that all garments are vintage or secondhand. 
+                                      Each item may show varying degrees of wear and natural distressing. 
+                                      We intentionally document every available detail to insure listing accuracy. Returns or exchanges are not accepted at this time. All sales are final. Visit our terms and conditions page for additional details, including our shipping policy.`}
                             />
-
+                            <div className="pb-8"></div>
                         </div>
-
-
                     </div>
                 </div>
             </main>
@@ -87,6 +83,8 @@ export default function Product({ product }) {
             <NewFooter />
         </div>
     )
+
+
 }
 
 export async function getStaticProps(context) {
