@@ -21,8 +21,10 @@ export default function Collection({ products }) {
                 <ShopHeader />
             </div>
             <div className="h-29px"></div>
+            <div className="h-29px"></div>
+            <div className="h-29px"></div>
+
             <main className="flex-grow ">
-                <h1 className="text-center text-2xl p-4 text-white">{collectionName}</h1>
                 <ProductList products={products} />
             </main>
 
