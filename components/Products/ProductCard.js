@@ -23,9 +23,9 @@ export default function ProductCard({ product }) {
                         className="object-contain border-y border-gray-800"
                     />
                 </div>
-                <div className="mt-1 flex-grow">
-                    <h2 className="font-nhg font-medium text-black text-xs">{title}</h2>
-                    <p className="font-nhg font-medium text-black text-xs">{price} / {size}</p>
+                <div className="mt-1 flex-grow pb-2">
+                    <h2 className="font-nhg font-medium text-black text-xs pl-4">{title}</h2>
+                    <p className="font-nhg font-medium text-black text-xs pl-4">{price} / {size}</p>
                 </div>
             </div>
         </Link>
