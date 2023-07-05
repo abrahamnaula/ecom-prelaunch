@@ -1,6 +1,7 @@
 // components/ProductCard.js
 import Link from 'next/link';
 import Image from 'next/image';
+import {formatter} from "../../utils/helpers";
 // components/ProductCard.js
 
 export default function ProductCard({ product }) {
@@ -24,8 +25,8 @@ export default function ProductCard({ product }) {
                     />
                 </div>
                 <div className="mt-1 flex-grow pb-2">
-                    <h2 className="font-nhg font-medium text-black text-xs pl-4">{title}</h2>
-                    <p className="font-nhg font-medium text-black text-xs pl-4">{price} / {size}</p>
+                    <h2 className="font-nhg font-medium text-black text-xxs sm:text-xs pl-4">{title}</h2>
+                    <p className="font-nhg font-medium text-black text-xxs sm:text-xs pl-4">{formatter.format(price)} / {size}</p>
                 </div>
             </div>
         </Link>
