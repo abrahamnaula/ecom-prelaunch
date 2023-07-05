@@ -72,10 +72,13 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
     ];
 
     const handleCardClick = (event) => {
-        if (!isSelected && ["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title)) {
+        if (["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title)) {
             setSelectedCard(isSelected ? null : title);
+        } else {
+            router.push(`/collections/${title.toLowerCase().replace(/\s+/g, '-')}`);
         }
     };
+
 
     const handleCloseClick = (event) => {
         event.stopPropagation();
@@ -94,7 +97,8 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
             onMouseLeave={() => setHover(false)}
             onClick={handleCardClick}
         >
-            {shouldDisplayBackButton && (
+
+        {shouldDisplayBackButton && (
                 <button
                     className="absolute top-0 left-0 m-10 font-nhg font-medium tracking-wide text-white text-xxs z-50 flex items-center"
                     onClick={handleCloseClick}
@@ -136,12 +140,7 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
                     <span
                         className={`font-nhg font-medium text-xs sm:text-white sm:text-xl
                                     sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}
-                        onClick={(event) => {
-                            if (!["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title)) {
-                                event.stopPropagation();
-                                router.push(`/collections/${title.toLowerCase().replace(/\s+/g, '-')}`);
-                            }
-                        }}
+
                     >
                         {title}
                     </span>
