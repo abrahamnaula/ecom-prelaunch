@@ -31,19 +31,18 @@ export default function Product({ product }) {
             <div className="h-29px"></div>
             <div className="h-29px"></div>
 
-            <main className="flex-grow">
-                <div className="grid lg:grid-cols-2 gap-4">
+            <main className="flex-grow flex flex-col lg:flex-row">
+                <div className="flex flex-grow">
                     {/* Product image */}
-                    <div className="flex justify-center">
-                        <Image
-                            src={mainImage.url}
-                            alt={mainImage.altText}
-                            width={600}
-                            height={600}
-                            objectFit="contain"
-                        />
-                    </div>
-
+                    <Image
+                        src={mainImage.url}
+                        alt={mainImage.altText}
+                        width={600}
+                        height={600}
+                        objectFit="contain"
+                    />
+                </div>
+                <div className="flex-grow">
                     {/* Product details */}
                     <div>
                         <h1 className="text-xxs md:text-sm sm:text-sm font-medium font-nhg p-4 text-black">{title}</h1>
@@ -81,6 +80,7 @@ export default function Product({ product }) {
 
                     </div>
                 </div>
+
             </main>
 
             <NewFooter />
