@@ -53,7 +53,8 @@ export default function Product({ product }) {
                                 {formatter.format(price)}
                             </div>
                             <div className="flex justify-center items-center border-r-3/4 border-t-3/4 border-b-3/4
-                                            border-gray-400 pl-2 p-4 text-black text-xxs sm:text-sm font-medium font-nhg">
+                                            border-gray-400 pl-2 p-4 text-black text-xxs sm:text-sm font-medium
+                                            text-transform: uppercase font-nhg">
                                 {sizeOptions.join(', ')}
                             </div>
                         </div>
