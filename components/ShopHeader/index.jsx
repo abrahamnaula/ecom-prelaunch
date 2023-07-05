@@ -28,7 +28,7 @@ function ShopHeader(){
                                  sm:text-black">BAG 00</div>
             </div>
             {/*BOTTOM HEADER*/}
-            <div className="w-full z-10 h-29px bg-whiteSmk border-t border-gray-400 flex items-center justify-between">
+            <div className="w-full z-10 h-29px bg-whiteSmk border border-gray-400 flex items-center justify-between">
                 <div className="text-black text-xxs font-nhg font-medium sm:text-black  sm:font-nhg
                                 sm:font-medium pl-2">REFINE +</div>
                 <div className="text-black text-xxs font-nhg font-medium sm:text-black  sm:font-nhg
