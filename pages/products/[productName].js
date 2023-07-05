@@ -6,6 +6,8 @@ import NewFooter from "../../components/NewFooter"
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import ShopHeader from "../../components/ShopHeader";
+import AddToCart from "../../components/AddToCart";
+import {formatter} from "../../utils/helpers";
 //const CollapsibleSection = dynamic(() => import('../../components/CollapsibleSection'), { ssr: false })
 //const AddToCart = dynamic(() => import('../../components/AddToCart'), { ssr: false })
 
@@ -46,17 +48,20 @@ export default function Product({ product }) {
 
                     {/* Product details */}
                     <div>
-                        <h1 className="text-center text-2xl p-4 text-black">{title}</h1>
+                        <h1 className="text-sm font-bold font-nhg p-4 text-black">{title}</h1>
 
                         {/* Price and size boxes */}
-                        <div className="grid grid-cols-2 gap-4 mb-4 px-4">
-                            <div className="border border-gray-300 p-4">Price: {price}</div>
-                            <div className="border border-gray-300 p-4">Size: {sizeOptions.join(', ')}</div>
+                        <div className="grid grid-cols-2 mb-4 px-4">
+                            <div className="border-3/4 border-gray-700 pr-2 p-4 text-black text-sm font-nhg">{formatter.format(price)}</div>
+                            <div className="border-3/4 border-gray-700 pl-2 p-4 text-black text-sm font-nhg">{sizeOptions.join(', ')}</div>
                         </div>
 
-                        {/* Add to cart component
-                        <AddToCart />
-                           */}
+
+                        {/* Add to cart component*/}
+                        <div className="px-4">
+                            <AddToCart />
+                        </div>
+
                         <hr className="border-gray-200 my-4"/>
 
                         {/* Collapsible sections
@@ -119,16 +124,17 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-    const query = `
-  query {
-      products(first: 250) {
-        edges {
-          node {
-            handle
-          }
-        }
-      }
-  }`;
+
+    const query =
+        `query {
+            products(first: 250) {
+                edges {
+                    node {
+                        handle
+                    }
+                }
+            }
+        }`;
 
     const { data } = await ParamShopifyData(query);
 

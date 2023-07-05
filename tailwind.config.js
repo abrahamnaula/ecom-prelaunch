@@ -32,6 +32,10 @@ module.exports = {
         '130':'32.5rem',
         '140': '35rem',
       },
+      borderWidth: {
+        '1/2': '0.5px',
+        '3/4': '0.75px',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
