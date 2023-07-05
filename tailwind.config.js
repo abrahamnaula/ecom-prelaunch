@@ -35,6 +35,7 @@ module.exports = {
       borderWidth: {
         '1/2': '0.5px',
         '3/4': '0.75px',
+        'xs': '0.01px',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

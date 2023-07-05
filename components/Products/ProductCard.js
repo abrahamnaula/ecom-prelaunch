@@ -12,16 +12,15 @@ export default function ProductCard({ product }) {
 
     return (
         <Link href={`/products/${handle}`} passHref>
-            <div className="flex flex-col bg-white h-full cursor-pointer border-r
-                            border-t border-b border-gray-800"> {/* Removed 'p-1' from here */}
-                <div className="relative flex-grow border-b border-gray-800">
+            <div className="flex flex-col bg-white h-full cursor-pointer border-r border-gray-800">
+                <div className="relative flex-grow ">
                     <Image
                         src={imageUrl}
                         alt={altText}
                         layout="responsive"
                         width={2250}
                         height={3000}
-                        className="object-contain"
+                        className="object-contain border-y border-gray-800"
                     />
                 </div>
                 <div className="mt-1 flex-grow">
