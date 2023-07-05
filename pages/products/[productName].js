@@ -62,7 +62,9 @@ export default function Product({ product }) {
                             <AddToCart />
                         </div>
 
-                        <hr className="border-gray-200 my-4"/>
+                        <div className="px-4">
+                            <hr className="border-gray-400 my-4"/>
+                        </div>
 
                         {/* Collapsible sections
                         <CollapsibleSection title="MEASUREMENTS" content={description} />
