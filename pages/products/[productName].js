@@ -4,13 +4,10 @@ import { ParamShopifyData } from '../../lib/shopify'
 import Header from "../../components/Header"
 import NewFooter from "../../components/NewFooter"
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
 import ShopHeader from "../../components/ShopHeader";
 import AddToCart from "../../components/AddToCart";
 import {formatter} from "../../utils/helpers";
 import CollapsibleSection from "../../components/CollapsibleSection";
-//const CollapsibleSection = dynamic(() => import('../../components/CollapsibleSection'), { ssr: false })
-//const AddToCart = dynamic(() => import('../../components/AddToCart'), { ssr: false })
 
 export default function Product({ product }) {
     const router = useRouter();
@@ -34,7 +31,7 @@ export default function Product({ product }) {
             <div className="h-29px"></div>
             <div className="h-29px"></div>
 
-            <main className="flex-grow pt-[totalHeightOfHeaders]">
+            <main className="flex-grow">
                 <div className="grid lg:grid-cols-2 gap-4">
                     {/* Product image */}
                     <div className="flex justify-center">
@@ -66,16 +63,21 @@ export default function Product({ product }) {
                         <div className="px-4">
                             <hr className="border-gray-400 my-4"/>
                         </div>
+                        <div className="px-4">
+                            <CollapsibleSection
+                                title="MEASUREMENTS"
+                                content={description}
+                            />
+                            <CollapsibleSection
+                                title="TERMS & DETAILS"
+                                content={`Sizing is determined by measurements not by the garment tag.
+                                          Please be aware that all garments are vintage or secondhand. 
+                                          Each item may show varying degrees of wear and natural distressing. 
+                                          We intentionally document every available detail to insure listing accuracy. Returns or exchanges are not accepted at this time. All sales are final. Visit our terms and conditions page for additional details, including our shipping policy.`}
+                            />
 
-                        <CollapsibleSection
-                            title="MEASUREMENTS"
-                            content={description}
-                        />
-                        <CollapsibleSection
-                            title="TERMS & DETAILS"
-                            content={`Sizing is determined by measurements not by the garment tag.
-    Please be aware that all garments are vintage or secondhand. Each item may show varying degrees of wear and natural distressing. We intentionally document every available detail to insure listing accuracy. Returns or exchanges are not accepted at this time. All sales are final. Visit our terms and conditions page for additional details, including our shipping policy.`}
-                        />
+                        </div>
+
 
                     </div>
                 </div>
