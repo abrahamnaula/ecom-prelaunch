@@ -10,13 +10,13 @@ export default function CollapsibleSection({ title, content }) {
                 className="flex justify-between items-center cursor-pointer py-2"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <h2 className="font-nhg font-medium font-semibold text-xxs text-black sm:text-sm">{title}</h2>
-                <span className="text-black font-extrabold font-nhg text-lg">
+                <h2 className="font-nhg font-medium font-semibold text-xxs text-black sm:text-sm pl-2">{title}</h2>
+                <span className="text-black font-extrabold font-nhg text-lg pr-2">
                     {isOpen ? '_' : '+'}
                 </span>
             </div>
             {isOpen && (
-                <div className="py-4 text-black text-xxs sm:text-sm font-medium font-nhg">
+                <div className="py-4 text-black text-xxs sm:text-sm font-medium font-nhg pl-2">
                     {content}
                 </div>
             )}

@@ -28,9 +28,7 @@ export default function Product({ product }) {
                 <Header />
                 <ShopHeader/>
             </div>
-            <div className="h-29px"></div>
-            <div className="h-29px"></div>
-            <div className="h-29px"></div>
+            <div className="h-header-h"></div>
 
             <main className="flex-grow flex flex-col lg:flex-row">
                 <div className="flex flex-grow lg:w-1/2">

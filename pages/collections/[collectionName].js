@@ -20,10 +20,7 @@ export default function Collection({ products }) {
                 <Header />
                 <ShopHeader />
             </div>
-            <div className="h-29px"></div>
-            <div className="h-29px"></div>
-            <div className="h-29px"></div>
-
+            <div className="h-header-h"></div>
             <main className="flex-grow ">
                 <ProductList products={products} />
             </main>

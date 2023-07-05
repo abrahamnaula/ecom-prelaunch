@@ -31,6 +31,7 @@ module.exports = {
         '5px': '5px',
         '130':'32.5rem',
         '140': '35rem',
+        'header-h': '5.438rem',
       },
       borderWidth: {
         '1/2': '0.5px',
