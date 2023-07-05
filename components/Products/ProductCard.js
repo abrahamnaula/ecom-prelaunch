@@ -1,6 +1,7 @@
 // components/ProductCard.js
 import Link from 'next/link';
 import Image from 'next/image';
+// components/ProductCard.js
 
 export default function ProductCard({ product }) {
     const { title, handle, images, priceRange, variants } = product;
@@ -11,14 +12,15 @@ export default function ProductCard({ product }) {
 
     return (
         <Link href={`/products/${handle}`} passHref>
-            <div className="flex flex-col bg-white p-1 h-full cursor-pointer">
-                <div className="relative flex-grow">
+            <div className="flex flex-col bg-white h-full cursor-pointer border-r
+                            border-t border-b border-gray-800"> {/* Removed 'p-1' from here */}
+                <div className="relative flex-grow border-b border-gray-800">
                     <Image
                         src={imageUrl}
                         alt={altText}
                         layout="responsive"
-                        width={1920}
-                        height={2120}
+                        width={2250}
+                        height={3000}
                         className="object-contain"
                     />
                 </div>
@@ -30,3 +32,4 @@ export default function ProductCard({ product }) {
         </Link>
     );
 }
+
