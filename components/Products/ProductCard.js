@@ -24,7 +24,7 @@ export default function ProductCard({ product }) {
                         className="object-contain border-y border-gray-800"
                     />
                 </div>
-                <div className="mt-1 flex-grow pb-2 border-b-3/4 border-gray-800">
+                <div className="flex-grow p-3 border-b-3/4 border-gray-800">
                     <h2 className="font-nhg font-medium text-black text-xxs sm:text-xs pl-4
                                    transform-text: uppercase">{title}</h2>
                     <p className="font-nhg font-medium text-black text-xxs sm:text-xs pl-4
