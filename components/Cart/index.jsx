@@ -49,7 +49,7 @@ export default function Cart({open, setOpen}) {
                     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity " />
                 </Transition.Child>
 
-                <div className="fixed inset-0 overflow-hidden font-nhg">
+                <div className="fixed inset-0 overflow-hidden font-nhg transform-text: uppercase">
                     <div className="absolute inset-0 overflow-hidden">
                         <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
                             <Transition.Child
@@ -117,10 +117,10 @@ export default function Cart({open, setOpen}) {
                                                                             <div className="flex">
                                                                                 <button
                                                                                     type="button"
-                                                                                    className="font-medium text-black hover:text-gray-700"
+                                                                                    className="font-medium text-black hover:text-gray-700 text-decoration-line: underline"
                                                                                     onClick={() => removeFromCart(product.id)}
                                                                                 >
-                                                                                    Remove
+                                                                                    REMOVE
                                                                                 </button>
                                                                             </div>
                                                                         </div>
