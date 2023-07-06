@@ -15,6 +15,8 @@ import { ArrowRightIcon } from '@heroicons/react/24/outline';
 export default function Product({ product }) {
     const router = useRouter();
     const { cart, addToCart } = useCart();
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
     const handleAddToCart = () => {
         addToCart(product);
     }
@@ -23,9 +25,18 @@ export default function Product({ product }) {
     }
 
     const { title, description, images, priceRange, options } = product;
-    const mainImage = images.edges[0]?.node;
+    //const mainImage = images.edges[0]?.node;
+
     const price = priceRange.minVariantPrice.amount;
     const sizeOptions = options.find(option => option.name.toLowerCase() === 'size')?.values || [];
+    // Create a state for managing the current displayed image index
+    // Define a handler for cycling through the images
+    const handleNextImage = () => {
+        setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.edges.length);
+    };
+    const mainImage = images.edges[currentImageIndex]?.node;
+
+
 
     return (
         <div className="flex flex-col min-h-screen bg-white">
@@ -48,7 +59,7 @@ export default function Product({ product }) {
                                 height={600}
                                 objectFit="contain"
                             />
-                            <div className="absolute bottom-8 left-80 sm:left-96">
+                            <div className="absolute bottom-8 left-80 sm:left-100" onClick={handleNextImage}>
                                 <ArrowRightIcon className="h-6 pl-20 text-black" />
                             </div>
                         </div>
