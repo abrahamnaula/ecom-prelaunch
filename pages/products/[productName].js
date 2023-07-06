@@ -11,7 +11,9 @@ import CollapsibleSection from "../../components/CollapsibleSection";
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import SwipeableViews from 'react-swipeable-views';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from 'react-slick';
 
 export default function Product({ product }) {
     const router = useRouter();
@@ -50,9 +52,9 @@ export default function Product({ product }) {
                 <div className="flex flex-grow lg:w-1/2">
                     {/* Product images */}
                     <div className="relative w-full">
-                        <SwipeableViews
-                            index={currentImageIndex}
-                            onChangeIndex={setCurrentImageIndex}
+                        <Slider
+                            afterChange={setCurrentImageIndex}
+                            initialSlide={currentImageIndex}
                         >
                             {images.edges.map((edge, index) => (
                                 <div key={index} className="relative">
@@ -66,7 +68,7 @@ export default function Product({ product }) {
                                     />
                                 </div>
                             ))}
-                        </SwipeableViews>
+                        </Slider>
                         <div className="absolute bottom-8 right-8">
                             <ArrowRightIcon
                                 className="h-6 pl-2 pr-4 text-black"
