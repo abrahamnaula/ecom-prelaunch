@@ -18,7 +18,9 @@ function NewFooter() {
                     <p className="font-ngh text-base text-xxs text-white">TIKTOK</p>
                 </div>
             </div>
-            <div className="h-10 sm:h-24 bg-gradient-to-r from-metallicLeft to-metallicRight"></div> {/* Notice the '-mt-1' class */}
+            <div className="h-10 sm:h-24 bg-gradient-to-r from-metallicLeft to-metallicRight">
+
+            </div>
         </footer>
     );
 }
