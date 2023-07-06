@@ -98,11 +98,6 @@ export default function Cart({open, setOpen}) {
                                                                             />
                                                                         </div>
                                                                     </div>
-
-
-
-
-
                                                                     <div className="ml-4 flex flex-1 flex-col">
                                                                         <div>
                                                                             <div
