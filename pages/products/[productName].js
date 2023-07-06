@@ -9,11 +9,14 @@ import AddToCart from "../../components/AddToCart";
 import {formatter} from "../../utils/helpers";
 import CollapsibleSection from "../../components/CollapsibleSection";
 import {useState} from "react";
+import { useCart } from "../../context/CartContext";
 
 export default function Product({ product }) {
     const router = useRouter();
-    const [open, setOpen] = useState(false);  // Add this line to manage cart visibility
-
+    const { cart, addToCart } = useCart();
+    const handleAddToCart = () => {
+        addToCart(product);
+    }
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
@@ -64,7 +67,7 @@ export default function Product({ product }) {
 
                         {/* Add to cart component*/}
                         <div className="px-4">
-                            <AddToCart />
+                            <AddToCart onClick={handleAddToCart}/>
                         </div>
 
                         <div className="px-4">

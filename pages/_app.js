@@ -1,6 +1,8 @@
 import '../styles/globals.css'
 import '../styles/animations.css'
 import React, {useEffect} from "react";
+import { CartProvider } from "../context/CartContext";
+
 export default function App({ Component, pageProps }) {
     useEffect(() => {
         function setVhVariable() {
@@ -16,7 +18,10 @@ export default function App({ Component, pageProps }) {
         };
     }, []);
     return (
+        <CartProvider>
             <Component {...pageProps} />
+        </CartProvider>
+
     );
 }
 
