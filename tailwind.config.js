@@ -27,6 +27,9 @@ module.exports = {
         '58px' : '3.625rem',
         screen: 'calc(var(--vh, 1vh) * 100)',
       },
+      width:{
+        '18': '4.5rem',
+      },
       spacing: {
         '5px': '5px',
         '130':'32.5rem',

@@ -8,11 +8,16 @@ import ShopHeader from "../../components/ShopHeader";
 import AddToCart from "../../components/AddToCart";
 import {formatter} from "../../utils/helpers";
 import CollapsibleSection from "../../components/CollapsibleSection";
+import {useState} from "react";
+import { useCart } from "../../context/CartContext";
 
 
 export default function Product({ product }) {
     const router = useRouter();
-
+    const { cart, addToCart } = useCart();
+    const handleAddToCart = () => {
+        addToCart(product);
+    }
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
@@ -27,6 +32,7 @@ export default function Product({ product }) {
             <div className="fixed w-full top-0 z-50">
                 <Header />
                 <ShopHeader/>
+
             </div>
             <div className="h-header-h"></div>
 
@@ -62,7 +68,7 @@ export default function Product({ product }) {
 
                         {/* Add to cart component*/}
                         <div className="px-4">
-                            <AddToCart />
+                            <AddToCart onClick={handleAddToCart}/>
                         </div>
 
                         <div className="px-4">
@@ -97,31 +103,39 @@ export async function getStaticProps(context) {
     const { productName } = context.params
 
     const query = ` 
-  query ($handle: String!){
-      productByHandle(handle: $handle) {
-          id
-          title
-          handle
-          description
-          priceRange {
-              minVariantPrice {
-                  amount
-              }
-          }
-          options {
-              name
-              values
-          }
-          images(first: 5) {
-              edges {
-                  node {
-                      url
-                      altText
+          query ($handle: String!){
+              productByHandle(handle: $handle) {
+                  id
+                  title
+                  handle
+                  description
+                  priceRange {
+                      minVariantPrice {
+                          amount
+                      }
+                  }
+                  options {
+                      name
+                      values
+                  }
+                  images(first: 5) {
+                      edges {
+                          node {
+                              url
+                              altText
+                          }
+                      }
+                  }
+                  variants(first: 1) {
+                      edges {
+                          node {
+                              id
+                          }
+                      }
                   }
               }
-          }
-      }
-  }`;
+          }`;
+
 
     const { data } = await ParamShopifyData(query, { handle: productName })
 
