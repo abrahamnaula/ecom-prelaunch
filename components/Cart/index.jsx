@@ -65,7 +65,7 @@ export default function Cart({open, setOpen}) {
                                     <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                                         <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                                             <div className="flex items-start justify-between">
-                                                <Dialog.Title className="text-md font-medium text-gray-900">
+                                                <Dialog.Title className="text-md font-medium text-black">
                                                     SHOPPING BAG
                                                 </Dialog.Title>
                                                 <div className="ml-3 flex h-7 items-center">
@@ -82,53 +82,61 @@ export default function Cart({open, setOpen}) {
 
                                             <div className="mt-8">
                                                 <div className="flow-root">
-                                                    <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                                        {cart.map((product) => {
-                                                            const mainImage = product.images.edges[0]?.node;
-                                                            return (
-                                                                <li key={product.id} className="flex py-6">
-                                                                    <div className="h-24 w-18 flex-shrink-0 overflow-hidden  border border-gray-200">
-                                                                        {/* Product image */}
-                                                                        <div className="relative h-full w-full">
-                                                                            <Image
-                                                                                src={mainImage.url}
-                                                                                alt={product.title}
-                                                                                layout="fill"
-                                                                                objectFit="contain"
-                                                                            />
+                                                    {cart.length > 0 ? (
+                                                        <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                                            {cart.map((product) => {
+                                                                const mainImage = product.images.edges[0]?.node;
+                                                                return (
+                                                                    <li key={product.id} className="flex py-6">
+                                                                        <div className="h-24 w-18 flex-shrink-0 overflow-hidden  border border-gray-200">
+                                                                            {/* Product image */}
+                                                                            <div className="relative h-full w-full">
+                                                                                <Image
+                                                                                    src={mainImage.url}
+                                                                                    alt={product.title}
+                                                                                    layout="fill"
+                                                                                    objectFit="contain"
+                                                                                />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div className="ml-4 flex flex-1 flex-col">
-                                                                        <div>
+                                                                        <div className="ml-4 flex flex-1 flex-col">
+                                                                            <div>
+                                                                                <div
+                                                                                    className="flex justify-between text-base font-medium text-gray-900">
+                                                                                    {/* Product details */}
+                                                                                    <div className="ml-4 flex-grow">
+                                                                                        <h2 className="text-sm title-font font-medium mb-1">{product.title}</h2>
+                                                                                        <p className="text-gray-500">{formatter.format(product.priceRange.minVariantPrice.amount)}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                {/*<p className="mt-1 text-sm text-gray-500">{product.color}</p>*/}
+                                                                            </div>
                                                                             <div
-                                                                                className="flex justify-between text-base font-medium text-gray-900">
-                                                                                {/* Product details */}
-                                                                                <div className="ml-4 flex-grow">
-                                                                                    <h2 className="text-sm title-font font-medium mb-1">{product.title}</h2>
-                                                                                    <p className="text-gray-500">{formatter.format(product.priceRange.minVariantPrice.amount)}</p>
+                                                                                className="flex flex-1 items-end justify-between text-sm">
+                                                                                <p className="pl-4 text-gray-500">Qty {product.quantity}</p>
+
+                                                                                <div className="flex">
+                                                                                    <button
+                                                                                        type="button"
+                                                                                        className="font-medium text-black hover:text-gray-700 text-decoration-line: underline"
+                                                                                        onClick={() => removeFromCart(product.id)}
+                                                                                    >
+                                                                                        REMOVE
+                                                                                    </button>
                                                                                 </div>
                                                                             </div>
-                                                                            {/*<p className="mt-1 text-sm text-gray-500">{product.color}</p>*/}
                                                                         </div>
-                                                                        <div
-                                                                            className="flex flex-1 items-end justify-between text-sm">
-                                                                            <p className="pl-4 text-gray-500">Qty {product.quantity}</p>
-
-                                                                            <div className="flex">
-                                                                                <button
-                                                                                    type="button"
-                                                                                    className="font-medium text-black hover:text-gray-700 text-decoration-line: underline"
-                                                                                    onClick={() => removeFromCart(product.id)}
-                                                                                >
-                                                                                    REMOVE
-                                                                                </button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            );
-                                                        })}
-                                                    </ul>
+                                                                    </li>
+                                                                );
+                                                            })}
+                                                        </ul>
+                                                        ) : (
+                                                            <div className="text-center py-6">
+                                                                <h2 className="font-medium text-black">
+                                                                    YOUR CART IS EMPTY.
+                                                                </h2>
+                                                            </div>
+                                                        )}
                                                 </div>
                                             </div>
                                         </div>
