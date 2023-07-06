@@ -155,7 +155,7 @@ export default function Cart({open, setOpen}) {
                                                         className="font-medium  text-gray-800 hover:text-black"
                                                         onClick={() => setOpen(false)}
                                                     >
-                                                        Continue Shopping
+                                                        CONTINUE SHOPPING
                                                         <span aria-hidden="true"> &rarr;</span>
                                                     </button>
                                                 </p>
