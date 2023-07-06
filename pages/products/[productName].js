@@ -60,8 +60,8 @@ export default function Product({ product }) {
                                 objectFit="contain"
                                 className="w-full max-h-full"
                             />
-                            <div className="absolute bottom-8 left-80 sm:left-100" onClick={handleNextImage}>
-                                <ArrowRightIcon className="h-6 pl-20 text-black" />
+                            <div className="absolute bottom-8 right-8" onClick={handleNextImage}>
+                                <ArrowRightIcon className="h-6 pl-2 pr-4 text-black" />
                             </div>
                         </div>
                     </div>
@@ -114,6 +114,7 @@ export default function Product({ product }) {
             <NewFooter />
         </div>
     );
+
 
 }
 
