@@ -13,6 +13,7 @@ module.exports = {
       },
       fontSize: {
         'xxs': '0.625rem',
+        'supsm':'0.4rem',
       },
       colors: {
         grayBkg: '#2e2e2e',

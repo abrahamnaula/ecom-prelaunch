@@ -71,7 +71,7 @@ export default function Product({ product }) {
                         </Slider>
                         <div className="absolute bottom-8 right-8">
                             <ArrowRightIcon
-                                className="h-6 pl-2 pr-4 text-black"
+                                className="h-12 pl-2 pr-4 text-black z-50"
                                 onClick={handleNextImage}
                             />
                         </div>
