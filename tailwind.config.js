@@ -32,6 +32,9 @@ module.exports = {
       },
       spacing: {
         '5px': '5px',
+        '100': '25rem',
+        '105': '26.25rem',
+        '110': '27.5rem',
         '130':'32.5rem',
         '140': '35rem',
         'header-h': '5.438rem',
