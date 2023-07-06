@@ -29,7 +29,7 @@ export default function Product({ product }) {
     const { title, description, images, priceRange, options } = product;
     const price = priceRange.minVariantPrice.amount;
     const sizeOptions = options.find(option => option.name.toLowerCase() === 'size')?.values || [];
-
+//comemnt
     const handleNextImage = () => {
         setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.edges.length);
     };
