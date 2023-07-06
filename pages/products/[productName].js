@@ -43,22 +43,26 @@ export default function Product({ product }) {
         <div className="flex flex-col min-h-screen bg-white">
             <div className="fixed w-full top-0 z-50">
                 <Header />
-                <ShopHeader/>
+                <ShopHeader />
             </div>
             <div className="h-header-h"></div>
 
             <main className="flex-grow flex flex-col lg:flex-row">
-                <div className="flex flex-grow lg:w-1/2 relative">
+                <div className="flex flex-grow lg:w-1/2">
                     {/* Product image */}
-                    <div className="absolute top-0 bottom-0 left-0 right-0">
-                        <Image
-                            src={mainImage.url}
-                            alt={mainImage.altText}
-                            layout="fill"
-                            objectFit="cover"
-                        />
-                        <div className="absolute bottom-8 left-80 sm:left-100" onClick={handleNextImage}>
-                            <ArrowRightIcon className="h-6 pl-20 text-black" />
+                    <div className="relative w-full">
+                        <div className="relative">
+                            <Image
+                                src={mainImage.url}
+                                alt={mainImage.altText}
+                                width={600}
+                                height={600}
+                                objectFit="contain"
+                                className="w-full max-h-full"
+                            />
+                            <div className="absolute bottom-8 left-80 sm:left-100" onClick={handleNextImage}>
+                                <ArrowRightIcon className="h-6 pl-20 text-black" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -66,28 +70,28 @@ export default function Product({ product }) {
                     {/* Product details */}
                     <div>
                         <h1 className="text-xxs md:text-sm sm:text-sm font-medium font-nhg p-4 text-black
-                                        text-transform: uppercase">{title}</h1>
+            text-transform: uppercase">{title}</h1>
 
                         {/* Price and size boxes */}
                         <div className="grid grid-cols-2 mb-4 px-4 ">
                             <div className="flex justify-center items-center border-3/4 border-gray-400 pr-2 p-4
-                                            text-black text-xxs sm:text-sm font-medium font-nhg">
+              text-black text-xxs sm:text-sm font-medium font-nhg">
                                 {formatter.format(price)}
                             </div>
                             <div className="flex justify-center items-center border-r-3/4 border-t-3/4 border-b-3/4
-                                            border-gray-400 pl-2 p-4 text-black text-xxs sm:text-sm font-medium
-                                            text-transform: uppercase font-nhg">
+              border-gray-400 pl-2 p-4 text-black text-xxs sm:text-sm font-medium
+              text-transform: uppercase font-nhg">
                                 {sizeOptions.join(', ')}
                             </div>
                         </div>
 
                         {/* Add to cart component*/}
                         <div className="px-4">
-                            <AddToCart onClick={handleAddToCart}/>
+                            <AddToCart onClick={handleAddToCart} />
                         </div>
 
                         <div className="px-4">
-                            <hr className="border-gray-400 my-4"/>
+                            <hr className="border-gray-400 my-4" />
                         </div>
                         <div className="px-4">
                             <CollapsibleSection
@@ -97,18 +101,20 @@ export default function Product({ product }) {
                             <CollapsibleSection
                                 title="TERMS & DETAILS"
                                 content={`Sizing is determined by measurements not by the garment tag.
-                                      Please be aware that all garments are vintage or secondhand. 
-                                      Each item may show varying degrees of wear and natural distressing. 
-                                      We intentionally document every available detail to insure listing accuracy. Returns or exchanges are not accepted at this time. All sales are final. Visit our terms and conditions page for additional details, including our shipping policy.`}
+              Please be aware that all garments are vintage or secondhand. 
+              Each item may show varying degrees of wear and natural distressing. 
+              We intentionally document every available detail to insure listing accuracy. Returns or exchanges are not accepted at this time. All sales are final. Visit our terms and conditions page for additional details, including our shipping policy.`}
                             />
                             <div className="pb-8"></div>
                         </div>
                     </div>
                 </div>
             </main>
+            <div className="flex-grow"></div>
             <NewFooter />
         </div>
-    )
+    );
+
 }
 
 export async function getStaticProps(context) {
