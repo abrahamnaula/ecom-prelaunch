@@ -19,7 +19,7 @@ function SearchBar({ onSearch }) {
             <FaSearch className="mr-2 fill-black h-2 sm:h-3"/>
             <input
                 className="placeholder-grayBkg font-nhg font-medium text-grayBkg text-supsm
-                            sm:font-nhg sm:text-grayBkg sm:font-medium bg-transparent outline-none
+                            sm:text-xxs sm:font-nhg sm:text-grayBkg sm:font-medium bg-transparent outline-none
                             w-20 sm:w-auto" // Add this line
                 placeholder="SEARCH"
                 value={inputValue}
