@@ -10,6 +10,7 @@ import {formatter} from "../../utils/helpers";
 import CollapsibleSection from "../../components/CollapsibleSection";
 import {useState} from "react";
 import { useCart } from "../../context/CartContext";
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 
 export default function Product({ product }) {
@@ -39,13 +40,20 @@ export default function Product({ product }) {
             <main className="flex-grow flex flex-col lg:flex-row">
                 <div className="flex flex-grow lg:w-1/2">
                     {/* Product image */}
-                    <Image
-                        src={mainImage.url}
-                        alt={mainImage.altText}
-                        width={600}
-                        height={600}
-                        objectFit="contain"
-                    />
+                    <div className="relative w-full">
+                        <div className="relative">
+                            <Image
+                                src={mainImage.url}
+                                alt={mainImage.altText}
+                                width={600}
+                                height={600}
+                                objectFit="contain"
+                            />
+                            <div className="absolute bottom-8 left-80 sm:left-96">
+                                <ArrowRightIcon className="h-6 pl-20 text-black" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="flex-grow lg:w-1/2 h-full overflow-auto">
                     {/* Product details */}
@@ -118,7 +126,7 @@ export async function getStaticProps(context) {
                       name
                       values
                   }
-                  images(first: 5) {
+                  images(first: 10) {
                       edges {
                           node {
                               url
