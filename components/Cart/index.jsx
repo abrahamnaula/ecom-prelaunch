@@ -32,7 +32,7 @@ const products = [
 ]
 
 export default function Cart({open, setOpen}) {
-    const { cart } = useCart();
+    const { cart, removeFromCart } = useCart();
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -118,6 +118,7 @@ export default function Cart({open, setOpen}) {
                                                                                 <button
                                                                                     type="button"
                                                                                     className="font-medium text-black hover:text-gray-700"
+                                                                                    onClick={() => removeFromCart(product.id)}
                                                                                 >
                                                                                     Remove
                                                                                 </button>
