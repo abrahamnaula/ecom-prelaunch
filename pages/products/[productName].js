@@ -110,12 +110,9 @@ export default function Product({ product }) {
                     </div>
                 </div>
             </main>
-
             <NewFooter />
         </div>
     )
-
-
 }
 
 export async function getStaticProps(context) {

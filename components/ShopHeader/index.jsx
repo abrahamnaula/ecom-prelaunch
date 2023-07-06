@@ -2,8 +2,11 @@ import Link from "next/link";
 import SearchBar from "../SearchBar";
 import {useState} from "react";
 import Cart from "../Cart";
+import {useCart} from "../../context/CartContext";
 function ShopHeader(){
     const [cartOpen, setCartOpen] = useState(false);
+    const { cart } = useCart(); // Use the CartContext hook
+
     const handleSearch = (searchTerm) => {
         console.log(`Searching for "${searchTerm}"`);
         // you can replace this with actual search logic
@@ -28,7 +31,9 @@ function ShopHeader(){
                     <SearchBar className="z-5" onSearch={handleSearch} />
                 </div>
                 <div className="pr-5 font-nhg font-medium text-black text-xxs sm:font-nhg sm:font-medium
-                                 sm:text-black" onClick={()=> setCartOpen(true)}>BAG 00</div>
+                                 sm:text-black" onClick={()=> setCartOpen(true)}>
+                    {`BAG ${String(cart.length).padStart(2, '0')}`} {/* Display the number of items in the cart */}
+                </div>
             </div>
             {/*BOTTOM HEADER*/}
             <div className="w-full z-5 h-29px bg-whiteSmk border border-gray-400 flex items-center justify-between">
