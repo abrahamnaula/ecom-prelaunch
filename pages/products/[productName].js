@@ -44,25 +44,21 @@ export default function Product({ product }) {
             <div className="fixed w-full top-0 z-50">
                 <Header />
                 <ShopHeader/>
-
             </div>
             <div className="h-header-h"></div>
 
             <main className="flex-grow flex flex-col lg:flex-row">
-                <div className="flex flex-grow lg:w-1/2">
+                <div className="flex flex-grow lg:w-1/2 relative">
                     {/* Product image */}
-                    <div className="relative w-full">
-                        <div className="relative">
-                            <Image
-                                src={mainImage.url}
-                                alt={mainImage.altText}
-                                width={600}
-                                height={600}
-                                objectFit="contain"
-                            />
-                            <div className="absolute bottom-8 left-80 sm:left-100" onClick={handleNextImage}>
-                                <ArrowRightIcon className="h-6 pl-20 text-black" />
-                            </div>
+                    <div className="absolute top-0 bottom-0 left-0 right-0">
+                        <Image
+                            src={mainImage.url}
+                            alt={mainImage.altText}
+                            layout="fill"
+                            objectFit="cover"
+                        />
+                        <div className="absolute bottom-8 left-80 sm:left-100" onClick={handleNextImage}>
+                            <ArrowRightIcon className="h-6 pl-20 text-black" />
                         </div>
                     </div>
                 </div>
