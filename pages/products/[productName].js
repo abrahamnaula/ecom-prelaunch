@@ -67,7 +67,7 @@ export default function Product({ product }) {
             <div className="h-header-h"></div>
 
             <main className="flex-grow flex flex-col lg:flex-row z-10">
-                <div className="flex flex-grow 3xl:h-full lg:w-110 ">
+                <div className="flex flex-grow 3xl:h-full lg:w-24">
                     {/* Product images */}
                     <div className="relative w-full h-full">
                         <Slider
@@ -77,7 +77,7 @@ export default function Product({ product }) {
                             prevArrow={<PrevArrow />}
                         >
                             {images.edges.map((edge, index) => (
-                                <div key={index} className="relative h-full w-20">
+                                <div key={index} className="relative h-full w-full ">
                                     <Image
                                         src={edge.node.url}
                                         alt={edge.node.altText}
@@ -97,7 +97,7 @@ export default function Product({ product }) {
                         {/*</div>*/}
                     </div>
                 </div>
-                <div className="flex-grow lg:w-2/3 h-full overflow-auto flex ">
+                <div className="flex-grow lg:w-1/3  3xl:w-350 h-full overflow-auto flex ">
                     {/* Product details */}
                     <div className="flex-grow sm:px-4 3xl:px-0">{/*px-4*/}
                         <h1 className="text-xxs md:text-sm sm:text-sm font-medium font-nhg py-4 pl-2 sm:p-4 text-black text-transform: uppercase">

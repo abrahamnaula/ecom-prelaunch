@@ -38,6 +38,10 @@ module.exports = {
         '110': '27.5rem',
         '130':'32.5rem',
         '140': '35rem',
+        '200': '50rem',
+        '300': '75rem',
+        '350': '87.5rem',
+        "400": '100rem',
         'header-h': '5.438rem',
       },
       borderWidth: {
