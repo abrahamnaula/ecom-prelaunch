@@ -14,6 +14,24 @@ import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
+import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+function NextArrow(props) {
+    const { onClick } = props;
+    return (
+        <button className="z-50 h-8 w-8 sm:h-12 sm:w-12 text-black flex items-center justify-center absolute bottom-4 right-4 3xl:right-20" onClick={onClick}>
+            <ArrowRightIcon className="h-12 w-5 sm:h-7 sm:w-7" />
+        </button>
+    );
+}
+
+function PrevArrow(props) {
+    const { onClick } = props;
+    return (
+        <button className="z-50 h-8 w-8 sm:h-12 sm:w-12 text-black flex items-center justify-center absolute bottom-4 left-4 3xl:left-9" onClick={onClick}>
+            <ArrowLeftIcon className="h-12 w-5 sm:h-7 sm:w-7" />
+        </button>
+    );
+}
 
 export default function Product({ product }) {
     const router = useRouter();
@@ -31,7 +49,7 @@ export default function Product({ product }) {
     const { title, description, images, priceRange, options } = product;
     const price = priceRange.minVariantPrice.amount;
     const sizeOptions = options.find(option => option.name.toLowerCase() === 'size')?.values || [];
-//comemnt
+
     const handleNextImage = () => {
         setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.edges.length);
     };
@@ -48,13 +66,15 @@ export default function Product({ product }) {
             </div>
             <div className="h-header-h"></div>
 
-            <main className="flex-grow flex flex-col lg:flex-row">
+            <main className="flex-grow flex flex-col lg:flex-row z-10">
                 <div className="flex flex-grow 3xl:h-full lg:w-110 ">
                     {/* Product images */}
                     <div className="relative w-full h-full">
                         <Slider
                             afterChange={setCurrentImageIndex}
                             initialSlide={currentImageIndex}
+                            nextArrow={<NextArrow />}
+                            prevArrow={<PrevArrow />}
                         >
                             {images.edges.map((edge, index) => (
                                 <div key={index} className="relative h-full w-20">
@@ -67,14 +87,14 @@ export default function Product({ product }) {
                                 </div>
                             ))}
                         </Slider>
-                        <div className="absolute bottom-4 right-4 3xl:right-20">
-                            <button
-                                className="h-8 w-8 sm:h-12 sm:w-12 text-black flex items-center justify-center"
-                                onClick={handleNextImage}
-                            >
-                                <ArrowRightIcon className="h-5 w-5 sm:h-7 sm:w-7" />
-                            </button>
-                        </div>
+                        {/*<div className="absolute bottom-4 right-4 3xl:right-20">*/}
+                        {/*    <button*/}
+                        {/*        className="h-8 w-8 sm:h-12 sm:w-12 text-black flex items-center justify-center"*/}
+                        {/*        onClick={handleNextImage}*/}
+                        {/*    >*/}
+                        {/*        <ArrowRightIcon className="h-5 w-5 sm:h-7 sm:w-7" />*/}
+                        {/*    </button>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
                 <div className="flex-grow lg:w-2/3 h-full overflow-auto flex ">
@@ -125,50 +145,51 @@ export async function getStaticProps(context) {
     const { productName } = context.params
 
     const query = ` 
-          query ($handle: String!){
-              productByHandle(handle: $handle) {
-                  id
-                  title
-                  handle
-                  description
-                  priceRange {
-                      minVariantPrice {
-                          amount
-                      }
-                  }
-                  options {
-                      name
-                      values
-                  }
-                  images(first: 10) {
-                      edges {
-                          node {
-                              url
-                              altText
-                          }
-                      }
-                  }
-                  variants(first: 1) {
-                      edges {
-                          node {
-                              id
-                          }
-                      }
-                  }
-              }
-          }`;
+        query ($handle: String!){
+            product(handle: $handle) {
+                id
+                title
+                handle
+                description
+                priceRange {
+                    minVariantPrice {
+                        amount
+                    }
+                }
+                options {
+                    name
+                    values
+                }
+                images(first: 10) {
+                    edges {
+                        node {
+                            url
+                            altText
+                        }
+                    }
+                }
+                variants(first: 10) {
+                    edges {
+                        node {
+                            id
+                            quantityAvailable
+                        }
+                    }
+                }
+            }
+        }`;
 
 
     const { data } = await ParamShopifyData(query, { handle: productName })
 
-    if (!data || !data.productByHandle) {
+    if (!data || !data.product) {
         return {
             notFound: true,
         }
     }
 
     return {
-        props: { product: data.productByHandle },
+        props: { product: data.product },
     }
 }
 
