@@ -38,7 +38,7 @@ function ShopHeader(){
                 <div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
                                 sm:font-medium pl-2">REFINE +</div>
                 <div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
-                                sm:font-medium pr-5">SORT</div>
+                                sm:font-medium pr-1 sm:pr-5">SORT</div>
             </div>
             {cartOpen && <Cart open={cartOpen} setOpen={setCartOpen} />}
         </>
