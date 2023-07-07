@@ -25,9 +25,9 @@ export default function ProductCard({ product }) {
                     />
                 </div>
                 <div className="flex-grow p-1 pl-3 border-b-3/4 border-gray-800">
-                    <h2 className="font-nhg font-medium text-black text-supsm sm:text-xs
+                    <h2 className="font-nhg font-medium text-black text-xxs sm:text-xs
                                    transform-text: uppercase">{title}</h2>
-                    <p className="font-nhg font-medium text-black text-supsm sm:text-xs
+                    <p className="font-nhg font-medium text-black text-xxs sm:text-xs
                                    transform-text: uppercase">{formatter.format(price)} / {size}</p>
                 </div>
             </div>
