@@ -49,7 +49,7 @@ export default function Product({ product }) {
     const { title, description, images, priceRange, options } = product;
     const price = priceRange.minVariantPrice.amount;
     const sizeOptions = options.find(option => option.name.toLowerCase() === 'size')?.values || [];
-//comemnt
+
     const handleNextImage = () => {
         setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.edges.length);
     };
@@ -145,50 +145,51 @@ export async function getStaticProps(context) {
     const { productName } = context.params
 
     const query = ` 
-          query ($handle: String!){
-              productByHandle(handle: $handle) {
-                  id
-                  title
-                  handle
-                  description
-                  priceRange {
-                      minVariantPrice {
-                          amount
-                      }
-                  }
-                  options {
-                      name
-                      values
-                  }
-                  images(first: 10) {
-                      edges {
-                          node {
-                              url
-                              altText
-                          }
-                      }
-                  }
-                  variants(first: 1) {
-                      edges {
-                          node {
-                              id
-                          }
-                      }
-                  }
-              }
-          }`;
+        query ($handle: String!){
+            product(handle: $handle) {
+                id
+                title
+                handle
+                description
+                priceRange {
+                    minVariantPrice {
+                        amount
+                    }
+                }
+                options {
+                    name
+                    values
+                }
+                images(first: 10) {
+                    edges {
+                        node {
+                            url
+                            altText
+                        }
+                    }
+                }
+                variants(first: 10) {
+                    edges {
+                        node {
+                            id
+                            quantityAvailable
+                        }
+                    }
+                }
+            }
+        }`;
 
 
     const { data } = await ParamShopifyData(query, { handle: productName })
 
-    if (!data || !data.productByHandle) {
+    if (!data || !data.product) {
         return {
             notFound: true,
         }
     }
 
     return {
-        props: { product: data.productByHandle },
+        props: { product: data.product },
     }
 }
 
