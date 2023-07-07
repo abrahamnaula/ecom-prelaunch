@@ -18,12 +18,26 @@ export const CartProvider = ({ children }) => {
     }, [cart]);
 
     const addToCart = (item) => {
-        const itemWithQuantity = {...item, quantity: 1}; // Add a quantity property to each item
-        setCart((prevCart) => {
-            const updatedCart = [...prevCart, itemWithQuantity];
-            console.log('Cart after adding item:', updatedCart);
-            return updatedCart;
-        });
+        const itemWithQuantity = { ...item, quantity: 1 }; // Add a quantity property to each item
+
+        // Extract the variant ID from the item object
+        const variantId = item.variantId;
+        if (!variantId) {
+            console.error("Variant ID not found in item", item);
+            return;
+        }
+
+        // Check if the item with the same variant ID already exists in the cart
+        const existingItem = cart.find((item) => item.variantId === variantId);
+        if (existingItem) {
+            // If the item already exists, update its quantity
+            const updatedItem = { ...existingItem, quantity: existingItem.quantity + 1 };
+            const updatedCart = cart.map((item) => (item.variantId === variantId ? updatedItem : item));
+            setCart(updatedCart);
+        } else {
+            // If the item doesn't exist, add it to the cart
+            setCart((prevCart) => [...prevCart, itemWithQuantity]);
+        }
     };
 
     const removeFromCart = (itemId) => {
@@ -54,7 +68,6 @@ export const CartProvider = ({ children }) => {
         </CartContext.Provider>
     );
 };
-
 
 export const useCart = () => {
     const context = useContext(CartContext);

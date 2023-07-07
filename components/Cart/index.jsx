@@ -5,10 +5,16 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useCart} from "../../context/CartContext";
 import {formatter} from "../../utils/helpers";
 import Image from "next/image";
+import Checkout from "../Checkout"
 
 export default function Cart({open, setOpen}) {
     const { cart, removeFromCart, calculateSubtotal } = useCart();
+    const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
+    // Function to handle opening/closing the checkout
+    const handleCheckoutToggle = () => {
+        setIsCheckoutOpen(!isCheckoutOpen);
+    };
     return (
         <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -123,12 +129,7 @@ export default function Cart({open, setOpen}) {
                                             </div>
                                             <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                                             <div className="mt-6">
-                                                <a
-                                                    href="#"
-                                                    className="flex items-center justify-center border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-800"
-                                                >
-                                                    CHECKOUT
-                                                </a>
+                                                <Checkout open={isCheckoutOpen} setOpen={setIsCheckoutOpen} />
                                             </div>
                                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                                 <p>
