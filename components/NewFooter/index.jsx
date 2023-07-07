@@ -26,7 +26,7 @@ function NewFooter() {
                 </div>
             </div>
             <div className="h-10 sm:h-24 bg-gradient-to-r from-metallicLeft to-metallicRight text-black
-                            font-nhg text-supsm sm:text-xxs p-1">
+                            font-nhg text-supsm sm:text-xxs p-2">
                 © GRAY ERA 2023</div>
         </footer>
     );
