@@ -61,20 +61,25 @@ export default function Product({ product }) {
                                     <Image
                                         src={edge.node.url}
                                         alt={edge.node.altText}
+                                        layout="intrinsic"
+                                        objectFit="contain"
                                         width={600}
                                         height={600}
-                                        objectFit="contain"
-                                        className="w-full max-h-full"
                                     />
+
                                 </div>
                             ))}
                         </Slider>
-                        <div className="absolute bottom-8 right-8">
-                            <ArrowRightIcon
-                                className="h-8 sm:h-12  pl-2 pr-4 text-black z-50"
+                        <div className="absolute bottom-4 right-4">
+                            <button
+                                className="h-8 w-8 sm:h-12 sm:w-12 text-black flex items-center justify-center"
                                 onClick={handleNextImage}
-                            />
+                            >
+                                <ArrowRightIcon className="h-5 w-5 sm:h-7 sm:w-7" />
+                            </button>
                         </div>
+
+
                     </div>
                 </div>
                 <div className="flex-grow lg:w-1/2 h-full overflow-auto">
