@@ -6,7 +6,9 @@ export default function AddToCart({ product, onClick }) {
 
     const isProductInCart = cart.some(item => item.id === product.id);
     const handleAddToCart = () => {
-        addToCart(product);
+        const variantId = product.variants.edges[0].node.id;
+
+        addToCart({ variantId, ...product });
     };
 
 
