@@ -45,6 +45,9 @@ module.exports = {
         '3/4': '0.75px',
         'xs': '0.01px',
       },
+      screens: {
+        '3xl': '1920px', // Custom breakpoint for 32" monitors or larger
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',

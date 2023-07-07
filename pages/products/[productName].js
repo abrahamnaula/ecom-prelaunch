@@ -49,28 +49,25 @@ export default function Product({ product }) {
             <div className="h-header-h"></div>
 
             <main className="flex-grow flex flex-col lg:flex-row">
-                <div className="flex flex-grow lg:w-1/2">
+                <div className="flex flex-grow 3xl:h-full lg:w-110 ">
                     {/* Product images */}
-                    <div className="relative w-full">
+                    <div className="relative w-full h-full">
                         <Slider
                             afterChange={setCurrentImageIndex}
                             initialSlide={currentImageIndex}
                         >
                             {images.edges.map((edge, index) => (
-                                <div key={index} className="relative">
+                                <div key={index} className="relative h-full w-20">
                                     <Image
                                         src={edge.node.url}
                                         alt={edge.node.altText}
-                                        layout="intrinsic"
-                                        objectFit="contain"
-                                        width={600}
-                                        height={600}
+                                        width = {600}
+                                        height = {600}
                                     />
-
                                 </div>
                             ))}
                         </Slider>
-                        <div className="absolute bottom-4 right-4">
+                        <div className="absolute bottom-4 right-4 3xl:right-20">
                             <button
                                 className="h-8 w-8 sm:h-12 sm:w-12 text-black flex items-center justify-center"
                                 onClick={handleNextImage}
@@ -78,50 +75,49 @@ export default function Product({ product }) {
                                 <ArrowRightIcon className="h-5 w-5 sm:h-7 sm:w-7" />
                             </button>
                         </div>
-
-
                     </div>
                 </div>
-                <div className="flex-grow lg:w-1/2 h-full overflow-auto">
+                <div className="flex-grow lg:w-2/3 h-full overflow-auto flex ">
                     {/* Product details */}
-                    <div>
-                        <h1 className="text-xxs md:text-sm sm:text-sm font-medium font-nhg p-4 text-black text-transform: uppercase">
+                    <div className="flex-grow sm:px-4 3xl:px-0">{/*px-4*/}
+                        <h1 className="text-xxs md:text-sm sm:text-sm font-medium font-nhg py-4 pl-2 sm:p-4 text-black text-transform: uppercase">
                             {title}
                         </h1>
 
                         {/* Price and size boxes */}
-                        <div className="grid grid-cols-2 mb-4 px-4">
+                        <div className="grid grid-cols-2 mb-4">
                             <div className="flex justify-center items-center border-3/4 border-gray-400 pr-2 p-4 text-black text-xxs sm:text-sm font-medium font-nhg">
                                 {formatter.format(price)}
                             </div>
                             <div className="flex justify-center items-center border-r-3/4 border-t-3/4 border-b-3/4 border-gray-400 pl-2 p-4 text-black text-xxs sm:text-sm font-medium text-transform: uppercase font-nhg">
-                                {sizeOptions.join(', ')}
+                                {sizeOptions.join(", ")}
                             </div>
                         </div>
 
-                        {/* Add to cart component*/}
-                        <div className="px-4">
+                        {/* Add to cart component */}
+                        <div>
                             <AddToCart onClick={handleAddToCart} />
                         </div>
 
-                        <div className="px-4">
-                            <hr className="border-gray-400 my-4" />
-                        </div>
-                        <div className="px-4">
-                            <CollapsibleSection title="MEASUREMENTS" content={description} />
-                            <CollapsibleSection
-                                title="TERMS & DETAILS"
-                                content={`Sizing is determined by measurements not by the garment tag. Please be aware that all garments are vintage or secondhand. Each item may show varying degrees of wear and natural distressing. We intentionally document every available detail to insure listing accuracy. Returns or exchanges are not accepted at this time. All sales are final. Visit our terms and conditions page for additional details, including our shipping policy.`}
-                            />
-                            <div className="pb-8"></div>
-                        </div>
+                        <hr className="border-gray-400 my-4" />
+
+                        <CollapsibleSection title="MEASUREMENTS" content={description} />
+                        <CollapsibleSection
+                            title="TERMS & DETAILS"
+                            content={`Sizing is determined by measurements not by the garment tag. Please be aware that all garments are vintage or secondhand. Each item may show varying degrees of wear and natural distressing. We intentionally document every available detail to ensure listing accuracy. Returns or exchanges are not accepted at this time. All sales are final. Visit our terms and conditions page for additional details, including our shipping policy.`}
+                        />
                     </div>
+
                 </div>
             </main>
+
+
             <div className="flex-grow"></div>
             <NewFooter />
         </div>
     );
+
+
 }
 
 
