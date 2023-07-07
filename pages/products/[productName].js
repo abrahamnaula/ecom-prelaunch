@@ -15,6 +15,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+
 function NextArrow(props) {
     const { onClick } = props;
     return (
@@ -81,26 +82,18 @@ export default function Product({ product }) {
                                     <Image
                                         src={edge.node.url}
                                         alt={edge.node.altText}
-                                        width = {600}
-                                        height = {600}
+                                        width={600}
+                                        height={600}
                                     />
                                 </div>
                             ))}
                         </Slider>
-                        {/*<div className="absolute bottom-4 right-4 3xl:right-20">*/}
-                        {/*    <button*/}
-                        {/*        className="h-8 w-8 sm:h-12 sm:w-12 text-black flex items-center justify-center"*/}
-                        {/*        onClick={handleNextImage}*/}
-                        {/*    >*/}
-                        {/*        <ArrowRightIcon className="h-5 w-5 sm:h-7 sm:w-7" />*/}
-                        {/*    </button>*/}
-                        {/*</div>*/}
                     </div>
                 </div>
                 <div className="flex-grow lg:w-1/3  3xl:w-350 h-full overflow-auto flex ">
                     {/* Product details */}
-                    <div className="flex-grow sm:px-4 3xl:px-0">{/*px-4*/}
-                        <h1 className="text-xxs md:text-sm sm:text-sm font-medium font-nhg py-4 pl-2 sm:p-4 text-black text-transform: uppercase">
+                    <div className="flex-grow sm:px-4 3xl:px-0">
+                        <h1 className="text-xxs md:text-sm sm:text-sm font-medium font-nhg py-4 pl-2 sm:p-4 text-black uppercase">
                             {title}
                         </h1>
 
@@ -109,14 +102,15 @@ export default function Product({ product }) {
                             <div className="flex justify-center items-center border-3/4 border-gray-400 pr-2 p-4 text-black text-xxs sm:text-sm font-medium font-nhg">
                                 {formatter.format(price)}
                             </div>
-                            <div className="flex justify-center items-center border-r-3/4 border-t-3/4 border-b-3/4 border-gray-400 pl-2 p-4 text-black text-xxs sm:text-sm font-medium text-transform: uppercase font-nhg">
+                            <div className="flex justify-center items-center border-r-3/4 border-t-3/4 border-b-3/4 border-gray-400 pl-2 p-4 text-black text-xxs sm:text-sm font-medium uppercase font-nhg">
                                 {sizeOptions.join(", ")}
                             </div>
                         </div>
 
                         {/* Add to cart component */}
                         <div>
-                            <AddToCart onClick={handleAddToCart} />
+                            <AddToCart product={product} />
+
                         </div>
 
                         <hr className="border-gray-400 my-4" />
@@ -124,28 +118,23 @@ export default function Product({ product }) {
                         <CollapsibleSection title="MEASUREMENTS" content={description} />
                         <CollapsibleSection
                             title="TERMS & DETAILS"
-                            content={`Sizing is determined by measurements not by the garment tag. Please be aware that all garments are vintage or secondhand. Each item may show varying degrees of wear and natural distressing. We intentionally document every available detail to ensure listing accuracy. Returns or exchanges are not accepted at this time. All sales are final. Visit our terms and conditions page for additional details, including our shipping policy.`}
+                            content="Sizing is determined by measurements not by the garment tag. Please be aware that all garments are vintage or secondhand. Each item may show varying degrees of wear and natural distressing. We intentionally document every available detail to ensure listing accuracy. Returns or exchanges are not accepted at this time. All sales are final. Visit our terms and conditions page for additional details, including our shipping policy."
                         />
                     </div>
-
                 </div>
             </main>
-
 
             <div className="flex-grow"></div>
             <NewFooter />
         </div>
     );
-
-
 }
 
-
 export async function getStaticProps(context) {
-    const { productName } = context.params
+    const { productName } = context.params;
 
-    const query = ` 
-        query ($handle: String!){
+    const query = `
+        query ($handle: String!) {
             product(handle: $handle) {
                 id
                 title
@@ -177,26 +166,25 @@ export async function getStaticProps(context) {
                     }
                 }
             }
-        }`;
+        }
+    `;
 
-
-    const { data } = await ParamShopifyData(query, { handle: productName })
+    const { data } = await ParamShopifyData(query, { handle: productName });
 
     if (!data || !data.product) {
         return {
             notFound: true,
-        }
+        };
     }
 
     return {
         props: { product: data.product },
-    }
+    };
 }
 
 export async function getStaticPaths() {
-
-    const query =
-        `query {
+    const query = `
+        query {
             products(first: 250) {
                 edges {
                     node {
@@ -204,7 +192,8 @@ export async function getStaticPaths() {
                     }
                 }
             }
-        }`;
+        }
+    `;
 
     const { data } = await ParamShopifyData(query);
 
