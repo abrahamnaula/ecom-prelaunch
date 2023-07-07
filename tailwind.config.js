@@ -13,6 +13,7 @@ module.exports = {
       },
       fontSize: {
         'xxs': '0.625rem',
+        'supsm':'0.4rem',
       },
       colors: {
         grayBkg: '#2e2e2e',
@@ -43,6 +44,9 @@ module.exports = {
         '1/2': '0.5px',
         '3/4': '0.75px',
         'xs': '0.01px',
+      },
+      screens: {
+        '3xl': '1920px', // Custom breakpoint for 32" monitors or larger
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
