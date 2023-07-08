@@ -5,9 +5,25 @@ import ShopHeader from "../../components/ShopHeader";
 import Header from "../../components/Header";
 import NewFooter from "../../components/NewFooter";
 import ProductList from "../../components/Products/ProductList";
+import {useEffect} from "react";
 
 export default function Collection({ initialProducts, hasNextPage }) {
     const router = useRouter()
+
+    useEffect(() => {
+        // Get the scroll position from local storage and set it
+        const scrollPos = localStorage.getItem(`${router.route}_scroll_position`);
+        if (scrollPos) {
+            window.scrollTo(0, parseInt(scrollPos));
+        }
+
+        // Function to run when component unmounts
+        return () => {
+            // Set the scroll position in local storage
+            localStorage.setItem(`${router.route}_scroll_position`, window.scrollY.toString());
+        };
+    }, []); // Empty dependency array so it only runs on mount and unmount
+
 
     if (router.isFallback) {
         return <div>Loading...</div>

@@ -8,7 +8,7 @@ import ShopHeader from "../../components/ShopHeader";
 import AddToCart from "../../components/AddToCart";
 import { formatter } from "../../utils/helpers";
 import CollapsibleSection from "../../components/CollapsibleSection";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useCart } from "../../context/CartContext";
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import "slick-carousel/slick/slick.css";
@@ -42,6 +42,17 @@ export default function Product({ product }) {
     const handleAddToCart = () => {
         addToCart(product);
     }
+    useEffect(() => {
+        // This function runs when the component unmounts.
+        return () => {
+            // Save scroll position in window.history.state.
+            if (window && window.history && window.history.replaceState) {
+                const scroll = [window.scrollX || 0, window.scrollY || 0];
+                const state = { ...window.history.state, scroll };
+                window.history.replaceState(state, '', document.location.href);
+            }
+        };
+    }, []);
 
     if (router.isFallback) {
         return <div>Loading...</div>;
