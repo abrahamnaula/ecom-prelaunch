@@ -22,7 +22,10 @@ function ShopHeader(){
                     <div className="font-nhg font-medium text-black sm:text-xxs pl-2">GRAY ERA</div>
                 </Link>
                 <div className="flex items-center">
-                    <div className="font-nhg font-medium text-black sm:text-xxs">SHOP ALL</div>
+                    <Link href="/collections/shop-all">
+                        <div className="font-nhg font-medium text-black sm:text-xxs">SHOP ALL</div>
+                    </Link>
+
                     <ChevronDownIcon className="h-4 sm:h-5 text-black" />
                 </div>
                 <div className=" pr-0 z-5">
