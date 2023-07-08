@@ -72,7 +72,15 @@ export default function ProductList({ initialProducts, hasNextPage }) {
         });
         const newCursor = data.collections.edges[0].node.products.edges.slice(-1)[0]?.cursor;
         const newHasMore = data.collections.edges[0].node.products.pageInfo.hasNextPage;
-        setProducts(prevProducts => [...prevProducts, ...newProducts]);
+
+        if (cursor) {
+            // only append new products if cursor is not null (not the first load)
+            setProducts(prevProducts => [...prevProducts, ...newProducts]);
+        } else {
+            // if cursor is null (first load), replace products with newProducts
+            setProducts(newProducts);
+        }
+
         setCursor(newCursor);
         setHasMore(newHasMore);
         setLoading(false);
