@@ -79,33 +79,33 @@ export default function ProductList({ initialProducts, hasNextPage }) {
     };
 
     useEffect(() => {
-        // When the component mounts, try to restore the scroll position.
-        const scrollPosition = sessionStorage.getItem("scrollPosition");
-        if (scrollPosition) {
-            window.scrollTo(0, parseInt(scrollPosition));
-            sessionStorage.removeItem("scrollPosition");
-        }
-
-        return () => {
-            // When the component unmounts (the user navigates away), save the scroll position.
-            sessionStorage.setItem("scrollPosition", window.pageYOffset.toString());
-        }
-    }, []);
-
-    useEffect(() => {
-        if (loading) return;
+        if (loading || !initialProducts) return;
         if (observer.current) observer.current.disconnect();
+
         observer.current = new IntersectionObserver(entries => {
-            console.log("Intersection Observer", entries);
-
             if (entries[0].isIntersecting && hasMore) {
-                console.log("Load more");
-
                 loadMore();
             }
         })
+
         if (lastProductElementRef.current) observer.current.observe(lastProductElementRef.current);
-    }, [loading, hasMore]);
+
+        // Restore scroll position after initial products have been loaded
+        const scrollPos = sessionStorage.getItem(`${router.route}_scroll_position`);
+        if (scrollPos) {
+            window.scrollTo(0, parseInt(scrollPos));
+            // Clear the scroll position
+            sessionStorage.removeItem(`${router.route}_scroll_position`);
+        }
+
+        // Function to run when component unmounts
+        return () => {
+            if (router.asPath.includes(router.route)) {
+                // Set the scroll position in sessionStorage only if the current route matches
+                sessionStorage.setItem(`${router.route}_scroll_position`, window.scrollY.toString());
+            }
+        };
+    }, [loading, hasMore, initialProducts, router.asPath, router.route]);
 
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 ">
