@@ -38,8 +38,10 @@ function ShopHeader(){
             </div>
             {/*BOTTOM HEADER*/}
             <div className="w-full z-5 h-29px bg-whiteSmk border border-gray-400 flex items-center justify-between text-xxs">
-                <div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
-                                sm:font-medium pl-2">REFINE +</div>
+                <Link href="/refine">
+                    <div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
+                                    sm:font-medium pl-2">REFINE +</div>
+                </Link>
                 {/*<div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
                                 sm:font-medium pr-1 sm:pr-5">SORT</div>*/}
 

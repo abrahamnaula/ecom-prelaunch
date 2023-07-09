@@ -46,18 +46,7 @@ export default function SortMenu() {
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
                                         } group flex w-full items-center rounded-none px-2 py-2 text-sm`}
                                     >
-                                        YEAR: LOWEST FIRST
-                                    </button>
-                                )}
-                            </Menu.Item>
-                            <Menu.Item>
-                                {({ active }) => (
-                                    <button
-                                        className={`${
-                                            active ? 'bg-grayBkg text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-none px-2 py-2 text-sm`}
-                                    >
-                                        YEAR: HIGHEST FIRST
+                                        SIZES
                                     </button>
                                 )}
                             </Menu.Item>
@@ -90,12 +79,22 @@ export default function SortMenu() {
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
                                         } group flex w-full items-center rounded-none px-2 py-2 text-sm`}
                                     >
-                                        SIZES
+                                        YEAR: LOWEST FIRST
+                                    </button>
+                                )}
+                            </Menu.Item>
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <button
+                                        className={`${
+                                            active ? 'bg-grayBkg text-white' : 'text-gray-900'
+                                        } group flex w-full items-center rounded-none px-2 py-2 text-sm`}
+                                    >
+                                        YEAR: HIGHEST FIRST
                                     </button>
                                 )}
                             </Menu.Item>
                         </div>
-                        {/* Rest of the menu items */}
                     </Menu.Items>
                 </Transition>
             </Menu>
