@@ -52,7 +52,7 @@ export default FilterMenu;
 
 // Replace these with your actual filter components
 const CategoriesFilter = () =>
-    <div className="text-black py-1">
+    <div className="pl-2 text-black py-1">
         <div className="mb-2">SHIRTS</div>
         <div className="mb-2">TEES</div>
         <div className="mb-2">BOTTOMS</div>
@@ -62,7 +62,7 @@ const CategoriesFilter = () =>
         <div className="mb-2">EVERYTHING ELSE</div>
     </div>;
 const CollectionsFilter = () =>
-    <div className="text-black py-1">
+    <div className="pl-2 text-black py-1">
         <div className="mb-2">MUSIC, ART, & FILM</div>
         <div className="mb-2">DENIM, WORKWEAR, & MILITARY</div>
         <div className="mb-2">SPORTSWEAR & STREETWEAR</div>
@@ -70,7 +70,7 @@ const CollectionsFilter = () =>
         <div className="mb-2">WOMEN</div>
     </div>;
 const ByEraFilter = () =>
-    <div className="text-black py-1">
+    <div className="pl-2 text-black py-1">
         <div className="mb-2">Y2K</div>
         <div className="mb-2">1990s</div>
         <div className="mb-2">1980s</div>
