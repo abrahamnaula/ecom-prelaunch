@@ -44,7 +44,7 @@ export default function SortMenu() {
                                     <button
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-none px-2 py-2 text-sm`}
+                                        } group flex w-full items-center rounded-none px-2 py-2 text-xs sm:text-sm font-nhg font-medium`}
                                     >
                                         SIZES
                                     </button>
@@ -55,7 +55,7 @@ export default function SortMenu() {
                                     <button
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-none px-2 py-2 text-sm`}
+                                        } group flex w-full items-center rounded-none px-2 py-2 text-xs sm:text-sm font-nhg font-medium`}
                                     >
                                         PRICE: LOWEST FIRST
                                     </button>
@@ -66,7 +66,7 @@ export default function SortMenu() {
                                     <button
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-none px-2 py-2 text-sm`}
+                                        } group flex w-full items-center rounded-none px-2 py-2 text-xs sm:text-sm font-nhg font-medium`}
                                     >
                                         PRICE: HIGHEST FIRST
                                     </button>
@@ -77,7 +77,7 @@ export default function SortMenu() {
                                     <button
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-none px-2 py-2 text-sm`}
+                                        } group flex w-full items-center rounded-none px-2 py-2 text-xs sm:text-sm font-nhg font-medium`}
                                     >
                                         YEAR: LOWEST FIRST
                                     </button>
@@ -88,7 +88,7 @@ export default function SortMenu() {
                                     <button
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-none px-2 py-2 text-sm`}
+                                        } group flex w-full items-center rounded-none px-2 py-2 text-xs sm:text-sm font-nhg font-medium`}
                                     >
                                         YEAR: HIGHEST FIRST
                                     </button>
