@@ -4,6 +4,7 @@ import {useState} from "react";
 import Cart from "../Cart";
 import {useCart} from "../../context/CartContext";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import SortMenu from "../SortMenu";
 function ShopHeader(){
     const [cartOpen, setCartOpen] = useState(false);
     const { cart } = useCart(); // Use the CartContext hook
@@ -22,7 +23,9 @@ function ShopHeader(){
                     <div className="font-nhg font-medium text-black sm:text-xxs pl-2">GRAY ERA</div>
                 </Link>
                 <div className="flex items-center">
-                    <div className="font-nhg font-medium text-black sm:text-xxs">SHOP ALL</div>
+                    <Link href="/collections/shop-all">
+                        <div className="font-nhg font-medium text-black sm:text-xxs">SHOP ALL</div>
+                    </Link>
                     <ChevronDownIcon className="h-4 sm:h-5 text-black" />
                 </div>
                 <div className=" pr-0 z-5">
@@ -35,10 +38,15 @@ function ShopHeader(){
             </div>
             {/*BOTTOM HEADER*/}
             <div className="w-full z-5 h-29px bg-whiteSmk border border-gray-400 flex items-center justify-between text-xxs">
-                <div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
-                                sm:font-medium pl-2">REFINE +</div>
-                <div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
-                                sm:font-medium pr-1 sm:pr-5">SORT</div>
+                <Link href="/refine">
+                    <div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
+                                    sm:font-medium pl-2">REFINE +</div>
+                </Link>
+                {/*<div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
+                                sm:font-medium pr-1 sm:pr-5">SORT</div>*/}
+
+                <SortMenu/>
+
             </div>
             {cartOpen && <Cart open={cartOpen} setOpen={setCartOpen} />}
         </>

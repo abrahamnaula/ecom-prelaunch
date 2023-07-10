@@ -122,28 +122,15 @@ export default function Cart({open, setOpen}) {
                                             </div>
                                         </div>
 
-                                        <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                                            <div className="flex justify-between text-base font-medium text-gray-900">
-                                                <p>Subtotal</p>
+                                        <div className="border-t border-gray-200 px-4 py-2 sm:px-6">
+                                            <div className="py-2 flex justify-between text-base font-medium text-gray-900">
+                                                <p>ESTIMATED TOTAL</p>
                                                 <p>{formatter.format(calculateSubtotal())}</p>
                                             </div>
-                                            <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                                            <div className="mt-6">
+                                            <div className="mt-2">
                                                 <Checkout open={isCheckoutOpen} setOpen={setIsCheckoutOpen} />
                                             </div>
-                                            <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-                                                <p>
-                                                    or{' '}
-                                                    <button
-                                                        type="button"
-                                                        className="font-medium  text-gray-800 hover:text-black"
-                                                        onClick={() => setOpen(false)}
-                                                    >
-                                                        CONTINUE SHOPPING
-                                                        <span aria-hidden="true"> &rarr;</span>
-                                                    </button>
-                                                </p>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </Dialog.Panel>

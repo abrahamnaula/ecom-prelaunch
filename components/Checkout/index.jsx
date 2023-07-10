@@ -5,7 +5,12 @@ import { createCheckout } from "../../lib/shopify";
 export default function CheckoutButton() {
     const { cart, clearCart } = useCart();
 
-    const handleCheckout = async () => {
+    const handleCheckout = async (event) => {
+        if (cart.length === 0) {
+            event.preventDefault();  // Prevent navigation if cart is empty
+            return;
+        }
+
         // Create an array of line items based on the products in the cart
         const lineItems = cart.map(item => ({
             variantId: item.variantId,
