@@ -104,9 +104,9 @@ const FilterMenu = () => {
 
     const SelectedFilter = ({ filter, handleRemove }) => {
         return (
-            <div className="bg-filter mt-2 h-8 px-2 py-1 mr-2 mb-2 flex items-center">
+            <div className="bg-filter mt-2 h-8 px-2 py-1 mr-2 mb-2 flex items-center text-xxs">
                 <span>{filter}</span>
-                <XMarkIcon onClick={() => handleRemove(filter)} className="ml-2 h-4 w-4 cursor-pointer" />
+                <XMarkIcon onClick={() => handleRemove(filter)} className="ml-2 h-3 w-3 sm:h-4 sm:w-4 cursor-pointer" />
             </div>
         );
     };
@@ -116,7 +116,8 @@ const FilterMenu = () => {
     }
 //
     return (
-        <div className="filter-menu border border-grayBd p-5 w-2/3 font-nhg font-medium text-xs sm:text-sm">
+        <div className="filter-menu border border-grayBd p-5 w-full sm:w-2/3 font-nhg font-medium text-xxs sm:text-sm">
+            <button onClick={handleCancel} className="text-black h-8 sm:hidden">CANCEL</button>
             <div className="filter-menu-header border border-red-500 mb-12 h-8 flex justify-between items-center">
                 <button onClick={handleClear} className="text-black w-24 border border-black h-8">CLEAR</button>
                 <div className="pl-2 filter-list border border-green-500 text-black flex flex-wrap justify-start items-center flex-grow">
@@ -125,15 +126,15 @@ const FilterMenu = () => {
                         <SelectedFilter filter={filter} handleRemove={handleRemoveFilter} key={filter} />
                     )}
                 </div>
-                <button onClick={handleCancel} className="text-black h-8">CANCEL</button>
+                <button onClick={handleCancel} className="text-black h-8 hidden sm:block">CANCEL</button>
             </div>
 
 
             <div className="filter-menu-categories border border-blue-500 mb-2 ">
-                <button onClick={() => setSelectedFilter('categories')} className="text-black pr-20 text-decoration-line: underline">CATEGORIES</button>
-                <button onClick={() => setSelectedFilter('collections')} className="text-black pr-20 text-decoration-line: underline">COLLECTIONS</button>
-                <button onClick={() => setSelectedFilter('byEra')} className="text-black pr-20 text-decoration-line: underline">BY ERA</button>
-                <button onClick={() => setSelectedFilter('sizes')} className="text-black pr-20 text-decoration-line: underline">SIZES</button>
+                <button onClick={() => setSelectedFilter('categories')} className="text-black pr-6 sm:pr-20 text-decoration-line: underline">CATEGORIES</button>
+                <button onClick={() => setSelectedFilter('collections')} className="text-black pr-6 sm:pr-20 text-decoration-line: underline">COLLECTIONS</button>
+                <button onClick={() => setSelectedFilter('byEra')} className="text-black pr-6 sm:pr-20 text-decoration-line: underline">BY ERA</button>
+                <button onClick={() => setSelectedFilter('sizes')} className="text-black pr-6 sm:pr-20 text-decoration-line: underline">SIZES</button>
             </div>
 
             <div className="filter-menu-group-filters border border-yellow-500 mb-2">
