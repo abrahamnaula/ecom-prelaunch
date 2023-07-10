@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const FilterMenu = () => {
     const [selectedFilter, setSelectedFilter] = useState(null);
     const [selectedFilters, setSelectedFilters] = useState([]);
     const [filterCategory, setFilterCategory] = useState(null);
-
+    const router = useRouter();
     const handleClear = () => {
         setSelectedFilter(null);
         setSelectedFilters([]);
@@ -13,6 +14,8 @@ const FilterMenu = () => {
 
     const handleCancel = () => {
         // Actions for canceling filters
+
+        router.back();
     };
 
     const handleApply = () => {
