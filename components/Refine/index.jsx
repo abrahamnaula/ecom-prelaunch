@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 const FilterMenu = () => {
     const [selectedFilter, setSelectedFilter] = useState(null);
@@ -14,7 +15,6 @@ const FilterMenu = () => {
 
     const handleCancel = () => {
         // Actions for canceling filters
-
         router.back();
     };
 
@@ -102,15 +102,28 @@ const FilterMenu = () => {
         );
     };
 
+    const SelectedFilter = ({ filter, handleRemove }) => {
+        return (
+            <div className="border-gray-400 border-2 rounded px-2 py-1 mr-2 mb-2 flex items-center">
+                <span>{filter}</span>
+                <XMarkIcon onClick={() => handleRemove(filter)} className="ml-2 h-4 w-4 cursor-pointer" />
+            </div>
+        );
+    };
 
-
+    const handleRemoveFilter = (filter) => {
+        setSelectedFilters(prevFilters => prevFilters.filter(f => f !== filter));
+    }
+//
     return (
         <div className="filter-menu border border-grayBd p-5 w-2/3 font-nhg font-medium text-xs sm:text-sm">
-            <div className="filter-menu-header border border-red-500 mb-12 h-8 flex justify-between">
+            <div className="filter-menu-header border border-red-500 mb-12 h-8 flex justify-between items-center">
                 <button onClick={handleClear} className="text-black w-24 border border-black">CLEAR</button>
-                <div className="filter-list border border-green-500 text-black w-full">
+                <div className="filter-list border border-green-500 text-black flex flex-wrap justify-start items-center flex-grow">
                     {/* Display selected filters */}
-                    {selectedFilters.join(', ')}
+                    {selectedFilters.map(filter =>
+                        <SelectedFilter filter={filter} handleRemove={handleRemoveFilter} key={filter} />
+                    )}
                 </div>
                 <button onClick={handleCancel} className="text-black">CANCEL</button>
             </div>
@@ -135,10 +148,13 @@ const FilterMenu = () => {
             </div>
         </div>
     );
+
 };
 
 export default FilterMenu;
 
+
+/*
 // Replace these with your actual filter components
 const CategoriesFilter = () =>
     <div className="pl-2 text-black py-1">
@@ -208,3 +224,4 @@ const SizesFilter = () =>
             <p className="pr-12">XXX-LARGE</p>
         </div>
     </div>;
+    */
