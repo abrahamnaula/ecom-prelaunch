@@ -160,7 +160,7 @@ const FilterMenu = () => {
             </div>
             {/*<div className="filter-menu-footer border border-purple-500">*/}
             <div className="filter-menu-footer">
-                <button onClick={handleApply} className="h-8 w-full sm:w-1/3 sm:px-20 bg-black text-white text-decoration: underline ">APPLY FILTERS</button>
+                <button onClick={handleApply} className="h-8 w-full sm:w-1/3 sm:px-20 bg-black text-white text-decoration: underline ">APPLY FILTERS ({selectedFilters.length})</button>
             </div>
         </div>
     );
