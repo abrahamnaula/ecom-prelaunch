@@ -81,19 +81,19 @@ const FilterMenu = () => {
         return (
             <div className="pl-2 text-black py-1">
                 <div className="pb-1.5">TOPS SIZE:</div>
-                <div className="flex pb-5">
+                <div className="flex pb-5 flex-wrap md:flex-nowrap">
                     {topsSizes.map(size =>
                         <p className="pr-12" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</p>
                     )}
                 </div>
                 <div className="pb-1.5">BOTTOMS SIZE:</div>
-                <div className="flex pb-5">
+                <div className="flex pb-5 flex-wrap md:flex-nowrap">
                     {bottomsSizes.map(size =>
                         <p className="pr-8" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</p>
                     )}
                 </div>
                 <div className="pb-1.5">OUTERWEAR SIZE:</div>
-                <div className="flex pb-5">
+                <div className="flex pb-5 flex-wrap md:flex-nowrap">
                     {outerwearSizes.map(size =>
                         <p className="pr-12" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</p>
                     )}
@@ -101,6 +101,7 @@ const FilterMenu = () => {
             </div>
         );
     };
+
 
     const SelectedFilter = ({ filter, handleRemove }) => {
         return (
