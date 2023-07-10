@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 
 const FilterMenu = () => {
     const [selectedFilter, setSelectedFilter] = useState(null);
+    const [selectedFilters, setSelectedFilters] = useState([]);
+    const [filterCategory, setFilterCategory] = useState(null);
 
     const handleClear = () => {
         setSelectedFilter(null);
-        // Additional actions for clearing filters
+        setSelectedFilters([]);
+        setFilterCategory(null);
     };
 
     const handleCancel = () => {
@@ -16,16 +19,99 @@ const FilterMenu = () => {
         // Actions for applying filters
     };
 
+    const handleFilterClick = (filter, category) => {
+        if (category === 'sizes') {
+            if (!selectedFilters.includes(filter)) {
+                setSelectedFilters(prevFilters => [...prevFilters, filter]);
+            }
+        } else {
+            if (filterCategory && filterCategory !== category) {
+                return;
+            }
+            setSelectedFilters([filter]);
+            setFilterCategory(category);
+        }
+    };
+
+
+    const CategoriesFilter = () => {
+        const categories = ["SHIRTS", "TEES", "BOTTOMS", "OUTERWEAR", "SWEATSHIRTS", "HEADWEAR", "EVERYTHING ELSE"];
+
+        return (
+            <div className="pl-2 text-black py-1">
+                {categories.map(category =>
+                    <div className="mb-2" onClick={() => handleFilterClick(category)} key={category}>{category}</div>
+                )}
+            </div>
+        );
+    }
+
+    const CollectionsFilter = () => {
+        const collections = ["MUSIC, ART, & FILM", "DENIM, WORKWEAR, & MILITARY", "SPORTSWEAR & STREETWEAR", "BLANKS & ESSENTIALS", "WOMEN"];
+
+        return (
+            <div className="pl-2 text-black py-1">
+                {collections.map(collection =>
+                    <div className="mb-2" onClick={() => handleFilterClick(collection)} key={collection}>{collection}</div>
+                )}
+            </div>
+        );
+    }
+
+    const ByEraFilter = () => {
+        const eras = ["Y2K", "1990s", "1980s", "1970s", "PRE 1970s"];
+
+        return (
+            <div className="pl-2 text-black py-1">
+                {eras.map(era =>
+                    <div className="mb-2" onClick={() => handleFilterClick(era)} key={era}>{era}</div>
+                )}
+            </div>
+        );
+    }
+
+    const SizesFilter = () => {
+        const topsSizes = ["X-SMALL", "SMALL", "MEDIUM", "LARGE", "X-LARGE", "XX-LARGE", "XXX-LARGE"];
+        const bottomsSizes = ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"];
+        const outerwearSizes = ["X-SMALL", "SMALL", "MEDIUM", "LARGE", "X-LARGE", "XX-LARGE", "XXX-LARGE"];
+
+        return (
+            <div className="pl-2 text-black py-1">
+                <div className="pb-1.5">TOPS SIZE:</div>
+                <div className="flex pb-5">
+                    {topsSizes.map(size =>
+                        <p className="pr-12" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</p>
+                    )}
+                </div>
+                <div className="pb-1.5">BOTTOMS SIZE:</div>
+                <div className="flex pb-5">
+                    {bottomsSizes.map(size =>
+                        <p className="pr-8" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</p>
+                    )}
+                </div>
+                <div className="pb-1.5">OUTERWEAR SIZE:</div>
+                <div className="flex pb-5">
+                    {outerwearSizes.map(size =>
+                        <p className="pr-12" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</p>
+                    )}
+                </div>
+            </div>
+        );
+    };
+
+
+
     return (
         <div className="filter-menu border border-grayBd p-5 w-2/3 font-nhg font-medium text-xs sm:text-sm">
             <div className="filter-menu-header border border-red-500 mb-12 h-8 flex justify-between">
                 <button onClick={handleClear} className="text-black w-24 border border-black">CLEAR</button>
                 <div className="filter-list border border-green-500 text-black w-full">
                     {/* Display selected filters */}
-                    Selected Filters
+                    {selectedFilters.join(', ')}
                 </div>
                 <button onClick={handleCancel} className="text-black">CANCEL</button>
             </div>
+
 
             <div className="filter-menu-categories border border-blue-500 mb-2 ">
                 <button onClick={() => setSelectedFilter('categories')} className="text-black pr-20 text-decoration-line: underline">CATEGORIES</button>
