@@ -104,7 +104,7 @@ const FilterMenu = () => {
 
     const SelectedFilter = ({ filter, handleRemove }) => {
         return (
-            <div className="border-gray-400 border-2 rounded px-2 py-1 mr-2 mb-2 flex items-center">
+            <div className="bg-filter mt-2 h-8 px-2 py-1 mr-2 mb-2 flex items-center">
                 <span>{filter}</span>
                 <XMarkIcon onClick={() => handleRemove(filter)} className="ml-2 h-4 w-4 cursor-pointer" />
             </div>
@@ -118,14 +118,14 @@ const FilterMenu = () => {
     return (
         <div className="filter-menu border border-grayBd p-5 w-2/3 font-nhg font-medium text-xs sm:text-sm">
             <div className="filter-menu-header border border-red-500 mb-12 h-8 flex justify-between items-center">
-                <button onClick={handleClear} className="text-black w-24 border border-black">CLEAR</button>
-                <div className="filter-list border border-green-500 text-black flex flex-wrap justify-start items-center flex-grow">
+                <button onClick={handleClear} className="text-black w-24 border border-black h-8">CLEAR</button>
+                <div className="pl-2 filter-list border border-green-500 text-black flex flex-wrap justify-start items-center flex-grow">
                     {/* Display selected filters */}
                     {selectedFilters.map(filter =>
                         <SelectedFilter filter={filter} handleRemove={handleRemoveFilter} key={filter} />
                     )}
                 </div>
-                <button onClick={handleCancel} className="text-black">CANCEL</button>
+                <button onClick={handleCancel} className="text-black h-8">CANCEL</button>
             </div>
 
 

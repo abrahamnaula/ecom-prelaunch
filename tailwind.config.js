@@ -22,6 +22,7 @@ module.exports = {
         metallicLeft: '#D9D9D9',
         metallicRight: '#2e2e2e',
         grayMo: '#525252',
+        filter: '#C3C3C3'
       },
       height:{
         '125': '7.813rem',
