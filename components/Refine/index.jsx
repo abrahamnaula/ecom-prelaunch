@@ -119,9 +119,11 @@ const FilterMenu = () => {
     return (
         <div className="filter-menu border border-grayBd p-5 w-full sm:w-2/3 font-nhg font-medium text-xxs sm:text-sm">
             <button onClick={handleCancel} className="text-black h-8 sm:hidden">CANCEL</button>
-            <div className="filter-menu-header border border-red-500 mb-12 h-8 flex justify-between items-center">
-                <button onClick={handleClear} className="text-black w-24 border border-black h-8">CLEAR</button>
-                <div className="pl-2 filter-list border border-green-500 text-black flex flex-wrap justify-start items-center flex-grow">
+            <div className="filter-menu-header border border-red-500 sm:mb-12 h-8 flex justify-between items-center">
+                <button onClick={handleClear} className="text-black w-14 sm:w-24 border border-black h-8">CLEAR</button>
+
+                {/* This div will be visible on screens larger than mobile */}
+                <div className="pl-2 filter-list border border-green-500 text-black flex flex-wrap justify-start items-center flex-grow hidden sm:flex">
                     {/* Display selected filters */}
                     {selectedFilters.map(filter =>
                         <SelectedFilter filter={filter} handleRemove={handleRemoveFilter} key={filter} />
@@ -129,7 +131,13 @@ const FilterMenu = () => {
                 </div>
                 <button onClick={handleCancel} className="text-black h-8 hidden sm:block">CANCEL</button>
             </div>
-
+            {/* This div will be visible on mobile */}
+            <div className="pl-2 filter-list border border-green-500 text-black flex flex-wrap justify-start items-center flex-grow sm:hidden">
+                {/* Display selected filters */}
+                {selectedFilters.map(filter =>
+                    <SelectedFilter filter={filter} handleRemove={handleRemoveFilter} key={filter} />
+                )}
+            </div>
 
             <div className="filter-menu-categories border border-blue-500 mb-2 ">
                 <button onClick={() => setSelectedFilter('categories')} className="text-black pr-6 sm:pr-20 text-decoration-line: underline">CATEGORIES</button>
