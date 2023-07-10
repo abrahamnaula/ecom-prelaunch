@@ -9,7 +9,6 @@ import {useEffect} from "react";
 
 export default function Collection({ initialProducts, hasNextPage }) {
     const router = useRouter()
-
     useEffect(() => {
         // Get the scroll position from local storage and set it
         const scrollPos = localStorage.getItem(`${router.route}_scroll_position`);
