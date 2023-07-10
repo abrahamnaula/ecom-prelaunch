@@ -41,9 +41,9 @@ const FilterMenu = () => {
         const categories = ["SHIRTS", "TEES", "BOTTOMS", "OUTERWEAR", "SWEATSHIRTS", "HEADWEAR", "EVERYTHING ELSE"];
 
         return (
-            <div className="pl-2 text-black py-1">
+            <div className="pl-2 text-black py-1 flex flex-col">
                 {categories.map(category =>
-                    <div className="mb-2" onClick={() => handleFilterClick(category)} key={category}>{category}</div>
+                    <button className="mb-2 text-left" onClick={() => handleFilterClick(category)} key={category}>{category}</button>
                 )}
             </div>
         );
@@ -53,9 +53,9 @@ const FilterMenu = () => {
         const collections = ["MUSIC, ART, & FILM", "DENIM, WORKWEAR, & MILITARY", "SPORTSWEAR & STREETWEAR", "BLANKS & ESSENTIALS", "WOMEN"];
 
         return (
-            <div className="pl-2 text-black py-1">
+            <div className="pl-2 text-black py-1 flex flex-col">
                 {collections.map(collection =>
-                    <div className="mb-2" onClick={() => handleFilterClick(collection)} key={collection}>{collection}</div>
+                    <button className="mb-2 text-left" onClick={() => handleFilterClick(collection)} key={collection}>{collection}</button>
                 )}
             </div>
         );
@@ -65,9 +65,9 @@ const FilterMenu = () => {
         const eras = ["Y2K", "1990s", "1980s", "1970s", "PRE 1970s"];
 
         return (
-            <div className="pl-2 text-black py-1">
+            <div className="pl-2 text-black py-1 flex flex-col">
                 {eras.map(era =>
-                    <div className="mb-2" onClick={() => handleFilterClick(era)} key={era}>{era}</div>
+                    <button className="mb-2 text-left" onClick={() => handleFilterClick(era)} key={era}>{era}</button>
                 )}
             </div>
         );
@@ -83,19 +83,19 @@ const FilterMenu = () => {
                 <div className="pb-1.5 tracking-wide font-semibold">TOPS SIZE</div>
                 <div className="flex pb-5 flex-wrap md:flex-nowrap">
                     {topsSizes.map(size =>
-                        <p className="pr-12" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</p>
+                        <button className="pr-12" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</button>
                     )}
                 </div>
                 <div className="pb-1.5 tracking-wide font-semibold">BOTTOMS SIZE</div>
                 <div className="flex pb-5 flex-wrap md:flex-nowrap">
                     {bottomsSizes.map(size =>
-                        <p className="pr-8" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</p>
+                        <button className="pr-8" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</button>
                     )}
                 </div>
                 <div className="pb-1.5 tracking-wide font-semibold">OUTERWEAR SIZE</div>
                 <div className="flex pb-5 flex-wrap md:flex-nowrap">
                     {outerwearSizes.map(size =>
-                        <p className="pr-12" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</p>
+                        <button className="pr-12" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</button>
                     )}
                 </div>
             </div>
@@ -145,7 +145,7 @@ const FilterMenu = () => {
                 )}
             </div>
             {/*<div className="filter-menu-categories border border-blue-500 mb-2 ">*/}
-            <div className="filter-menu-categories mb-2 ">
+            <div className="filter-menu-categories mb-2 mt-1">
                 <button onClick={() => setSelectedFilter('categories')} className="font-semibold text-black pr-6 sm:pr-20 text-decoration-line: underline">CATEGORIES</button>
                 <button onClick={() => setSelectedFilter('collections')} className="font-semibold text-black pr-6 sm:pr-20 text-decoration-line: underline">COLLECTIONS</button>
                 <button onClick={() => setSelectedFilter('byEra')} className="font-semibold text-black pr-6 sm:pr-20 text-decoration-line: underline">BY ERA</button>
