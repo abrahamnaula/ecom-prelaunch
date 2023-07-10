@@ -9,7 +9,8 @@ export default function Refine() {
             <Header/>
             <ShopHeader/>
             <div className="bg-white h-screen w-screen ">
-                <div className="flex justify-center items-center pt-28">
+
+                <div className="sm:flex sm:justify-center sm:items-center sm:pt-28">
                     <FilterMenu/>
                 </div>
 

@@ -120,7 +120,7 @@ const FilterMenu = () => {
         <div className="filter-menu border border-grayBd p-5 w-full sm:w-2/3 font-nhg font-medium text-xxs sm:text-sm">
             <button onClick={handleCancel} className="text-black h-8 sm:hidden">CANCEL</button>
             <div className="filter-menu-header border border-red-500 sm:mb-12 h-8 flex justify-between items-center">
-                <button onClick={handleClear} className="text-black w-14 sm:w-24 border border-black h-8">CLEAR</button>
+                <button onClick={handleClear} className="text-black w-14 sm:w-20 border border-black h-8 flex-none">CLEAR</button>
 
                 {/* This div will be visible on screens larger than mobile */}
                 <div className="pl-2 filter-list border border-green-500 text-black flex flex-wrap justify-start items-center flex-grow hidden sm:flex">
@@ -154,7 +154,7 @@ const FilterMenu = () => {
             </div>
 
             <div className="filter-menu-footer border border-purple-500">
-                <button onClick={handleApply} className="h-8 px-20 bg-black text-white text-decoration: underline ">APPLY FILTERS</button>
+                <button onClick={handleApply} className="h-8 w-full sm:w-1/3 sm:px-20 bg-black text-white text-decoration: underline ">APPLY FILTERS</button>
             </div>
         </div>
     );
