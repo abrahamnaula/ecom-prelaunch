@@ -5,7 +5,7 @@ import {ChevronUpIcon} from "@heroicons/react/20/solid";
 
 export default function WorkHeader() {
     return (
-        <div className="w-full flex bg-bebe">
+        <div className="w-full flex bg-bebe fixed px-0">
             <div className="flex-grow flex flex-col ">
 
                     <div className="font-nhg font-medium text-black text-xxs w-16 sm:w-1/5 sm:text-xxs pl-2 border-b-2 border-gray-600 w-1/6">
@@ -36,13 +36,14 @@ export default function WorkHeader() {
 
             </div>
             <div className="flex-grow flex flex-col border border-yellow-500 text-xxs">
-                <div className="w-1/5 text-right border-b-2 border-gray-600 pr-4 sm:pr-8 font-nhg font-medium text-black sm:text-xxs sm:font-nhg sm:font-medium
-                    sm:text-black ml-auto" >
+                <div className="w-1/5 text-right border-b-2 border-gray-600 font-nhg font-medium text-black sm:text-xxs sm:font-nhg sm:font-medium
+                                sm:text-black ml-auto
+                                pr-8 sm:pr-2" >
                     {/*{`BAG ${String(cart.length).padStart(2, '0')}`} /!* Display the number of items in the cart *!/*/}
                     <button onClick={()=> setCartOpen(true)}>BAG</button>
 
                 </div>
-                <div className="flex-grow pr-1 sm:pr-5 mt-0 text-xxs">
+                <div className="flex-grow mt-0 text-xxs">
                     <SortMenu/>
                 </div>
             </div>
