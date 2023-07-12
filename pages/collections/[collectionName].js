@@ -6,11 +6,9 @@ import WorkHeader from "../../components/WorkHeader";
 
 export default function Collection({ initialProducts, hasNextPage }) {
     const router = useRouter()
-
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
-
     return (
         <div className="flex flex-col min-h-screen bg-bebe">
             <div className="fixed w-full top-0 z-50">
@@ -24,7 +22,6 @@ export default function Collection({ initialProducts, hasNextPage }) {
         </div>
     );
 }
-
 export async function getStaticProps(context) {
     const { collectionName } = context.params;
     const query = `
@@ -90,7 +87,6 @@ export async function getStaticProps(context) {
         props: { initialProducts, hasNextPage },
     };
 }
-
 export async function getStaticPaths() {
     const query = `
     query {

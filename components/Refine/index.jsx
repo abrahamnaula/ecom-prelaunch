@@ -198,7 +198,7 @@ const FilterMenu = () => {
                 })}
             </div>
             {/*<div className="filter-menu-categories border border-blue-500 mb-2 ">*/}
-            <div className="filter-menu-categories mb-2 mt-1">
+            <div className="filter-menu-categories mb-2 mt-1 w-full flex">
                 <button onClick={() => setSelectedFilter('categories')} className="font-semibold text-black pr-6 sm:pr-20 text-decoration-line: underline">CATEGORIES</button>
                 <button onClick={() => setSelectedFilter('collections')} className="font-semibold text-black pr-6 sm:pr-20 text-decoration-line: underline">COLLECTIONS</button>
                 <button onClick={() => setSelectedFilter('byEra')} className="font-semibold text-black pr-6 sm:pr-20 text-decoration-line: underline">BY ERA</button>
