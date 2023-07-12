@@ -36,7 +36,6 @@ export default function WorkHeader() {
             <div className="flex-grow text-xxs font-nhg font-medium text-black flex items-center">
                 <div className="flex">
                     <Link href="/collections/[collectionName]" as="/collections/shop-all">SHOP ALL</Link>
-                    <Link href="/collections/[collectionName]" as="/collections/shop-all"><ChevronUpIcon className="h-4 ml-1" /></Link>
                 </div>
             </div>
 
