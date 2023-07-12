@@ -1,5 +1,5 @@
 import { Popover, Transition } from '@headlessui/react'
-import {Fragment, useState} from 'react'
+import {Fragment} from 'react'
 import FilterMenu from "../Refine";
 
 export default function PopRefine() {

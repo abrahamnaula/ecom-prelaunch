@@ -3,14 +3,19 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import {useRouter} from "next/router";
 
 const FilterMenu = () => {
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedCollection, setSelectedCollection] = useState(null);
+    const [selectedEra, setSelectedEra] = useState(null);
+    const [selectedSizes, setSelectedSizes] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState(null);
-    const [selectedFilters, setSelectedFilters] = useState([]);
-    const [filterCategory, setFilterCategory] = useState(null);
+
     const router = useRouter();
+
     const handleClear = () => {
-        setSelectedFilter(null);
-        setSelectedFilters([]);
-        setFilterCategory(null);
+        setSelectedCategory(null);
+        setSelectedCollection(null);
+        setSelectedEra(null);
+        setSelectedSizes([]);
     };
 
     const handleCancel = () => {
@@ -22,16 +27,27 @@ const FilterMenu = () => {
     };
 
     const handleFilterClick = (filter, category) => {
-        if (category === 'sizes') {
-            if (!selectedFilters.includes(filter)) {
-                setSelectedFilters(prevFilters => [...prevFilters, filter]);
-            }
-        } else {
-            if (filterCategory && filterCategory !== category) {
-                return;
-            }
-            setSelectedFilters([filter]);
-            setFilterCategory(category);
+        switch (category) {
+            case 'categories':
+                setSelectedCategory(filter);
+                setSelectedFilter('categories');
+                break;
+            case 'collections':
+                setSelectedCollection(filter);
+                setSelectedFilter('collections');
+                break;
+            case 'byEra':
+                setSelectedEra(filter);
+                setSelectedFilter('byEra');
+                break;
+            case 'sizes':
+                if (!selectedSizes.includes(filter)) {
+                    setSelectedSizes(prevFilters => [...prevFilters, filter]);
+                }
+                setSelectedFilter('sizes');
+                break;
+            default:
+                break;
         }
     };
 
@@ -42,7 +58,7 @@ const FilterMenu = () => {
         return (
             <div className="pl-2 text-black py-1 flex flex-col">
                 {categories.map(category =>
-                    <button className="mb-2 text-left" onClick={() => handleFilterClick(category)} key={category}>{category}</button>
+                    <button className="mb-2 text-left" onClick={() => handleFilterClick(category, 'categories')} key={category}>{category}</button>
                 )}
             </div>
         );
@@ -54,7 +70,7 @@ const FilterMenu = () => {
         return (
             <div className="pl-2 text-black py-1 flex flex-col">
                 {collections.map(collection =>
-                    <button className="mb-2 text-left" onClick={() => handleFilterClick(collection)} key={collection}>{collection}</button>
+                    <button className="mb-2 text-left" onClick={() => handleFilterClick(collection, 'collections')} key={collection}>{collection}</button>
                 )}
             </div>
         );
@@ -66,7 +82,7 @@ const FilterMenu = () => {
         return (
             <div className="pl-2 text-black py-1 flex flex-col">
                 {eras.map(era =>
-                    <button className="mb-2 text-left" onClick={() => handleFilterClick(era)} key={era}>{era}</button>
+                    <button className="mb-2 text-left" onClick={() => handleFilterClick(era, 'byEra')} key={era}>{era}</button>
                 )}
             </div>
         );
@@ -111,9 +127,31 @@ const FilterMenu = () => {
         );
     };
 
-    const handleRemoveFilter = (filter) => {
-        setSelectedFilters(prevFilters => prevFilters.filter(f => f !== filter));
+    const handleRemoveFilter = (filter, category) => {
+        switch (category) {
+            case 'categories':
+                if (selectedCategory === filter) setSelectedCategory(null);
+                break;
+            case 'collections':
+                if (selectedCollection === filter) setSelectedCollection(null);
+                break;
+            case 'byEra':
+                if (selectedEra === filter) setSelectedEra(null);
+                break;
+            case 'sizes':
+                setSelectedSizes(prevFilters => prevFilters.filter(f => f !== filter));
+                break;
+            default:
+                break;
+        }
     }
+
+    const allSelectedFilters = [
+        ...(selectedCategory ? [selectedCategory] : []),
+        ...(selectedCollection ? [selectedCollection] : []),
+        ...(selectedEra ? [selectedEra] : []),
+        ...selectedSizes,
+    ];
 //
     return (
         //<div className="filter-menu border border-grayBd p-5 w-full sm:w-2/3 font-nhg font-medium text-xxs sm:text-sm">
@@ -128,9 +166,17 @@ const FilterMenu = () => {
  */}
                 <div className="pl-2 filter-list text-black flex flex-wrap justify-start items-center flex-grow hidden sm:flex">
                     {/* Display selected filters */}
-                    {selectedFilters.map(filter =>
-                        <SelectedFilter filter={filter} handleRemove={handleRemoveFilter} key={filter} />
-                    )}
+                    {allSelectedFilters.map(filter => {
+                        let filterCategory;
+                        if (filter === selectedCategory) filterCategory = 'categories';
+                        else if (filter === selectedCollection) filterCategory = 'collections';
+                        else if (filter === selectedEra) filterCategory = 'byEra';
+                        else filterCategory = 'sizes';
+
+                        return (
+                            <SelectedFilter filter={filter} handleRemove={() => handleRemoveFilter(filter, filterCategory)} key={filter} />
+                        )
+                    })}
                 </div>
                 <button onClick={handleCancel} className="text-black h-8 hidden sm:block mr-0">CANCEL</button>
             </div>
@@ -139,9 +185,17 @@ const FilterMenu = () => {
 */}
             <div className="pl-2 filter-list text-black flex flex-wrap justify-start items-center flex-grow sm:hidden">
                 {/* Display selected filters */}
-                {selectedFilters.map(filter =>
-                    <SelectedFilter filter={filter} handleRemove={handleRemoveFilter} key={filter} />
-                )}
+                {allSelectedFilters.map(filter => {
+                    let filterCategory;
+                    if (filter === selectedCategory) filterCategory = 'categories';
+                    else if (filter === selectedCollection) filterCategory = 'collections';
+                    else if (filter === selectedEra) filterCategory = 'byEra';
+                    else filterCategory = 'sizes';
+
+                    return (
+                        <SelectedFilter filter={filter} handleRemove={() => handleRemoveFilter(filter, filterCategory)} key={filter} />
+                    )
+                })}
             </div>
             {/*<div className="filter-menu-categories border border-blue-500 mb-2 ">*/}
             <div className="filter-menu-categories mb-2 mt-1">
@@ -159,7 +213,7 @@ const FilterMenu = () => {
             </div>
             {/*<div className="filter-menu-footer border border-purple-500">*/}
             <div className="filter-menu-footer">
-                <button onClick={handleApply} className="h-8 w-full sm:w-80 sm:px-20 bg-black text-bebe text-decoration: underline ">APPLY FILTERS ({selectedFilters.length})</button>
+                <button onClick={handleApply} className="h-8 w-full sm:w-80 sm:px-20 bg-black text-bebe text-decoration: underline ">APPLY FILTERS ({allSelectedFilters.length})</button>
             </div>
         </div>
     );
