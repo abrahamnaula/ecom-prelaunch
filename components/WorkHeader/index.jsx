@@ -2,6 +2,7 @@ import React from 'react'
 import Link from "next/link";
 import SortMenu from "../SortMenu";
 import {ChevronUpIcon} from "@heroicons/react/20/solid";
+import SearchBar from "../SearchBar";
 
 export default function WorkHeader() {
     return (
@@ -32,8 +33,8 @@ export default function WorkHeader() {
                 </div>
             </div>
 
-            <div className="flex-grow border border-blue-500 text-xxs">
-
+            <div className="flex-grow flex items-center border border-blue-500 text-xxs">
+                <SearchBar/>
             </div>
             <div className="flex-grow flex flex-col border border-yellow-500 text-xxs">
                 <div className="w-1/5 text-right border-b-2 border-gray-600 font-nhg font-medium text-black sm:text-xxs sm:font-nhg sm:font-medium
