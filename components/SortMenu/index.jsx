@@ -6,7 +6,9 @@ export default function SortMenu() {
         <div className="sm:-mt-cstm md:-mt-midsh text-right">
             <Menu as="div" className="inline-block text-left">
                 <div>
-                    <Menu.Button className="text-black font-nhg font-medium sm:text-xxs sm:text-black sm:font-nhg sm:font-medium  focus:outline-none pt-0">
+                    <Menu.Button className="text-black font-nhg font-medium
+                                            sm:text-xxs sm:text-black sm:font-nhg sm:font-medium
+                                            focus:outline-none pt-0">
                         SORT +
                     </Menu.Button>
                 </div>
@@ -19,14 +21,16 @@ export default function SortMenu() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <Menu.Items className="bg-bebe absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="bg-bebe absolute right-0 w-56 origin-top-right divide-y divide-gray-100
+                                           shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <div className="px-1 py-1">
                             <Menu.Item>
                                 {({ active }) => (
                                     <button
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-none px-2 py-2 text-xs sm:text-sm font-nhg font-medium`}
+                                        }   group flex w-full items-center rounded-none px-2 py-2 
+                                            text-xs sm:text-sm font-nhg font-medium`}
                                     >
                                         DATE, NEW TO OLD
                                     </button>
@@ -37,7 +41,8 @@ export default function SortMenu() {
                                     <button
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-none px-2 py-2 text-xs sm:text-sm font-nhg font-medium`}
+                                        }   group flex w-full items-center rounded-none px-2 py-2 
+                                            text-xs sm:text-sm font-nhg font-medium`}
                                     >
                                         DATE, OLD TO NEW
                                     </button>
@@ -48,7 +53,8 @@ export default function SortMenu() {
                                     <button
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-none px-2 py-2 text-xs sm:text-sm font-nhg font-medium`}
+                                        }   group flex w-full items-center rounded-none px-2 py-2 text-xs 
+                                            sm:text-sm font-nhg font-medium`}
                                     >
                                         PRICE, LOW TO HIGH
                                     </button>
@@ -59,7 +65,8 @@ export default function SortMenu() {
                                     <button
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-none px-2 py-2 text-xs sm:text-sm font-nhg font-medium`}
+                                        }   group flex w-full items-center rounded-none px-2 py-2 text-xs 
+                                            sm:text-sm font-nhg font-medium`}
                                     >
                                         PRICE, HIGH TO LOW
                                     </button>

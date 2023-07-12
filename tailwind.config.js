@@ -26,6 +26,7 @@ module.exports = {
         bebe: '#bebebe',
       },
       height:{
+        '8.5':'2.07rem',
         '125': '7.813rem',
         '29px': '1.812rem',
         '58px' : '3.625rem',

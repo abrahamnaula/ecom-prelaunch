@@ -17,12 +17,14 @@ function NewFooter() {
                        sm:text-xxs text-supsm sm:block hidden">
                         INSTAGRAM
                     </a>
-                    <p className="font-ngh text-base text-supsm text-white sm:text-xxs sm:block hidden">TIKTOK</p>
+                    <a href="https://www.tiktok.com/@mikegrayera/" target="_blank" rel="noopener noreferrer"
+                        className="font-ngh text-base text-supsm text-white sm:text-xxs sm:block hidden">TIKTOK</a>
                 </div>
                 <div className="flex flex-col items-end flex-grow justify-center">
                     <a href="https://www.instagram.com/gray_era/" target="_blank" rel="noopener noreferrer"
                        className="pr-2 pb-2 text-white text-supsm sm:text-xxs sm:hidden block">INSTAGRAM</a>
-                    <p className="pr-2 text-white text-supsm sm:text-xxs sm:hidden block">TIKTOK</p>
+                    <a href="https://www.tiktok.com/@mikegrayera/" target="_blank" rel="noopener noreferrer"
+                        className="pr-2 text-white text-supsm sm:text-xxs sm:hidden block">TIKTOK</a>
                 </div>
             </div>
             <div className="h-10 sm:h-24 bg-gradient-to-r from-metallicLeft to-metallicRight text-black

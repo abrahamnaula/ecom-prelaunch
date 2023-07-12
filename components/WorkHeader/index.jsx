@@ -1,12 +1,18 @@
-import React from 'react'
 import Link from "next/link";
 import SortMenu from "../SortMenu";
 import {ChevronUpIcon} from "@heroicons/react/20/solid";
 import SearchBar from "../SearchBar";
-
+import {useCart} from "../../context/CartContext";
+import {useState} from "react";
+import Cart from "../Cart";
+import PopRefine from "../PopRefine";
 export default function WorkHeader() {
+    const [cartOpen, setCartOpen] = useState(false);
+    const { cart } = useCart(); // Use the CartContext hook
     return (
-        <div className="w-full flex bg-bebe fixed px-0">
+        <>
+        <div className="w-full flex bg-bebe fixed px-0
+                        border-b border-gray-400">
             <div className="flex-grow flex flex-col ">
 
                     <div className="font-nhg font-medium text-black text-xxs w-16
@@ -20,9 +26,9 @@ export default function WorkHeader() {
 
                         <div className="sm:w-1/6 w-16 text-black font-nhg font-medium text-xxs sm:text-xxs sm:text-black  sm:font-nhg
                                         sm:font-medium pl-2">
-                            <Link href="/refine">
-                                REFINE +
-                            </Link>
+
+                                <PopRefine/>
+
                         </div>
 
                 </div>
@@ -49,8 +55,11 @@ export default function WorkHeader() {
                     <SortMenu/>
                 </div>
             </div>
-        </div>
 
+
+        </div>
+            {cartOpen && <Cart open={cartOpen} setOpen={setCartOpen} />}
+        </>
 
     )
 }

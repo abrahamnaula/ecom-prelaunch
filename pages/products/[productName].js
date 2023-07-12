@@ -1,10 +1,8 @@
 // pages/products/[productName].js
 import { useRouter } from 'next/router'
 import { ParamShopifyData } from '../../lib/shopify'
-import Header from "../../components/Header"
 import NewFooter from "../../components/NewFooter"
 import Image from 'next/image'
-import ShopHeader from "../../components/ShopHeader";
 import AddToCart from "../../components/AddToCart";
 import { formatter } from "../../utils/helpers";
 import CollapsibleSection from "../../components/CollapsibleSection";
@@ -15,6 +13,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+import WorkHeader from "../../components/WorkHeader";
 
 function NextArrow(props) {
     const { onClick } = props;
@@ -71,11 +70,11 @@ export default function Product({ product }) {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-white">
-            <div className="fixed w-full top-0 z-50">
-                <ShopHeader />
+        <div className="flex flex-col min-h-screen bg-bebe">
+            <div className="fixed w-full top-0 z-20">
+                <WorkHeader />
             </div>
-            <div className="h-header-h"></div>
+            <div className="h-8.5"></div>
 
             <main className="flex-grow flex flex-col lg:flex-row z-10">
                 <div className="flex flex-grow 3xl:h-full lg:w-24">
@@ -123,7 +122,7 @@ export default function Product({ product }) {
 
                         </div>
 
-                        <hr className="border-gray-400 my-4" />
+                        <hr className="border-3/4 border-gray-400 my-4" />
 
                         <CollapsibleSection title="MEASUREMENTS" content={description} />
                         <CollapsibleSection

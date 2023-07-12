@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 import { FaArrowLeft } from "react-icons/fa";
 import { useRouter } from 'next/router';
+import Link from "next/link";
 
 
 export default function CollectionMenuCard({ title, image, animationClass, isSelected, setSelectedCard }) {
@@ -134,12 +135,10 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
                                 <li
                                     key={index}
                                     className="font-nhg font-medium tracking-wide text-xxs sm:text-xl mb-8 sm:mb-10 cursor-pointer"
-                                    onClick={(event) => {
-                                        event.stopPropagation();
-                                        router.push(`/collections/${item.toLowerCase().replace(/\s+/g, '-')}`);
-                                    }}
                                 >
-                                    {item}
+                                    <Link href={`/collections/${item.toLowerCase().replace(/\s+/g, '-')}`}>
+                                        {item}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

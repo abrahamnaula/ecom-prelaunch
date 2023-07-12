@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import {useRouter} from "next/router";
 
 const FilterMenu = () => {
     const [selectedFilter, setSelectedFilter] = useState(null);
@@ -14,8 +14,7 @@ const FilterMenu = () => {
     };
 
     const handleCancel = () => {
-        // Actions for canceling filters
-        router.back();
+        router.reload()
     };
 
     const handleApply = () => {
@@ -105,7 +104,7 @@ const FilterMenu = () => {
 
     const SelectedFilter = ({ filter, handleRemove }) => {
         return (
-            <div className="bg-filter mt-2 h-8 px-2 py-1 mr-2 mb-2 flex items-center text-xxs">
+            <div className="bg-gray-400 mt-2 h-8 px-2 py-1 mr-2 mb-2 flex items-center text-xxs">
                 <span>{filter}</span>
                 <XMarkIcon onClick={() => handleRemove(filter)} className="ml-2 h-3 w-3 sm:h-4 sm:w-4 cursor-pointer" />
             </div>
@@ -118,7 +117,7 @@ const FilterMenu = () => {
 //
     return (
         //<div className="filter-menu border border-grayBd p-5 w-full sm:w-2/3 font-nhg font-medium text-xxs sm:text-sm">
-        <div className="filter-menu p-5 w-full sm:w-2/3 font-nhg font-medium text-xxs sm:text-sm">
+        <div className="filter-menu p-5 w-full sm:w-full font-nhg font-medium text-xxs sm:text-sm">
             <button onClick={handleCancel} className="text-black h-8 sm:hidden">CANCEL</button>
             {/*<div className="filter-menu-header border border-red-500 sm:mb-12 h-8 flex justify-between items-center">*/}
             <div className="filter-menu-header sm:mb-12 h-8 flex justify-between items-center">
@@ -133,7 +132,7 @@ const FilterMenu = () => {
                         <SelectedFilter filter={filter} handleRemove={handleRemoveFilter} key={filter} />
                     )}
                 </div>
-                <button onClick={handleCancel} className="text-black h-8 hidden sm:block">CANCEL</button>
+                <button onClick={handleCancel} className="text-black h-8 hidden sm:block mr-0">CANCEL</button>
             </div>
             {/* This div will be visible on mobile */}
             {/*<div className="pl-2 filter-list border border-green-500 text-black flex flex-wrap justify-start items-center flex-grow sm:hidden">
@@ -160,7 +159,7 @@ const FilterMenu = () => {
             </div>
             {/*<div className="filter-menu-footer border border-purple-500">*/}
             <div className="filter-menu-footer">
-                <button onClick={handleApply} className="h-8 w-full sm:w-1/3 sm:px-20 bg-black text-white text-decoration: underline ">APPLY FILTERS ({selectedFilters.length})</button>
+                <button onClick={handleApply} className="h-8 w-full sm:w-80 sm:px-20 bg-black text-bebe text-decoration: underline ">APPLY FILTERS ({selectedFilters.length})</button>
             </div>
         </div>
     );
