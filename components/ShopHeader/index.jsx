@@ -21,11 +21,13 @@ function ShopHeader(){
                 text-xxs">
 
                     <Link href="/" passHref>
-                        <div className="font-nhg font-medium text-black sm:text-xxs pl-2 border border-red-800">GRAY ERA</div>
+                        <div className="font-nhg font-medium text-black sm:text-xxs pl-2 border border-red-800">
+                            GRAY ERA</div>
                     </Link>
 
-                    <div className="border border-red-800 pr-4 sm:pr-8 font-nhg font-medium text-black sm:text-xxs sm:font-nhg sm:font-medium
-                                    sm:text-black" onClick={()=> setCartOpen(true)}>
+                    <div className="border border-red-800 pr-4 sm:pr-8 font-nhg font-medium text-black
+                                    sm:text-xxs sm:font-nhg sm:font-medium sm:text-black"
+                         onClick={()=> setCartOpen(true)}>
                         {/*{`BAG ${String(cart.length).padStart(2, '0')}`} /!* Display the number of items in the cart *!/*/}
                         BAG
                     </div>
