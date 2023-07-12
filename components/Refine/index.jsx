@@ -155,7 +155,7 @@ const FilterMenu = () => {
 //
     return (
         //<div className="filter-menu border border-grayBd p-5 w-full sm:w-2/3 font-nhg font-medium text-xxs sm:text-sm">
-        <div className="filter-menu p-5 w-full sm:w-full font-nhg font-medium text-xxs sm:text-sm">
+        <div className="filter-menu p-2 sm:p-5 w-full sm:w-full font-nhg font-medium text-xxs sm:text-sm">
             <button onClick={handleCancel} className="text-black h-8 sm:hidden">CANCEL</button>
             {/*<div className="filter-menu-header border border-red-500 sm:mb-12 h-8 flex justify-between items-center">*/}
             <div className="filter-menu-header sm:mb-12 h-8 flex justify-between items-center">
