@@ -1,11 +1,17 @@
-import React from 'react'
 import Link from "next/link";
 import SortMenu from "../SortMenu";
 import {ChevronUpIcon} from "@heroicons/react/20/solid";
 import SearchBar from "../SearchBar";
+import {useCart} from "../../context/CartContext";
+import {useState} from "react";
+import Cart from "../Cart";
+
 
 export default function WorkHeader() {
+    const [cartOpen, setCartOpen] = useState(false);
+    const { cart } = useCart(); // Use the CartContext hook
     return (
+        <>
         <div className="w-full flex bg-bebe fixed px-0
                         border-b border-gray-400">
             <div className="flex-grow flex flex-col ">
@@ -50,8 +56,11 @@ export default function WorkHeader() {
                     <SortMenu/>
                 </div>
             </div>
-        </div>
 
+
+        </div>
+            {cartOpen && <Cart open={cartOpen} setOpen={setCartOpen} />}
+        </>
 
     )
 }

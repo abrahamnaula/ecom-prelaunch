@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router';
 import { ParamShopifyData } from '../../lib/shopify';
-import ShopHeader from "../../components/ShopHeader";
-import Header from "../../components/Header";
 import NewFooter from "../../components/NewFooter";
 import ProductList from "../../components/Products/ProductList";
 import WorkHeader from "../../components/WorkHeader";

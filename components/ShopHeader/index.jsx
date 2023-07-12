@@ -3,7 +3,6 @@ import SearchBar from "../SearchBar";
 import {useState} from "react";
 import Cart from "../Cart";
 import {useCart} from "../../context/CartContext";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import SortMenu from "../SortMenu";
 function ShopHeader(){
     const [cartOpen, setCartOpen] = useState(false);
