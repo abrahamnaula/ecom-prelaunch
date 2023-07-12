@@ -15,7 +15,7 @@ const ProductCard = React.forwardRef(({ product }, ref) => {
 
     return (
         <Link href={`/products/${handle}`} passHref>
-            <div ref={ref} className="flex flex-col bg-white h-full cursor-pointer border-r border-gray-800">
+            <div ref={ref} className="flex flex-col bg-bebe h-full cursor-pointer border-r border-gray-800">
                 <div className="relative flex-grow ">
                     <Image
                         src={imageUrl}

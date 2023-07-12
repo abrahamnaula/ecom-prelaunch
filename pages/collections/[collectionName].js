@@ -13,9 +13,8 @@ export default function Collection({ initialProducts, hasNextPage }) {
     }
 
     return (
-        <div className="flex flex-col min-h-screen bg-white">
+        <div className="flex flex-col min-h-screen bg-bebe">
             <div className="fixed w-full top-0 z-50">
-                <Header />
                 <ShopHeader />
             </div>
             <div className="h-header-h"></div>
