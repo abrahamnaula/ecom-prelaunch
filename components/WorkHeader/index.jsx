@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SortMenu from "../SortMenu";
-import {ChevronUpIcon} from "@heroicons/react/20/solid";
+import MyLink from "../MyLink"
 import SearchBar from "../SearchBar";
 import {useCart} from "../../context/CartContext";
 import {useState} from "react";
@@ -34,13 +34,13 @@ export default function WorkHeader() {
 
                 </div>
             </div>
-            <div className="flex-grow text-xxs font-nhg font-medium text-black flex sm:justify-center items-center">
+            <div className="flex-grow text-xxs font-nhg font-medium text-black flex justify-center items-center">
                 <div className="flex">
-                    <Link href="/collections/[collectionName]" as="/collections/shop-all">SHOP ALL</Link>
+                    <MyLink href="/collections/shop-all">SHOP ALL</MyLink>
                 </div>
             </div>
 
-            <div className="flex-grow flex sm:justify-center items-center  text-xxs">
+            <div className="flex-grow flex justify-center items-center  text-xxs">
                 <SearchBar/>
             </div>
             <div className="flex-grow flex flex-col text-xxs">
