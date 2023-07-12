@@ -120,7 +120,7 @@ const FilterMenu = () => {
 
     const SelectedFilter = ({ filter, handleRemove }) => {
         return (
-            <div className="bg-gray-400 mt-2 h-4  sm:h-8 px-0.5 sm:px-2 py-1 mr-1 sm:mr-2 mb-2 flex items-center text-s5">
+            <div className="bg-gray-400 mt-2 h-4  sm:h-8 px-0.5 sm:px-2 py-1 mr-1 sm:mr-2  mb-0.5 sm:mb-2 flex items-center text-s5">
                 <span>{filter}</span>
                 <XMarkIcon onClick={() => handleRemove(filter)} className="ml-2 h-3 w-3 sm:h-4 sm:w-4 cursor-pointer" />
             </div>
