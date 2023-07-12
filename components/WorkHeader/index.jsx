@@ -6,7 +6,8 @@ import SearchBar from "../SearchBar";
 
 export default function WorkHeader() {
     return (
-        <div className="w-full flex bg-bebe fixed px-0">
+        <div className="w-full flex bg-bebe fixed px-0
+                        border-b border-gray-400">
             <div className="flex-grow flex flex-col ">
 
                     <div className="font-nhg font-medium text-black text-xxs w-16

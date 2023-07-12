@@ -4,6 +4,7 @@ import ShopHeader from "../../components/ShopHeader";
 import Header from "../../components/Header";
 import NewFooter from "../../components/NewFooter";
 import ProductList from "../../components/Products/ProductList";
+import WorkHeader from "../../components/WorkHeader";
 
 export default function Collection({ initialProducts, hasNextPage }) {
     const router = useRouter();
@@ -15,9 +16,9 @@ export default function Collection({ initialProducts, hasNextPage }) {
     return (
         <div className="flex flex-col min-h-screen bg-bebe">
             <div className="fixed w-full top-0 z-50">
-                <ShopHeader />
+                <WorkHeader/>
             </div>
-            <div className="h-header-h"></div>
+            <div className="h-8.5"></div>
             <main className="flex-grow">
                 <ProductList initialProducts={initialProducts} hasNextPage={hasNextPage} />
             </main>
