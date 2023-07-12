@@ -88,7 +88,7 @@ const FilterMenu = () => {
                 <div className="pb-1.5 tracking-wide font-semibold">BOTTOMS SIZE</div>
                 <div className="flex pb-5 flex-wrap md:flex-nowrap">
                     {bottomsSizes.map(size =>
-                        <button className="pr-8" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</button>
+                        <button className="pr-6" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</button>
                     )}
                 </div>
                 <div className="pb-1.5 tracking-wide font-semibold">OUTERWEAR SIZE</div>
