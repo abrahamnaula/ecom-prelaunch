@@ -71,7 +71,7 @@ export default function Product({ product }) {
 
     return (
         <div className="flex flex-col min-h-screen bg-bebe">
-            <div className="fixed w-full top-0 ">
+            <div className="fixed w-full top-0 z-20">
                 <WorkHeader />
             </div>
             <div className="h-8.5"></div>

@@ -5,8 +5,7 @@ import SearchBar from "../SearchBar";
 import {useCart} from "../../context/CartContext";
 import {useState} from "react";
 import Cart from "../Cart";
-
-
+import PopRefine from "../PopRefine";
 export default function WorkHeader() {
     const [cartOpen, setCartOpen] = useState(false);
     const { cart } = useCart(); // Use the CartContext hook
@@ -27,9 +26,9 @@ export default function WorkHeader() {
 
                         <div className="sm:w-1/6 w-16 text-black font-nhg font-medium text-xxs sm:text-xxs sm:text-black  sm:font-nhg
                                         sm:font-medium pl-2">
-                            <Link href="/refine">
-                                REFINE +
-                            </Link>
+
+                                <PopRefine/>
+
                         </div>
 
                 </div>
