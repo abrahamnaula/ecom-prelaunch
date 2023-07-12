@@ -15,41 +15,49 @@ function ShopHeader(){
     }
     return(
         <>
-            {/*Top WHite Header*/}
-            <div className="h-29px bg-whiteSmk w-full min-w-full overflow-hidden flex items-center justify-between
-                            border-x border-gray-400 text-xxs">
+            <div className="w-full bg-bebe flex flex-col justify-between text-xxs">
+                {/*Top White Header*/}
+                <div className=" w-full min-w-full overflow-hidden flex items-center justify-between
+                text-xxs">
 
-                <Link href="/" passHref>
-                    <div className="font-nhg font-medium text-black sm:text-xxs pl-2">GRAY ERA</div>
-                </Link>
-                <div className="flex items-center">
-                    <Link href="/collections/shop-all">
+                    <Link href="/" passHref>
+                        <div className="font-nhg font-medium text-black sm:text-xxs pl-2 border border-red-800">
+                            GRAY ERA</div>
+                    </Link>
+
+                    <div className="border border-red-800 pr-4 sm:pr-8 font-nhg font-medium text-black
+                                    sm:text-xxs sm:font-nhg sm:font-medium sm:text-black"
+                         onClick={()=> setCartOpen(true)}>
+                        {/*{`BAG ${String(cart.length).padStart(2, '0')}`} /!* Display the number of items in the cart *!/*/}
+                        BAG
+                    </div>
+                </div>
+                <div className="flex flex-grow items-center justify-center mx-auto border border-purple-950 w-1/2">
+                    <Link href="/collections/shop-all" className="flex-grow flex items-center justify-center">
                         <div className="font-nhg font-medium text-black sm:text-xxs">SHOP ALL</div>
                     </Link>
-                    <ChevronDownIcon className="h-4 sm:h-5 text-black" />
+                    <div className="flex-grow flex items-center justify-center z-5">
+                        <SearchBar className="z-5" onSearch={handleSearch} />
+                    </div>
                 </div>
-                <div className=" pr-0 z-5">
-                    <SearchBar className="z-5" onSearch={handleSearch} />
-                </div>
-                <div className="pr-1 sm:pr-5 font-nhg font-medium text-black sm:text-xxs sm:font-nhg sm:font-medium
-                                 sm:text-black" onClick={()=> setCartOpen(true)}>
-                    {`BAG ${String(cart.length).padStart(2, '0')}`} {/* Display the number of items in the cart */}
-                </div>
-            </div>
-            {/*BOTTOM HEADER*/}
-            <div className="w-full z-5 h-29px bg-whiteSmk border border-gray-400 flex items-center justify-between text-xxs">
-                <Link href="/refine">
+                {/*BOTTOM HEADER*/}
+                <div className="w-full flex items-center justify-between">
+                    <Link href="/refine">
+                        <div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
+                        sm:font-medium pl-2">REFINE +</div>
+                    </Link>
                     <div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
-                                    sm:font-medium pl-2">REFINE +</div>
-                </Link>
-                {/*<div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
-                                sm:font-medium pr-1 sm:pr-5">SORT</div>*/}
-
-                <SortMenu/>
-
+                    sm:font-medium">
+                        <SortMenu/>
+                    </div>
+                </div>
             </div>
             {cartOpen && <Cart open={cartOpen} setOpen={setCartOpen} />}
         </>
+
+
+
+
     )
 }
 export default ShopHeader

@@ -94,13 +94,12 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
         <div
             ref={cardRef}
             className={`w-full sm:w-1/5 relative overflow-hidden mb-1 mr-1 ${animationClass}`}
-            style={{height: isSelected ? '100vh' : cardHeight}}
+            style={{ height: isSelected ? '100vh' : cardHeight, overflow: isSelected ? 'hidden' : 'auto' }}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
             onClick={handleCardClick}
         >
-
-        {shouldDisplayBackButton && (
+            {shouldDisplayBackButton && (
                 <button
                     className="absolute top-0 left-0 m-10 font-nhg font-medium tracking-wide text-white text-xxs z-50 flex items-center"
                     onClick={handleCloseClick}
@@ -115,39 +114,45 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
                 className="absolute inset-0"
                 style={{ backgroundColor: "rgba(51, 51, 51, 0.72)" }}
             ></div>
-            <div
-                className="absolute inset-0 flex items-center justify-center"
-            >
+            <div className="absolute inset-0 flex items-center justify-center">
                 {shouldDisplayList ? (
-                    <div className="opacity-0 transform transition-all duration-300"
-                         style={{ opacity: hover || isSelected ? 1 : 0, transition: "opacity 0.5s ease-in-out" }}>
+                    <div
+                        className="opacity-0 transform transition-all duration-300"
+                        style={{
+                            opacity: hover || isSelected ? 1 : 0,
+                            transition: "opacity 0.5s ease-in-out",
+                        }}
+                    >
                         <ul className="text-white text-center">
-                            {(title === "COLLECTIONS" ? collections : title === "CATEGORIES" ? categories : byEra).map(
-                                (item, index) => (
-                                    <li key={index} className="font-nhg font-medium tracking-wide text-xxs sm:text-xl
-                        mb-8 sm:mb-10 cursor-pointer"
-                                        onClick={(event) => {
-                                            event.stopPropagation();
-                                            router.push(`/collections/${item.toLowerCase().replace(/\s+/g, '-')}`);
-                                        }}
-                                    >
-                                        {item}
-                                    </li>
-                                )
-                            )}
+                            {(
+                                title === "COLLECTIONS"
+                                    ? collections
+                                    : title === "CATEGORIES"
+                                        ? categories
+                                        : byEra
+                            ).map((item, index) => (
+                                <li
+                                    key={index}
+                                    className="font-nhg font-medium tracking-wide text-xxs sm:text-xl mb-8 sm:mb-10 cursor-pointer"
+                                    onClick={(event) => {
+                                        event.stopPropagation();
+                                        router.push(`/collections/${item.toLowerCase().replace(/\s+/g, '-')}`);
+                                    }}
+                                >
+                                    {item}
+                                </li>
+                            ))}
                         </ul>
-
                     </div>
                 ) : (
                     <span
-                        className={`font-nhg font-medium text-xs sm:text-white sm:text-xl
-                                    sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}
-
+                        className={`font-nhg font-medium text-xs sm:text-white sm:text-xl sm:text-center sm:font-nhg sm:font-medium text-white relative z-10`}
                     >
-                        {title}
-                    </span>
+          {title}
+        </span>
                 )}
             </div>
         </div>
     );
+
 }

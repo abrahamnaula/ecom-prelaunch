@@ -22,7 +22,8 @@ module.exports = {
         metallicLeft: '#D9D9D9',
         metallicRight: '#2e2e2e',
         grayMo: '#525252',
-        filter: '#C3C3C3'
+        filter: '#C3C3C3',
+        bebe: '#bebebe',
       },
       height:{
         '125': '7.813rem',
@@ -34,6 +35,9 @@ module.exports = {
         '18': '4.5rem',
       },
       spacing: {
+        'dims':'0.01rem',
+        'midsh':'0.25px',
+        'cstm':'0.41rem',
         '5px': '5px',
         '100': '25rem',
         '105': '26.25rem',

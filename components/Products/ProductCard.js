@@ -12,13 +12,10 @@ const ProductCard = React.forwardRef(({ product }, ref) => {
     const altText = images.edges[0]?.node?.altText || "Product Image";
     const price = priceRange.minVariantPrice.amount;
     const size = variants.edges[0]?.node?.title;
-    const handleProductClick = () => {
-        // Save scroll position to local storage before navigating
-        localStorage.setItem(`${router.route}_scroll_position`, window.scrollY.toString());
-    }
+
     return (
         <Link href={`/products/${handle}`} passHref>
-            <div onClick={handleProductClick} ref={ref} className="flex flex-col bg-white h-full cursor-pointer border-r border-gray-800">
+            <div ref={ref} className="flex flex-col bg-bebe h-full cursor-pointer border-r border-gray-800">
                 <div className="relative flex-grow ">
                     <Image
                         src={imageUrl}
