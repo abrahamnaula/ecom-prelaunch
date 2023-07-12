@@ -122,7 +122,7 @@ export default function Product({ product }) {
 
                         </div>
 
-                        <hr className="border-gray-400 my-4" />
+                        <hr className="border-3/4 border-gray-400 my-4" />
 
                         <CollapsibleSection title="MEASUREMENTS" content={description} />
                         <CollapsibleSection
