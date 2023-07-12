@@ -5,7 +5,7 @@ import FilterMenu from "../Refine";
 export default function PopRefine() {
 
     return (
-        <div className="fixed w-full min-w-sm">
+        <div className="fixed w-full min-w-sm mt-1.5">
             <Popover className="relative">
                 {({ open }) => (
                     <>

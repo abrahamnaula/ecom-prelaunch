@@ -3,7 +3,7 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 export default function SortMenu() {
     return (
-        <div className="sm:-mt-cstm md:-mt-midsh text-right">
+        <div className="mt-1.5 sm:-mt-cstm md:-mt-midsh text-right">
             <Menu as="div" className="inline-block text-left">
                 <div>
                     <Menu.Button className="text-black font-nhg font-medium
