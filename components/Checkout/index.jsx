@@ -40,7 +40,8 @@ export default function CheckoutButton() {
     return (
         <a
             href="#"
-            className="flex items-center justify-center border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-800"
+            className="flex items-center justify-center border border-transparent bg-black px-6 py-3
+                        text-base font-medium text-bebe shadow-sm hover:bg-gray-800"
             onClick={handleCheckout}
         >
             CHECKOUT

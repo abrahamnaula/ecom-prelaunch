@@ -35,8 +35,8 @@ export default function WorkHeader() {
             </div>
             <div className="flex-grow text-xxs font-nhg font-medium text-black flex items-center">
                 <div className="flex">
-                    <Link href="/collections/shop-all">SHOP ALL</Link>
-                    <Link href="/collections/shop-all"><ChevronUpIcon className="h-4 ml-1" /></Link>
+                    <Link href="/collections/[collectionName]" as="/collections/shop-all">SHOP ALL</Link>
+                    <Link href="/collections/[collectionName]" as="/collections/shop-all"><ChevronUpIcon className="h-4 ml-1" /></Link>
                 </div>
             </div>
 
@@ -51,7 +51,7 @@ export default function WorkHeader() {
                     <button onClick={()=> setCartOpen(true)}>BAG</button>
 
                 </div>
-                <div className="flex-grow mt-0 text-xxs pr-2">
+                <div className="z-40 flex-grow mt-0 text-xxs pr-2">
                     <SortMenu/>
                 </div>
             </div>
