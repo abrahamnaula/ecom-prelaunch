@@ -3,9 +3,12 @@ import { ParamShopifyData } from '../../lib/shopify';
 import NewFooter from "../../components/NewFooter";
 import ProductList from "../../components/Products/ProductList";
 import WorkHeader from "../../components/WorkHeader";
+import {useFilter} from "../../components/FilterContext";
 
 export default function Collection({ initialProducts, hasNextPage }) {
     const router = useRouter()
+    const { selectedCategory, selectedCollection, selectedEra, selectedSizes } = useFilter();
+
     if (router.isFallback) {
         return <div>Loading...</div>;
     }

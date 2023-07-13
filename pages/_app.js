@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import '../styles/animations.css'
 import React, {useEffect} from "react";
 import { CartProvider } from "../context/CartContext";
+import {FilterProvider} from "../components/FilterContext";
 
 export default function App({ Component, pageProps }) {
     useEffect(() => {
@@ -19,7 +20,9 @@ export default function App({ Component, pageProps }) {
     }, []);
     return (
         <CartProvider>
-            <Component {...pageProps} />
+            <FilterProvider>
+                <Component {...pageProps} />
+            </FilterProvider>
         </CartProvider>
 
     );
