@@ -1,47 +1,116 @@
 import React from 'react';
+import NewFooter from "../../components/NewFooter";
+import {useRouter} from "next/router";
+
 
 export default function About() {
+    const router = useRouter();
+    const handleGoBack = () => {
+        router.back();
+    };
     return (
-        <div className="bg-grayMo h-screen">
-            <div className="flex justify-center flex-col items-center font-nhg text-sm font-medium">
-                <div className="h-16 w-2/3 bg-red-500 mt-8 mb-4">
-                    <button className="flex flex-col items-end">
-                        back
+        <>
+        <div className="bg-grayMo min-h-screen flex flex-col items-center">
+            <div className="flex justify-center flex-col items-center font-nhg text-xxs sm:text-sm font-medium flex-1">
+                <div className="h-16 w-2/3  mt-8 mb-4">
+                    <button className="flex flex-col items-end border border-white p-2"
+                            onClick={handleGoBack}>
+                        BACK
                     </button>
                 </div>
 
-                <div className="w-1/2">
-                    <div className="h-16 bg-blue-500 mb-4">ABOUT US</div>
-                    <div className="h-16 bg-green-500 mb-4">
-                        Welcome to Gray Area, the exclusive destination for vintage fashion in Charlotte, NC.
-                        Our store is a carefully curated selection of unique and timeless pieces that bring an edgy
-                        and upscale feel to your wardrobe.
-                    </div>
-                    <div className="h-16 bg-yellow-500 mb-4">
-                        At Gray Area, we believe that vintage fashion is more than just a trend - it&apos;s a lifestyle.
-                        That&apos;s why we specialize in hand-selected, one-of-a-kind pieces that you won&apos;t find anywhere
-                        else. From retro dresses to classic denim jackets, our selection is a tribute to the iconic
-                        styles of the past and the ultimate expression of cool.
-                    </div>
-                    <div className="h-16 bg-indigo-500 mb-4">
-                        Our knowledgeable and passionate staff are dedicated to helping you find the
-                        perfect vintage piece to elevate your personal style. We pride ourselves on
-                        creating a welcoming and inclusive environment, where every customer is treated
-                        like a VIP.
-                    </div>
-                    <div className="h-16 bg-purple-500 mb-4">
-                        Whether you&apos;re a seasoned vintage collector or just starting to discover the
-                        magic of vintage, we&apos;re here to help you find something that speaks to you. Our
-                        selection is constantly evolving, with new and exciting finds arriving weekly.
-                    </div>
-                    <div className="h-16 bg-pink-500">
-                        <p>CONTACT</p>
-                        <p>EMAIL</p>
-                        <p>TIKTOK</p>
-                        <p>INSTAGRAM</p>
-                    </div>
+                <div className="w-2/3 flex-1">
+                    <h1 className="mb-4 underline font-bold tracking-wide">ABOUT & CONTACT:</h1>
+                    <p className="mb-4">
+                        Gray Era is an online vintage store that currently operates out of Charlotte, NC.
+                    </p>
+                    <p className="mb-4">
+                        Each decade over the past 100 years provided us with a unique interpretation on the meaning and purpose of the clothes we wear. At Gray Era, we emphasize sourcing vintage garments that allow our customers to visualize what we consider the best of these distinct interpretations and decide what most resonates with them. Every single product we provide is deliberately handpicked by our sole owner, Michael Gray.
+                    </p>
+                    <h2 className="mb-4 tracking-wide font-bold">
+                        CONTACT US:
+                    </h2>
+                    <p>
+                        Direct Messaging
+                    </p>
+                    <p className="mb-4">
+                        <a className="font-semibold text-decoration-line: underline" href="https://www.instagram.com/gray_era/" target="_blank" rel="noopener noreferrer">@gray_era</a>
+                    </p>
+                    <p>
+                        Customer Service
+                    </p >
+                    <a  className="font-semibold text-decoration-line: underline" href="mailto:contact@grayeravintage.com">contact@grayeravintage.com</a>
+                    <p className="mt-4">
+                        Other Inquiries
+                    </p>
+                    <a className="font-semibold text-decoration-line: underline" href="mailto:Info@grayeravintage.com">
+                        Info@grayeravintage.com
+                    </a>
+
                 </div>
             </div>
         </div>
+            <NewFooter/>
+        </>
     );
 }
+
+/*
+
+import React from 'react';
+import { useRouter } from 'next/router';
+import NewFooter from "../../components/NewFooter";
+
+export default function About() {
+    const router = useRouter();
+    const handleGoBack = () => {
+        router.back();
+    };
+    return (
+        <div className="bg-grayMo min-h-screen flex flex-col">
+            <div className="flex justify-center flex-col items-center font-nhg text-xxs sm:text-sm font-medium flex-1">
+                <div className="h-16 w-2/3  mt-8 mb-4">
+                    <button className="flex flex-col items-end border border-white p-2"
+                            onClick={handleGoBack}>
+                        BACK
+                    </button>
+                </div>
+
+                <div className="w-2/3 flex-1">
+                    <h1 className="mb-4 underline font-bold tracking-wide">ABOUT & CONTACT:</h1>
+                    <p className="mb-4">
+                        Gray Era is an online vintage store that currently operates out of Charlotte, NC.
+                    </p>
+                    <p className="mb-4">
+                        Each decade over the past 100 years provided us with a unique interpretation on the meaning and purpose of the clothes we wear. At Gray Era, we emphasize sourcing vintage garments that allow our customers to visualize what we consider the best of these distinct interpretations and decide what most resonates with them. Every single product we provide is deliberately handpicked by our sole owner, Michael Gray.
+                    </p>
+                    <h2 className="mb-4 tracking-wide font-bold">
+                        CONTACT US:
+                    </h2>
+                    <p>
+                        Direct Messaging
+                    </p>
+                    <p className="mb-4">
+                        <a className="font-semibold text-decoration-line: underline" href="https://www.instagram.com/gray_era/" target="_blank" rel="noopener noreferrer">@gray_era</a>
+                    </p>
+                    <p>
+                        Customer Service
+                    </p >
+                    <a  className="font-semibold text-decoration-line: underline" href="mailto:contact@grayeravintage.com">contact@grayeravintage.com</a>
+                    <p className="mt-4">
+                        Other Inquiries
+                    </p>
+                    <a className="font-semibold text-decoration-line: underline" href="mailto:Info@grayeravintage.com">
+                        Info@grayeravintage.com
+                    </a>
+
+                </div>
+            </div>
+            <div className="h-12"></div>
+            <NewFooter />
+        </div>
+    );
+}
+
+
+ */
