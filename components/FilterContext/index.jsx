@@ -55,7 +55,10 @@ export const FilterProvider = ({ children }) => {
 
     return (
         <FilterContext.Provider value={{
-            selectedCategory, selectedCollection, selectedEra, selectedSizes,
+            selectedCategory, setSelectedCategory,
+            selectedCollection, setSelectedCollection,
+            selectedEra, setSelectedEra,
+            selectedSizes, setSelectedSizes,
             selectedFilter, handleFilterClick, handleRemoveFilter, setSelectedFilter }}>
             {children}
         </FilterContext.Provider>

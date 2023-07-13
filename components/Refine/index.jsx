@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {useRouter} from "next/router";
 import { useFilter } from "../FilterContext";
 
 const FilterMenu = () => {
-    const { selectedCategory, selectedCollection, selectedEra, selectedSizes, selectedFilter, handleFilterClick, handleRemoveFilter, setSelectedFilter } = useFilter();
-
+    const {
+        selectedCategory, selectedCollection, selectedEra, selectedSizes,
+        selectedFilter, handleFilterClick, handleRemoveFilter, setSelectedFilter,
+        setSelectedCategory, setSelectedCollection, setSelectedEra,
+        setSelectedSizes
+    } = useFilter();
 
     const router = useRouter();
 
@@ -17,9 +21,8 @@ const FilterMenu = () => {
     };
 
     const handleCancel = () => {
-        router.reload()
+        router.reload();
     };
-
     const handleApply = () => {
         // Actions for applying filters
     };
