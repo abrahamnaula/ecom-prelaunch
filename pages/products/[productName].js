@@ -74,7 +74,7 @@ export default function Product({ product }) {
             <div className="fixed w-full top-0 z-20">
                 <WorkHeader />
             </div>
-            <div className="h-8.5"></div>
+            <div className="h-14"></div>
 
             <main className="flex-grow flex flex-col lg:flex-row z-10">
                 <div className="flex flex-grow 3xl:h-full lg:w-24">
