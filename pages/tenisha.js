@@ -1,6 +1,7 @@
 import React from 'react'
 import WorkHeader from "../components/WorkHeader";
 import PopRefine from "../components/PopRefine";
+import NewFooter from "../components/NewFooter";
 
 export default function Tenisha() {
     return (
@@ -12,7 +13,7 @@ export default function Tenisha() {
                 <PopRefine/>
 
             </div>
-
+        <NewFooter/>
         </div>
     )
 }

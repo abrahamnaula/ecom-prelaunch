@@ -237,7 +237,6 @@ export default function TermsOfService() {
                             Questions about the Terms of Service should be sent to us at <a href="mailto:info@grayeravintage.com" className="underline">info@grayeravintage.com</a>.
                         </div>
 
-
                     </div>
                 </div>
             </div>
