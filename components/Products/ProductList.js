@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import ProductCard from './ProductCard';
 import { ParamShopifyData } from "../../lib/shopify";
 import { useRouter } from 'next/router';
+import {useFilter} from "../FilterContext";
 
 export default function ProductList({ initialProducts, hasNextPage }) {
     const [products, setProducts] = useState(initialProducts);
@@ -13,6 +14,14 @@ export default function ProductList({ initialProducts, hasNextPage }) {
 
     const router = useRouter();
     const { collectionName } = router.query;
+
+    //get array of sizes selected
+    const { selectedSizes } = useFilter();
+
+    // Filter the products by size
+    const filteredProducts = initialProducts.filter(product =>
+        selectedSizes.includes(product.variants.edges[0].node.title)
+    );
 
     const loadMore = async () => {
         setLoading(true);

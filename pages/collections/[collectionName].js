@@ -8,7 +8,7 @@ import {useFilter} from "../../components/FilterContext";
 export default function Collection({ initialProducts, hasNextPage }) {
     const router = useRouter()
     const { selectedCategory, selectedCollection, selectedEra, selectedSizes } = useFilter();
-
+    //console.log(selectedSizes)
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
