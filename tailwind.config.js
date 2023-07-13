@@ -58,6 +58,8 @@ module.exports = {
         'xs': '0.01px',
       },
       screens: {
+        'mg':'300px',
+        'xs':'343px',
         '3xl': '1920px', // Custom breakpoint for 32" monitors or larger
       },
       backgroundImage: {

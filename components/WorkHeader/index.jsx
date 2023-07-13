@@ -16,7 +16,10 @@ export default function WorkHeader() {
             <div className="flex-grow flex flex-col ">
 
                     <div className="font-nhg font-medium text-black text-xxs
-                                    sm:w-1/5 sm:text-xxs pl-2 border-b-2 border-black w-16
+                                    mg:w-5/6
+                                    xs:w-18
+                                    sm:w-3/5 sm:text-xxs pl-2 border-b-2 border-black
+                                    md:w-1/3
                                     pb-1.5">
                         <Link href="/" passHref>
                             GRAY ERA
@@ -44,10 +47,14 @@ export default function WorkHeader() {
                 <SearchBar/>
             </div>
             <div className="flex-grow flex flex-col text-xxs">
-                <div className="sm:w-1/5 w-16 text-right border-b-2 border-black font-nhg font-medium text-black sm:text-xxs sm:font-nhg sm:font-medium
-                                sm:text-black ml-auto
-                                pr-4 sm:pr-4
-                                pb-1.5" >
+                <div className="text-right border-b-2 border-black font-nhg font-medium text-black
+                                sm:text-xxs sm:font-nhg sm:font-medium sm:text-black  sm:pr-4
+                                ml-auto
+                                pb-1.5 pr-4
+                                mg:w-5/6
+                                xs:w-18
+                                sm:w-3/5
+                                md:w-1/3" >
                     {/*{`BAG ${String(cart.length).padStart(2, '0')}`} /!* Display the number of items in the cart *!/*/}
                     <button onClick={()=> setCartOpen(true)}>BAG</button>
 
