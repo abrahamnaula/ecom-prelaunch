@@ -1,6 +1,7 @@
 import React from 'react'
 import {useRouter} from "next/router";
 import NewFooter from "../../components/NewFooter";
+import Link from "next/link";
 
 export default function TermsOfService() {
     const router = useRouter();
@@ -81,7 +82,10 @@ export default function TermsOfService() {
                         </p>
                         <h3 className="font-bold mt-4">SECTION 5 - PRODUCTS OR SERVICES (if applicable)</h3>
                         <p>
-                            Certain products or Services may be available exclusively online through the website. These products or Services may have limited quantities and are subject to return or exchange only according to our Return Policy. To view our Return Policy, please visit [LINK TO RETURN POLICY]
+                            Certain products or Services may be available exclusively online through the website. These products or Services may have limited quantities and are subject to return or exchange only according to our Return Policy. To view our Return Policy, please visit{' '}
+                            <Link className="text-decoration-line: underline" href="/more/shipping-&-returns">
+                                SHIPPING & RETURNS
+                            </Link>
                         </p>
                         <p>
                             We have made every effort to display as accurately as possible the colors and images of our products that appear at the store. We cannot guarantee that your computer monitor&apos;s display of any color will be accurate.
