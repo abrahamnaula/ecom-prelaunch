@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import {createContext, useState, useContext, useEffect} from "react";
 
 const FilterContext = createContext();
 
@@ -8,6 +8,24 @@ export const FilterProvider = ({ children }) => {
     const [selectedEra, setSelectedEra] = useState(null);
     const [selectedSizes, setSelectedSizes] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState(null);
+    const [tags, setTags] = useState(''); // New state for tags
+    useEffect(() => {
+        const filters = [];
+        if (selectedCategory) {
+            filters.push(selectedCategory);
+        }
+        if (selectedCollection) {
+            filters.push(selectedCollection);
+        }
+        if (selectedEra) {
+            filters.push(selectedEra);
+        }
+        filters.push(...selectedSizes);
+
+        // Format your tags string as needed for your query:
+        const tagsString = filters.join(' OR '); // Adjust this as necessary
+        setTags(tagsString);
+    }, [selectedCategory, selectedCollection, selectedEra, selectedSizes]);
 
     const handleFilterClick = (filter, category) => {
         switch (category) {

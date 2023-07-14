@@ -50,13 +50,13 @@ export default function WorkHeader() {
                 <div className="text-right border-b-2 border-black font-nhg font-medium text-black
                                 sm:text-xxs sm:font-nhg sm:font-medium sm:text-black  sm:pr-4
                                 ml-auto
-                                pb-1.5 pr-4
+                                pb-1.5
                                 mg:w-5/6
                                 xs:w-18
                                 sm:w-3/5
                                 md:w-1/3" >
                     {/*{`BAG ${String(cart.length).padStart(2, '0')}`} /!* Display the number of items in the cart *!/*/}
-                    <button onClick={()=> setCartOpen(true)}>BAG</button>
+                    <button className="xs:pr-5 mg:pr-5 sm:pr-2" onClick={()=> setCartOpen(true)}>BAG</button>
 
                 </div>
                 <div className="z-40 flex-grow mt-0 text-xxs pr-2">
