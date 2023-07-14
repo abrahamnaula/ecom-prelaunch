@@ -17,7 +17,7 @@ export default function Collection({ initialProducts, hasNextPage }) {
             <div className="fixed w-full top-0 z-50">
                 <WorkHeader/>
             </div>
-            <div className="h-8.5"></div>
+            <div className="h-[54px]"></div>
             <main className="flex-grow">
                 <ProductList initialProducts={initialProducts} hasNextPage={hasNextPage} />
             </main>
