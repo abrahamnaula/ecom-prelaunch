@@ -49,7 +49,7 @@ export default function ShippingReturns() {
 
                             <p>We do not offer refunds, returns, or exchanges.</p>
 
-                            <p>We provide detailed photos and measurements of all items in order to accurately describe each item's fit and condition.</p>
+                            <p>We provide detailed photos and measurements of all items in order to accurately describe each item&apos;s fit and condition.</p>
 
                             <p>Note that all garments are second hand and may show varying degrees of wear and tear.</p>
 

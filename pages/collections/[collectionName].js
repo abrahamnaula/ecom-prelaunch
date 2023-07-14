@@ -4,11 +4,9 @@ import NewFooter from "../../components/NewFooter";
 import ProductList from "../../components/Products/ProductList";
 import WorkHeader from "../../components/WorkHeader";
 import {useFilter} from "../../components/FilterContext";
-
 export default function Collection({ initialProducts, hasNextPage }) {
     const router = useRouter()
-    const { selectedCategory, selectedCollection, selectedEra, selectedSizes } = useFilter();
-    //console.log(selectedSizes)
+    const { selectedCategory, selectedCollection, selectedEra } = useFilter();
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
@@ -25,8 +23,14 @@ export default function Collection({ initialProducts, hasNextPage }) {
         </div>
     );
 }
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const { collectionName } = context.params;
+
+    // Extract any filters from context.query
+    const filters = context.query;
+
+    // Use filters in your GraphQL query...
+
     const query = `
     query ($title: String!, $cursor: String) {
       collections(first: 1, query: $title) {
@@ -89,27 +93,4 @@ export async function getStaticProps(context) {
     return {
         props: { initialProducts, hasNextPage },
     };
-}
-export async function getStaticPaths() {
-    const query = `
-    query {
-      collections(first: 100) {
-        edges {
-          node {
-            handle
-          }
-        }
-      }
-    }
-  `;
-    const { data } = await ParamShopifyData(query);
-    if (!data || !data.collections || !data.collections.edges || data.collections.edges.length === 0) {
-        console.error('No data returned from Shopify API');
-        return { paths: [], fallback: true };
-    }
-    const paths = data.collections.edges.map((edge) => ({
-        params: { collectionName: edge.node.handle },
-    }));
-    // We'll pre-render only these paths at build time.
-    return { paths, fallback: true };
 }

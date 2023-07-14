@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
                         <div className="h-4"></div>
 
                         <p>
-                            We may update this Privacy Policy from time to time, including to reflect changes to our practices or for other operational, legal, or regulatory reasons. We will post the revised Privacy Policy on the Site, update the "Last updated" date and take any other steps required by applicable law.
+                            We may update this Privacy Policy from time to time, including to reflect changes to our practices or for other operational, legal, or regulatory reasons. We will post the revised Privacy Policy on the Site, update the &quot;Last updated&quot; date and take any other steps required by applicable law.
                         </p>
                         <div className="h-4"></div>
 
@@ -51,7 +51,7 @@ export default function PrivacyPolicy() {
                         <div className="h-4"></div>
 
                         <p>
-                            The types of personal information we obtain about you depends on how you interact with our Site and use our Services. When we use the term "personal information", we are referring to information that identifies, relates to, describes, or can be associated with you. The following sections describe the categories and specific types of personal information we collect.
+                            The types of personal information we obtain about you depends on how you interact with our Site and use our Services. When we use the term &quot;personal information&quot;, we are referring to information that identifies, relates to, describes, or can be associated with you. The following sections describe the categories and specific types of personal information we collect.
                         </p>
                         <div className="h-4"></div>
 
@@ -83,7 +83,7 @@ export default function PrivacyPolicy() {
                         <div className="h-4"></div>
 
                         <p>
-                            We also automatically collect certain information about your interaction with the Services ("Usage Data"). To do this, we may use cookies, pixels, and similar technologies ("Cookies"). Usage Data may include information about how you access and use our Site and your account, including device information, browser information, information about your network connection, your IP address, and other information regarding your interaction with the Services.
+                            We also automatically collect certain information about your interaction with the Services (&quot;Usage Data&quot;). To do this, we may use cookies, pixels, and similar technologies (&quot;Cookies&quot;). Usage Data may include information about how you access and use our Site and your account, including device information, browser information, information about your network connection, your IP address, and other information regarding your interaction with the Services.
                         </p>
                         <div className="h-4"></div>
 
@@ -104,7 +104,7 @@ export default function PrivacyPolicy() {
 
                         <div className="h-4"></div>
                         <p>
-                            Any information we obtain from third parties will be treated in accordance with this Privacy Policy. We are not responsible or liable for the accuracy of the information provided to us by third parties and are not responsible for any third party's policies or practices. For more information, see the section below, Third Party Websites and Links.
+                            Any information we obtain from third parties will be treated in accordance with this Privacy Policy. We are not responsible or liable for the accuracy of the information provided to us by third parties and are not responsible for any third party&apos;s policies or practices. For more information, see the section below, Third Party Websites and Links.
                         </p>
                         <div className="h-4"></div>
 
@@ -174,7 +174,7 @@ export default function PrivacyPolicy() {
                         <div className="h-4"> </div>
 
                         <p>
-                            We have, in the past 12 months, disclosed the following categories of personal information and sensitive personal information (denoted by *) about users for the purposes set out above in "How we Collect and Use your Personal Information" and "How we Disclose Personal Information":
+                            We have, in the past 12 months, disclosed the following categories of personal information and sensitive personal information (denoted by *) about users for the purposes set out above in &quot;How we Collect and Use your Personal Information&quot; and How we Disclose Personal Information:
                         </p>
                         <div className="h-4"> </div>
 
@@ -200,7 +200,7 @@ export default function PrivacyPolicy() {
                         <p>We do not use or disclose sensitive personal information for the purposes of inferring characteristics about you.</p>
                         <div className="h-4"> </div>
 
-                        <p>We have "sold" and "shared" (as those terms are defined in applicable law) personal information over the preceding 12 months for the purpose of engaging in advertising and marketing activities, as follows.</p>
+                        <p>We have &quot;sold&quot; and &quot;shared&quot; (as those terms are defined in applicable law) personal information over the preceding 12 months for the purpose of engaging in advertising and marketing activities, as follows.</p>
                         <div className="h-4"> </div>
 
                         <p><strong>Category of Personal Information:</strong></p>
@@ -219,10 +219,10 @@ export default function PrivacyPolicy() {
                         <p><strong>Third Party Websites and Links:</strong> Our Site may provide links to websites or other online platforms operated by third parties. If you follow links to sites not affiliated or controlled by us, you should review their privacy and security policies and other terms and conditions. We do not guarantee and are not responsible for the privacy or security of such sites, including the accuracy, completeness, or reliability of information found on these sites. Information you provide on public or semi-public venues, including information you share on third-party social networking platforms, may also be viewable by other users of the Services and/or users of those third-party platforms without limitation as to its use by us or by a third party. Our inclusion of such links does not, by itself, imply any endorsement of the content on such platforms or of their owners or operators, except as disclosed on the Services.</p>
                         <div className="h-4"> </div>
 
-                        <p><strong>Children's Data:</strong> The Services are not intended to be used by children, and we do not knowingly collect any personal information about children. If you are the parent or guardian of a child who has provided us with their personal information, you may contact us to request that it be deleted.</p>
+                        <p><strong>Children&apos;s Data:</strong> The Services are not intended to be used by children, and we do not knowingly collect any personal information about children. If you are the parent or guardian of a child who has provided us with their personal information, you may contact us to request that it be deleted.</p>
                         <div className="h-4"></div>
 
-                        <p><strong>Security and Retention of Your Information:</strong> Please be aware that no security measures are perfect or impenetrable, and we cannot guarantee "perfect security." In addition, any information you send to us may not be secure while in transit. We recommend that you do not use unsecure channels to communicate sensitive or confidential information to us. How long we retain your personal information depends on different factors, such as whether we need the information to maintain your account, provide the Services, comply with legal obligations, resolve disputes, or enforce other applicable contracts and policies.</p>
+                        <p><strong>Security and Retention of Your Information:</strong> Please be aware that no security measures are perfect or impenetrable, and we cannot guarantee &quot;perfect security.&quot; In addition, any information you send to us may not be secure while in transit. We recommend that you do not use unsecure channels to communicate sensitive or confidential information to us. How long we retain your personal information depends on different factors, such as whether we need the information to maintain your account, provide the Services, comply with legal obligations, resolve disputes, or enforce other applicable contracts and policies.</p>
                         <div className="h-4"> </div>
 
                         <p><strong>Your Rights and Choices:</strong> Depending on where you live, you may have some or all of the rights listed below in relation to your personal information. However, these rights are not absolute, may apply only in certain circumstances, and in certain cases, we may decline your request as permitted by law.</p>
@@ -240,7 +240,7 @@ export default function PrivacyPolicy() {
                         <p><strong>Right of Portability:</strong> You may have a right to receive a copy of the personal information we hold about you and to request that we transfer it to a third party, in certain circumstances and with certain exceptions.</p>
                         <div className="h-4"></div>
 
-                        <p><strong>Right to Opt out of Sale or Sharing or Targeted Advertising:</strong> You may have a right to direct us not to "sell" or "share" your personal information or to opt out of the processing of your personal information for purposes considered to be "targeted advertising", as defined in applicable privacy laws.</p>
+                        <p><strong>Right to Opt out of Sale or Sharing or Targeted Advertising:</strong> You may have a right to direct us not to &quot;sell&quot; or &quot;share&quot; your personal information or to opt out of the processing of your personal information for purposes considered to be &quot;targeted advertising&quot;, as defined in applicable privacy laws.</p>
                         <div className="h-4"></div>
 
                         <p><strong>Right to Limit and/or Opt out of Use and Disclosure of Sensitive Personal Information:</strong> You may have a right to direct us to limit our use and/or disclosure of sensitive personal information to only what is necessary to perform the Services or provide the goods reasonably expected by an average individual.</p>
@@ -275,7 +275,7 @@ export default function PrivacyPolicy() {
                         <div className="h-4"></div>
 
                         <p>
-                            We use Shopify's ad services such as Shopify Audiences to help personalize the advertising you see on third-party websites. To restrict Shopify merchants that use these ad services from using your personal information for such services, visit <a href="https://privacy.shopify.com/en" target="_blank" rel="noopener noreferrer">https://privacy.shopify.com/en</a>.
+                            We use Shopify&apos;s ad services such as Shopify Audiences to help personalize the advertising you see on third-party websites. To restrict Shopify merchants that use these ad services from using your personal information for such services, visit <a href="https://privacy.shopify.com/en" target="_blank" rel="noopener noreferrer">https://privacy.shopify.com/en</a>.
                         </p>
                         <div className="h-4"></div>
 
@@ -285,7 +285,7 @@ export default function PrivacyPolicy() {
                         <div className="h-4"></div>
 
                         <p>
-                            <strong>International Users:</strong> Please note that we may transfer, store, and process your personal information outside the country you live in, including the United States. Your personal information is also processed by staff and third-party service providers and partners in these countries. If we transfer your personal information out of Europe, we will rely on recognized transfer mechanisms like the European Commission's Standard Contractual Clauses or any equivalent contracts issued by the relevant competent authority of the UK, as relevant, unless the data transfer is to a country that has been determined to provide an adequate level of protection.
+                            <strong>International Users:</strong> Please note that we may transfer, store, and process your personal information outside the country you live in, including the United States. Your personal information is also processed by staff and third-party service providers and partners in these countries. If we transfer your personal information out of Europe, we will rely on recognized transfer mechanisms like the European Commission&apos;s Standard Contractual Clauses or any equivalent contracts issued by the relevant competent authority of the UK, as relevant, unless the data transfer is to a country that has been determined to provide an adequate level of protection.
                         </p>
                         <div className="h-4"></div>
 
