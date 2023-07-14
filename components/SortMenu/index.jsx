@@ -31,7 +31,7 @@ export default function SortMenu() {
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
                                         }   group flex w-full items-center rounded-none px-2 py-2 
-                                            text-xs sm:text-sm font-nhg font-medium`}
+                                            text-xxs  font-nhg font-medium`}
                                     >
                                         DATE, NEW TO OLD
                                     </button>
@@ -43,7 +43,7 @@ export default function SortMenu() {
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
                                         }   group flex w-full items-center rounded-none px-2 py-2 
-                                            text-xs sm:text-sm font-nhg font-medium`}
+                                            text-xxs  font-nhg font-medium`}
                                     >
                                         DATE, OLD TO NEW
                                     </button>
@@ -54,8 +54,8 @@ export default function SortMenu() {
                                     <button
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
-                                        }   group flex w-full items-center rounded-none px-2 py-2 text-xs 
-                                            sm:text-sm font-nhg font-medium`}
+                                        }   group flex w-full items-center rounded-none px-2 py-2 text-xxs 
+                                             font-nhg font-medium`}
                                     >
                                         PRICE, LOW TO HIGH
                                     </button>
@@ -66,8 +66,8 @@ export default function SortMenu() {
                                     <button
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
-                                        }   group flex w-full items-center rounded-none px-2 py-2 text-xs 
-                                            sm:text-sm font-nhg font-medium`}
+                                        }   group flex w-full items-center rounded-none px-2 py-2 text-xxs 
+                                             font-nhg font-medium`}
                                     >
                                         PRICE, HIGH TO LOW
                                     </button>

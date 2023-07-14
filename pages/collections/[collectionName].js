@@ -4,9 +4,29 @@ import NewFooter from "../../components/NewFooter";
 import ProductList from "../../components/Products/ProductList";
 import WorkHeader from "../../components/WorkHeader";
 import {useFilter} from "../../components/FilterContext";
+import {useEffect} from "react";
 export default function Collection({ initialProducts, hasNextPage }) {
     const router = useRouter()
     const { selectedCategory, selectedCollection, selectedEra } = useFilter();
+
+    // On mount and whenever filters change, update the URL.
+    useEffect(() => {
+        const filters = {
+            selectedCategory,
+            selectedCollection,
+            selectedEra,
+        };
+
+        // Update the URL without refreshing the page.
+        router.push({
+            pathname: router.pathname,
+            query: filters,
+        }, undefined, { shallow: true })
+            .then(() => window.scrollTo(0, 0))
+            .catch((error) => console.error('An error occurred while navigating:', error));
+        // Shallow navigation: don't re-fetch data or re-render on the server.
+    }, [selectedCategory, selectedCollection, selectedEra, selectedSizes]);
+
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
@@ -24,22 +44,16 @@ export default function Collection({ initialProducts, hasNextPage }) {
     );
 }
 export async function getServerSideProps(context) {
-    const { collectionName } = context.params;
-
-    // Extract any filters from context.query
-    const filters = context.query;
-
-    // Use filters in your GraphQL query...
-
-    const query = `
-    query ($title: String!, $cursor: String) {
+    const { collectionName, tags } = context.query; // get tags from query params
+    let query = `
+    query ($title: String!, $cursor: String, $tags: String) {
       collections(first: 1, query: $title) {
         edges {
           node {
             id
             title
             handle
-            products(first: 12, after: $cursor) {
+            products(first: 12, after: $cursor, query: $tags) {
               pageInfo {
                 hasNextPage
               }
@@ -76,8 +90,20 @@ export async function getServerSideProps(context) {
         }
       }
     }
-  `;
-    const { data } = await ParamShopifyData(query, { title: collectionName });
+    `;
+
+    const variables = {
+        title: collectionName,
+        cursor: null, // I am assuming cursor is not provided for the initial load
+    };
+
+    // If tags are not empty, add it to the variables
+    if (tags) {
+        variables.tags = tags;
+    }
+
+    const { data } = await ParamShopifyData(query, variables);
+
     if (!data || !data.collections || !data.collections.edges || data.collections.edges.length === 0) {
         return {
             notFound: true,
@@ -90,6 +116,7 @@ export async function getServerSideProps(context) {
         };
     });
     const hasNextPage = data.collections.edges[0].node.products.pageInfo.hasNextPage;
+
     return {
         props: { initialProducts, hasNextPage },
     };
