@@ -9,10 +9,10 @@ export default function PrivacyPolicy() {
     };
     return (
         <>
-            <div className="bg-grayMo min-h-screen flex flex-col items-center">
+            <div className="bg-bebe text-black text-transform: uppercase min-h-screen flex flex-col items-center">
                 <div className="flex justify-center flex-col items-center font-nhg text-xxs sm:text-sm font-medium flex-1">
                     <div className="h-16 w-2/3  mt-8 mb-4">
-                        <button className="flex flex-col items-end border border-white p-2"
+                        <button className="flex flex-col items-end border border-black p-2"
                                 onClick={handleGoBack}>
                             BACK
                         </button>

@@ -6,10 +6,10 @@ export default function SortMenu() {
         <div className="mt-1.5 sm:-mt-cstm md:-mt-midsh text-right">
             <Menu as="div" className="inline-block text-left">
                 <div>
-                    <Menu.Button className="text-black font-nhg font-medium
+                    <Menu.Button className="flex text-black font-nhg font-medium
                                             sm:text-xxs sm:text-black sm:font-nhg sm:font-medium
                                             focus:outline-none pt-0 sm:pt-3 md:pt-[6px]">
-                        SORT +
+                        SORT <ChevronDownIcon className="h-4"/>
                     </Menu.Button>
                 </div>
                 <Transition
