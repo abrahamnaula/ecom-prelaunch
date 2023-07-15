@@ -61,6 +61,33 @@ export const FilterProvider = ({ children }) => {
         ["XXX-Large", "XXX-LARGE"]
     ]);
 
+    const reference = new Map([
+        ["SHIRTS", "shirts"],
+        ["TEES", "tees"],
+        ["BOTTOMS", "bottoms"],
+        ["OUTERWEAR", "outerwear"],
+        ["SWEATSHIRTS", "sweatshirts"],
+        ["HEADWEAR", "headwear"],
+        ["EVERYTHING ELSE", "everything-else"],
+        ["MUSIC, ART, & FILM", "music-art-film"],
+        ["DENIM, WORKWEAR, & MILITARY", "denim-workwear-military"],
+        ["SPORTSWEAR & STREETWEAR", "sportswear-streetwear"],
+        ["BLANKS & ESSENTIALS", "blanks-essentials"],
+        ["WOMEN", "women"],
+        ["Y2K", "y2k"],
+        ["1990s", "1990s"],
+        ["1980s", "1980s"],
+        ["1970s", "1970s"],
+        ["PRE 1970s", "pre-1970s"],
+        ["X-SMALL", "X-Small"],
+        ["SMALL", "Small"],
+        ["MEDIUM", "Medium"],
+        ["LARGE", "Large"],
+        ["X-LARGE", "X-Large"],
+        ["XX-LARGE", "XX-Large"],
+        ["XXX-LARGE", "XXX-Large"],
+    ]);
+
 
     useEffect(() => {
         const filters = [];
@@ -147,7 +174,8 @@ export const FilterProvider = ({ children }) => {
                 bottomsSizes, // Provide the bottomsSizes Map
                 outerwearSizes, // Provide the outerwearSizes Map
                 filterHistory,
-                setFilterHistory
+                setFilterHistory,
+                reference
             }}
         >
             {children}

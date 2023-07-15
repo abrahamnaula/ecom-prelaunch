@@ -9,7 +9,7 @@ const FilterMenu = () => {
         selectedCategory, selectedCollection, selectedEra, selectedSizes,
         selectedFilter, handleFilterClick, handleRemoveFilter, setSelectedFilter,
         setSelectedCategory, setSelectedCollection, setSelectedEra,
-        setSelectedSizes, filterHistory, setFilterHistory
+        setSelectedSizes, filterHistory, setFilterHistory, reference
     } = useFilter();
 
     const router = useRouter();
@@ -30,6 +30,8 @@ const FilterMenu = () => {
 
         // Use the finalFilters array to fetch the filtered products
         // ...
+        const formattedFilters = finalFilters.map(filter => reference.get(filter) || filter);
+        console.log("Formatted Filters:", formattedFilters);
 
         // Clear the filter history
         setFilterHistory([]);
