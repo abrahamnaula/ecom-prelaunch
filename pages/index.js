@@ -1,5 +1,5 @@
 //import {getProductsInCollection} from "../lib/shopify";
-//import ProductList from "../components/ProductList";
+//import ProductList.js from "../components/ProductList.js";
 import React from "react";
 import BackgroundVideo from "../components/BackgroundVideo";
 import Logo from "../components/Logo";
@@ -38,7 +38,7 @@ export default function Home({products}) {
     console.log(products)
     return (
         <>
-            <ProductList products = {products} />
+            <ProductList.js products = {products} />
             <div className="mx-6 md:mx-20 lg:mx-50 flex justify-center items-center min-h-screen">
                 <Card style={{width: '60%', height: '100px'}} className="flex flex-col justify-center">
                     <div className="flex-grow">

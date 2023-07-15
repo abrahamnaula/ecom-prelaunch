@@ -26,11 +26,11 @@ const FilterMenu = () => {
         router.reload();
     };
     const handleApply = async () => {
-        const tags = [selectedCategory, selectedCollection, selectedEra]
-            .filter(tag => tag)
-            .map(tag => tag.toLowerCase().replace(/[,&]/g, '').replace(/\s+/g, '-'));
-
-        const { initialProducts, productsAvailable } = await fetchProducts(tags);
+        // const tags = [selectedCategory, selectedCollection, selectedEra]
+        //     .filter(tag => tag)
+        //     .map(tag => tag.toLowerCase().replace(/[,&]/g, '').replace(/\s+/g, '-'));
+        //
+        // const { initialProducts, productsAvailable } = await fetchProducts(tags);
 
         // Update the component state or do any other necessary operations with the new products
     };
