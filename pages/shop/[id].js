@@ -1,4 +1,3 @@
-// [collectionName].js
 import { useRouter } from 'next/router';
 import { ParamShopifyData } from '../../lib/shopify';
 import NewFooter from "../../components/NewFooter";
@@ -19,7 +18,7 @@ export default function Collection({ initialProducts }) {
             </div>
             <div className="h-8.5"></div>
             <main className="flex-grow">
-                <ProductList2 initialProducts={initialProducts} />
+                <ProductList2 initialProducts={initialProducts} formattedFilters={formattedFilters} />
             </main>
             <NewFooter />
         </div>

@@ -43,8 +43,6 @@ const FilterMenu = () => {
         // Update the formattedFilters state
         setFormattedFilters(formatted);
         console.log(formatted)
-        // Use the formatted filters to fetch the filtered products from the backend
-        const filteredProducts = await fetchProducts(formatted);
 
         // Update the ProductList component with the filtered products
         // ...
