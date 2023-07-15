@@ -14,7 +14,7 @@ export default function AddToCart({ product, onClick }) {
 
     return (
         <button
-            className={`w-full max-w-full bg-black font-nhg font-medium text-white sm:text-white text-xxs sm:text-xs px-4 py-2 uppercase mx-auto h-14 block mt-4 ${
+            className={`w-full max-w-full bg-black font-nhg font-medium text-bebe text-xxs sm:text-xs px-4 py-2 uppercase mx-auto h-14 block mt-4 ${
                 isProductInCart ? 'bg-gray-500 cursor-default' : ''
             }`}
             onClick={handleAddToCart}
