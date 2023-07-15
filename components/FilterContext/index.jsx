@@ -9,6 +9,9 @@ export const FilterProvider = ({ children }) => {
     const [selectedSizes, setSelectedSizes] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState(null);
     const [tags, setTags] = useState(''); // New state for tags
+
+    const [collectionName, setCollectionName] = useState(null);
+
     useEffect(() => {
         const filters = [];
         if (selectedCategory) {
@@ -77,6 +80,7 @@ export const FilterProvider = ({ children }) => {
             selectedCollection, setSelectedCollection,
             selectedEra, setSelectedEra,
             selectedSizes, setSelectedSizes,
+            collectionName, setCollectionName,
             selectedFilter, handleFilterClick, handleRemoveFilter, setSelectedFilter }}>
             {children}
         </FilterContext.Provider>

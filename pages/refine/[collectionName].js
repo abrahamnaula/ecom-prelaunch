@@ -1,13 +1,12 @@
-// pages/collections/[collectionName].js
 
 import { useRouter } from 'next/router';
 import { ParamShopifyData } from '../../lib/shopify';
 import NewFooter from "../../components/NewFooter";
-import ProductList from "../../components/Products/ProductList2";
 import WorkHeader from "../../components/WorkHeader";
 import { useFilter } from "../../components/FilterContext";
 import { useEffect } from "react";
 import fetchProducts from "../../lib/functions";
+import ProductList2 from "../../components/Products/ProductList2";
 
 export default function Collection({ initialProducts, productsAvailable, hasNextPage }) {
     const router = useRouter();
@@ -49,7 +48,7 @@ export default function Collection({ initialProducts, productsAvailable, hasNext
             </div>
             <div className="h-[62px]"></div>
             <main className="flex-grow ">
-                <ProductList initialProducts={initialProducts} hasNextPage={hasNextPage} />
+                <ProductList2 initialProducts={initialProducts} hasNextPage={hasNextPage} />
             </main>
             <NewFooter />
         </div>

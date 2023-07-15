@@ -41,7 +41,7 @@ function ShopHeader(){
                 </div>
                 {/*BOTTOM HEADER*/}
                 <div className="w-full flex items-center justify-between">
-                    <Link href="/refine">
+                    <Link href="/[collectionName]">
                         <div className="text-black font-nhg font-medium sm:text-xxs sm:text-black  sm:font-nhg
                         sm:font-medium pl-2">REFINE +</div>
                     </Link>

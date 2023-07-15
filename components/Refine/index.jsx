@@ -2,6 +2,7 @@ import React from 'react';
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {useRouter} from "next/router";
 import { useFilter } from "../FilterContext";
+import fetchProducts from "../../lib/functions";
 
 const FilterMenu = () => {
     const {
@@ -12,6 +13,7 @@ const FilterMenu = () => {
     } = useFilter();
 
     const router = useRouter();
+    const { collectionName } = useFilter();
 
     const handleClear = () => {
         setSelectedCategory(null);
@@ -23,11 +25,15 @@ const FilterMenu = () => {
     const handleCancel = () => {
         router.reload();
     };
-    const handleApply = () => {
-        // Actions for applying filters
+    const handleApply = async () => {
+        const tags = [selectedCategory, selectedCollection, selectedEra]
+            .filter(tag => tag)
+            .map(tag => tag.toLowerCase().replace(/[,&]/g, '').replace(/\s+/g, '-'));
+
+        const { initialProducts, productsAvailable } = await fetchProducts(tags);
+
+        // Update the component state or do any other necessary operations with the new products
     };
-
-
 
     const CategoriesFilter = () => {
         const categories = ["SHIRTS", "TEES", "BOTTOMS", "OUTERWEAR", "SWEATSHIRTS", "HEADWEAR", "EVERYTHING ELSE"];
