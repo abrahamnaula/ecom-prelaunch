@@ -10,7 +10,8 @@ export const FilterProvider = ({ children }) => {
     const [selectedFilter, setSelectedFilter] = useState(null);
     const [collectionName, setCollectionName] = useState(null);
     const [filterHistory, setFilterHistory] = useState([]); // Initialize filterHistory state as an empty array
-
+    const [finalFilters, setFinalFilters] = useState([]);
+    const [formattedFilters, setFormattedFilters] = useState([]);
     const categories = new Map([
         ["shirts", "SHIRTS"],
         ["tees", "TEES"],
@@ -148,7 +149,7 @@ export const FilterProvider = ({ children }) => {
         }
     };
 
-    console.log("Filter History:", filterHistory);
+
 
     return (
         <FilterContext.Provider
@@ -175,7 +176,11 @@ export const FilterProvider = ({ children }) => {
                 outerwearSizes, // Provide the outerwearSizes Map
                 filterHistory,
                 setFilterHistory,
-                reference
+                reference,
+                finalFilters,
+                setFinalFilters,
+                formattedFilters,
+                setFormattedFilters
             }}
         >
             {children}

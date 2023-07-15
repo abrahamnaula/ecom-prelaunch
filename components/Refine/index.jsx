@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {useRouter} from "next/router";
 import { useFilter } from "../FilterContext";
@@ -9,7 +9,8 @@ const FilterMenu = () => {
         selectedCategory, selectedCollection, selectedEra, selectedSizes,
         selectedFilter, handleFilterClick, handleRemoveFilter, setSelectedFilter,
         setSelectedCategory, setSelectedCollection, setSelectedEra,
-        setSelectedSizes, filterHistory, setFilterHistory, reference
+        setSelectedSizes, filterHistory, setFilterHistory, reference,
+        finalFilters, setFinalFilters, formattedFilters, setFormattedFilters
     } = useFilter();
 
     const router = useRouter();
@@ -19,24 +20,35 @@ const FilterMenu = () => {
         setSelectedCollection(null);
         setSelectedEra(null);
         setSelectedSizes([]);
+        setFinalFilters([]);
+        setFormattedFilters([]);
     };
 
     const handleCancel = () => {
         router.reload();
     };
-    const handleApply = async () => {
-        const finalFilters = filterHistory[filterHistory.length - 1];
-        console.log("Final Filters:", finalFilters);
-
-        // Use the finalFilters array to fetch the filtered products
-        // ...
-        const formattedFilters = finalFilters.map(filter => reference.get(filter) || filter);
-        console.log("Formatted Filters:", formattedFilters);
-
-        // Clear the filter history
-        setFilterHistory([]);
+    const handleApply = () => {
+        if (filterHistory.length > 0) {
+            const finalFilters = filterHistory[filterHistory.length - 1];
+            setFinalFilters(finalFilters);
+            applyFilters(finalFilters);
+            setFilterHistory([]);
+        }
     };
 
+    const applyFilters = async (filters) => {
+        // Format the selected filters
+        const formatted = filters.map(filter => reference.get(filter) || filter);
+
+        // Update the formattedFilters state
+        setFormattedFilters(formatted);
+        console.log(formatted)
+        // Use the formatted filters to fetch the filtered products from the backend
+        const filteredProducts = await fetchProducts(formatted);
+
+        // Update the ProductList component with the filtered products
+        // ...
+    };
     const CategoriesFilter = () => {
         const categories = new Map([
             ["SHIRTS", "shirts"],
@@ -113,6 +125,9 @@ const FilterMenu = () => {
             ["XX-LARGE", "XX-Large"],
             ["XXX-LARGE", "XXX-Large"]
         ]);
+        useEffect(() => {
+            console.log("Formatted Filters:", formattedFilters);
+        }, [formattedFilters]);
 
         return (
             <div className="pl-2 text-black py-1">
