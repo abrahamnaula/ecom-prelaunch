@@ -13,8 +13,7 @@ const FilterMenu = () => {
     } = useFilter();
 
     const router = useRouter();
-    const { collectionName } = useFilter();
-
+    //let tags = [selectedCategory, selectedCollection, selectedEra]
     const handleClear = () => {
         setSelectedCategory(null);
         setSelectedCollection(null);
@@ -26,79 +25,111 @@ const FilterMenu = () => {
         router.reload();
     };
     const handleApply = async () => {
-        // const tags = [selectedCategory, selectedCollection, selectedEra]
-        //     .filter(tag => tag)
-        //     .map(tag => tag.toLowerCase().replace(/[,&]/g, '').replace(/\s+/g, '-'));
-        //
-        // const { initialProducts, productsAvailable } = await fetchProducts(tags);
 
-        // Update the component state or do any other necessary operations with the new products
+
     };
 
     const CategoriesFilter = () => {
-        const categories = ["SHIRTS", "TEES", "BOTTOMS", "OUTERWEAR", "SWEATSHIRTS", "HEADWEAR", "EVERYTHING ELSE"];
+        const categories = new Map([
+            ["SHIRTS", "shirts"],
+            ["TEES", "tees"],
+            ["BOTTOMS", "bottoms"],
+            ["OUTERWEAR", "outerwear"],
+            ["SWEATSHIRTS", "sweatshirts"],
+            ["HEADWEAR", "headwear"],
+            ["EVERYTHING ELSE", "everything-else"]
+        ]);
 
         return (
             <div className="pl-2 text-black py-1 flex flex-col">
-                {categories.map(category =>
-                    <button className="mb-2 text-left" onClick={() => handleFilterClick(category, 'categories')} key={category}>{category}</button>
-                )}
+                {Array.from(categories, ([key]) => (
+                    <button className="mb-2 text-left" onClick={() => handleFilterClick(key, 'categories')} key={key}>{key}</button>
+                ))}
             </div>
         );
-    }
+    };
 
     const CollectionsFilter = () => {
-        const collections = ["MUSIC, ART, & FILM", "DENIM, WORKWEAR, & MILITARY", "SPORTSWEAR & STREETWEAR", "BLANKS & ESSENTIALS", "WOMEN"];
+        const collections = new Map([
+            ["MUSIC, ART, & FILM", "music-art-film"],
+            ["DENIM, WORKWEAR, & MILITARY", "denim-workwear-military"],
+            ["SPORTSWEAR & STREETWEAR", "sportswear-streetwear"],
+            ["BLANKS & ESSENTIALS", "blanks-essentials"],
+            ["WOMEN", "women"]
+        ]);
 
         return (
             <div className="pl-2 text-black py-1 flex flex-col">
-                {collections.map(collection =>
-                    <button className="mb-2 text-left" onClick={() => handleFilterClick(collection, 'collections')} key={collection}>{collection}</button>
-                )}
+                {Array.from(collections, ([key]) => (
+                    <button className="mb-2 text-left" onClick={() => handleFilterClick(key, 'collections')} key={key}>{key}</button>
+                ))}
             </div>
         );
     }
 
     const ByEraFilter = () => {
-        const eras = ["Y2K", "1990s", "1980s", "1970s", "PRE 1970s"];
+        const eras = new Map([
+            ["Y2K", "y2k"],
+            ["1990s", "1990s"],
+            ["1980s", "1980s"],
+            ["1970s", "1970s"],
+            ["PRE 1970s", "pre-1970s"]
+        ]);
 
         return (
             <div className="pl-2 text-black py-1 flex flex-col">
-                {eras.map(era =>
-                    <button className="mb-2 text-left" onClick={() => handleFilterClick(era, 'byEra')} key={era}>{era}</button>
-                )}
+                {Array.from(eras, ([key]) => (
+                    <button className="mb-2 text-left" onClick={() => handleFilterClick(key, 'byEra')} key={key}>{key}</button>
+                ))}
             </div>
         );
     }
 
     const SizesFilter = () => {
-        const topsSizes = ["X-SMALL", "SMALL", "MEDIUM", "LARGE", "X-LARGE", "XX-LARGE", "XXX-LARGE"];
-        const bottomsSizes = ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"];
-        const outerwearSizes = ["X-SMALL", "SMALL", "MEDIUM", "LARGE", "X-LARGE", "XX-LARGE", "XXX-LARGE"];
+        const topsSizes = new Map([
+            ["X-SMALL", "X-Small"],
+            ["SMALL", "Small"],
+            ["MEDIUM", "Medium"],
+            ["LARGE", "Large"],
+            ["X-LARGE", "X-Large"],
+            ["XX-LARGE", "XX-Large"],
+            ["XXX-LARGE", "XXX-Large"]
+        ]);
+        const bottomsSizes = new Map(Array.from({length: 16}, (_, i) => [String(i+25), String(i+25)]));
+        const outerwearSizes = new Map([
+            ["X-SMALL", "X-Small"],
+            ["SMALL", "Small"],
+            ["MEDIUM", "Medium"],
+            ["LARGE", "Large"],
+            ["X-LARGE", "X-Large"],
+            ["XX-LARGE", "XX-Large"],
+            ["XXX-LARGE", "XXX-Large"]
+        ]);
 
         return (
             <div className="pl-2 text-black py-1">
                 <div className="pb-1.5 tracking-wide font-semibold">TOPS SIZE</div>
                 <div className="flex pb-5 flex-wrap md:flex-nowrap">
-                    {topsSizes.map(size =>
-                        <button className="pr-12" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</button>
-                    )}
+                    {Array.from(topsSizes, ([key]) => (
+                        <button className="pr-12" onClick={() => handleFilterClick(key, 'sizes')} key={key}>{key}</button>
+                    ))}
                 </div>
                 <div className="pb-1.5 tracking-wide font-semibold">BOTTOMS SIZE</div>
                 <div className="flex pb-5 flex-wrap md:flex-nowrap">
-                    {bottomsSizes.map(size =>
-                        <button className="pr-6" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</button>
-                    )}
+                    {Array.from(bottomsSizes, ([key]) => (
+                        <button className="pr-6" onClick={() => handleFilterClick(key, 'sizes')} key={key}>{key}</button>
+                    ))}
                 </div>
                 <div className="pb-1.5 tracking-wide font-semibold">OUTERWEAR SIZE</div>
                 <div className="flex pb-5 flex-wrap md:flex-nowrap">
-                    {outerwearSizes.map(size =>
-                        <button className="pr-12" onClick={() => handleFilterClick(size, 'sizes')} key={size}>{size}</button>
-                    )}
+                    {Array.from(outerwearSizes, ([key]) => (
+                        <button className="pr-12" onClick={() => handleFilterClick(key, 'sizes')} key={key}>{key}</button>
+                    ))}
                 </div>
             </div>
         );
     };
+
 
 
     const SelectedFilter = ({ filter, handleRemove }) => {

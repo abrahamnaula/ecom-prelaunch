@@ -8,8 +8,6 @@ export const FilterProvider = ({ children }) => {
     const [selectedEra, setSelectedEra] = useState(null);
     const [selectedSizes, setSelectedSizes] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState(null);
-    const [tags, setTags] = useState(''); // New state for tags
-
     const [collectionName, setCollectionName] = useState(null);
 
     useEffect(() => {
@@ -25,9 +23,6 @@ export const FilterProvider = ({ children }) => {
         }
         filters.push(...selectedSizes);
 
-        // Format your tags string as needed for your query:
-        const tagsString = filters.join(' OR '); // Adjust this as necessary
-        setTags(tagsString);
     }, [selectedCategory, selectedCollection, selectedEra, selectedSizes]);
 
     const handleFilterClick = (filter, category) => {

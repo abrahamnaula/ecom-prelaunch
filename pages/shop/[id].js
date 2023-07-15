@@ -1,11 +1,11 @@
-//collectionName
+// [collectionName].js
 import { useRouter } from 'next/router';
 import { ParamShopifyData } from '../../lib/shopify';
 import NewFooter from "../../components/NewFooter";
-import ProductList from "../../components/Products/ProductList";
 import WorkHeader from "../../components/WorkHeader";
+import ProductList2 from "../../components/Products/ProductList2";
 
-export default function Collection({ initialProducts, hasNextPage }) {
+export default function Collection({ initialProducts }) {
     const router = useRouter();
 
     if (router.isFallback) {
@@ -19,7 +19,7 @@ export default function Collection({ initialProducts, hasNextPage }) {
             </div>
             <div className="h-8.5"></div>
             <main className="flex-grow">
-                <ProductList initialProducts={initialProducts} hasNextPage={hasNextPage} />
+                <ProductList2 initialProducts={initialProducts} />
             </main>
             <NewFooter />
         </div>
@@ -27,21 +27,17 @@ export default function Collection({ initialProducts, hasNextPage }) {
 }
 
 export async function getStaticProps(context) {
-    const { collectionName } = context.params;
+    const { id } = context.params;
     const query = `
-query ($title: String!, $cursor: String) {
-  collections(first: 1, query: $title) {
+query ($title: String!) {
+  collections(first: 10, query: $title) {
     edges {
       node {
         id
         title
         handle
-        products(first: 12, after: $cursor) {
-          pageInfo {
-            hasNextPage
-          }
+        products(first: 250) {
           edges {
-            cursor
             node {
               id
               title
@@ -74,8 +70,9 @@ query ($title: String!, $cursor: String) {
     }
   }
 }
+
   `;
-    const { data } = await ParamShopifyData(query, { title: collectionName });
+    const { data } = await ParamShopifyData(query, { title: id });
     if (!data || !data.collections || !data.collections.edges || data.collections.edges.length === 0) {
         return {
             notFound: true,
@@ -87,9 +84,8 @@ query ($title: String!, $cursor: String) {
             imageUrl: edge.node.images.edges[0]?.node?.url,
         };
     });
-    const hasNextPage = data.collections.edges[0].node.products.pageInfo.hasNextPage;
     return {
-        props: { initialProducts, hasNextPage },
+        props: { initialProducts },
     };
 }
 
@@ -111,9 +107,8 @@ export async function getStaticPaths() {
         return { paths: [], fallback: true };
     }
     const paths = data.collections.edges.map((edge) => ({
-        params: { collectionName: edge.node.handle },
+        params: { id: edge.node.handle },
     }));
     // We'll pre-render only these paths at build time.
     return { paths, fallback: true };
 }
-
