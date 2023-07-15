@@ -9,7 +9,7 @@ export const FilterProvider = ({ children }) => {
     const [selectedSizes, setSelectedSizes] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState(null);
     const [collectionName, setCollectionName] = useState(null);
-    const [filterHistory, setFilterHistory] = useState([]);
+    const [filterHistory, setFilterHistory] = useState([]); // Initialize filterHistory state as an empty array
 
     const categories = new Map([
         ["shirts", "SHIRTS"],
@@ -145,7 +145,9 @@ export const FilterProvider = ({ children }) => {
                 eras, // Provide the eras Map
                 topsSizes, // Provide the topsSizes Map
                 bottomsSizes, // Provide the bottomsSizes Map
-                outerwearSizes // Provide the outerwearSizes Map
+                outerwearSizes, // Provide the outerwearSizes Map
+                filterHistory,
+                setFilterHistory
             }}
         >
             {children}

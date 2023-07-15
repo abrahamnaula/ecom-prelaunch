@@ -9,7 +9,7 @@ const FilterMenu = () => {
         selectedCategory, selectedCollection, selectedEra, selectedSizes,
         selectedFilter, handleFilterClick, handleRemoveFilter, setSelectedFilter,
         setSelectedCategory, setSelectedCollection, setSelectedEra,
-        setSelectedSizes
+        setSelectedSizes, filterHistory, setFilterHistory
     } = useFilter();
 
     const router = useRouter();
@@ -25,8 +25,14 @@ const FilterMenu = () => {
         router.reload();
     };
     const handleApply = async () => {
+        const finalFilters = filterHistory[filterHistory.length - 1];
+        console.log("Final Filters:", finalFilters);
 
+        // Use the finalFilters array to fetch the filtered products
+        // ...
 
+        // Clear the filter history
+        setFilterHistory([]);
     };
 
     const CategoriesFilter = () => {
