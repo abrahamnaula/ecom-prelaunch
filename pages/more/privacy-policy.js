@@ -61,6 +61,7 @@ export default function PrivacyPolicy() {
                         <p>
                             Information that you directly submit to us through our Services may include:
                         </p>
+                        <div className="h-4"></div>
 
                         <ul>
                             <li>Basic contact details including your name, address, phone number, email.</li>
@@ -93,6 +94,7 @@ export default function PrivacyPolicy() {
                         <p>
                             Finally, we may obtain information about you from third parties, including from vendors and service providers who may collect information on our behalf, such as:
                         </p>
+                        <div className="h-4"></div>
 
                         <ul>
                             <li>Companies who support our Site and Services, such as Shopify.</li>
@@ -122,6 +124,7 @@ export default function PrivacyPolicy() {
                         <p>
                             <strong>Security and Fraud Prevention:</strong> We use your personal information to detect, investigate, or take action regarding possible fraudulent, illegal, or malicious activity. If you choose to use the Services and register an account, you are responsible for keeping your account credentials safe. We highly recommend that you do not share your username, password, or other access details with anyone else. If you believe your account has been compromised, please contact us immediately.
                         </p>
+                        <div className="h-4"></div>
 
                         <h2 className="underline">Communication and Customer Support:</h2>
                         <div className="h-4"></div>
@@ -191,6 +194,7 @@ export default function PrivacyPolicy() {
                         <p>
                             <strong>Categories of Recipients:</strong>
                         </p>
+                        <div className="h-4"></div>
 
                         <p>Vendors and third parties who perform services on our behalf (such as Internet service providers, payment processors, fulfillment partners, customer support partners, and data analytics providers)</p>
                         <p>Business and marketing partners</p>
@@ -204,6 +208,8 @@ export default function PrivacyPolicy() {
                         <div className="h-4"> </div>
 
                         <p><strong>Category of Personal Information:</strong></p>
+                        <div className="h-4"></div>
+
                         <p>Identifiers such as basic contact details and certain order and account information</p>
                         <p>Commercial information such as records of products or services purchased and shopping information</p>
                         <p>Internet or other similar network activity, such as Usage Data</p>
@@ -211,9 +217,15 @@ export default function PrivacyPolicy() {
                         <div className="h-4"> </div>
 
                         <p><strong>Categories of Recipients:</strong></p>
-                        <p>Business and marketing partners</p>
+                        <div className="h-4"></div>
 
-                        <p><strong>User Generated Content:</strong> The Services may enable you to post product reviews and other user-generated content. If you choose to submit user-generated content to any public area of the Services, this content will be public and accessible by anyone. We do not control who will have access to the information that you choose to make available to others, and cannot ensure that parties who have access to such information will respect your privacy or keep it secure. We are not responsible for the privacy or security of any information that you make publicly available, or for the accuracy, use, or misuse of any information that you disclose or receive from third parties.</p>
+                        <p>Business and marketing partners</p>
+                        <div className="h-4"></div>
+
+                        <p><strong>User Generated Content:</strong> The Services may enable you to post product reviews and other user-generated content. If you choose to submit user-generated content to any public area of the Services, this content will be public and accessible by anyone.</p>
+                        <div className="h-4"></div>
+
+                        <p>We do not control who will have access to the information that you choose to make available to others, and cannot ensure that parties who have access to such information will respect your privacy or keep it secure. We are not responsible for the privacy or security of any information that you make publicly available, or for the accuracy, use, or misuse of any information that you disclose or receive from third parties.</p>
                         <div className="h-4"> </div>
 
                         <p><strong>Third Party Websites and Links:</strong> Our Site may provide links to websites or other online platforms operated by third parties. If you follow links to sites not affiliated or controlled by us, you should review their privacy and security policies and other terms and conditions. We do not guarantee and are not responsible for the privacy or security of such sites, including the accuracy, completeness, or reliability of information found on these sites. Information you provide on public or semi-public venues, including information you share on third-party social networking platforms, may also be viewable by other users of the Services and/or users of those third-party platforms without limitation as to its use by us or by a third party. Our inclusion of such links does not, by itself, imply any endorsement of the content on such platforms or of their owners or operators, except as disclosed on the Services.</p>
