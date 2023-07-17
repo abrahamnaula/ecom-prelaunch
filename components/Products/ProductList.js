@@ -25,7 +25,7 @@ export default function ProductList({ initialProducts, hasNextPage }) {
               id
               title
               handle
-              products(first: 12, after: $cursor) {
+              products(first: 150, after: $cursor) {
                 pageInfo {
                   hasNextPage
                 }
@@ -69,7 +69,8 @@ export default function ProductList({ initialProducts, hasNextPage }) {
                 ...edge.node,
                 imageUrl: edge.node.images.edges[0]?.node?.url,
             };
-        });
+        })
+
         const newCursor = data.collections.edges[0].node.products.edges.slice(-1)[0]?.cursor;
         const newHasMore = data.collections.edges[0].node.products.pageInfo.hasNextPage;
 
