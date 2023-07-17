@@ -292,6 +292,7 @@ export default function PrivacyPolicy() {
                         <p>
                             <strong>Contact:</strong> Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, email us at <a href="mailto:info@grayeravintage@gmail.com">info@grayeravintage@gmail.com</a>.
                         </p>
+                        <div className="h-20"></div>
 
 
                     </div>

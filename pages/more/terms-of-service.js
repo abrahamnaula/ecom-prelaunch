@@ -240,6 +240,7 @@ export default function TermsOfService() {
                         <div className="mt-4">
                             Questions about the Terms of Service should be sent to us at <a href="mailto:info@grayeravintage.com" className="underline">info@grayeravintage.com</a>.
                         </div>
+                        <div className="h-20"></div>
 
                     </div>
                 </div>
