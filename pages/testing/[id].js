@@ -21,7 +21,29 @@ function ProductList3({ products }) {
 export default function Collection({ initialProducts }) {
     const router = useRouter();
     const { formattedFilters } = useFilter();
-    const filteredProducts = initialProducts.filter(product => product.priceRange.minVariantPrice.amount === "100.0");
+    console.log('Fomratted filers: ',formattedFilters);
+    //const filteredProducts = initialProducts.filter(product => product.tags.includes('1980s'));
+    //const filteredProducts = initialProducts.filter(product => product.variants.edges[0]?.node?.title === 'Large');
+// Your array of filters
+    const filters = [  ]; //play around with it...
+
+// Your known sizes
+    const knownSizes = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', 'XXX-Large'];
+
+// Split the filters into sizes and tags
+    const sizes = formattedFilters.filter(filter => knownSizes.includes(filter));
+    const tags = formattedFilters.filter(filter => !knownSizes.includes(filter));
+
+// Filter products
+    const filteredProducts = initialProducts.filter(product => {
+        // Check sizes
+        const sizeMatch = sizes.length === 0 || sizes.includes(product.variants.edges[0]?.node?.title);
+
+        // Check tags
+        const tagMatch = tags.length === 0 || tags.every(tag => product.tags.includes(tag));
+
+        return sizeMatch && tagMatch;
+    });
 
     if (router.isFallback) {
         return <div>Loading...</div>;
@@ -44,48 +66,47 @@ export default function Collection({ initialProducts }) {
 export async function getServerSideProps(context) {
     const { id } = context.params;
     const query = `
-query ($title: String!) {
-  collections(first: 10, query: $title) {
-    edges {
-      node {
-        id
-        title
-        handle
-        products(first: 250) {
-          edges {
-            node {
-              id
-              title
-              handle
-              tags
-              images(first: 1) {
-                edges {
-                  node {
-                    altText
-                    url
-                  }
-                }
-              }
-              priceRange {
-                minVariantPrice {
-                  amount
-                }
-              }
-              variants(first: 1) {
-                edges {
-                  node {
-                    title
+        query ($title: String!) {
+          collections(first: 15, query: $title) {
+            edges {
+              node {
+                id
+                title
+                handle
+                products(first: 250) {
+                  edges {
+                    node {
+                      id
+                      title
+                      handle
+                      tags
+                      images(first: 1) {
+                        edges {
+                          node {
+                            altText
+                            url
+                          }
+                        }
+                      }
+                      priceRange {
+                        minVariantPrice {
+                          amount
+                        }
+                      }
+                      variants(first: 1) {
+                        edges {
+                          node {
+                            title
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
             }
           }
         }
-      }
-    }
-  }
-}
-
   `;
     const { data } = await ParamShopifyData(query, { title: id });
     if (!data || !data.collections || !data.collections.edges || data.collections.edges.length === 0) {

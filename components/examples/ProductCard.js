@@ -5,6 +5,7 @@ const ProductCard = ({product}) => {
     const { handle, title} = product.node
     const { altText, url} = product.node.images.edges[0].node
     const price = product.node.priceRange.minVariantPrice.amount
+
     return (
         <div>
             <Link href={`/product/${handle}`}>

@@ -1,6 +1,7 @@
 import { Popover, Transition } from '@headlessui/react'
 import {Fragment} from 'react'
 import FilterMenu from "../Refine";
+import classNames from "classnames";
 
 export default function PopRefine() {
 
@@ -10,9 +11,12 @@ export default function PopRefine() {
                 {({ open }) => (
                     <>
                         <Popover.Button
-                            className="flex text-black font-nhg font-medium text-xxs sm:text-xxs p-0"
+                            className={classNames(
+                                'flex font-nhg font-medium text-xxs sm:text-xxs p-0',
+                                {'text-white bg-black px-1': open, 'text-black': !open}
+                            )}
                         >
-                            REFINE +
+                            {open ? 'CLOSE -' : 'REFINE +'}
                         </Popover.Button>
                         <Transition
                             as={Fragment}
