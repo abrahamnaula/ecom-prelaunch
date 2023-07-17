@@ -4,10 +4,10 @@ import Link from "next/link";
 function NewFooter() {
     return (
         <footer>
-            <div className="bg-grayBkg flex">
+            <div className="font-nhg bg-grayBkg flex">
                 <div className="w-1/3 flex flex-col font-normal py-2 mb-0.5 mt-0 text-supsm">
                     <Link href="/more/about"
-                          className="w-20 sm:w-28 font-ngh font-medium text-base tracking-wide pl-2 text-supsm sm:text-xxs text-white mb-0.5 leading-tight">
+                          className="font-nhg w-20 sm:w-28 font-medium text-base tracking-wide pl-2 text-supsm sm:text-xxs text-white mb-0.5 leading-tight">
                         ABOUT & CONTACT
                     </Link>
                     <Link href="/more/shipping-&-returns"

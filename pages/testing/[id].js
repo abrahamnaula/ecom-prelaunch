@@ -21,6 +21,7 @@ function ProductList3({ products }) {
 export default function Collection({ initialProducts }) {
     const router = useRouter();
     const { formattedFilters } = useFilter();
+    const filteredProducts = initialProducts.filter(product => product.priceRange.minVariantPrice.amount === "100.0");
 
     if (router.isFallback) {
         return <div>Loading...</div>;
@@ -33,7 +34,7 @@ export default function Collection({ initialProducts }) {
             </div>
             <div className="h-8.5"></div>
             <main className="flex-grow">
-                <ProductList3 products={initialProducts} />
+                <ProductList3 products={filteredProducts} />
             </main>
             <NewFooter />
         </div>
