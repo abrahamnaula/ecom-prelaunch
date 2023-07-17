@@ -13,6 +13,7 @@ const FilterMenu = () => {
         setSelectedSizes, filterHistory, setFilterHistory, reference,
         finalFilters, setFinalFilters, formattedFilters, setFormattedFilters
     } = useFilter();
+    const initialProducts = useProducts()
     const [products, setProducts] = useState(initialProducts);
 
     const router = useRouter();
@@ -47,7 +48,6 @@ const FilterMenu = () => {
         setFormattedFilters(formatted);
 
         // Filter the initial products
-        const filteredProducts = filterProducts(products, formatted);
 
         // Update the products state in the context
         setProducts(filteredProducts);
