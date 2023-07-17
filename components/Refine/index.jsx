@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {useRouter} from "next/router";
 import { useFilter } from "../FilterContext";
-import fetchProducts from "../../lib/functions";
+import {filterProducts} from "../../lib/functions";
+import { useProducts } from "../../context/ProductsContext";
 
 const FilterMenu = () => {
     const {
@@ -12,6 +13,7 @@ const FilterMenu = () => {
         setSelectedSizes, filterHistory, setFilterHistory, reference,
         finalFilters, setFinalFilters, formattedFilters, setFormattedFilters
     } = useFilter();
+    const [products, setProducts] = useState(initialProducts);
 
     const router = useRouter();
     //let tags = [selectedCategory, selectedCollection, selectedEra]
@@ -34,6 +36,7 @@ const FilterMenu = () => {
             applyFilters(finalFilters);
             setFilterHistory([]);
         }
+        console.log('applied')
     };
 
     const applyFilters = async (filters) => {
@@ -42,11 +45,14 @@ const FilterMenu = () => {
 
         // Update the formattedFilters state
         setFormattedFilters(formatted);
-        console.log(formatted)
 
-        // Update the ProductList component with the filtered products
-        // ...
+        // Filter the initial products
+        const filteredProducts = filterProducts(products, formatted);
+
+        // Update the products state in the context
+        setProducts(filteredProducts);
     };
+
     const CategoriesFilter = () => {
         const categories = new Map([
             ["SHIRTS", "shirts"],

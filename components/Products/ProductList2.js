@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
+import { useFilter } from "../FilterContext";
 
-export default function ProductList2({ initialProducts, formattedFilters }) {
+function ProductList2({ initialProducts, formattedFilters }) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -29,3 +30,8 @@ export default function ProductList2({ initialProducts, formattedFilters }) {
         </div>
     );
 }
+
+export default ProductList2;
+/*
+
+ */

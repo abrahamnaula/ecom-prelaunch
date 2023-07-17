@@ -3,6 +3,7 @@ import '../styles/animations.css'
 import React, {useEffect} from "react";
 import { CartProvider } from "../context/CartContext";
 import {FilterProvider} from "../components/FilterContext";
+import {ProductsProvider} from "../context/ProductsContext";
 
 export default function App({ Component, pageProps }) {
     useEffect(() => {
@@ -19,12 +20,13 @@ export default function App({ Component, pageProps }) {
         };
     }, []);
     return (
-        <CartProvider>
-            <FilterProvider>
-                <Component {...pageProps} />
-            </FilterProvider>
-        </CartProvider>
-
+        <ProductsProvider initialProductsFromServer={pageProps.initialProducts}>
+            <CartProvider>
+                <FilterProvider>
+                    <Component {...pageProps} />
+                </FilterProvider>
+            </CartProvider>
+        </ProductsProvider>
     );
 }
 

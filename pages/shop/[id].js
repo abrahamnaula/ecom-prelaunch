@@ -3,9 +3,10 @@ import { ParamShopifyData } from '../../lib/shopify';
 import NewFooter from "../../components/NewFooter";
 import WorkHeader from "../../components/WorkHeader";
 import ProductList2 from "../../components/Products/ProductList2";
-
+import {useFilter} from "../../components/FilterContext";
 export default function Collection({ initialProducts }) {
     const router = useRouter();
+    const { formattedFilters } = useFilter();
 
     if (router.isFallback) {
         return <div>Loading...</div>;
@@ -24,6 +25,8 @@ export default function Collection({ initialProducts }) {
         </div>
     );
 }
+
+
 
 export async function getStaticProps(context) {
     const { id } = context.params;
