@@ -1,4 +1,6 @@
+/*
 import NewFooter from "../../components/NewFooter";
+ 
 import ProductList2 from "../../components/Products/ProductList2";
 import WorkHeader from "../../components/WorkHeader";
 import {filterProducts} from "../../lib/functions";
@@ -30,10 +32,17 @@ export default function Results() {
             </div>
             <div className="h-8.5"></div>
             <main className="flex-grow">
-                {/* Pass filteredProducts instead of initialProducts to ProductList2 */}
                 <ProductList2 />
             </main>
             <NewFooter />
         </div>
     );
+}
+*/
+import React from 'react'
+
+export default function Results() {
+    return (
+        <div>Results</div>
+    )
 }
