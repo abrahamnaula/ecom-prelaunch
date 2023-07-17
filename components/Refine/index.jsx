@@ -50,7 +50,7 @@ const FilterMenu = () => {
         // Filter the initial products
 
         // Update the products state in the context
-        setProducts(filteredProducts);
+       // setProducts(filteredProducts);
     };
 
     const CategoriesFilter = () => {
