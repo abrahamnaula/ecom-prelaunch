@@ -31,37 +31,39 @@ export default function Collection({ initialProducts }) {
 export async function getStaticProps(context) {
     const { id } = context.params;
     const query = `
-query ($title: String!) {
-  collections(first: 10, query: $title) {
-    edges {
-      node {
-        id
-        title
-        handle
-        products(first: 250) {
-          edges {
-            node {
-              id
-              title
-              handle
-              tags
-              images(first: 1) {
-                edges {
-                  node {
-                    altText
-                    url
+    query ($title: String!) {
+      collections(first: 10, query: $title) {
+        edges {
+          node {
+            id
+            title
+            handle
+            products(first: 250) {
+              edges {
+                node {
+                  id
+                  title
+                  handle
+                  tags
+                  images(first: 1) {
+                    edges {
+                      node {
+                        altText
+                        url
+                      }
+                    }
                   }
-                }
-              }
-              priceRange {
-                minVariantPrice {
-                  amount
-                }
-              }
-              variants(first: 1) {
-                edges {
-                  node {
-                    title
+                  priceRange {
+                    minVariantPrice {
+                      amount
+                    }
+                  }
+                  variants(first: 1) {
+                    edges {
+                      node {
+                        title
+                      }
+                    }
                   }
                 }
               }
@@ -70,9 +72,6 @@ query ($title: String!) {
         }
       }
     }
-  }
-}
-
   `;
     const { data } = await ParamShopifyData(query, { title: id });
     if (!data || !data.collections || !data.collections.edges || data.collections.edges.length === 0) {

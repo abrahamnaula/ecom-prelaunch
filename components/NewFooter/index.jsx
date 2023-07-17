@@ -30,7 +30,7 @@ function NewFooter() {
                         INSTAGRAM
                     </a>
                     <a href="https://www.tiktok.com/@mikegrayera/" target="_blank" rel="noopener noreferrer"
-                        className="font-ngh text-base text-supsm text-white sm:text-xxs sm:block hidden">TIKTOK</a>
+                        className="font-ngh text-base font-medium text-supsm text-white sm:text-xxs sm:block hidden">TIKTOK</a>
                 </div>
                 <div className="flex flex-col items-end flex-grow justify-center">
                     <a href="https://www.instagram.com/gray_era/" target="_blank" rel="noopener noreferrer"
