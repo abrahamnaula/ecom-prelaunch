@@ -46,17 +46,17 @@ export default function Cart({open, setOpen}) {
                                     <div className="flex h-full flex-col overflow-y-scroll bg-bebe shadow-xl">
                                         <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                                             <div className="flex items-start justify-between">
-                                                <Dialog.Title className="text-md font-medium text-black">
+                                                <Dialog.Title className=" text-center text-xs font-medium text-black">
                                                     SHOPPING BAG
                                                 </Dialog.Title>
                                                 <div className="ml-3 flex h-7 items-center">
                                                     <button
                                                         type="button"
-                                                        className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                                                        className="-m-2 p-2 text-gray-500 hover:text-gray-700"
                                                         onClick={() => setOpen(false)}
                                                     >
                                                         <span className="sr-only">Close panel</span>
-                                                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                                                        <XMarkIcon className="-mt-4 h-6 w-6" aria-hidden="true" />
                                                     </button>
                                                 </div>
                                             </div>
@@ -64,12 +64,12 @@ export default function Cart({open, setOpen}) {
                                             <div className="mt-8">
                                                 <div className="flow-root">
                                                     {cart.length > 0 ? (
-                                                        <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                                        <ul role="list" className="-my-6 divide-y divide-black">
                                                             {cart.map((product) => {
                                                                 const mainImage = product.images.edges[0]?.node;
                                                                 return (
-                                                                    <li key={product.id} className="flex py-6">
-                                                                        <div className="h-24 w-18 flex-shrink-0 overflow-hidden  border border-gray-200">
+                                                                    <li key={product.id} className="flex py-2">
+                                                                        <div className="h-40 w-32 flex-shrink-0 overflow-hidden">
                                                                             {/* Product image */}
                                                                             <div className="relative h-full w-full">
                                                                                 <Image
@@ -80,21 +80,21 @@ export default function Cart({open, setOpen}) {
                                                                                 />
                                                                             </div>
                                                                         </div>
-                                                                        <div className="ml-4 flex flex-1 flex-col">
+                                                                        <div className=" flex flex-1 flex-col">
                                                                             <div>
                                                                                 <div
-                                                                                    className="flex justify-between text-base font-medium text-gray-900">
+                                                                                    className="flex justify-between text-base font-medium text-black">
                                                                                     {/* Product details */}
-                                                                                    <div className="ml-4 flex-grow">
-                                                                                        <h2 className="text-sm title-font font-medium mb-1">{product.title}</h2>
-                                                                                        <p className="text-gray-500">{formatter.format(product.priceRange.minVariantPrice.amount)}</p>
+                                                                                    <div className=" flex-grow">
+                                                                                        <h2 className="text-xs title-font font-medium mb-1">{product.title}</h2>
+                                                                                        <p className="text-xs text-black">{formatter.format(product.priceRange.minVariantPrice.amount)}</p>
                                                                                     </div>
                                                                                 </div>
                                                                                 {/*<p className="mt-1 text-sm text-gray-500">{product.color}</p>*/}
                                                                             </div>
                                                                             <div
-                                                                                className="flex flex-1 items-end justify-between text-sm">
-                                                                                <p className="pl-4 text-gray-500">Qty {product.quantity}</p>
+                                                                                className="flex flex-1 items-end justify-between font-nhg font-medium text-xs">
+                                                                                <p className="text-black ">QUANTITY {product.quantity}</p>
 
                                                                                 <div className="flex">
                                                                                     <button
@@ -112,8 +112,8 @@ export default function Cart({open, setOpen}) {
                                                             })}
                                                         </ul>
                                                         ) : (
-                                                            <div className="text-center py-6">
-                                                                <h2 className="font-medium text-black">
+                                                            <div className="text-center mt-32">
+                                                                <h2 className="font-medium text-black font-nhg text-xs">
                                                                     YOUR CART IS EMPTY.
                                                                 </h2>
                                                             </div>
@@ -122,8 +122,8 @@ export default function Cart({open, setOpen}) {
                                             </div>
                                         </div>
 
-                                        <div className="border-t border-gray-200 px-4 py-2 sm:px-6">
-                                            <div className="py-2 flex justify-between text-base font-medium text-gray-900">
+                                        <div className="border-t border-black px-4 py-2 sm:px-6">
+                                            <div className="py-2 flex justify-between font-medium text-black text-xs">
                                                 <p>ESTIMATED TOTAL</p>
                                                 <p>{formatter.format(calculateSubtotal())}</p>
                                             </div>
