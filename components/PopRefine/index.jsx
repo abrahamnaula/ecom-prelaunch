@@ -2,6 +2,7 @@ import { Popover, Transition } from '@headlessui/react'
 import {Fragment} from 'react'
 import FilterMenu from "../Refine";
 import classNames from "classnames";
+import {MinusCircleIcon, MinusIcon} from "@heroicons/react/24/solid";
 
 export default function PopRefine() {
 
@@ -13,10 +14,10 @@ export default function PopRefine() {
                         <Popover.Button
                             className={classNames(
                                 'flex font-nhg font-medium text-xxs sm:text-xxs p-0',
-                                {'text-white bg-black px-1': open, 'text-black': !open}
+                                {'text-bebe bg-black px-1': open, 'text-black': !open}
                             )}
                         >
-                            {open ? 'CLOSE -' : 'REFINE +'}
+                            {open ? <>CLOSE <MinusCircleIcon className="pl-1 h-4 w-4 text-bebe"/> </> : 'REFINE +'}
                         </Popover.Button>
                         <Transition
                             as={Fragment}

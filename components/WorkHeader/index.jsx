@@ -39,7 +39,7 @@ export default function WorkHeader() {
             </div>
             <div className="flex-grow text-xxs font-nhg font-medium text-black flex justify-center items-center">
                 <div className="flex">
-                    <MyLink href="/collections/shop-all">SHOP ALL</MyLink>
+                    <MyLink href="/testing/shop-all">SHOP ALL</MyLink>
                 </div>
             </div>
 

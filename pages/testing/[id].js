@@ -6,6 +6,7 @@ import ProductList2 from "../../components/Products/ProductList2";
 import {useFilter} from "../../components/FilterContext";
 import {useEffect, useState} from "react";
 import ProductCard from "../../components/Products/ProductCard";
+import NoProducts from "../../components/NoProducts";
 function ProductList3({ products }) {
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
@@ -49,6 +50,22 @@ export default function Collection({ initialProducts }) {
         return <div>Loading...</div>;
     }
 
+    if (!filteredProducts || filteredProducts.length === 0) {
+        return(
+            <div className="flex flex-col min-h-screen bg-bebe">
+                <div className="fixed w-full top-0 z-50">
+                    <WorkHeader/>
+                </div>
+                <div className="h-16"></div>
+                <main className="flex-grow flex justify-center items-center">
+                    <NoProducts/>
+                </main>
+
+
+                <NewFooter />
+            </div>
+        )
+    }
     return (
         <div className="flex flex-col min-h-screen bg-bebe">
             <div className="fixed w-full top-0 z-50">
@@ -66,61 +83,61 @@ export default function Collection({ initialProducts }) {
 export async function getServerSideProps(context) {
     const { id } = context.params;
     const query = `
-        query ($title: String!) {
-          collections(first: 15, query: $title) {
+       query ($title: String!) {
+  collection(handle: $title) {
+    id
+    title
+    handle
+    products(first: 250) {
+      edges {
+        node {
+          id
+          title
+          handle
+          tags
+          images(first: 1) {
             edges {
               node {
-                id
+                altText
+                url
+              }
+            }
+          }
+          priceRange {
+            minVariantPrice {
+              amount
+            }
+          }
+          variants(first: 1) {
+            edges {
+              node {
                 title
-                handle
-                products(first: 250) {
-                  edges {
-                    node {
-                      id
-                      title
-                      handle
-                      tags
-                      images(first: 1) {
-                        edges {
-                          node {
-                            altText
-                            url
-                          }
-                        }
-                      }
-                      priceRange {
-                        minVariantPrice {
-                          amount
-                        }
-                      }
-                      variants(first: 1) {
-                        edges {
-                          node {
-                            title
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
               }
             }
           }
         }
+      }
+    }
+  }
+}
   `;
+
     const { data } = await ParamShopifyData(query, { title: id });
-    if (!data || !data.collections || !data.collections.edges || data.collections.edges.length === 0) {
+    console.log(context.params)
+    if (!data || !data.collection) {
         return {
             notFound: true,
         };
     }
-    const initialProducts = data.collections.edges[0].node.products.edges.map(edge => {
+
+    const initialProducts = data.collection.products.edges.map(edge => {
         return {
             ...edge.node,
             imageUrl: edge.node.images.edges[0]?.node?.url,
         };
     });
+
     return {
-        props: { initialProducts },
+        props: { initialProducts, collectionName: data.collection.title },
     };
 }
