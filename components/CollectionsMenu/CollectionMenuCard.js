@@ -136,8 +136,8 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
                                     key={index}
                                     className="font-nhg font-medium tracking-wide text-xxs sm:text-xl mb-8 sm:mb-10 cursor-pointer"
                                 >
-                                    <Link href={`/testing/${item.toLowerCase().replace(/\s+/g, '-')}`}>
-                                        {item}
+                                    <Link href={`/testing/${item.toLowerCase().replace(/[\s,&]+/g, '-')}`}>
+                                    {item}
                                     </Link>
                                 </li>
                             ))}
