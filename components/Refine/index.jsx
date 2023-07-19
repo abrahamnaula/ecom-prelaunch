@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {useRouter} from "next/router";
 import { useFilter } from "../FilterContext";
-import {filterProducts} from "../../lib/functions";
 import { useProducts } from "../../context/ProductsContext";
 
 const FilterMenu = () => {
@@ -39,18 +38,11 @@ const FilterMenu = () => {
         }
         console.log('applied')
     };
-
     const applyFilters = async (filters) => {
         // Format the selected filters
         const formatted = filters.map(filter => reference.get(filter) || filter);
-
         // Update the formattedFilters state
         setFormattedFilters(formatted);
-
-        // Filter the initial products
-
-        // Update the products state in the context
-       // setProducts(filteredProducts);
     };
 
     const CategoriesFilter = () => {

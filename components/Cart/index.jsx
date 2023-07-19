@@ -94,7 +94,7 @@ export default function Cart({open, setOpen}) {
                                                                             </div>
                                                                             <div
                                                                                 className="flex flex-1 items-end justify-between font-nhg font-medium text-xs">
-                                                                                <p className="text-black ">QUANTITY {product.quantity}</p>
+                                                                                <p className="text-black">QUANTITY {product.quantity}</p>
 
                                                                                 <div className="flex">
                                                                                     <button

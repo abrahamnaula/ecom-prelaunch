@@ -25,7 +25,7 @@ function NewFooter() {
                 </div>
                 <div className="w-1/3 flex flex-col sm:flex-row justify-end sm:justify-center items-center py-0.5 text-supsm sm:text-sm">
                     <a href="https://www.instagram.com/gray_era/" target="_blank" rel="noopener noreferrer"
-                       className="font-ngh text-base text-white mb-2 sm:mb-0 sm:mr-2
+                       className="font-ngh text-base font-medium text-white mb-2 sm:mb-0 sm:mr-2
                        sm:text-xxs text-supsm sm:block hidden">
                         INSTAGRAM
                     </a>

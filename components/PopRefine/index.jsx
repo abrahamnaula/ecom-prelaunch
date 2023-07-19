@@ -2,7 +2,7 @@ import { Popover, Transition } from '@headlessui/react'
 import {Fragment} from 'react'
 import FilterMenu from "../Refine";
 import classNames from "classnames";
-import {MinusCircleIcon, MinusIcon} from "@heroicons/react/24/solid";
+import {MinusCircleIcon} from "@heroicons/react/24/solid";
 
 export default function PopRefine() {
 
