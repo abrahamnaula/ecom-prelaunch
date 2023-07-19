@@ -97,7 +97,7 @@ export default function Collection({ initialProducts }) {
             <div className="fixed w-full top-0 z-50">
                 <WorkHeader onSortSelect={handleSortSelect}/>
             </div>
-            <div className="h-8.5"></div>
+            <div className="h-8.5 mg:h-[61px] sm:h-[60px]"></div>
             <main className="flex-grow">
                 <ProductList3 products={filteredProducts} />
             </main>
