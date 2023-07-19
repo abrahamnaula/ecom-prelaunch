@@ -60,7 +60,10 @@ module.exports = {
       screens: {
         'mg':'300px',
         'xs':'343px',
+        '1.2k':'1285px',
         '3xl': '1920px', // Custom breakpoint for 32" monitors or larger
+        '34in': '2565px',
+        '1.6k': '1680px',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

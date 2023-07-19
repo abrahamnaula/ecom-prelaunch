@@ -8,7 +8,7 @@ import { formatter } from "../../utils/helpers";
 import CollapsibleSection from "../../components/CollapsibleSection";
 import {useEffect, useState} from "react";
 import { useCart } from "../../context/CartContext";
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import { ArrowRightIcon } from '@heroicons/react/24/solid';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
@@ -18,7 +18,9 @@ import WorkHeader from "../../components/WorkHeader";
 function NextArrow(props) {
     const { onClick } = props;
     return (
-        <button className="z-50 h-8 w-8 sm:h-12 sm:w-12 text-black flex items-center justify-center absolute bottom-4 right-4 3xl:right-20" onClick={onClick}>
+        <button className="z-50 h-8 w-8 sm:h-12 sm:w-12 text-black flex items-center justify-center absolute bottom-4
+                            right-4 "
+                onClick={onClick}>
             <ArrowRightIcon className="h-12 w-5 sm:h-7 sm:w-7" />
         </button>
     );
@@ -99,7 +101,7 @@ export default function Product({ product }) {
                         </Slider>
                     </div>
                 </div>
-                <div className="flex-grow lg:w-1/3  3xl:w-350 h-full overflow-auto flex ">
+                <div className="flex-grow lg:w-1/3 h-full overflow-auto flex ">
                     {/* Product details */}
                     <div className="flex-grow sm:px-4 3xl:px-0">
                         <h1 className="text-xxs md:text-sm sm:text-sm font-medium font-nhg py-4 pl-2 sm:p-4 text-black uppercase">
