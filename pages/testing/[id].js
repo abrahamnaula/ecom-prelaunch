@@ -2,11 +2,10 @@ import { useRouter } from 'next/router';
 import { ParamShopifyData } from '../../lib/shopify';
 import NewFooter from "../../components/NewFooter";
 import WorkHeader from "../../components/WorkHeader";
-import ProductList2 from "../../components/Products/ProductList2";
 import {useFilter} from "../../components/FilterContext";
-import {useEffect, useState} from "react";
 import ProductCard from "../../components/Products/ProductCard";
 import NoProducts from "../../components/NoProducts";
+import {useState} from "react";
 function ProductList3({ products }) {
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
@@ -22,7 +21,11 @@ function ProductList3({ products }) {
 export default function Collection({ initialProducts }) {
     const router = useRouter();
     const { formattedFilters } = useFilter();
-    console.log('Fomratted filers: ',formattedFilters);
+    const [sortOption, setSortOption] = useState(null);
+    const handleSortSelect = (option) => {
+        setSortOption(option);
+    }
+    console.log('Formatted filers: ',formattedFilters);
     //const filteredProducts = initialProducts.filter(product => product.tags.includes('1980s'));
     //const filteredProducts = initialProducts.filter(product => product.variants.edges[0]?.node?.title === 'Large');
 // Your array of filters
@@ -46,6 +49,31 @@ export default function Collection({ initialProducts }) {
         return sizeMatch && tagMatch;
     });
 
+    //SORT!!!
+    //Price Low to High
+    //filteredProducts.sort((a,b) => a.priceRange.minVariantPrice.amount - b.priceRange.minVariantPrice.amount);
+    //Price High to Low
+    //filteredProducts.sort((a,b) => b.priceRange.minVariantPrice.amount - a.priceRange.minVariantPrice.amount);
+    //Created Old to New
+    //filteredProducts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+    switch (sortOption) {
+        case 'DATE, OLD TO NEW':
+            filteredProducts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+            break;
+        case 'PRICE, LOW TO HIGH':
+            filteredProducts.sort((a,b) => a.priceRange.minVariantPrice.amount - b.priceRange.minVariantPrice.amount);
+            break;
+        case 'PRICE, HIGH TO LOW':
+            filteredProducts.sort((a,b) => b.priceRange.minVariantPrice.amount - a.priceRange.minVariantPrice.amount);
+            break;
+        case 'DATE, NEW TO OLD':
+            filteredProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            break;
+        default:
+            break;
+    }
+
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
@@ -54,14 +82,12 @@ export default function Collection({ initialProducts }) {
         return(
             <div className="flex flex-col min-h-screen bg-bebe">
                 <div className="fixed w-full top-0 z-50">
-                    <WorkHeader/>
+                    <WorkHeader />
                 </div>
                 <div className="h-16"></div>
                 <main className="flex-grow flex justify-center items-center">
                     <NoProducts/>
                 </main>
-
-
                 <NewFooter />
             </div>
         )
@@ -69,7 +95,7 @@ export default function Collection({ initialProducts }) {
     return (
         <div className="flex flex-col min-h-screen bg-bebe">
             <div className="fixed w-full top-0 z-50">
-                <WorkHeader/>
+                <WorkHeader onSortSelect={handleSortSelect}/>
             </div>
             <div className="h-8.5"></div>
             <main className="flex-grow">
@@ -83,44 +109,45 @@ export default function Collection({ initialProducts }) {
 export async function getServerSideProps(context) {
     const { id } = context.params;
     const query = `
-       query ($title: String!) {
-  collection(handle: $title) {
-    id
-    title
-    handle
-    products(first: 250) {
-      edges {
-        node {
-          id
-          title
-          handle
-          tags
-          images(first: 1) {
-            edges {
-              node {
-                altText
-                url
-              }
-            }
-          }
-          priceRange {
-            minVariantPrice {
-              amount
-            }
-          }
-          variants(first: 1) {
-            edges {
-              node {
-                title
+        query ($title: String!) {
+          collection(handle: $title) {
+            id
+            title
+            handle
+            products(first: 250) {
+              edges {
+                node {
+                  id
+                  title
+                  handle
+                  tags
+                  images(first: 1) {
+                    edges {
+                      node {
+                        altText
+                        url
+                      }
+                    }
+                  }
+                  priceRange {
+                    minVariantPrice {
+                      amount
+                    }
+                  }
+                  variants(first: 1) {
+                    edges {
+                      node {
+                        title
+                      }
+                    }
+                  }
+                  createdAt
+                }
               }
             }
           }
         }
-      }
-    }
-  }
-}
-  `;
+    `;
 
     const { data } = await ParamShopifyData(query, { title: id });
     console.log(context.params)

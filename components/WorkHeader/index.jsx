@@ -6,9 +6,24 @@ import {useCart} from "../../context/CartContext";
 import {useState} from "react";
 import Cart from "../Cart";
 import PopRefine from "../PopRefine";
-export default function WorkHeader() {
+import {useRouter} from "next/router";
+export default function WorkHeader({onSortSelect}) {
+    const router = useRouter();
     const [cartOpen, setCartOpen] = useState(false);
     const { cart } = useCart(); // Use the CartContext hook
+    const showSortandRefine = router.pathname.startsWith('/testing')
+    const handleNoRefine = (e) => {
+        if(!showSortandRefine){
+            alert('Nothing to \'refine\' while viewing a product.')
+            e.preventDefault()
+        }
+    }
+    const handleNoSort = (e) => {
+        if(!showSortandRefine){
+            alert('Nothing to \'sort\' while viewing a product.')
+            e.preventDefault()
+        }
+    }
     return (
         <>
         <div className="w-full flex bg-bebe fixed px-0 py-2
@@ -28,10 +43,15 @@ export default function WorkHeader() {
 
                 <div className="flex-grow ">
 
-                        <div className="sm:w-1/6 w-16 text-black font-nhg font-medium text-xxs sm:text-xxs sm:text-black  sm:font-nhg
-                                        sm:font-medium pl-2 ">
-
-                                <PopRefine/>
+                        <div className="sm:w-1/6 w-16 text-black font-nhg font-medium text-xxs sm:text-xxs sm:text-black
+                                        sm:font-nhg sm:font-medium pl-2">
+                            {showSortandRefine ?
+                                <PopRefine/> :
+                                    <button onClick={handleNoRefine}
+                                            className="font-nhg font-medium text-black w-12 mt-1.5">
+                                        REFINE
+                                    </button>
+                            }
 
                         </div>
 
@@ -60,11 +80,17 @@ export default function WorkHeader() {
 
                 </div>
                 <div className="z-40 flex-grow mt-0 text-xxs pr-2">
-                    <SortMenu/>
+                    {showSortandRefine ?
+                        <SortMenu onSelect={onSortSelect}/> :
+                        <div className="flex justify-end">
+                            <button onClick={handleNoSort}
+                                    className="font-nhg font-medium text-xxs text-black mt-1.5 pr-3 sm:pr-4">
+                                SORT
+                            </button>
+                        </div>
+                    }
                 </div>
             </div>
-
-
         </div>
             {cartOpen && <Cart open={cartOpen} setOpen={setCartOpen} />}
         </>

@@ -1,7 +1,8 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-export default function SortMenu() {
+export default function SortMenu({onSelect}) {
+
     return (
         <div className="mt-1.5 sm:-mt-cstm md:-mt-midsh text-right">
             <Menu as="div" className="inline-block text-left">
@@ -28,6 +29,7 @@ export default function SortMenu() {
                             <Menu.Item>
                                 {({ active }) => (
                                     <button
+                                        onClick={() => onSelect('DATE, NEW TO OLD')}
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
                                         }   group flex w-full items-center rounded-none px-2 py-2 
@@ -40,6 +42,7 @@ export default function SortMenu() {
                             <Menu.Item>
                                 {({ active }) => (
                                     <button
+                                        onClick={() => onSelect('DATE, OLD TO NEW')}
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
                                         }   group flex w-full items-center rounded-none px-2 py-2 
@@ -52,6 +55,7 @@ export default function SortMenu() {
                             <Menu.Item>
                                 {({ active }) => (
                                     <button
+                                        onClick={() => onSelect('PRICE, LOW TO HIGH')}
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
                                         }   group flex w-full items-center rounded-none px-2 py-2 text-xxs 
@@ -64,6 +68,7 @@ export default function SortMenu() {
                             <Menu.Item>
                                 {({ active }) => (
                                     <button
+                                        onClick={() => onSelect('PRICE, HIGH TO LOW')}
                                         className={`${
                                             active ? 'bg-grayBkg text-white' : 'text-gray-900'
                                         }   group flex w-full items-center rounded-none px-2 py-2 text-xxs 
