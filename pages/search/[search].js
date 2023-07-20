@@ -31,7 +31,7 @@ export default function Search() {
             (async () => {
                 try {
                     const response = await PredictiveProductSearch(search);
-                    console.log('API response:', response);
+                    //console.log('API response:', response);
 
                     // Just save the response array as the product list
                     setProducts(response);
@@ -55,7 +55,6 @@ export default function Search() {
             <div className="fixed w-full top-0 z-50">
                 <WorkHeader />
             </div>
-            <div className="h-16"></div>
             <div className="h-8.5 mg:h-[61px] sm:h-[60px]"></div>
             <main className="flex-grow ">
                 {error || products.length === 0 ?
