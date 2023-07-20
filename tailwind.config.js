@@ -61,6 +61,7 @@ module.exports = {
         'mg':'300px',
         'xs':'343px',
         '1.2k':'1285px',
+        'mgxl':'1650',
         '3xl': '1920px', // Custom breakpoint for 32" monitors or larger
         '34in': '2565px',
         '1.6k': '1680px',

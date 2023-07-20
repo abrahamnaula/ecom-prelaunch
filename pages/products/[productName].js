@@ -39,6 +39,23 @@ export default function Product({ product }) {
     const router = useRouter();
     const { cart, addToCart } = useCart();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [numSlidesToShow, setNumSlidesToShow] = useState(1);
+    useEffect(() => {
+        // This function runs when the component mounts and updates.
+        const handleResize = () => {
+            setNumSlidesToShow(window.innerWidth >= 1655 ? 2 : 1);
+        };
+        window.addEventListener('resize', handleResize);
+
+        // Call the handleResize function to set the initial value
+        handleResize();
+
+        // This function runs when the component unmounts.
+        return () => {
+            // Remove the event listener when the component unmounts
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const handleAddToCart = () => {
         addToCart(product);
@@ -87,14 +104,18 @@ export default function Product({ product }) {
                             initialSlide={currentImageIndex}
                             nextArrow={<NextArrow />}
                             prevArrow={<PrevArrow />}
+                            slidesToShow={numSlidesToShow}
                         >
-                            {images.edges.map((edge, index) => (
+
+                        {images.edges.map((edge, index) => (
                                 <div key={index} className="relative h-full w-full ">
                                     <Image
                                         src={edge.node.url}
                                         alt={edge.node.altText}
-                                        width={600}
-                                        height={600}
+                                        width={200}
+                                        height={10}
+                                        className="w-full object-cover object-center lg:h-full lg:object-scale-down "
+
                                     />
                                 </div>
                             ))}
