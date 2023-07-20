@@ -1,13 +1,22 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { PredictiveProductSearch } from '../../lib/shopify';
-import ShopHeader from "../../components/ShopHeader";
-import Header from "../../components/Header";
 import NewFooter from "../../components/NewFooter";
-import ProductList from "../../components/Products/ProductList";
-import NoResults from "../../components/NoResults";
 import WorkHeader from "../../components/WorkHeader";
-
+import ProductCard from "../../components/Products/ProductCard";
+import NoProducts from "../../components/NoProducts";
+function ProductList3({ products }) {
+    return (
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
+            {products.map((product, index) => (
+                <ProductCard
+                    key={product.id}
+                    product={product}
+                />
+            ))}
+        </div>
+    );
+}
 export default function Search() {
     const router = useRouter();
     const { search } = router.query;
@@ -51,10 +60,10 @@ export default function Search() {
             <main className="flex-grow ">
                 {error || products.length === 0 ?
                     <div className="text-black">
-                        <NoResults/>
+                        <NoProducts/>
                     </div>
                     :
-                    <ProductList products={products} />
+                    <ProductList3 products={products} />
                 }
             </main>
             <NewFooter />
