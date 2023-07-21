@@ -76,7 +76,7 @@ export default function WorkHeader({onSortSelect}) {
                                 sm:w-3/5
                                 md:w-1/3" >
                     {/*{`BAG ${String(cart.length).padStart(2, '0')}`} /!* Display the number of items in the cart *!/*/}
-                    <button className="xs:pr-3.5 mg:pr-3.5 sm:pr-0" onClick={()=> setCartOpen(true)}>{`BAG ${String(cart.length).padStart(2, '0')}`}</button>
+                    <button className="xs:pr-3.5 mg:pr-3.5 sm:pr-0 md:mr-[-10px]" onClick={()=> setCartOpen(true)}>{`BAG ${String(cart.length).padStart(2, '0')}`}</button>
 
                 </div>
                 <div className="z-40 flex-grow mt-0 text-xxs pr-2">
