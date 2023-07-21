@@ -182,8 +182,7 @@ export default function Product({ product }) {
         </div>
     );
 }
-
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const { productName } = context.params;
 
     const query = `
@@ -233,26 +232,4 @@ export async function getStaticProps(context) {
     return {
         props: { product: data.product },
     };
-}
-
-export async function getStaticPaths() {
-    const query = `
-        query {
-            products(first: 250) {
-                edges {
-                    node {
-                        handle
-                    }
-                }
-            }
-        }
-    `;
-
-    const { data } = await ParamShopifyData(query);
-
-    const paths = data.products.edges.map(edge => ({
-        params: { productName: edge.node.handle },
-    }));
-
-    return { paths, fallback: true };
 }
