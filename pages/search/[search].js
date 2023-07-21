@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { PredictiveProductSearch } from '../../lib/shopify';
+import {PredictiveProductSearch, ProductSearch} from '../../lib/shopify';
 import NewFooter from "../../components/NewFooter";
 import WorkHeader from "../../components/WorkHeader";
 import ProductCard from "../../components/Products/ProductCard";
@@ -30,7 +30,7 @@ export default function Search() {
             setLoading(true);
             (async () => {
                 try {
-                    const response = await PredictiveProductSearch(search);
+                    const response = await ProductSearch(search);
                     //console.log('API response:', response);
 
                     // Just save the response array as the product list

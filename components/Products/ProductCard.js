@@ -12,7 +12,6 @@ const ProductCard = React.forwardRef(({ product }, ref) => {
     const altText = images.edges[0]?.node?.altText || "Product Image";
     const price = priceRange.minVariantPrice.amount;
     const size = variants.edges[0]?.node?.title;
-
     return (
         <Link href={`/products/${handle}`} passHref>
             <div ref={ref} className="flex flex-col bg-bebe h-full cursor-pointer border-r border-gray-800">
