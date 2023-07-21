@@ -151,7 +151,28 @@ export default function Product({ product }) {
                         <CollapsibleSection title="MEASUREMENTS" content={description} />
                         <CollapsibleSection
                             title="TERMS & DETAILS"
-                            content="Sizing is determined by measurements not by the garment tag. Please be aware that all garments are vintage or secondhand. Each item may show varying degrees of wear and natural distressing. We intentionally document every available detail to ensure listing accuracy. Returns or exchanges are not accepted at this time. All sales are final. Visit our terms and conditions page for additional details, including our shipping policy."
+                            content={
+                            <div>
+                                <p className="mb-2">
+                                    SIZING IS DETERMINED BY THE GARMENT&apos;S MEASUREMENTS, NOT THE SIZE TAG.
+                                </p>
+                                <p className="mb-2">
+                                    ALL VINTAGE AND SECONDHAND GARMENTS ARE PREOWNED AND MAY SHOW VARYING DEGREES OF WEAR. THESE DEGREES OF WEAR ARE SEEN AS FEATURES OF THE GARMENT THAT ADD TO THEIR DESIRABILITY AND MAKE EACH ITEM UNIQUE.
+                                </p>
+                                <p className="mb-2">
+                                    PLEASE VIEW ALL PHOTOS AND MEASUREMENTS PRIOR TO PURCHASING.
+                                </p>
+                                <p className="mb-2">
+                                    ALL SALES ARE FINAL.
+                                </p>
+                                <p className="mb-2">
+                                    NO RETURNS, EXCHANGES, OR REFUNDS.
+                                </p>
+                                <p className="mb-2">
+                                    VIEW OUR POLICY PAGES FOR MORE INFO.
+                                </p>
+                            </div>
+                            }
                         />
                     </div>
                 </div>
