@@ -96,7 +96,7 @@ export default function Product({ product }) {
             <div className="h-[54px]"></div>
 
             <main className="flex-grow flex flex-col lg:flex-row z-10">
-                <div className="flex flex-grow h-full w-2/5">
+                <div className="flex flex-grow h-full lg:w-2/5 w-full">
                     {/* Product images */}
                     <div className="relative w-full h-full">
                         <Slider
@@ -107,14 +107,15 @@ export default function Product({ product }) {
                             slidesToShow={numSlidesToShow}
                         >
 
-                        {images.edges.map((edge, index) => (
+                            {images.edges.map((edge, index) => (
                                 <div key={index} className="relative h-full w-full">
                                     <Image
                                         src={edge.node.url}
                                         alt={edge.node.altText}
+                                        layout="responsive" // This will maintain the aspect ratio of the image
                                         width={500}
                                         height={500}
-                                        className="w-full object-cover object-center lg:h-full lg:object-scale-down "
+                                        className="lg:w-full lg:object-cover lg:object-center lg:h-full lg:object-scale-down w-screen h-auto object-cover object-center"
 
                                     />
                                 </div>
