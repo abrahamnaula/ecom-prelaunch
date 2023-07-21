@@ -5,8 +5,10 @@ function SearchBar() {
     const [inputValue, setInputValue] = useState('');
     const router = useRouter();
     const handleInputChange = (e) => {
-        setInputValue(e.target.value);
+        const uppercaseValue = e.target.value.toUpperCase();
+        setInputValue(uppercaseValue);
     }
+
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             handleSearch(e);
