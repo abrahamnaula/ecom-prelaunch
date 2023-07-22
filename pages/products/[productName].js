@@ -79,7 +79,8 @@ export default function Product({ product }) {
     const { title, description, images, priceRange, options } = product;
     const price = priceRange.minVariantPrice.amount;
     const sizeOptions = options.find(option => option.name.toLowerCase() === 'size')?.values || [];
-
+    const sellable = product.variants.edges[0].node.availableForSale
+    //console.log(sellable)
     const handleNextImage = () => {
         setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.edges.length);
     };
@@ -111,7 +112,7 @@ export default function Product({ product }) {
                                 <div key={index} className="relative h-full w-full">
                                     <Image
                                         src={edge.node.url}
-                                        alt={edge.node.altText}
+                                        alt={edge.node.altText || "Grey Era Vintage Product"}
                                         layout="responsive" // This will maintain the aspect ratio of the image
                                         width={500}
                                         height={500}
@@ -135,7 +136,7 @@ export default function Product({ product }) {
                                 {formatter.format(price)}
                             </div>
                             <div className="flex justify-center items-center border-r-3/4 border-t-3/4 border-b-3/4 border-gray-400 pl-2 p-4 text-black text-xxs sm:text-sm font-medium uppercase font-nhg">
-                                {sizeOptions.join(", ")}
+                                {sizeOptions}
                             </div>
                         </div>
 
@@ -209,11 +210,11 @@ export async function getServerSideProps(context) {
                         }
                     }
                 }
-                variants(first: 10) {
+                variants(first: 1) {
                     edges {
                         node {
                             id
-                            quantityAvailable
+                            availableForSale
                         }
                     }
                 }
