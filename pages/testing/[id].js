@@ -18,18 +18,11 @@ function ProductList3({ products }) {
         </div>
     );
 }
-export default function Collection({ initialProducts }) {
+export default function Collection({ initialProducts, hasNextPage }) {
     const router = useRouter();
     const { formattedFilters } = useFilter();
     const [sortOption, setSortOption] = useState(null);
-    /*
 
-    Please be aware that this solution assumes that your data is not dynamically loaded when scrolling.
-    If your product list is long and you're using something like an infinite scroll where more products are
-    loaded as the user scrolls down the page, restoring the scroll position would not work properly
-    unless you also preserve the loaded data state or manage the scroll restoration in a more complex way.
-
-     */
     useEffect(() => {
         // Restore scroll position on component mount
         const savedScrollPosition = sessionStorage.getItem('scrollPosition');
@@ -113,6 +106,15 @@ export default function Collection({ initialProducts }) {
     }
 
 
+    //PAGINATION
+    const nextPage = () => {
+        const lastProductCursor = initialProducts[initialProducts.length - 1].cursor;
+        router.push({
+            pathname: router.pathname,
+            query: { ...router.query, cursor: lastProductCursor }
+        });
+    }
+    //NO PRODUCTS
     if (!filteredProducts || filteredProducts.length === 0) {
         return(
             <div className="flex flex-col min-h-screen bg-bebe">
@@ -135,6 +137,9 @@ export default function Collection({ initialProducts }) {
             <div className="h-8.5 mg:h-[61px] sm:h-[60px]"></div>
             <main className="flex-grow">
                 <ProductList3 products={filteredProducts} />
+                {/*COMPONENT FOR PAGINATION*/}
+                {hasNextPage && <button onClick={nextPage}>Next</button>}
+
             </main>
             <NewFooter />
         </div>
@@ -142,15 +147,20 @@ export default function Collection({ initialProducts }) {
 }
 
 export async function getServerSideProps(context) {
-    const { id } = context.params;
+    const { id, cursor } = context.query;
+    const productsPerPage = 10;
     const query = `
-        query ($title: String!) {
+        query ($title: String!, $first: Int!, $after: String) {
           collection(handle: $title) {
             id
             title
             handle
-            products(first: 250) {
+            products(first: $first, after: $after) {
+              pageInfo {
+                hasNextPage
+              }
               edges {
+                cursor
                 node {
                   id
                   title
@@ -184,8 +194,7 @@ export async function getServerSideProps(context) {
         }
     `;
 
-    const { data } = await ParamShopifyData(query, { title: id });
-    console.log(context.params)
+    const { data } = await ParamShopifyData(query, { title: id, first: productsPerPage, after: cursor });
     if (!data || !data.collection) {
         return {
             notFound: true,
@@ -195,11 +204,13 @@ export async function getServerSideProps(context) {
     const initialProducts = data.collection.products.edges.map(edge => {
         return {
             ...edge.node,
+            cursor: edge.cursor,
             imageUrl: edge.node.images.edges[0]?.node?.url,
         };
     });
 
     return {
-        props: { initialProducts, collectionName: data.collection.title },
+        props: { initialProducts, hasNextPage: data.collection.products.pageInfo.hasNextPage, collectionName: data.collection.title },
     };
+
 }
