@@ -5,7 +5,7 @@ import WorkHeader from "../../components/WorkHeader";
 import {useFilter} from "../../components/FilterContext";
 import ProductCard from "../../components/Products/ProductCard";
 import NoProducts from "../../components/NoProducts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 function ProductList3({ products }) {
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
@@ -22,10 +22,44 @@ export default function Collection({ initialProducts }) {
     const router = useRouter();
     const { formattedFilters } = useFilter();
     const [sortOption, setSortOption] = useState(null);
+    /*
+
+    Please be aware that this solution assumes that your data is not dynamically loaded when scrolling.
+    If your product list is long and you're using something like an infinite scroll where more products are
+    loaded as the user scrolls down the page, restoring the scroll position would not work properly
+    unless you also preserve the loaded data state or manage the scroll restoration in a more complex way.
+
+     */
+    useEffect(() => {
+        // Restore scroll position on component mount
+        const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+        if (savedScrollPosition) {
+            window.requestAnimationFrame(() => {
+                window.scrollTo(0, parseInt(savedScrollPosition));
+                console.log('Scrolled to:', savedScrollPosition);
+            });
+        }
+
+        // Save scroll position on route change start
+        const handleRouteChange = () => {
+            console.log('Route change started, scroll position:', window.scrollY);
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        };
+        router.events.on('routeChangeStart', handleRouteChange);
+
+        // Clean up
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChange);
+        };
+    }, []);
+
+
+
+
     const handleSortSelect = (option) => {
         setSortOption(option);
     }
-    console.log('Formatted filers: ',formattedFilters);
+    //console.log('Formatted filers: ',formattedFilters);
     //const filteredProducts = initialProducts.filter(product => product.tags.includes('1980s'));
     //const filteredProducts = initialProducts.filter(product => product.variants.edges[0]?.node?.title === 'Large');
 // Your array of filters
@@ -77,6 +111,7 @@ export default function Collection({ initialProducts }) {
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
+
 
     if (!filteredProducts || filteredProducts.length === 0) {
         return(
