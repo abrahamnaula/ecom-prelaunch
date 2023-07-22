@@ -16,7 +16,7 @@ export default function AddToCart({ product, onClick }) {
             onClick={handleAddToCart}
             disabled={isProductInCart || !sellable} // Disable if in cart or not sellable
         >
-            {isProductInCart ? 'ADDED TO CART' : sellable ? 'Add to Cart' : 'SOLD'}
+            {isProductInCart ? 'ADDED TO CART' : sellable ? 'ADD TO CART' : 'SOLD OUT'}
         </button>
     );
 }
