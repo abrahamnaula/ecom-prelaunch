@@ -20,27 +20,56 @@ function ProductList3({ products }) {
     );
 }
 //Pagination Component
-function Pagination({ currentPage, totalPages, onNextPage, onPrevPage, hasNextPage }) {
+function Pagination({ currentPage, totalPages, setCurrentPage }) {
+    let startPage, endPage;
+    if (totalPages <= 5) {
+        startPage = 1;
+        endPage = totalPages;
+    } else {
+        if (currentPage <= 3) {
+            startPage = 1;
+            endPage = 5;
+        } else if (currentPage + 2 >= totalPages) {
+            startPage = totalPages - 4;
+            endPage = totalPages;
+        } else {
+            startPage = currentPage - 2;
+            endPage = currentPage + 2;
+        }
+    }
+
+    let pages = Array.from({length: (endPage + 1) - startPage}, (_, i) => startPage + i);
+
     return (
-        <div>
+        <div className="pagination">
             <button
-                className="text-black"
-                onClick={onPrevPage}
+                className="text-black mr-4"
+                onClick={() => setCurrentPage(currentPage - 1)}
                 disabled={currentPage === 1}
             >
                 PREVIOUS
             </button>
+
+            {pages.map(page => (
+                <button
+                    key={page}
+                    className={`text-black mr-3 ${currentPage === page ? 'bg-gray-400' : ''}`}
+                    onClick={() => setCurrentPage(page)}
+                >
+                    {page}
+                </button>
+            ))}
+
             <button
-                className="text-black"
-                onClick={onNextPage}
-                disabled={!hasNextPage}
+                className="text-black ml-4"
+                onClick={() => setCurrentPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
             >
                 NEXT
             </button>
         </div>
     );
 }
-
 
 
 const productsPerPage = 12
@@ -159,6 +188,12 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
             setCurrentPage(prevPage => prevPage - 1);
         }
     };
+    const goToPage = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
+
     console.log(totalPages)
     //NO PRODUCTS
     if (!filteredProducts || filteredProducts.length === 0) {
@@ -188,14 +223,10 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
                 <div className="flex justify-center items-center">
                     <Pagination
                         currentPage={currentPage}
-                        totalPages={totalPages}
-                        onNextPage={goToNextPage}
-                        onPrevPage={goToPreviousPage}
+                        totalPages={totalPages-1}
+                        setCurrentPage={goToPage}
                         hasNextPage={currentPage < totalPages-1}
                     />
-
-
-
                 </div>
             </main>
             <NewFooter />
