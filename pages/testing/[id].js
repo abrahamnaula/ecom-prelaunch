@@ -6,6 +6,7 @@ import {useFilter} from "../../components/FilterContext";
 import ProductCard from "../../components/Products/ProductCard";
 import NoProducts from "../../components/NoProducts";
 import {useEffect, useState} from "react";
+import {getProductsCount} from "../../lib/shopify";
 function ProductList3({ products }) {
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
@@ -138,7 +139,10 @@ export default function Collection({ initialProducts, hasNextPage }) {
             <main className="flex-grow">
                 <ProductList3 products={filteredProducts} />
                 {/*COMPONENT FOR PAGINATION*/}
-                {hasNextPage && <button onClick={nextPage}>Next</button>}
+                <div className="flex justify-center items-center">
+                    {hasNextPage && <button  onClick={nextPage}>Next</button>}
+                </div>
+                
 
             </main>
             <NewFooter />
@@ -148,7 +152,7 @@ export default function Collection({ initialProducts, hasNextPage }) {
 
 export async function getServerSideProps(context) {
     const { id, cursor } = context.query;
-    const productsPerPage = 10;
+    const productsPerPage = 12;
     const query = `
         query ($title: String!, $first: Int!, $after: String) {
           collection(handle: $title) {
@@ -195,6 +199,8 @@ export async function getServerSideProps(context) {
     `;
 
     const { data } = await ParamShopifyData(query, { title: id, first: productsPerPage, after: cursor });
+    const totalProductCount = await getProductsCount();
+    // console.log('SSR: ', totalProductCount, ' products')
     if (!data || !data.collection) {
         return {
             notFound: true,
