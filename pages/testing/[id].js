@@ -28,14 +28,14 @@ function Pagination({ currentPage, totalPages, onNextPage, onPrevPage, hasNextPa
                 onClick={onPrevPage}
                 disabled={currentPage === 1}
             >
-                Previous
+                PREVIOUS
             </button>
             <button
                 className="text-black"
                 onClick={onNextPage}
                 disabled={!hasNextPage}
             >
-                Next
+                NEXT
             </button>
         </div>
     );
