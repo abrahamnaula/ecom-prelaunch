@@ -7,6 +7,7 @@ import ProductCard from "../../components/Products/ProductCard";
 import NoProducts from "../../components/NoProducts";
 import {useEffect, useState} from "react";
 import {getProductsCount} from "../../lib/shopify";
+import debounce from "debounce";
 function ProductList3({ products }) {
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
@@ -82,42 +83,34 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
     useEffect(() => {
         if (router.query.page) {
             setCurrentPage(parseInt(router.query.page));
-        }
-    }, [router.query.page]);
-    useEffect(() => {
-        if (currentPage !== 1) {
-            router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage } });
         } else {
-            const { page, ...query } = router.query;
-            router.push({ pathname: router.pathname, query });
+            if (currentPage !== 1) {
+                router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage } });
+            } else {
+                const { page, ...query } = router.query;
+                router.push({ pathname: router.pathname, query });
+            }
         }
-    }, [currentPage]);
+    }, [router.query.page, currentPage]);
+
 
     useEffect(() => {
-        // Restore scroll position on component mount
-        const savedScrollPosition = sessionStorage.getItem('scrollPosition');
-        if (savedScrollPosition) {
-            window.requestAnimationFrame(() => {
-                window.scrollTo(0, parseInt(savedScrollPosition));
-                console.log('Scrolled to:', savedScrollPosition);
-            });
-        }
+        const handleRouteChangeComplete = debounce(() => {
+            const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+            if (savedScrollPosition) {
+                window.requestAnimationFrame(() => {
+                    window.scrollTo(0, parseInt(savedScrollPosition));
+                    console.log('Scrolled to:', savedScrollPosition);
+                });
+            }
+        }, 100);
 
-        // Save scroll position on route change start
-        const handleRouteChange = () => {
-            console.log('Route change started, scroll position:', window.scrollY);
-            sessionStorage.setItem('scrollPosition', window.scrollY);
-        };
-        router.events.on('routeChangeStart', handleRouteChange);
+        router.events.on('routeChangeComplete', handleRouteChangeComplete);
 
-        // Clean up
         return () => {
-            router.events.off('routeChangeStart', handleRouteChange);
+            router.events.off('routeChangeComplete', handleRouteChangeComplete);
         };
-    }, []);
-
-
-
+    }, [router.events]); // Depend on router.events
 
     const handleSortSelect = (option) => {
         setSortOption(option);
@@ -194,7 +187,7 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
         }
     };
 
-    console.log(totalPages)
+    //console.log(totalPages)
     //NO PRODUCTS
     if (!filteredProducts || filteredProducts.length === 0) {
         return(
