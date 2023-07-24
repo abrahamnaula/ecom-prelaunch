@@ -19,10 +19,50 @@ function ProductList3({ products }) {
         </div>
     );
 }
-export default function Collection({ initialProducts, hasNextPage }) {
+//Pagination Component
+function Pagination({ currentPage, totalPages, onNextPage, onPrevPage, hasNextPage }) {
+    return (
+        <div>
+            <button
+                className="text-black"
+                onClick={onPrevPage}
+                disabled={currentPage === 1}
+            >
+                Previous
+            </button>
+            <button
+                className="text-black"
+                onClick={onNextPage}
+                disabled={!hasNextPage}
+            >
+                Next
+            </button>
+        </div>
+    );
+}
+
+
+
+const productsPerPage = 12
+export default function Collection({ initialProducts, hasNextPage, totalProductCount }) {
     const router = useRouter();
     const { formattedFilters } = useFilter();
     const [sortOption, setSortOption] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(() => Math.ceil(totalProductCount/productsPerPage))
+    useEffect(() => {
+        if (router.query.page) {
+            setCurrentPage(parseInt(router.query.page));
+        }
+    }, [router.query.page]);
+    useEffect(() => {
+        if (currentPage !== 1) {
+            router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage } });
+        } else {
+            const { page, ...query } = router.query;
+            router.push({ pathname: router.pathname, query });
+        }
+    }, [currentPage]);
 
     useEffect(() => {
         // Restore scroll position on component mount
@@ -108,13 +148,18 @@ export default function Collection({ initialProducts, hasNextPage }) {
 
 
     //PAGINATION
-    const nextPage = () => {
-        const lastProductCursor = initialProducts[initialProducts.length - 1].cursor;
-        router.push({
-            pathname: router.pathname,
-            query: { ...router.query, cursor: lastProductCursor }
-        });
-    }
+    const goToNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(prevPage => prevPage + 1);
+        }
+    };
+
+    const goToPreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(prevPage => prevPage - 1);
+        }
+    };
+    console.log(totalPages)
     //NO PRODUCTS
     if (!filteredProducts || filteredProducts.length === 0) {
         return(
@@ -130,6 +175,7 @@ export default function Collection({ initialProducts, hasNextPage }) {
             </div>
         )
     }
+
     return (
         <div className="flex flex-col min-h-screen bg-bebe">
             <div className="fixed w-full top-0 z-50">
@@ -140,26 +186,34 @@ export default function Collection({ initialProducts, hasNextPage }) {
                 <ProductList3 products={filteredProducts} />
                 {/*COMPONENT FOR PAGINATION*/}
                 <div className="flex justify-center items-center">
-                    {hasNextPage && <button  onClick={nextPage}>Next</button>}
-                </div>
-                
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onNextPage={goToNextPage}
+                        onPrevPage={goToPreviousPage}
+                        hasNextPage={currentPage < totalPages-1}
+                    />
 
+
+
+                </div>
             </main>
             <NewFooter />
         </div>
     );
 }
-
 export async function getServerSideProps(context) {
-    const { id, cursor } = context.query;
+    const { id, page } = context.query;
     const productsPerPage = 12;
+    const pageNumber = parseInt(page) || 1;  // set page number to 1 if it's not defined
+
     const query = `
-        query ($title: String!, $first: Int!, $after: String) {
+        query ($title: String!, $first: Int!) {
           collection(handle: $title) {
             id
             title
             handle
-            products(first: $first, after: $after) {
+            products(first: $first) {
               pageInfo {
                 hasNextPage
               }
@@ -198,9 +252,13 @@ export async function getServerSideProps(context) {
         }
     `;
 
-    const { data } = await ParamShopifyData(query, { title: id, first: productsPerPage, after: cursor });
+    const { data } = await ParamShopifyData(query, {
+        title: id,
+        first: productsPerPage * pageNumber
+    });
+
     const totalProductCount = await getProductsCount();
-    // console.log('SSR: ', totalProductCount, ' products')
+
     if (!data || !data.collection) {
         return {
             notFound: true,
@@ -215,8 +273,15 @@ export async function getServerSideProps(context) {
         };
     });
 
-    return {
-        props: { initialProducts, hasNextPage: data.collection.products.pageInfo.hasNextPage, collectionName: data.collection.title },
-    };
+    // Use .slice() to only send the products for the current page to the client
+    const paginatedProducts = initialProducts.slice((pageNumber - 1) * productsPerPage, pageNumber * productsPerPage);
 
+    return {
+        props: {
+            initialProducts: paginatedProducts,
+            hasNextPage: data.collection.products.pageInfo.hasNextPage,
+            collectionName: data.collection.title,
+            totalProductCount,
+        },
+    };
 }
