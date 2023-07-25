@@ -75,7 +75,7 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
 }
 
 
-const productsPerPage = 12
+const productsPerPage = 20
 export default function Collection({ initialProducts, hasNextPage, totalProductCount }) {
     const router = useRouter();
     const { formattedFilters } = useFilter();
@@ -232,7 +232,7 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
 }
 export async function getServerSideProps(context) {
     const { id, page } = context.query;
-    const productsPerPage = 12;
+    const productsPerPage = 20;
     const pageNumber = parseInt(page) || 1;  // set page number to 1 if it's not defined
 
     const query = `
