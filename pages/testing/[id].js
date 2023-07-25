@@ -9,6 +9,7 @@ import {useEffect, useState} from "react";
 import {getProductsCount} from "../../lib/shopify";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import {ArrowRightIcon} from "@heroicons/react/20/solid";
+import Loading from "../../components/Loading";
 
 function ProductList3({ products }) {
     return (
@@ -174,7 +175,7 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
     }
 
     if (router.isFallback) {
-        return <div>Loading...</div>;
+        return <Loading/>;
     }
 
 

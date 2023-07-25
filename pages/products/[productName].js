@@ -14,6 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import WorkHeader from "../../components/WorkHeader";
+import Loading from "../../components/Loading";
 
 function NextArrow(props) {
     const { onClick } = props;
@@ -73,7 +74,7 @@ export default function Product({ product }) {
     }, []);
 
     if (router.isFallback) {
-        return <div>Loading...</div>;
+        return <Loading/>;
     }
 
     const { title, description, images, priceRange, options } = product;

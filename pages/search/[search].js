@@ -57,11 +57,9 @@ export default function Search() {
                 <WorkHeader />
             </div>
             <div className="h-8.5 mg:h-[61px] sm:h-[60px]"></div>
-            <main className="flex-grow ">
+            <main className="flex-grow flex items-center justify-center">
                 {error || products.length === 0 ?
-                    <div className="text-black">
-                        <NoProducts/>
-                    </div>
+                    <NoProducts />
                     :
                     <ProductList3 products={products} />
                 }
@@ -69,4 +67,5 @@ export default function Search() {
             <NewFooter />
         </div>
     );
+
 }
