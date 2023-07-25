@@ -5,6 +5,7 @@ import NewFooter from "../../components/NewFooter";
 import WorkHeader from "../../components/WorkHeader";
 import ProductCard from "../../components/Products/ProductCard";
 import NoProducts from "../../components/NoProducts";
+import Loading from "../../components/Loading";
 function ProductList3({ products }) {
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
@@ -47,7 +48,7 @@ export default function Search() {
     }, [search]);
 
     if (loading) {
-        return <div>Loading...</div>
+        return <Loading/>
     }
 
     return (

@@ -7,7 +7,9 @@ import ProductCard from "../../components/Products/ProductCard";
 import NoProducts from "../../components/NoProducts";
 import {useEffect, useState} from "react";
 import {getProductsCount} from "../../lib/shopify";
-import debounce from "debounce";
+import { ArrowLeftIcon } from "@heroicons/react/20/solid";
+import {ArrowRightIcon} from "@heroicons/react/20/solid";
+
 function ProductList3({ products }) {
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
@@ -43,19 +45,20 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
     let pages = Array.from({length: (endPage + 1) - startPage}, (_, i) => startPage + i);
 
     return (
-        <div className="pagination">
+        <div className="pagination flex justify-center items-center">
+
             <button
-                className="text-black mr-4"
+                className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center p-2 mr-6 ${currentPage === 1 ? 'bg-gray-500' : 'bg-black'}`}
                 onClick={() => router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage - 1 } })}
                 disabled={currentPage === 1}
             >
+                <ArrowLeftIcon className="text-bebe h-4"/>
                 PREVIOUS
             </button>
-
             {pages.map(page => (
                 <button
                     key={page}
-                    className={`text-black mr-3 ${currentPage === page ? 'bg-gray-400' : ''}`}
+                    className={`font-nhg font-medium text-black text-xxs sm:text-xs mx-3 px-2 py-1 ${currentPage === page ? 'bg-gray-400' : ''}`}
                     onClick={() => router.push({ pathname: router.pathname, query: { ...router.query, page: page } })}
                 >
                     {page}
@@ -64,11 +67,13 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
             ))}
 
             <button
-                className="text-black ml-4"
+                className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center ml-6 p-2 ${currentPage === totalPages ? 'bg-gray-500' : 'bg-black'}`}
                 onClick={() => router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage + 1 } })}
                 disabled={currentPage === totalPages}
             >
                 NEXT
+                <ArrowRightIcon className="text-bebe h-4"/>
+
             </button>
         </div>
     );
@@ -217,7 +222,7 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
             <main className="flex-grow">
                 <ProductList3 products={filteredProducts} />
                 {/*COMPONENT FOR PAGINATION*/}
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center w-full py-4">
                     <Pagination
                         currentPage={currentPage}
                         totalPages={totalPages-1}

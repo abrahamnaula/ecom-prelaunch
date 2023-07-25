@@ -85,6 +85,7 @@ module.exports = {
 
     },
   },
+
   plugins: [
     require('@tailwindcss/aspect-ratio'),
     function({ addUtilities }) {
@@ -99,7 +100,15 @@ module.exports = {
           animationTimingFunction: 'linear',
           animationFillMode: 'forwards',
         },
+        '@keyframes reveal': {
+          '0%': { 'clip-path': 'inset(0 100% 0 0)' },
+          '100%': { 'clip-path': 'inset(0)' },
+        },
+        '.animate-reveal': {
+          animation: 'reveal 1.5s linear infinite',
+        },
       }
+
 
       addUtilities(newUtilities, ['responsive', 'hover'])
     },
