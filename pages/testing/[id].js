@@ -22,6 +22,7 @@ function ProductList3({ products }) {
 }
 //Pagination Component
 function Pagination({ currentPage, totalPages, setCurrentPage }) {
+    const router = useRouter()
     let startPage, endPage;
     if (totalPages <= 5) {
         startPage = 1;
@@ -45,7 +46,7 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
         <div className="pagination">
             <button
                 className="text-black mr-4"
-                onClick={() => setCurrentPage(currentPage - 1)}
+                onClick={() => router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage - 1 } })}
                 disabled={currentPage === 1}
             >
                 PREVIOUS
@@ -55,15 +56,16 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
                 <button
                     key={page}
                     className={`text-black mr-3 ${currentPage === page ? 'bg-gray-400' : ''}`}
-                    onClick={() => setCurrentPage(page)}
+                    onClick={() => router.push({ pathname: router.pathname, query: { ...router.query, page: page } })}
                 >
                     {page}
                 </button>
+
             ))}
 
             <button
                 className="text-black ml-4"
-                onClick={() => setCurrentPage(currentPage + 1)}
+                onClick={() => router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage + 1 } })}
                 disabled={currentPage === totalPages}
             >
                 NEXT
@@ -78,39 +80,41 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
     const router = useRouter();
     const { formattedFilters } = useFilter();
     const [sortOption, setSortOption] = useState(null);
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(() => parseInt(router.query.page) || 1)
     const [totalPages, setTotalPages] = useState(() => Math.ceil(totalProductCount/productsPerPage))
     useEffect(() => {
         if (router.query.page) {
             setCurrentPage(parseInt(router.query.page));
         } else {
-            if (currentPage !== 1) {
-                router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage } });
-            } else {
-                const { page, ...query } = router.query;
-                router.push({ pathname: router.pathname, query });
-            }
+            setCurrentPage(1);
         }
-    }, [router.query.page, currentPage]);
+    }, [router.query.page]);
+
 
 
     useEffect(() => {
-        const handleRouteChangeComplete = debounce(() => {
-            const savedScrollPosition = sessionStorage.getItem('scrollPosition');
-            if (savedScrollPosition) {
-                window.requestAnimationFrame(() => {
-                    window.scrollTo(0, parseInt(savedScrollPosition));
-                    console.log('Scrolled to:', savedScrollPosition);
-                });
-            }
-        }, 100);
+        // Restore scroll position on component mount
+        const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+        if (savedScrollPosition) {
+            window.requestAnimationFrame(() => {
+                window.scrollTo(0, parseInt(savedScrollPosition));
+                console.log('Scrolled to:', savedScrollPosition);
+            });
+        }
 
-        router.events.on('routeChangeComplete', handleRouteChangeComplete);
-
-        return () => {
-            router.events.off('routeChangeComplete', handleRouteChangeComplete);
+        // Save scroll position on route change start
+        const handleRouteChange = () => {
+            console.log('Route change started, scroll position:', window.scrollY);
+            sessionStorage.setItem('scrollPosition', window.scrollY);
         };
-    }, [router.events]); // Depend on router.events
+
+        router.events.on('routeChangeStart', handleRouteChange);
+
+        // Clean up
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChange);
+        };
+    }, []);
 
     const handleSortSelect = (option) => {
         setSortOption(option);
