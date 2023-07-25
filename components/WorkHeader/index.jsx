@@ -11,7 +11,7 @@ export default function WorkHeader({onSortSelect}) {
     const router = useRouter();
     const [cartOpen, setCartOpen] = useState(false);
     const { cart } = useCart(); // Use the CartContext hook
-    const showSortandRefine = router.pathname.startsWith('/testing')
+    const showSortandRefine = router.pathname.startsWith('/testing') || router.pathname.startsWith('/search')
     const handleNoRefine = (e) => {
         if(!showSortandRefine){
             alert('Nothing to \'refine\' while viewing a product.')

@@ -149,14 +149,6 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
         return sizeMatch && tagMatch;
     });
 
-    //SORT!!!
-    //Price Low to High
-    //filteredProducts.sort((a,b) => a.priceRange.minVariantPrice.amount - b.priceRange.minVariantPrice.amount);
-    //Price High to Low
-    //filteredProducts.sort((a,b) => b.priceRange.minVariantPrice.amount - a.priceRange.minVariantPrice.amount);
-    //Created Old to New
-    //filteredProducts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-
     switch (sortOption) {
         case 'DATE, OLD TO NEW':
             filteredProducts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
