@@ -1,12 +1,14 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { ProductSearch} from '../../lib/shopify';
+import {getProductsCount, ParamShopifyData} from '../../lib/shopify';
 import NewFooter from "../../components/NewFooter";
 import WorkHeader from "../../components/WorkHeader";
 import ProductCard from "../../components/Products/ProductCard";
 import NoProducts from "../../components/NoProducts";
 import Loading from "../../components/Loading";
 import {useFilter} from "../../components/FilterContext";
+import Pagination from "../../components/Pagination";
+const productsPerPage=60;
 function ProductList3({ products }) {
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
@@ -19,7 +21,7 @@ function ProductList3({ products }) {
         </div>
     );
 }
-export default function Search({ initialProducts }) {
+export default function Search({ initialProducts, totalProductCount }) {
     const router = useRouter();
     const { search } = router.query;
     const { formattedFilters } = useFilter();
@@ -28,8 +30,20 @@ export default function Search({ initialProducts }) {
 
     // You'll handle fetching on client side in case the search query changes without page navigation
     const [products, setProducts] = useState(initialProducts);
-
     const [loading, setLoading] = useState(false);
+
+    //pagination state
+    const [currentPage, setCurrentPage] = useState(() => parseInt(router.query.page) || 1)
+    const [totalPages, setTotalPages] = useState(() => Math.ceil(totalProductCount/productsPerPage))
+    //URL query
+    useEffect(() => {
+        if (router.query.page) {
+            setCurrentPage(parseInt(router.query.page));
+        } else {
+            setCurrentPage(1);
+        }
+    }, [router.query.page]);
+
 
     useEffect(() => {
         if (search) {
@@ -89,7 +103,11 @@ export default function Search({ initialProducts }) {
     if (loading) {
         return <Loading/>
     }
-
+    const goToPage = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
     //NO PRODUCTS
     if (!filteredProducts || filteredProducts.length === 0) {
         return(
@@ -112,11 +130,25 @@ export default function Search({ initialProducts }) {
                 <WorkHeader onSortSelect={handleSortSelect}/>
             </div>
             <div className="h-8.5 mg:h-[61px] sm:h-[60px]"></div>
-            <main className="flex-grow flex items-center justify-center">
+            <main className="flex-grow">
                 {error || products.length === 0 ?
-                    <NoProducts />
+                    <div className="flex items-center justify-center">
+                        <NoProducts />
+                    </div>
+
                     :
-                    <ProductList3 products={filteredProducts} />
+                    <div className="flex-grow">
+                        <ProductList3 products={filteredProducts} />
+                        <div className="flex justify-center items-center w-full mg:pt-16 sm:py-4">
+                            <Pagination
+                                currentPage={currentPage}
+                                totalPages={totalPages-1}
+                                setCurrentPage={goToPage}
+                                hasNextPage={currentPage < totalPages-1}
+                            />
+                        </div>
+                    </div>
+
                 }
             </main>
             <NewFooter />
@@ -124,22 +156,151 @@ export default function Search({ initialProducts }) {
     );
 }
 export async function getServerSideProps(context) {
-    let products = [];
-    const search = context.query.search;
+    const { search, page } = context.query;
+    const productsPerPage = 60;
+    const pageNumber = parseInt(page) || 1;  // set page number to 1 if it's not defined
 
-    if(search) {
-        try {
-            const response = await ProductSearch(search);
-            products = response;
-        } catch (error) {
-            console.error("Error during search: ", error);
-            // If you want to handle error on your page, you can pass the error in props
+    const query = `
+        query ($query: String!, $first: Int!) {
+          products(first: $first, query: $query) {
+            pageInfo {
+              hasNextPage
+            }
+            edges {
+              cursor
+              node {
+                id
+                title
+                handle
+                description
+                priceRange {
+                  minVariantPrice {
+                    amount
+                  }
+                }
+                options {
+                  name
+                  values
+                }
+                images(first: 1) {
+                  edges {
+                    node {
+                      url
+                      altText
+                    }
+                  }
+                }
+                variants(first: 10) {
+                  edges {
+                    node {
+                      title
+                    }
+                  }
+                }
+                createdAt
+              }
+            }
+          }
         }
+    `;
+
+    const { data } = await ParamShopifyData(query, {
+        query: search,
+        first: productsPerPage * pageNumber
+    });
+    const totalProductCount = await getProductsCount();
+    if (!data || !data.products) {
+        return {
+            notFound: true,
+        };
     }
+
+    const initialProducts = data.products.edges.map(edge => {
+        return {
+            ...edge.node,
+            cursor: edge.cursor,
+            imageUrl: edge.node.images.edges[0]?.node?.url,
+        };
+    });
+
+    // Use .slice() to only send the products for the current page to the client
+    const paginatedProducts = initialProducts.slice((pageNumber - 1) * productsPerPage, pageNumber * productsPerPage);
 
     return {
         props: {
-            initialProducts: products
+            initialProducts: paginatedProducts,
+            hasNextPage: data.products.pageInfo.hasNextPage,
+           totalProductCount,
         },
+    };
+}
+async function ProductSearch(queryString, pageNumber = 1, productsPerPage = 60) {
+    const query = `
+    query ProductSearch($query: String!, $first: Int!, $after: String) {
+        products(first: $first, after: $after, query: $query) {
+            pageInfo {
+                hasNextPage
+            }
+            edges {
+                cursor
+                node {
+                    id
+                    title
+                    handle
+                    description
+                    priceRange {
+                        minVariantPrice {
+                            amount
+                        }
+                    }
+                    options {
+                        name
+                        values
+                    }
+                    images(first: 1) {
+                        edges {
+                            node {
+                                url
+                                altText
+                            }
+                        }
+                    }
+                    variants(first: 10) {
+                        edges {
+                            node {
+                                title
+                            }
+                        }
+                    }
+                    createdAt
+                }
+            }
+        }
+    }
+    `;
+
+    const variables = {
+        query: queryString,
+        first: productsPerPage,
+        after: pageNumber > 1 ? pageNumber * productsPerPage - productsPerPage : null
+    };
+
+    try {
+        const response = await ParamShopifyData(query, variables);
+
+        if (response.errors || !response.data.products) {
+            throw new Error('Failed to perform product search');
+        }
+
+        // We map over the edges to return the node (the product object)
+        const products = response.data.products.edges.map(edge => edge.node);
+
+        return {
+            products,
+            hasNextPage: response.data.products.pageInfo.hasNextPage
+        };
+    } catch (error) {
+        console.error('Product search error:', error);
+        throw error;
     }
 }

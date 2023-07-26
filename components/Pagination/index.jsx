@@ -6,17 +6,17 @@ export default function Pagination({ currentPage, totalPages, setCurrentPage }) 
     let startPage, endPage;
     if (totalPages <= 5) {
         startPage = 1;
-        endPage = totalPages;
+        endPage = totalPages+1;
     } else {
         if (currentPage <= 3) {
             startPage = 1;
             endPage = 5;
         } else if (currentPage + 2 >= totalPages) {
             startPage = totalPages - 4;
-            endPage = totalPages;
+            endPage = totalPages+1;
         } else {
             startPage = currentPage - 2;
-            endPage = currentPage + 2;
+            endPage = currentPage + 3;
         }
     }
 
@@ -45,9 +45,9 @@ export default function Pagination({ currentPage, totalPages, setCurrentPage }) 
             ))}
 
             <button
-                className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center ml-6 p-2 ${currentPage === totalPages ? 'bg-gray-500' : 'bg-black'}`}
+                className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center ml-6 p-2 ${currentPage === totalPages + 1 ? 'bg-gray-500' : 'bg-black'}`}
                 onClick={() => router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage + 1 } })}
-                disabled={currentPage === totalPages}
+                disabled={currentPage === totalPages + 1}
             >
                 NEXT
                 <ArrowRightIcon className="text-bebe h-4"/>

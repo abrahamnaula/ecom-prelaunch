@@ -24,18 +24,23 @@ function ProductList3({ products }) {
 }
 //Pagination Component
 function Pagination({ currentPage, totalPages, setCurrentPage }) {
+
     const router = useRouter()
+    if (totalPages === 1) {
+        // If there's only one page, don't render the pagination component
+        return null;
+    }
     let startPage, endPage;
     if (totalPages <= 5) {
         startPage = 1;
-        endPage = totalPages+1;
+        endPage = totalPages;
     } else {
         if (currentPage <= 3) {
             startPage = 1;
             endPage = 5;
         } else if (currentPage + 2 >= totalPages) {
             startPage = totalPages - 4;
-            endPage = totalPages+1;
+            endPage = totalPages;
         } else {
             startPage = currentPage - 2;
             endPage = currentPage + 3;
@@ -43,7 +48,8 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
     }
 
     let pages = Array.from({length: (endPage + 1) - startPage}, (_, i) => startPage + i);
-
+    console.log('total pages: ',totalPages)
+    console.log('current: ', currentPage)
     return (
         <div className="pagination flex justify-center items-center">
 
@@ -67,9 +73,9 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
             ))}
 
             <button
-                className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center ml-6 p-2 ${currentPage === totalPages + 1 ? 'bg-gray-500' : 'bg-black'}`}
+                className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center ml-6 p-2 ${currentPage === totalPages ? 'bg-gray-500' : 'bg-black'}`}
                 onClick={() => router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage + 1 } })}
-                disabled={currentPage === totalPages + 1}
+                disabled={currentPage === totalPages }
             >
                 NEXT
                 <ArrowRightIcon className="text-bebe h-4"/>
@@ -204,9 +210,9 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
                 <div className="flex justify-center items-center w-full py-4">
                     <Pagination
                         currentPage={currentPage}
-                        totalPages={totalPages-1}
+                        totalPages={totalPages}
                         setCurrentPage={goToPage}
-                        hasNextPage={currentPage < totalPages-1}
+                        hasNextPage={currentPage < totalPages}
                     />
                 </div>
             </main>
@@ -270,7 +276,7 @@ export async function getServerSideProps(context) {
     });
 
     const totalProductCount = await getProductsCount();
-    console.log(totalProductCount)
+    console.log('total prducts: ',totalProductCount)
     if (!data || !data.collection) {
         return {
             notFound: true,
