@@ -107,7 +107,6 @@ export default function Search({ initialProducts }) {
     }
     // console.log('Date ', filteredProducts[0]?.createdAt)
     return (
-
         <div className="flex flex-col min-h-screen bg-bebe">
             <div className="fixed w-full top-0 z-50">
                 <WorkHeader onSortSelect={handleSortSelect}/>
@@ -123,7 +122,6 @@ export default function Search({ initialProducts }) {
             <NewFooter />
         </div>
     );
-
 }
 export async function getServerSideProps(context) {
     let products = [];

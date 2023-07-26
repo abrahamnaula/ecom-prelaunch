@@ -10,7 +10,6 @@ import {getProductsCount} from "../../lib/shopify";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import {ArrowRightIcon} from "@heroicons/react/20/solid";
 import Loading from "../../components/Loading";
-
 function ProductList3({ products }) {
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
@@ -29,17 +28,17 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
     let startPage, endPage;
     if (totalPages <= 5) {
         startPage = 1;
-        endPage = totalPages;
+        endPage = totalPages+1;
     } else {
         if (currentPage <= 3) {
             startPage = 1;
             endPage = 5;
         } else if (currentPage + 2 >= totalPages) {
             startPage = totalPages - 4;
-            endPage = totalPages;
+            endPage = totalPages+1;
         } else {
             startPage = currentPage - 2;
-            endPage = currentPage + 2;
+            endPage = currentPage + 3;
         }
     }
 
@@ -68,9 +67,9 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
             ))}
 
             <button
-                className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center ml-6 p-2 ${currentPage === totalPages ? 'bg-gray-500' : 'bg-black'}`}
+                className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center ml-6 p-2 ${currentPage === totalPages + 1 ? 'bg-gray-500' : 'bg-black'}`}
                 onClick={() => router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage + 1 } })}
-                disabled={currentPage === totalPages}
+                disabled={currentPage === totalPages + 1}
             >
                 NEXT
                 <ArrowRightIcon className="text-bebe h-4"/>
@@ -79,8 +78,6 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
         </div>
     );
 }
-
-
 const productsPerPage = 60
 export default function Collection({ initialProducts, hasNextPage, totalProductCount }) {
     const router = useRouter();
@@ -172,17 +169,6 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
 
 
     //PAGINATION
-    const goToNextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage(prevPage => prevPage + 1);
-        }
-    };
-
-    const goToPreviousPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(prevPage => prevPage - 1);
-        }
-    };
     const goToPage = (page) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
@@ -284,7 +270,7 @@ export async function getServerSideProps(context) {
     });
 
     const totalProductCount = await getProductsCount();
-
+    console.log(totalProductCount)
     if (!data || !data.collection) {
         return {
             notFound: true,
