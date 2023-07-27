@@ -192,7 +192,6 @@ export default function Search({ initialProducts, totalProductCount }) {
                             />
                         </div>
                     </div>
-
                 }
             </main>
             <NewFooter />

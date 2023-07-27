@@ -169,8 +169,8 @@ export default function Product({ product }) {
                                 <p className="mb-2">
                                     NO RETURNS, EXCHANGES, OR REFUNDS.
                                 </p>
-                                <p className="mb-2">
-                                    VIEW OUR POLICY PAGES FOR MORE INFO.
+                                <p className="mb-2 uppercase">
+                                    View our shipping & returns policy as well as our sizing policy for more info.
                                 </p>
                             </div>
                             }
