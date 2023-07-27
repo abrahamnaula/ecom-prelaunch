@@ -125,6 +125,9 @@ export default function Search({ initialProducts, totalProductCount }) {
     });
 
     switch (sortOption) {
+        case 'DATE, NEW TO OLD':
+            filteredProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            break;
         case 'DATE, OLD TO NEW':
             filteredProducts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
             break;
@@ -133,9 +136,6 @@ export default function Search({ initialProducts, totalProductCount }) {
             break;
         case 'PRICE, HIGH TO LOW':
             filteredProducts.sort((a,b) => b.priceRange.minVariantPrice.amount - a.priceRange.minVariantPrice.amount);
-            break;
-        case 'DATE, NEW TO OLD':
-            filteredProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             break;
         default:
             break;
