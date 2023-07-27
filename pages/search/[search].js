@@ -138,6 +138,7 @@ export default function Search({ initialProducts, totalProductCount }) {
             filteredProducts.sort((a,b) => b.priceRange.minVariantPrice.amount - a.priceRange.minVariantPrice.amount);
             break;
         default:
+            filteredProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             break;
     }
 
