@@ -35,6 +35,9 @@ export default function Search({ initialProducts, totalProductCount }) {
     //pagination state
     const [currentPage, setCurrentPage] = useState(() => parseInt(router.query.page) || 1)
     const [totalPages, setTotalPages] = useState(() => Math.ceil(totalProductCount/productsPerPage))
+
+    const productSize = Object.keys(initialProducts).length;
+
     //URL query
     useEffect(() => {
         if (router.query.page) {
@@ -44,7 +47,39 @@ export default function Search({ initialProducts, totalProductCount }) {
         }
     }, [router.query.page]);
 
+    useEffect(() => {
+        // Restore scroll position on component mount
+        const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+        if (savedScrollPosition) {
+            window.requestAnimationFrame(() => {
+                window.scrollTo(0, parseInt(savedScrollPosition));
+                console.log('Scrolled to:', savedScrollPosition);
+            });
+        }
 
+        // Save scroll position on route change start
+        const handleRouteChange = () => {
+            console.log('Route change started, scroll position:', window.scrollY);
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        };
+
+        router.events.on('routeChangeStart', handleRouteChange);
+
+        // Clean up
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChange);
+        };
+    }, []);
+
+    useEffect(() => {
+        // Restore scroll position after products have loaded
+        const scrollPosition = sessionStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+            setTimeout(() => {
+                window.scrollTo(0, parseInt(scrollPosition));
+            }, 200); // delay of 200ms
+        }
+    }, [products]);
     useEffect(() => {
         if (search) {
             setLoading(true);
@@ -60,7 +95,14 @@ export default function Search({ initialProducts, totalProductCount }) {
                 }
             })();
         }
+
     }, [search]);
+    useEffect(() => {
+        const handleScroll = () => console.log(window.scrollY);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     const handleSortSelect = (option) => {
         setSortOption(option);
     }
@@ -108,6 +150,7 @@ export default function Search({ initialProducts, totalProductCount }) {
             setCurrentPage(page);
         }
     };
+
     //NO PRODUCTS
     if (!filteredProducts || filteredProducts.length === 0) {
         return(
@@ -141,10 +184,11 @@ export default function Search({ initialProducts, totalProductCount }) {
                         <ProductList3 products={filteredProducts} />
                         <div className="flex justify-center items-center w-full mg:pt-16 sm:py-4">
                             <Pagination
+                                productSize={productSize}
                                 currentPage={currentPage}
-                                totalPages={totalPages-1}
+                                totalPages={totalPages}
                                 setCurrentPage={goToPage}
-                                hasNextPage={currentPage < totalPages-1}
+                                hasNextPage={currentPage < totalPages && productSize === productsPerPage}
                             />
                         </div>
                     </div>
