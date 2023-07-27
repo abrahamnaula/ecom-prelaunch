@@ -182,7 +182,7 @@ export default function Search({ initialProducts, totalProductCount }) {
                     :
                     <div className="flex-grow">
                         <ProductList3 products={filteredProducts} />
-                        <div className="flex justify-center items-center w-full mg:pt-16 sm:py-4">
+                        <div className="flex justify-center items-center w-full mg:py-4 sm:py-4">
                             <Pagination
                                 productSize={productSize}
                                 currentPage={currentPage}
