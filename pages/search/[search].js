@@ -50,17 +50,20 @@ export default function Search({ initialProducts, totalProductCount }) {
     useEffect(() => {
         // Restore scroll position on component mount
         const savedScrollPosition = sessionStorage.getItem('scrollPosition');
-        if (savedScrollPosition) {
+        const previousPath = sessionStorage.getItem('previousPath');
+
+
+        if (previousPath && previousPath.startsWith('/products') && savedScrollPosition) {
             window.requestAnimationFrame(() => {
                 window.scrollTo(0, parseInt(savedScrollPosition));
                 console.log('Scrolled to:', savedScrollPosition);
             });
         }
-
         // Save scroll position on route change start
-        const handleRouteChange = () => {
+        const handleRouteChange = (url) => {
             console.log('Route change started, scroll position:', window.scrollY);
             sessionStorage.setItem('scrollPosition', window.scrollY);
+            sessionStorage.setItem('previousPath', url);
         };
 
         router.events.on('routeChangeStart', handleRouteChange);
@@ -74,10 +77,13 @@ export default function Search({ initialProducts, totalProductCount }) {
     useEffect(() => {
         // Restore scroll position after products have loaded
         const scrollPosition = sessionStorage.getItem('scrollPosition');
-        if (scrollPosition) {
-            setTimeout(() => {
+        const previousPath = sessionStorage.getItem('previousPath');
+
+        if (previousPath && previousPath.startsWith('/products') && scrollPosition) {
+            window.requestAnimationFrame(() => {
                 window.scrollTo(0, parseInt(scrollPosition));
-            }, 200); // delay of 200ms
+                console.log('Scrolled to:', scrollPosition);
+            });
         }
     }, [products]);
     useEffect(() => {
