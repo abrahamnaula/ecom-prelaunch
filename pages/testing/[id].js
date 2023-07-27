@@ -116,12 +116,12 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
         }
     }, [router.query.page]);
 
-
-
     useEffect(() => {
         // Restore scroll position on component mount
         const savedScrollPosition = sessionStorage.getItem('scrollPosition');
-        if (savedScrollPosition) {
+        const previousPath = sessionStorage.getItem('previousPath');
+
+        if (previousPath && previousPath.startsWith('/products') && savedScrollPosition) {
             window.requestAnimationFrame(() => {
                 window.scrollTo(0, parseInt(savedScrollPosition));
                 console.log('Scrolled to:', savedScrollPosition);
@@ -129,9 +129,10 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
         }
 
         // Save scroll position on route change start
-        const handleRouteChange = () => {
+        const handleRouteChange = (url) => {
             console.log('Route change started, scroll position:', window.scrollY);
             sessionStorage.setItem('scrollPosition', window.scrollY);
+            sessionStorage.setItem('previousPath', url);
         };
 
         router.events.on('routeChangeStart', handleRouteChange);
@@ -141,6 +142,7 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
             router.events.off('routeChangeStart', handleRouteChange);
         };
     }, []);
+
 
     const handleSortSelect = (option) => {
         setSortOption(option);
