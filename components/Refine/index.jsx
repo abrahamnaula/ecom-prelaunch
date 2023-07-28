@@ -24,6 +24,7 @@ const FilterMenu = () => {
         setSelectedSizes([]);
         setFinalFilters([]);
         setFormattedFilters([]);
+        setFilterHistory([]);
     };
 
     const handleCancel = () => {
@@ -36,6 +37,7 @@ const FilterMenu = () => {
             applyFilters(finalFilters);
             setFilterHistory([]);
         }
+
         console.log('applied')
     };
     const applyFilters = async (filters) => {
@@ -43,6 +45,8 @@ const FilterMenu = () => {
         const formatted = filters.map(filter => reference.get(filter) || filter);
         // Update the formattedFilters state
         setFormattedFilters(formatted);
+        //Scroll to top once filters are APPLIED
+        window.scrollTo(0,0)
     };
 
     const CategoriesFilter = () => {

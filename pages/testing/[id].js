@@ -175,15 +175,19 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
     switch (sortOption) {
         case 'DATE, OLD TO NEW':
             filteredProducts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+            window.scrollTo(0,0)
             break;
         case 'PRICE, LOW TO HIGH':
             filteredProducts.sort((a,b) => a.priceRange.minVariantPrice.amount - b.priceRange.minVariantPrice.amount);
+            window.scrollTo(0,0)
             break;
         case 'PRICE, HIGH TO LOW':
             filteredProducts.sort((a,b) => b.priceRange.minVariantPrice.amount - a.priceRange.minVariantPrice.amount);
+            window.scrollTo(0,0)
             break;
         case 'DATE, NEW TO OLD':
             filteredProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            window.scrollTo(0,0)
             break;
         default:
             break;
