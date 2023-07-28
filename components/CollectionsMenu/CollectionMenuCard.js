@@ -110,13 +110,16 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
             )}
 
             <img className="object-cover w-full h-full" src={image} alt={title} />
-            <div className="absolute inset-0 bg-black opacity-25"></div>
-            <div
+            <div className="absolute inset-0 bg-black opacity-0"></div>
+
+            {/*<div
                 className="absolute inset-0"
                 style={{ backgroundColor: "rgba(51, 51, 51, 0.72)" }}
-            ></div>
+            ></div>*/}
+
             <div className="absolute inset-0 flex items-center justify-center">
                 {shouldDisplayList ? (
+
                     <div
                         className="opacity-0 transform transition-all duration-300"
                         style={{
