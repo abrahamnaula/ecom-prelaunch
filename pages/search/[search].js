@@ -24,7 +24,9 @@ function ProductList3({ products }) {
 export default function Search({ initialProducts, totalProductCount }) {
     const router = useRouter();
     const { search } = router.query;
-    const { formattedFilters } = useFilter();
+    const { formattedFilters, setFormattedFilters, setFilterHistory,
+            setSelectedCategory, setSelectedCollection, setSelectedEra,
+            setSelectedSizes, setFinalFilters} = useFilter();
     const [sortOption, setSortOption] = useState(null);
     const [error, setError] = useState(null); // New state to keep track of errors
 
@@ -56,12 +58,12 @@ export default function Search({ initialProducts, totalProductCount }) {
         if (previousPath && previousPath.startsWith('/products') && savedScrollPosition) {
             window.requestAnimationFrame(() => {
                 window.scrollTo(0, parseInt(savedScrollPosition));
-                console.log('Scrolled to:', savedScrollPosition);
+                //console.log('Scrolled to:', savedScrollPosition);
             });
         }
         // Save scroll position on route change start
         const handleRouteChange = (url) => {
-            console.log('Route change started, scroll position:', window.scrollY);
+           // console.log('Route change started, scroll position:', window.scrollY);
             sessionStorage.setItem('scrollPosition', window.scrollY);
             sessionStorage.setItem('previousPath', url);
         };
@@ -82,7 +84,7 @@ export default function Search({ initialProducts, totalProductCount }) {
         if (previousPath && previousPath.startsWith('/products') && scrollPosition) {
             window.requestAnimationFrame(() => {
                 window.scrollTo(0, parseInt(scrollPosition));
-                console.log('Scrolled to:', scrollPosition);
+                //console.log('Scrolled to:', scrollPosition);
             });
         }
     }, [products]);
@@ -94,7 +96,7 @@ export default function Search({ initialProducts, totalProductCount }) {
                     const response = await ProductSearch(search);
                     setProducts(response);
                 } catch (error) {
-                    console.error("Error during search: ", error);
+                    //console.error("Error during search: ", error);
                     setError(error.message); // Save the error message in state
                 } finally {
                     setLoading(false);
@@ -103,11 +105,35 @@ export default function Search({ initialProducts, totalProductCount }) {
         }
 
     }, [search]);
+    /*
+    //Logs the window's scroll position
     useEffect(() => {
         const handleScroll = () => console.log(window.scrollY);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+    */
+
+    //Clear filters when going to another page:
+    useEffect(() => {
+        const handleRouteChange = () => {
+            setFormattedFilters([])
+            setFilterHistory([]);
+            setSelectedCategory(null);
+            setSelectedCollection(null);
+            setSelectedEra(null);
+            setSelectedSizes([]);
+            setFinalFilters([]);
+        }
+
+        router.events.on('routeChangeStart', handleRouteChange);
+
+        // Clean up the event listener when the component is unmounted
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChange);
+        }
+    }, [router.events]);
+
 
     const handleSortSelect = (option) => {
         setSortOption(option);

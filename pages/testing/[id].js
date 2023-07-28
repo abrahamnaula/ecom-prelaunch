@@ -99,7 +99,9 @@ function Pagination({ currentPage, totalPages, productSize }) {
 const productsPerPage = 60
 export default function Collection({ initialProducts, hasNextPage, totalProductCount }) {
     const router = useRouter();
-    const { formattedFilters } = useFilter();
+    const { formattedFilters, setFormattedFilters, setFilterHistory,
+        setSelectedCategory, setSelectedCollection, setSelectedEra,
+        setSelectedSizes, setFinalFilters} = useFilter();
     const [sortOption, setSortOption] = useState(null);
     const [currentPage, setCurrentPage] = useState(() => parseInt(router.query.page) || 1)
     const productSize = Object.keys(initialProducts).length;
@@ -124,13 +126,13 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
         if (previousPath && previousPath.startsWith('/products') && savedScrollPosition) {
             window.requestAnimationFrame(() => {
                 window.scrollTo(0, parseInt(savedScrollPosition));
-                console.log('Scrolled to:', savedScrollPosition);
+                //console.log('Scrolled to:', savedScrollPosition);
             });
         }
 
         // Save scroll position on route change start
         const handleRouteChange = (url) => {
-            console.log('Route change started, scroll position:', window.scrollY);
+            //console.log('Route change started, scroll position:', window.scrollY);
             sessionStorage.setItem('scrollPosition', window.scrollY);
             sessionStorage.setItem('previousPath', url);
         };
@@ -143,7 +145,24 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
         };
     }, []);
 
+    useEffect(() => {
+        const handleRouteChange = () => {
+            setFormattedFilters([])
+            setFilterHistory([]);
+            setSelectedCategory(null);
+            setSelectedCollection(null);
+            setSelectedEra(null);
+            setSelectedSizes([]);
+            setFinalFilters([]);
+        }
 
+        router.events.on('routeChangeStart', handleRouteChange);
+
+        // Clean up the event listener when the component is unmounted
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChange);
+        }
+    }, [router.events]);
     const handleSortSelect = (option) => {
         setSortOption(option);
     }
