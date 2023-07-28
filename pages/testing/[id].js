@@ -159,6 +159,7 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
 // Split the filters into sizes and tags
     const sizes = formattedFilters.filter(filter => knownSizes.includes(filter));
     const tags = formattedFilters.filter(filter => !knownSizes.includes(filter));
+    // console.log(initialProducts)
 
 // Filter products
     const filteredProducts = initialProducts.filter(product => {

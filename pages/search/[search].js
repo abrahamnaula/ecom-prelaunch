@@ -112,13 +112,14 @@ export default function Search({ initialProducts, totalProductCount }) {
     const handleSortSelect = (option) => {
         setSortOption(option);
     }
+
     // Your known sizes
     const knownSizes = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', 'XXX-Large'];
 
 // Split the filters into sizes and tags
     const sizes = formattedFilters.filter(filter => knownSizes.includes(filter));
     const tags = formattedFilters.filter(filter => !knownSizes.includes(filter));
-
+    // console.log(initialProducts)
 // Filter products
     const filteredProducts = initialProducts.filter(product => {
         // Check sizes
@@ -144,7 +145,6 @@ export default function Search({ initialProducts, totalProductCount }) {
             filteredProducts.sort((a,b) => b.priceRange.minVariantPrice.amount - a.priceRange.minVariantPrice.amount);
             break;
         default:
-            filteredProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             break;
     }
 
@@ -222,6 +222,7 @@ export async function getServerSideProps(context) {
                 id
                 title
                 handle
+                tags
                 description
                 priceRange {
                   minVariantPrice {
@@ -297,6 +298,7 @@ async function ProductSearch(queryString, pageNumber = 1, productsPerPage = 60) 
                     id
                     title
                     handle
+                    tags
                     description
                     priceRange {
                         minVariantPrice {
