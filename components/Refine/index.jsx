@@ -38,7 +38,6 @@ const FilterMenu = () => {
             setFilterHistory([]);
         }
 
-        console.log('applied')
     };
     const applyFilters = async (filters) => {
         // Format the selected filters

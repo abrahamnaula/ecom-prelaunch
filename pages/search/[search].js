@@ -114,25 +114,7 @@ export default function Search({ initialProducts, totalProductCount }) {
     }, []);
     */
 
-    //Clear filters when going to another page:
-    useEffect(() => {
-        const handleRouteChange = () => {
-            setFormattedFilters([])
-            setFilterHistory([]);
-            setSelectedCategory(null);
-            setSelectedCollection(null);
-            setSelectedEra(null);
-            setSelectedSizes([]);
-            setFinalFilters([]);
-        }
 
-        router.events.on('routeChangeStart', handleRouteChange);
-
-        // Clean up the event listener when the component is unmounted
-        return () => {
-            router.events.off('routeChangeStart', handleRouteChange);
-        }
-    }, [router.events]);
 
 
     const handleSortSelect = (option) => {
