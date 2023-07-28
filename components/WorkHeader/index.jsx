@@ -7,11 +7,37 @@ import {useState} from "react";
 import Cart from "../Cart";
 import PopRefine from "../PopRefine";
 import {useRouter} from "next/router";
+import {useFilter} from "../FilterContext";
 export default function WorkHeader({onSortSelect}) {
     const router = useRouter();
     const [cartOpen, setCartOpen] = useState(false);
     const { cart } = useCart(); // Use the CartContext hook
     const showSortandRefine = router.pathname.startsWith('/testing') || router.pathname.startsWith('/search')
+    const {
+        selectedCategory, selectedCollection, selectedEra, selectedSizes,
+        selectedFilter, handleFilterClick, handleRemoveFilter, setSelectedFilter,
+        setSelectedCategory, setSelectedCollection, setSelectedEra,
+        setSelectedSizes, filterHistory, setFilterHistory, reference,
+        finalFilters, setFinalFilters, formattedFilters, setFormattedFilters
+    } = useFilter();
+
+    const handleClear = (event) => {
+        // stop the default navigation event
+        event.preventDefault();
+
+        setSelectedCategory(null);
+        setSelectedCollection(null);
+        setSelectedEra(null);
+        setSelectedSizes([]);
+        setFinalFilters([]);
+        setFormattedFilters([]);
+        setFilterHistory([]);
+
+        // manually navigate to the homepage
+        router.push('/');
+    };
+
+
     const handleNoRefine = (e) => {
         if(!showSortandRefine){
             alert('Nothing to \'refine\' while viewing a product.')
@@ -36,7 +62,7 @@ export default function WorkHeader({onSortSelect}) {
                                     sm:w-3/5 sm:text-xxs pl-2 border-b-2 border-black
                                     md:w-1/3
                                     pb-1.5">
-                        <Link href="/" passHref>
+                        <Link href="/" onClick={handleClear} passHref>
                             GRAY ERA
                         </Link>
                     </div>
