@@ -1,4 +1,4 @@
-import {useRouter} from "next/router";
+import {useRouter} from 'next/router';
 import {ArrowLeftIcon, ArrowRightIcon} from "@heroicons/react/20/solid";
 
 export default function Pagination({ currentPage, totalPages, productSize }) {
@@ -9,37 +9,31 @@ export default function Pagination({ currentPage, totalPages, productSize }) {
 
     if (productSize < productsPerPage) {
         // Current page is the last page
-        startPage = Math.max(1, currentPage - 1);
+        startPage = Math.max(1, currentPage - 2);
         endPage = currentPage; // Set endPage as the current page
     } else if (totalPages <= 3) {
         startPage = 1;
         endPage = totalPages;
     } else {
-        if (currentPage === 1) {
+        if (currentPage <= 3) {
+            // When current page is among the first three
             startPage = 1;
-            endPage = 3;
-        } else if (currentPage === totalPages) {
-            startPage = totalPages - 2;
+            endPage = Math.min(3, totalPages);  // Ensure endPage doesn't exceed totalPages
+        } else if (currentPage >= totalPages - 2) {
+            // When current page is the last page or among the last three
+            startPage = Math.max(1, totalPages - 2);  // Ensure startPage is not less than 1
             endPage = totalPages;
         } else {
-            startPage = currentPage - 1;
-            endPage = currentPage + 1;
+            // When current page is more than 3 and less than totalPages
+            startPage = currentPage - 2;
+            endPage = currentPage + 2;
         }
-    }
-
-
-    // Ensure the current page is always included in the pages array
-    if (!(startPage <= currentPage && currentPage <= endPage)) {
-        startPage = Math.max(1, currentPage - 2);
-        endPage = Math.min(totalPages, currentPage + 2);
     }
 
     let pages = Array.from({length: (endPage + 1) - startPage}, (_, i) => startPage + i);
 
-
     return (
         <div className="pagination flex justify-center items-center">
-
             <button
                 className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center p-2 
                             xs:mr-6 
