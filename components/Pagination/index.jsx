@@ -9,23 +9,24 @@ export default function Pagination({ currentPage, totalPages, productSize }) {
 
     if (productSize < productsPerPage) {
         // Current page is the last page
-        startPage = Math.max(1, currentPage - 2);
+        startPage = Math.max(1, currentPage - 1);
         endPage = currentPage; // Set endPage as the current page
-    } else if (totalPages <= 5) {
+    } else if (totalPages <= 3) {
         startPage = 1;
         endPage = totalPages;
     } else {
-        if (currentPage <= 3) {
+        if (currentPage === 1) {
             startPage = 1;
-            endPage = 5;
-        } else if (currentPage + 2 > totalPages) {
-            startPage = totalPages - 4;
+            endPage = 3;
+        } else if (currentPage === totalPages) {
+            startPage = totalPages - 2;
             endPage = totalPages;
         } else {
-            startPage = currentPage - 2;
-            endPage = currentPage + 2;
+            startPage = currentPage - 1;
+            endPage = currentPage + 1;
         }
     }
+
 
     // Ensure the current page is always included in the pages array
     if (!(startPage <= currentPage && currentPage <= endPage)) {
@@ -40,7 +41,9 @@ export default function Pagination({ currentPage, totalPages, productSize }) {
         <div className="pagination flex justify-center items-center">
 
             <button
-                className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center p-2 mr-6 ${currentPage === 1 ? 'bg-gray-500' : 'bg-black'}`}
+                className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center p-2 
+                            xs:mr-6 
+                            mg:mr-2 ${currentPage === 1 ? 'bg-gray-500' : 'bg-black'}`}
                 onClick={() => router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage - 1 } })}
                 disabled={currentPage === 1}
             >
@@ -51,7 +54,9 @@ export default function Pagination({ currentPage, totalPages, productSize }) {
             {pages.map(page => (
                 <button
                     key={page}
-                    className={`font-nhg font-medium text-black text-xxs sm:text-xs mx-3 px-2 py-1 ${currentPage === page ? 'bg-gray-400' : ''}`}
+                    className={`font-nhg font-medium text-black text-xxs sm:text-xs 
+                                mg:mx-1.5 xs:mx-3 px-2 py-1 
+                                ${currentPage === page ? 'bg-gray-400' : ''}`}
                     onClick={() => router.push({ pathname: router.pathname, query: { ...router.query, page: page } })}
                 >
                     {page}
@@ -59,7 +64,11 @@ export default function Pagination({ currentPage, totalPages, productSize }) {
             ))}
 
             <button
-                className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center ml-6 p-2 ${currentPage === totalPages || productSize < productsPerPage ? 'bg-gray-500' : 'bg-black'}`}
+                className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center 
+                            xs:ml-6 
+                            p-2 
+                            mg:ml-2
+                            ${currentPage === totalPages || productSize < productsPerPage ? 'bg-gray-500' : 'bg-black'}`}
                 onClick={() => {
                     if(productSize === productsPerPage) {
                         router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage + 1 } })
