@@ -24,14 +24,8 @@ export default function CheckoutButton() {
             // Redirect the user to the Shopify provided checkout page
             window.location.href = checkout.webUrl;
 
-            // Move the cart clearing logic to a callback function that is triggered after successful checkout
-            const handleSuccessfulCheckout = () => {
-                // Clear the cart after successful checkout
-                clearCart();
-            };
-
-            // Add an event listener to the window object to detect when the checkout is completed
-            window.addEventListener('shopify:checkout_complete', handleSuccessfulCheckout);
+            // Clear the cart after successful redirection
+            clearCart();
         } catch (error) {
             console.error('Checkout error:', error);
             // Handle any errors that occur during the checkout process
@@ -48,3 +42,4 @@ export default function CheckoutButton() {
         </a>
     );
 }
+
