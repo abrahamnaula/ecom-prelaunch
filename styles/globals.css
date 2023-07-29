@@ -33,12 +33,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-/*
-With these settings, 'Neue Haas Grotesk' will render with the correct font file based on the font-weight specified. In this cas
-font-weight: 700; (font weight for Bold) will use NHaasGroteskTXPro-75Bd.ttf,
-font-weight: 500; (font weight for Medium) will use NHaasGroteskTXPro-65Md.ttf,
-font-weight: 400; (font weight for Regular) will use NHaasGroteskTXPro-55Rg.ttf.
-*/
+
 @font-face {
   font-family: 'Neue Haas Grotesk';
   src: url('../public/fonts/NHaasGroteskTXPro-75Bd.ttf') format('truetype');
@@ -73,61 +68,3 @@ font-weight: 400; (font weight for Regular) will use NHaasGroteskTXPro-55Rg.ttf.
   src: url("../public/fonts/NeueHaasGrotDisp-65Medium.otf") format("opentype");
 }
 
-
-.screen a {
-  display: contents;
-  text-decoration: none;
-}
-
-.container-center-horizontal {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  pointer-events: none;
-  width: 100%;
-}
-
-.container-center-horizontal > * {
-  flex-shrink: 0;
-  pointer-events: auto;
-}
-
-.valign-text-middle {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.i-nstagram {
-  height: 31px;
-  left: 832px;
-  letter-spacing: 0.56px;
-  line-height: normal;
-  position: absolute;
-  top: 48px;
-  width: 128px;
-}
-
-.tiktok {
-  height: 31px;
-  left: 960px;
-  letter-spacing: 0.56px;
-  line-height: normal;
-  position: absolute;
-  top: 48px;
-  width: 128px;
-}
-
-.about-contact-ship {
-  height: 127px;
-  left: 35px;
-  letter-spacing: 0.56px;
-  line-height: normal;
-  position: absolute;
-  top: 0;
-  width: 252px;
-}
