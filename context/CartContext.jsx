@@ -58,7 +58,6 @@ export const CartProvider = ({ children }) => {
                 console.error("Invalid item found in cart", item);
             }
         });
-        console.log('Calculated subtotal:', subtotal);
         return subtotal;
     };
 

@@ -124,9 +124,7 @@ const FilterMenu = () => {
             ["XX-LARGE", "XX-Large"],
             ["XXX-LARGE", "XXX-Large"]
         ]);
-        useEffect(() => {
-            console.log("Formatted Filters:", formattedFilters);
-        }, [formattedFilters]);
+
 
         return (
             <div className="pl-2 text-black py-1">
