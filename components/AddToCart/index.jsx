@@ -6,7 +6,6 @@ export default function AddToCart({ product, onClick }) {
     const isProductInCart = cart.some(item => item.id === product.id);
     const handleAddToCart = () => {
         const variantId = product.variants.edges[0].node.id;
-        // console.log(variantId)
         addToCart({ variantId, ...product });
     };
     const buttonClassName = isProductInCart || !sellable ? 'bg-gray-500 cursor-default' : '';
