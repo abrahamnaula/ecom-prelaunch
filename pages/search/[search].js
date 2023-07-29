@@ -204,7 +204,6 @@ export default function Search({ initialProducts, totalProductCount }) {
                 {error || products.length === 0 ?
                     <div className="flex items-center justify-center">
                         <NoProducts />
-                        <p className="font-nhg text-xs p-5">ERROR: NO PRODUCTS</p>
                     </div>
                     :
                     <div className="flex-grow">
