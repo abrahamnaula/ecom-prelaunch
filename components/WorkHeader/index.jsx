@@ -12,7 +12,7 @@ export default function WorkHeader({onSortSelect}) {
     const router = useRouter();
     const [cartOpen, setCartOpen] = useState(false);
     const { cart } = useCart(); // Use the CartContext hook
-    const showSortandRefine = router.pathname.startsWith('/testing') || router.pathname.startsWith('/search')
+    const showSortandRefine = router.pathname.startsWith('/shop') || router.pathname.startsWith('/search')
     const {
         setSelectedCategory, setSelectedCollection, setSelectedEra,
         setSelectedSizes, setFilterHistory, setFinalFilters, setFormattedFilters
@@ -82,7 +82,7 @@ export default function WorkHeader({onSortSelect}) {
             </div>
             <div className="flex-grow text-xxs font-nhg font-medium text-black flex justify-center items-center">
                 <div className="flex">
-                    <MyLink href="/testing/shop-all">SHOP ALL</MyLink>
+                    <MyLink href="/shop/shop-all">SHOP ALL</MyLink>
                 </div>
             </div>
 

@@ -78,7 +78,7 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
         if (["COLLECTIONS", "CATEGORIES", "BY ERA"].includes(title)) {
             setSelectedCard(isSelected ? null : title);
         } else {
-            router.push(`/testing/${title.toLowerCase().replace(/\s+/g, '-')}`);
+            router.push(`/shop/${title.toLowerCase().replace(/\s+/g, '-')}`);
         }
     };
 
@@ -139,7 +139,7 @@ export default function CollectionMenuCard({ title, image, animationClass, isSel
                                     key={index}
                                     className="font-nhg font-medium tracking-wide text-xxs sm:text-xl mb-8 sm:mb-10 cursor-pointer"
                                 >
-                                    <Link href={`/testing/${item.toLowerCase().replace(/[\s,&]+/g, '-')}`}>
+                                    <Link href={`/shop/${item.toLowerCase().replace(/[\s,&]+/g, '-')}`}>
                                     {item}
                                     </Link>
                                 </li>
