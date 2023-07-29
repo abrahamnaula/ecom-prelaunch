@@ -113,10 +113,6 @@ export default function Search({ initialProducts, totalProductCount }) {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
     */
-
-
-
-
     const handleSortSelect = (option) => {
         setSortOption(option);
     }
@@ -175,17 +171,29 @@ export default function Search({ initialProducts, totalProductCount }) {
         return(
             <div className="flex flex-col min-h-screen bg-bebe">
                 <div className="fixed w-full top-0 z-50">
-                    <WorkHeader onSortSelect={handleSortSelect}/>
+                    <WorkHeader />
                 </div>
                 <div className="h-16"></div>
                 <main className="flex-grow flex justify-center items-center">
-                    <NoProducts/>
+                    <div className="flex fixed">
+                        <div className="flex justify-center items-center">
+                            <NoProducts/>
+                        </div>
+                    </div>
                 </main>
+                <div className="flex justify-center w-full mb-36">
+                    <Pagination
+                        productSize={productSize}
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        setCurrentPage={goToPage}
+                        hasNextPage={currentPage < totalPages && productSize === productsPerPage}
+                    />
+                </div>
                 <NewFooter />
             </div>
         )
     }
-    // console.log('Date ', filteredProducts[0]?.createdAt)
     return (
         <div className="flex flex-col min-h-screen bg-bebe">
             <div className="fixed w-full top-0 z-50">
@@ -196,8 +204,8 @@ export default function Search({ initialProducts, totalProductCount }) {
                 {error || products.length === 0 ?
                     <div className="flex items-center justify-center">
                         <NoProducts />
+                        <p className="font-nhg text-xs p-5">ERROR: NO PRODUCTS</p>
                     </div>
-
                     :
                     <div className="flex-grow">
                         <ProductList3 products={filteredProducts} />
