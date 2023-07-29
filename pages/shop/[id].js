@@ -7,8 +7,6 @@ import ProductCard from "../../components/Products/ProductCard";
 import NoProducts from "../../components/NoProducts";
 import {useEffect, useState} from "react";
 import {getProductsCount} from "../../lib/shopify";
-import { ArrowLeftIcon } from "@heroicons/react/20/solid";
-import {ArrowRightIcon} from "@heroicons/react/20/solid";
 import Loading from "../../components/Loading";
 import Pagination from "../../components/Pagination";
 function ProductList3({ products }) {
@@ -23,9 +21,6 @@ function ProductList3({ products }) {
         </div>
     );
 }
-//Pagination Component
-
-
 const productsPerPage = 60
 export default function Collection({ initialProducts, hasNextPage, totalProductCount }) {
     const router = useRouter();
@@ -39,7 +34,6 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
     if(totalProductCount % productsPerPage !== 0 && totalProductCount > productsPerPage){
         totalPages += 1;
     }
-
     useEffect(() => {
         if (router.query.page) {
             setCurrentPage(parseInt(router.query.page));
@@ -47,7 +41,6 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
             setCurrentPage(1);
         }
     }, [router.query.page]);
-
     useEffect(() => {
         // Restore scroll position on component mount
         const savedScrollPosition = sessionStorage.getItem('scrollPosition');
@@ -59,22 +52,18 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
                 //console.log('Scrolled to:', savedScrollPosition);
             });
         }
-
         // Save scroll position on route change start
         const handleRouteChange = (url) => {
             //console.log('Route change started, scroll position:', window.scrollY);
             sessionStorage.setItem('scrollPosition', window.scrollY);
             sessionStorage.setItem('previousPath', url);
         };
-
         router.events.on('routeChangeStart', handleRouteChange);
-
         // Clean up
         return () => {
             router.events.off('routeChangeStart', handleRouteChange);
         };
     }, []);
-
     const handleSortSelect = (option) => {
         setSortOption(option);
     }
@@ -102,7 +91,6 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
 
         return sizeMatch && tagMatch;
     });
-
     switch (sortOption) {
         case 'DATE, OLD TO NEW':
             filteredProducts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
@@ -123,20 +111,15 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
         default:
             break;
     }
-
     if (router.isFallback) {
         return <Loading/>;
     }
-
-
-    //PAGINATION
+    //GO TO PAGE FOR PAGINATION
     const goToPage = (page) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
         }
     };
-
-    //console.log(totalPages)
     //NO PRODUCTS
     if (!filteredProducts || filteredProducts.length === 0) {
         return(
@@ -146,13 +129,25 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
                 </div>
                 <div className="h-16"></div>
                 <main className="flex-grow flex justify-center items-center">
-                    <NoProducts/>
+                    <div className="flex fixed">
+                        <div className="flex justify-center items-center">
+                            <NoProducts/>
+                        </div>
+                    </div>
                 </main>
+                <div className="flex justify-center w-full mb-36">
+                    <Pagination
+                        productSize={productSize}
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        setCurrentPage={goToPage}
+                        hasNextPage={currentPage < totalPages && productSize === productsPerPage}
+                    />
+                </div>
                 <NewFooter />
             </div>
         )
     }
-
     return (
         <div className="flex flex-col min-h-screen bg-bebe">
             <div className="fixed w-full top-0 z-50">
