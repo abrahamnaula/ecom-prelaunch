@@ -175,6 +175,7 @@ export async function getServerSideProps(context) {
     const { id, page } = context.query;
     const productsPerPage = 60;
     const pageNumber = parseInt(page) || 1;  // set page number to 1 if it's not defined
+    const chunkNumber = Math.ceil(pageNumber / 4);  // calculate chunk number
 
     const query = `
         query ($title: String!, $first: Int!) {
@@ -221,9 +222,11 @@ export async function getServerSideProps(context) {
         }
     `;
 
+    const productsToLoad = Math.min(chunkNumber * 240, 250);  // calculate number of products to load
+
     const { data } = await ParamShopifyData(query, {
         title: id,
-        first: productsPerPage * pageNumber
+        first: productsToLoad
     });
 
     const totalProductCount = await getProductsCount();
@@ -242,7 +245,8 @@ export async function getServerSideProps(context) {
     });
 
     // Use .slice() to only send the products for the current page to the client
-    const paginatedProducts = initialProducts.slice((pageNumber - 1) * productsPerPage, pageNumber * productsPerPage);
+    const offset = (chunkNumber - 1) * 240;  // calculate offset for slicing
+    const paginatedProducts = initialProducts.slice(offset + (pageNumber - 1) * productsPerPage, offset + pageNumber * productsPerPage);
 
     return {
         props: {
@@ -253,3 +257,4 @@ export async function getServerSideProps(context) {
         },
     };
 }
+
