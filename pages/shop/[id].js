@@ -22,8 +22,11 @@ function ProductList3({ products }) {
     );
 }
 const productsPerPage = 60
-export default function Collection({ initialProducts, hasNextPage, totalProductCount }) {
+export default function Collection({ initialProducts, hasNextPage, totalProductCount, cursors }) {
     const router = useRouter();
+
+    const [cursorsState, setCursorsState] = useState(cursors || []);
+
     const { formattedFilters, setFormattedFilters, setFilterHistory,
         setSelectedCategory, setSelectedCollection, setSelectedEra,
         setSelectedSizes, setFinalFilters} = useFilter();
@@ -115,11 +118,19 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
         return <Loading/>;
     }
     //GO TO PAGE FOR PAGINATION
+    // Instead of getting cursors from router.query, get it from props
     const goToPage = (page) => {
         if (page >= 1 && page <= totalPages) {
+            const cursorsString = encodeURIComponent(JSON.stringify(cursorsState));
             setCurrentPage(page);
+            router.push(`/shop/${id}?page=${page}&cursors=${cursorsString}`);
         }
     };
+    useEffect(() => {
+        setCursorsState(cursors);
+    }, [cursors]);
+
+
     //NO PRODUCTS
     if (!filteredProducts || filteredProducts.length === 0) {
         return(
@@ -140,9 +151,11 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
                         productSize={productSize}
                         currentPage={currentPage}
                         totalPages={totalPages}
-                        setCurrentPage={goToPage}
+                        setCurrentPage={(page) => goToPage(page, cursorsState)}
                         hasNextPage={currentPage < totalPages && productSize === productsPerPage}
                     />
+
+
                 </div>
                 <NewFooter />
             </div>
@@ -162,9 +175,11 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
                         productSize={productSize}
                         currentPage={currentPage}
                         totalPages={totalPages}
-                        setCurrentPage={goToPage}
+                        setCurrentPage={(page) => goToPage(page, cursorsState)}
                         hasNextPage={currentPage < totalPages && productSize === productsPerPage}
                     />
+
+
                 </div>
             </main>
             <NewFooter />
@@ -172,61 +187,62 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
     );
 }
 export async function getServerSideProps(context) {
-    const { id, page } = context.query;
+    const { id, page, cursors: cursorsString } = context.query;
     const productsPerPage = 60;
-    const pageNumber = parseInt(page) || 1;  // set page number to 1 if it's not defined
-    const chunkNumber = Math.ceil(pageNumber / 4);  // calculate chunk number
+    const pageNumber = parseInt(page) || 1;
+
+    // Load the cursors from query parameters
+    let cursors = cursorsString ? JSON.parse(decodeURIComponent(cursorsString)) : [];
 
     const query = `
-        query ($title: String!, $first: Int!) {
-          collection(handle: $title) {
-            id
-            title
-            handle
-            products(first: $first) {
-              pageInfo {
-                hasNextPage
-              }
-              edges {
-                cursor
-                node {
-                  id
-                  title
-                  handle
-                  tags
-                  images(first: 1) {
-                    edges {
-                      node {
-                        altText
-                        url
-                      }
-                    }
+    query ($title: String!, $first: Int!, $after: String) {
+      collection(handle: $title) {
+        id
+        title
+        handle
+        products(first: $first, after: $after) {
+          pageInfo {
+            hasNextPage
+          }
+          edges {
+            cursor
+            node {
+              id
+              title
+              handle
+              tags
+              images(first: 1) {
+                edges {
+                  node {
+                    altText
+                    url
                   }
-                  priceRange {
-                    minVariantPrice {
-                      amount
-                    }
-                  }
-                  variants(first: 1) {
-                    edges {
-                      node {
-                        title
-                      }
-                    }
-                  }
-                  createdAt
                 }
               }
+              priceRange {
+                minVariantPrice {
+                  amount
+                }
+              }
+              variants(first: 1) {
+                edges {
+                  node {
+                    title
+                  }
+                }
+              }
+              createdAt
             }
           }
         }
-    `;
-
-    const productsToLoad = Math.min(chunkNumber * 240, 250);  // calculate number of products to load
+      }
+    }
+`;
 
     const { data } = await ParamShopifyData(query, {
         title: id,
-        first: productsToLoad
+        first: productsPerPage,
+        after: cursors[pageNumber - 2]
     });
 
     const totalProductCount = await getProductsCount();
@@ -244,17 +260,20 @@ export async function getServerSideProps(context) {
         };
     });
 
-    // Use .slice() to only send the products for the current page to the client
-    const offset = (chunkNumber - 1) * 240;  // calculate offset for slicing
-    const paginatedProducts = initialProducts.slice(offset + (pageNumber - 1) * productsPerPage, offset + pageNumber * productsPerPage);
+    // Store the cursor of the last product for the next page
+    cursors[pageNumber - 1] = data.collection.products.edges[data.collection.products.edges.length - 1].cursor;
 
     return {
         props: {
-            initialProducts: paginatedProducts,
+            initialProducts,
             hasNextPage: data.collection.products.pageInfo.hasNextPage,
             collectionName: data.collection.title,
             totalProductCount,
+            cursors: cursors, // pass the updated cursors array as a prop
         },
     };
 }
+
+
+
 
