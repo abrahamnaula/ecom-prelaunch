@@ -257,4 +257,4 @@ export async function getServerSideProps(context) {
         },
     };
 }
-
+//bandaid
