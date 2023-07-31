@@ -24,26 +24,12 @@ function ProductList3({ products }) {
 const productsPerPage = 60
 export default function Collection({ initialProducts, hasNextPage, totalProductCount, cursors }) {
     const router = useRouter();
-
-    const [cursorsState, setCursorsState] = useState(cursors || []);
-
     const { formattedFilters, setFormattedFilters, setFilterHistory,
         setSelectedCategory, setSelectedCollection, setSelectedEra,
         setSelectedSizes, setFinalFilters} = useFilter();
     const [sortOption, setSortOption] = useState(null);
-    const [currentPage, setCurrentPage] = useState(() => parseInt(router.query.page) || 1)
-    const productSize = Object.keys(initialProducts).length;
-    let totalPages = Math.floor(totalProductCount / productsPerPage);
-    if(totalProductCount % productsPerPage !== 0 && totalProductCount > productsPerPage){
-        totalPages += 1;
-    }
-    useEffect(() => {
-        if (router.query.page) {
-            setCurrentPage(parseInt(router.query.page));
-        } else {
-            setCurrentPage(1);
-        }
-    }, [router.query.page]);
+
+
     useEffect(() => {
         // Restore scroll position on component mount
         const savedScrollPosition = sessionStorage.getItem('scrollPosition');
@@ -114,6 +100,7 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
         default:
             break;
     }
+
     if (router.isFallback) {
         return <Loading/>;
     }
@@ -126,10 +113,6 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
             router.push(`/shop/${id}?page=${page}&cursors=${cursorsString}`);
         }
     };
-    useEffect(() => {
-        setCursorsState(cursors);
-    }, [cursors]);
-
 
     //NO PRODUCTS
     if (!filteredProducts || filteredProducts.length === 0) {
@@ -200,7 +183,7 @@ export async function getServerSideProps(context) {
         id
         title
         handle
-        products(first: $first, after: $after) {
+        products(first: 250) {
           pageInfo {
             hasNextPage
           }
