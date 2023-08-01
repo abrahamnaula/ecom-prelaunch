@@ -1,61 +1,16 @@
 import { useEffect, useState } from "react";
-import {getCollectionId, getCollectionProductCount, ParamShopifyData} from "../../lib/shopify";
-import ProductCard from "../../components/Products/ProductCard";
+import {getCollectionCursors, getCollectionId, getCollectionProductCount, ParamShopifyData} from "../../lib/shopify";
 import {useRouter} from "next/router";
 import WorkHeader from "../../components/WorkHeader";
 import {useFilter} from "../../components/FilterContext";
-import {ArrowLeftIcon, ArrowRightIcon} from "@heroicons/react/20/solid";
-function ProductList3({ products }) {
-    return (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
-            {products.map((product, index) => (
-                <ProductCard
-                    key={product.id}
-                    product={product}
-                />
-            ))}
-        </div>
-    );
-}
-function Paginate({ productCount, cursorIndex, cursors, products, handlePrevClick, handleNextClick }) {
-    const totalNumPages = Math.ceil(productCount / 200);
-    const startPage = Math.max(cursorIndex, 1);
-    const endPage = Math.min(startPage + 2, totalNumPages);
+import Paginate from "../../components/Paginate";
+import ProductList3 from "../../components/Products/ProductList3";
+const MAX = 200;
 
-    return (
-        <div className="flex justify-center items-center">
-            <button className="font-nhg font-medium text-bebe bg-black text-xxs sm:text-xs flex justify-center items-center p-2"
-                    onClick={handlePrevClick} disabled={cursorIndex <= 0}>
-                <ArrowLeftIcon className="text-bebe h-4"/>
-                PREVIOUS
-            </button>
-            {[...Array(endPage - startPage + 1)].map((_, i) => {
-                const pageNumber = startPage + i;
-                return (
-                    <button key={pageNumber}
-                            className={`font-nhg font-medium text-black text-xxs sm:text-xs 
-                                         flex justify-center items-center  
-                                          mg:mx-1.5 xs:mx-3 px-2 py-1
-                                         ${pageNumber === cursorIndex+1 ? 'bg-gray-400' : ''}`}
-                            onClick={() => { if (pageNumber !== cursorIndex) { fetchProducts(pageNumber - 1); setCursorIndex(pageNumber - 1); } }}
-                            disabled={pageNumber === cursorIndex}>
-                        {pageNumber}
-                    </button>
-                );
-            })}
-            <button className="font-nhg font-medium bg-black text-bebe text-xxs sm:text-xs flex justify-center items-center p-2"
-                    onClick={handleNextClick}
-                    disabled={(cursorIndex >= cursors.length - 1) || (products.length < 200)}>
-                NEXT
-                <ArrowRightIcon className="text-bebe h-4"/>
-            </button>
-        </div>
-    );
-}
-export default function CopyShop({ productCount } ) {
-    console.log('Product COUNT: ', productCount)
+export default function CopyShop({ productCount, cursors: initialCursors } ) {
+    //console.log('Product COUNT: ', productCount)
     const [products, setProducts] = useState([]);
-    const [cursors, setCursors] = useState([null]); // Initialized with null as the first element
+    const [cursors] = useState([null, ...initialCursors]); // Initialized with null as the first element
     const [cursorIndex, setCursorIndex] = useState(0);
     const router = useRouter();
     const { formattedFilters } = useFilter();
@@ -83,59 +38,59 @@ export default function CopyShop({ productCount } ) {
         const cursor = cursors[cursorIndex];
         //console.log(`Fetching products with cursor: ${cursor}`);
         const handle = router.query.id; // Get the handle from the URL parameters
-        console.log('Handle: ', handle)
+        //console.log('Handle: ', handle)
         const query = `
-      query{
-          collection(handle: "${handle}") {
-            id
-            title
-            handle
-            products(first: 200, after: ${cursor ? `"${cursor}"` : null}) {
-              pageInfo {
-                hasNextPage
-              }
-              edges {
-                cursor
-                node {
-                  id
-                  title
-                  handle
-                  tags
-                  images(first: 1) {
-                    edges {
-                      node {
-                        altText
-                        url
+          query{
+              collection(handle: "${handle}") {
+                id
+                title
+                handle
+                products(first: 200, after: ${cursor ? `"${cursor}"` : null}) {
+                  pageInfo {
+                    hasNextPage
+                  }
+                  edges {
+                    cursor
+                    node {
+                      id
+                      title
+                      handle
+                      tags
+                      images(first: 1) {
+                        edges {
+                          node {
+                            altText
+                            url
+                          }
+                        }
                       }
-                    }
-                  }
-                  priceRange {
-                    minVariantPrice {
-                      amount
-                    }
-                  }
-                  variants(first: 1) {
-                    edges {
-                      node {
-                        title
+                      priceRange {
+                        minVariantPrice {
+                          amount
+                        }
                       }
+                      variants(first: 1) {
+                        edges {
+                          node {
+                            title
+                          }
+                        }
+                      }
+                      createdAt
                     }
                   }
-                  createdAt
                 }
               }
-            }
           }
-      }
-    `;
+        `;
         try {
             const data = await ParamShopifyData(query);
 
             if (data && data.data && data.data.collection && data.data.collection.products && data.data.collection.products.edges.length > 0) {
                 const newProducts = data.data.collection.products.edges.map(({ node }) => node);
                 setProducts(newProducts);
-                const newCursor = data.data.collection.products.edges[data.data.collection.products.edges.length - 1].cursor;
-                setCursors([...cursors, newCursor]);
+                // const newCursor = data.data.collection.products.edges[data.data.collection.products.edges.length - 1].cursor;
+                // setCursors([...cursors, newCursor]);
             } else {
                 console.log("No products found in the Shopify response.");
                 return;
@@ -147,7 +102,7 @@ export default function CopyShop({ productCount } ) {
     };
     const handleNextClick = () => {
         //ALSO add when we are at the last page...
-        if(products.length === 200) {
+        if(products.length === MAX) {
             fetchProducts(cursorIndex + 1);
             setCursorIndex(cursorIndex + 1);
         }
@@ -194,7 +149,7 @@ export default function CopyShop({ productCount } ) {
             </div>
             <div className="h-8.5 mg:h-[61px] sm:h-[60px]"/>
             <main className="flex-grow">
-                <Paginate productCount={productCount} cursorIndex={cursorIndex}
+                <Paginate MAX={MAX} productCount={productCount} cursorIndex={cursorIndex}
                           cursors={cursors} products={products}
                           handlePrevClick={handlePrevClick}
                           handleNextClick={handleNextClick} />
@@ -212,18 +167,22 @@ export async function getServerSideProps(context) {
     try {
         const collectionId = await getCollectionId(id);
         const productCount = await getCollectionProductCount(collectionId);
-
+        const cursors = await getCollectionCursors(id);
+        //console.log(cursors)
+        //console.log(productCount)
         return {
             props: {
                 productCount,
+                cursors,
             },
         };
     } catch (error) {
         // handle error
-        console.error(error);
+        console.error('Error in SSR Function on copy-shop.js: ', error);
         return {
             notFound: true,
         };
     }
 }
+
 
