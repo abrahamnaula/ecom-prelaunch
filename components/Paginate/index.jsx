@@ -7,9 +7,11 @@ export default function Paginate({ MAX, productCount, cursorIndex, cursors, prod
 
     return (
         <div className="flex justify-center items-center my-2">
-            <button className="font-nhg font-medium text-bebe bg-black text-xxs sm:text-xs flex justify-center items-center p-2"
-                    onClick={handlePrevClick} disabled={cursorIndex <= 0}>
-                <ArrowLeftIcon className="text-bebe h-4"/>
+            <button className={`font-nhg font-medium text-xxs sm:text-xs flex justify-center items-center p-2 
+                ${cursorIndex <= 0 ? "text-black bg-gray-500" : "text-bebe bg-black"}`}
+                    onClick={handlePrevClick}
+                    disabled={cursorIndex <= 0}>
+                <ArrowLeftIcon className="h-4"/>
                 PREVIOUS
             </button>
             {[...Array(endPage - startPage + 1)].map((_, i) => {
@@ -26,11 +28,12 @@ export default function Paginate({ MAX, productCount, cursorIndex, cursors, prod
                     </button>
                 );
             })}
-            <button className="font-nhg font-medium bg-black text-bebe text-xxs sm:text-xs flex justify-center items-center p-2"
+            <button className={`font-nhg font-medium text-xxs sm:text-xs flex justify-center items-center p-2 
+                ${(cursorIndex >= cursors.length - 1) || (products.length < MAX) ? "text-black bg-gray-500" : "text-bebe bg-black"}`}
                     onClick={handleNextClick}
                     disabled={(cursorIndex >= cursors.length - 1) || (products.length < MAX)}>
                 NEXT
-                <ArrowRightIcon className="text-bebe h-4"/>
+                <ArrowRightIcon className="h-4"/>
             </button>
         </div>
     );
