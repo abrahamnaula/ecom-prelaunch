@@ -24,6 +24,29 @@ export default function Collection({ productCount, cursors: initialCursors } ) {
     const sizes = formattedFilters.filter(filter => knownSizes.includes(filter));
     const tags = formattedFilters.filter(filter => !knownSizes.includes(filter));
     useEffect(() => {
+        // Restore scroll position on component mount
+        const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+        const previousPath = sessionStorage.getItem('previousPath');
+
+        if (previousPath && previousPath.startsWith('/products') && savedScrollPosition) {
+            window.requestAnimationFrame(() => {
+                window.scrollTo(0, parseInt(savedScrollPosition));
+                console.log('Scrolled to:', savedScrollPosition);
+            });
+        }
+        // Save scroll position on route change start
+        const handleRouteChange = (url) => {
+            console.log('Route change started, scroll position:', window.scrollY);
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+            sessionStorage.setItem('previousPath', url);
+        };
+        router.events.on('routeChangeStart', handleRouteChange);
+        // Clean up
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChange);
+        };
+    }, []);
+    useEffect(() => {
         const currentPage = parseInt(router.query.page) || 0;
         setCursorIndex(currentPage);
         fetchProducts(currentPage);
