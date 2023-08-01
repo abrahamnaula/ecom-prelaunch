@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { ParamShopifyData } from "../../lib/shopify";
+import {getCollectionId, getCollectionProductCount, ParamShopifyData} from "../../lib/shopify";
 import ProductCard from "../../components/Products/ProductCard";
 import {useRouter} from "next/router";
 import WorkHeader from "../../components/WorkHeader";
 import {useFilter} from "../../components/FilterContext";
-
+import {ArrowLeftIcon} from "@heroicons/react/20/solid";
 function ProductList3({ products }) {
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-0">
@@ -17,7 +17,8 @@ function ProductList3({ products }) {
         </div>
     );
 }
-export default function CopyShop() {
+export default function CopyShop({ productCount } ) {
+    //console.log('Product COUNT: ', productCount)
     const [products, setProducts] = useState([]);
     const [cursors, setCursors] = useState([null]); // Initialized with null as the first element
     const [cursorIndex, setCursorIndex] = useState(0);
@@ -54,7 +55,7 @@ export default function CopyShop() {
             id
             title
             handle
-            products(first: 90, after: ${cursor ? `"${cursor}"` : null}) {
+            products(first: 200, after: ${cursor ? `"${cursor}"` : null}) {
               pageInfo {
                 hasNextPage
               }
@@ -100,7 +101,6 @@ export default function CopyShop() {
                 setProducts(newProducts);
                 const newCursor = data.data.collection.products.edges[data.data.collection.products.edges.length - 1].cursor;
                 setCursors([...cursors, newCursor]);
-                console.log("Shopify Products:", newProducts);
             } else {
                 console.log("No products found in the Shopify response.");
                 return;
@@ -112,7 +112,7 @@ export default function CopyShop() {
     };
     const handleNextClick = () => {
         //ALSO add when we are at the last page...
-        if(products.length === 90) {
+        if(products.length === 200) {
             fetchProducts(cursorIndex + 1);
             setCursorIndex(cursorIndex + 1);
         }
@@ -159,15 +159,22 @@ export default function CopyShop() {
             </div>
             <div className="h-8.5 mg:h-[61px] sm:h-[60px]"/>
             <main className="flex-grow">
-                <button className="bg-white text-black" onClick={handlePrevClick} disabled={cursorIndex <= 0}>
-                    PREVIOUS
-                </button>
-                <div className="w-20"></div>
-                <button className="bg-white text-black"
-                        onClick={handleNextClick}
-                        disabled={(cursorIndex >= cursors.length - 1) || (products.length < 90)}>
-                    NEXT
-                </button>
+                <div className="flex justify-center items-center">
+                    <button className="font-nhg font-medium text-bebe bg-black
+                                       text-xxs sm:text-xs flex justify-center items-center
+                                       p-2"
+                            onClick={handlePrevClick} disabled={cursorIndex <= 0}>
+                        <ArrowLeftIcon className="text-bebe h-4"/>
+                        PREVIOUS
+                    </button>
+                    <div className="w-20"></div>
+                    <button className="bg-white text-black"
+                            onClick={handleNextClick}
+                            disabled={(cursorIndex >= cursors.length - 1) || (products.length < 200)}>
+                        NEXT
+                    </button>
+                </div>
+
                 {filteredProducts.length > 0 && (
                     <ProductList3 products={filteredProducts} />
                 )}
@@ -175,3 +182,24 @@ export default function CopyShop() {
         </div>
     );
 }
+
+export async function getServerSideProps(context) {
+    const {id} = context.params
+    try {
+        const collectionId = await getCollectionId(id);
+        const productCount = await getCollectionProductCount(collectionId);
+
+        return {
+            props: {
+                productCount,
+            },
+        };
+    } catch (error) {
+        // handle error
+        console.error(error);
+        return {
+            notFound: true,
+        };
+    }
+}
+
