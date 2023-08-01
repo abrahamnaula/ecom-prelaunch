@@ -5,6 +5,8 @@ import WorkHeader from "../../components/WorkHeader";
 import {useFilter} from "../../components/FilterContext";
 import Paginate from "../../components/Paginate";
 import ProductList3 from "../../components/Products/ProductList3";
+import NewFooter from "../../components/NewFooter";
+import NoProducts from "../../components/NoProducts";
 const MAX = 200;
 
 export default function CopyShop({ productCount, cursors: initialCursors } ) {
@@ -105,12 +107,14 @@ export default function CopyShop({ productCount, cursors: initialCursors } ) {
         if(products.length === MAX) {
             fetchProducts(cursorIndex + 1);
             setCursorIndex(cursorIndex + 1);
+            window.scrollTo(0,0)
         }
     };
     const handlePrevClick = () => {
         if (cursorIndex > 0) {
             fetchProducts(cursorIndex - 1);
             setCursorIndex(cursorIndex - 1);
+            window.scrollTo(0,0)
         }
     };
     const filteredProducts = products.filter(product => {
@@ -149,15 +153,19 @@ export default function CopyShop({ productCount, cursors: initialCursors } ) {
             </div>
             <div className="h-8.5 mg:h-[61px] sm:h-[60px]"/>
             <main className="flex-grow">
-                <Paginate MAX={MAX} productCount={productCount} cursorIndex={cursorIndex}
-                          cursors={cursors} products={products}
-                          handlePrevClick={handlePrevClick}
-                          handleNextClick={handleNextClick} />
-
-                {filteredProducts.length > 0 && (
+                {filteredProducts.length > 0 ? (
                     <ProductList3 products={filteredProducts} />
+                ) : (
+                    <NoProducts/>
                 )}
+
             </main>
+            <Paginate MAX={MAX} productCount={productCount}
+                      cursorIndex={cursorIndex}
+                      cursors={cursors} products={products}
+                      handlePrevClick={handlePrevClick}
+                      handleNextClick={handleNextClick} />
+            <NewFooter />
         </div>
     );
 }
