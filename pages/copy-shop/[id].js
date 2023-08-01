@@ -23,6 +23,10 @@ export default function CopyShop() {
     const [cursorIndex, setCursorIndex] = useState(0);
     const router = useRouter();
     const { formattedFilters } = useFilter();
+    const [sortOption, setSortOption] = useState(null);
+    const handleSortSelect = (option) => {
+        setSortOption(option);
+    }
     const knownSizes = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', 'XXX-Large'];
     const sizes = formattedFilters.filter(filter => knownSizes.includes(filter));
     const tags = formattedFilters.filter(filter => !knownSizes.includes(filter));
@@ -42,7 +46,6 @@ export default function CopyShop() {
     const fetchProducts = async (cursorIndex) => {
         const cursor = cursors[cursorIndex];
         //console.log(`Fetching products with cursor: ${cursor}`);
-
         const handle = router.query.id; // Get the handle from the URL parameters
         console.log('Handle: ', handle)
         const query = `
@@ -89,7 +92,6 @@ export default function CopyShop() {
           }
       }
     `;
-
         try {
             const data = await ParamShopifyData(query);
 
@@ -130,10 +132,30 @@ export default function CopyShop() {
 
         return sizeMatch && tagMatch;
     });
+    switch (sortOption) {
+        case 'DATE, OLD TO NEW':
+            filteredProducts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+            window.scrollTo(0,0)
+            break;
+        case 'PRICE, LOW TO HIGH':
+            filteredProducts.sort((a,b) => a.priceRange.minVariantPrice.amount - b.priceRange.minVariantPrice.amount);
+            window.scrollTo(0,0)
+            break;
+        case 'PRICE, HIGH TO LOW':
+            filteredProducts.sort((a,b) => b.priceRange.minVariantPrice.amount - a.priceRange.minVariantPrice.amount);
+            window.scrollTo(0,0)
+            break;
+        case 'DATE, NEW TO OLD':
+            filteredProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            window.scrollTo(0,0)
+            break;
+        default:
+            break;
+    }
     return (
         <div className="flex flex-col min-h-screen bg-bebe">
             <div className="fixed w-full top-0 z-50">
-                <WorkHeader />
+                <WorkHeader onSortSelect={handleSortSelect}/>
             </div>
             <div className="h-8.5 mg:h-[61px] sm:h-[60px]"/>
             <main className="flex-grow">
@@ -146,8 +168,6 @@ export default function CopyShop() {
                         disabled={(cursorIndex >= cursors.length - 1) || (products.length < 90)}>
                     NEXT
                 </button>
-
-                {/* Using the ProductList3 component */}
                 {filteredProducts.length > 0 && (
                     <ProductList3 products={filteredProducts} />
                 )}

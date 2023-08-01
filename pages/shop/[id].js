@@ -29,7 +29,7 @@ export default function Collection({ initialProducts, hasNextPage, totalProductC
         setSelectedSizes, setFinalFilters} = useFilter();
     const [sortOption, setSortOption] = useState(null);
 
-
+    //SCROLL FEATURE
     useEffect(() => {
         // Restore scroll position on component mount
         const savedScrollPosition = sessionStorage.getItem('scrollPosition');
