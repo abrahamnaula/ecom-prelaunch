@@ -24,9 +24,7 @@ function ProductList3({ products }) {
 export default function Search({ initialProducts, totalProductCount }) {
     const router = useRouter();
     const { search } = router.query;
-    const { formattedFilters, setFormattedFilters, setFilterHistory,
-            setSelectedCategory, setSelectedCollection, setSelectedEra,
-            setSelectedSizes, setFinalFilters} = useFilter();
+    const { formattedFilters } = useFilter();
     const [sortOption, setSortOption] = useState(null);
     const [error, setError] = useState(null); // New state to keep track of errors
 
@@ -154,7 +152,6 @@ export default function Search({ initialProducts, totalProductCount }) {
             break;
         default:
             filteredProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
             break;
     }
     if (loading) {
@@ -224,6 +221,7 @@ export default function Search({ initialProducts, totalProductCount }) {
         </div>
     );
 }
+//SSR Function fetches product and calculates the page number
 export async function getServerSideProps(context) {
     const { search, page } = context.query;
     const productsPerPage = 60;
@@ -284,7 +282,6 @@ export async function getServerSideProps(context) {
             notFound: true,
         };
     }
-
     const initialProducts = data.products.edges.map(edge => {
         return {
             ...edge.node,
@@ -292,7 +289,6 @@ export async function getServerSideProps(context) {
             imageUrl: edge.node.images.edges[0]?.node?.url,
         };
     });
-
     // Use .slice() to only send the products for the current page to the client
     const paginatedProducts = initialProducts.slice((pageNumber - 1) * productsPerPage, pageNumber * productsPerPage);
 
