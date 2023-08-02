@@ -24,28 +24,38 @@ export default function Collection({ productCount, cursors: initialCursors } ) {
     const sizes = formattedFilters.filter(filter => knownSizes.includes(filter));
     const tags = formattedFilters.filter(filter => !knownSizes.includes(filter));
     useEffect(() => {
-        // Restore scroll position on component mount
-        const savedScrollPosition = sessionStorage.getItem('scrollPosition');
-        const previousPath = sessionStorage.getItem('previousPath');
+        // Restore scroll position after route transition completes
+        const handleRouteChangeComplete = () => {
+            const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+            const previousPath = sessionStorage.getItem('previousPath');
 
-        if (previousPath && previousPath.startsWith('/products') && savedScrollPosition) {
-            window.requestAnimationFrame(() => {
-                window.scrollTo(0, parseInt(savedScrollPosition));
-                console.log('Scrolled to:', savedScrollPosition);
-            });
-        }
+            if (previousPath && previousPath.startsWith('/products') && savedScrollPosition) {
+                window.requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        window.scrollTo(0, parseInt(savedScrollPosition));
+                        console.log('Scrolled to:', savedScrollPosition);
+                    }, 500); // in milliseconds
+                });
+
+            }
+        };
+        router.events.on('routeChangeComplete', handleRouteChangeComplete);
+
         // Save scroll position on route change start
-        const handleRouteChange = (url) => {
+        const handleRouteChangeStart = (url) => {
             console.log('Route change started, scroll position:', window.scrollY);
             sessionStorage.setItem('scrollPosition', window.scrollY);
             sessionStorage.setItem('previousPath', url);
         };
-        router.events.on('routeChangeStart', handleRouteChange);
+        router.events.on('routeChangeStart', handleRouteChangeStart);
+
         // Clean up
         return () => {
-            router.events.off('routeChangeStart', handleRouteChange);
+            router.events.off('routeChangeStart', handleRouteChangeStart);
+            router.events.off('routeChangeComplete', handleRouteChangeComplete);
         };
     }, []);
+
     useEffect(() => {
         const currentPage = parseInt(router.query.page) || 0;
         setCursorIndex(currentPage);
