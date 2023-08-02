@@ -8,7 +8,6 @@ import ProductList3 from "../../components/Products/ProductList3";
 import NewFooter from "../../components/NewFooter";
 import NoProducts from "../../components/NoProducts";
 const MAX = 200;
-
 export default function Collection({ productCount, cursors: initialCursors } ) {
     //console.log('Product COUNT: ', productCount)
     const [products, setProducts] = useState([]);
@@ -23,6 +22,7 @@ export default function Collection({ productCount, cursors: initialCursors } ) {
     const knownSizes = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', 'XXX-Large'];
     const sizes = formattedFilters.filter(filter => knownSizes.includes(filter));
     const tags = formattedFilters.filter(filter => !knownSizes.includes(filter));
+    //Scroll Feature
     useEffect(() => {
         // Restore scroll position after route transition completes
         const handleRouteChangeComplete = () => {
@@ -55,7 +55,6 @@ export default function Collection({ productCount, cursors: initialCursors } ) {
             router.events.off('routeChangeComplete', handleRouteChangeComplete);
         };
     }, []);
-
     useEffect(() => {
         const currentPage = parseInt(router.query.page) || 0;
         setCursorIndex(currentPage);
@@ -224,5 +223,3 @@ export async function getServerSideProps(context) {
         };
     }
 }
-
-
