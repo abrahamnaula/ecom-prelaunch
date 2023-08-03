@@ -1,9 +1,24 @@
 import {ArrowLeftIcon, ArrowRightIcon} from "@heroicons/react/20/solid";
 
 export default function Paginate({ MAX, productCount, cursorIndex, cursors, products, handlePrevClick, handleNextClick, fetchProducts, setCursorIndex }) {
-    const totalNumPages = Math.ceil(productCount / MAX);
-    const startPage = Math.max(cursorIndex, 1);
-    const endPage = Math.min(startPage + 2, totalNumPages);
+    const totalNumPages = Math.ceil(productCount / MAX) ;
+    console.log('PRODUCT COUNT: ', productCount)
+    let startPage, endPage;
+    if (totalNumPages <= 3) {
+        startPage = 1;
+        endPage = totalNumPages;
+    } else {
+        if (cursorIndex <= 1) {
+            startPage = 1;
+            endPage = 3;
+        } else if (cursorIndex + 1 >= totalNumPages) {
+            startPage = totalNumPages - 2;
+            endPage = totalNumPages;
+        } else {
+            startPage = cursorIndex;
+            endPage = cursorIndex + 2;
+        }
+    }
 
     return (
         <div className="flex justify-center items-center my-2">

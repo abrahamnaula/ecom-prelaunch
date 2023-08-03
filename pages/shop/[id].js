@@ -7,7 +7,7 @@ import Paginate from "../../components/Paginate";
 import ProductList3 from "../../components/Products/ProductList3";
 import NewFooter from "../../components/NewFooter";
 import NoProducts from "../../components/NoProducts";
-const MAX = 200;
+const MAX = 100;
 export default function Collection({ productCount, cursors: initialCursors } ) {
     //console.log('Product COUNT: ', productCount)
     const [products, setProducts] = useState([]);
@@ -79,7 +79,7 @@ export default function Collection({ productCount, cursors: initialCursors } ) {
                 id
                 title
                 handle
-                products(first: 200, after: ${cursor ? `"${cursor}"` : null}) {
+                products(first: 100, after: ${cursor ? `"${cursor}"` : null}) {
                   pageInfo {
                     hasNextPage
                   }
