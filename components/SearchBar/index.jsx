@@ -21,7 +21,7 @@ function SearchBar() {
         if (!inputValue) return;
 
         // Update the URL with the new search term
-        router.push(`/copy-search/${inputValue}`);
+        router.push(`/search-copy/${inputValue}`);
     };
     return (
         <div className="flex items-center">
