@@ -91,9 +91,10 @@ export default function Search({ cursors }) {
         }
     };
     useEffect(() => {
-        fetchProducts(cursors[cursorIndex]);
+        const currentPage = parseInt(router.query.page) || 0;
+        setCursorIndex(currentPage);
+        fetchProducts(cursors[currentPage]);
     }, [cursorIndex, router.query.page, search]);
-
     const handleNextClick = () => {
         if (cursorIndex < cursors.length - 1) {
             setCursorIndex(cursorIndex + 1);
@@ -123,7 +124,39 @@ export default function Search({ cursors }) {
             query: {...router.query, page: pageNumber},
         });
     }
+    //SCROLL FEATURE
+    useEffect(() => {
+        // Restore scroll position after route transition completes
+        const handleRouteChangeComplete = () => {
+            const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+            const previousPath = sessionStorage.getItem('previousPath');
 
+            if (previousPath && previousPath.startsWith('/products') && savedScrollPosition) {
+                window.requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        window.scrollTo(0, parseInt(savedScrollPosition));
+                        console.log('Scrolled to:', savedScrollPosition);
+                    }, 500); // in milliseconds
+                });
+
+            }
+        };
+        router.events.on('routeChangeComplete', handleRouteChangeComplete);
+
+        // Save scroll position on route change start
+        const handleRouteChangeStart = (url) => {
+            //console.log('Route change started, scroll position:', window.scrollY);
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+            sessionStorage.setItem('previousPath', url);
+        };
+        router.events.on('routeChangeStart', handleRouteChangeStart);
+
+        // Clean up
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChangeStart);
+            router.events.off('routeChangeComplete', handleRouteChangeComplete);
+        };
+    }, []);
     const filteredProducts = products.filter(product => {
         // Check sizes
         const sizeMatch = sizes.length === 0 || sizes.includes(product.variants.edges[0]?.node?.title);
