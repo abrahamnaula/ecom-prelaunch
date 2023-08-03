@@ -9,7 +9,6 @@ import NewFooter from "../../components/NewFooter";
 import NoProducts from "../../components/NoProducts";
 const MAX = 100;
 export default function Collection({ productCount, cursors: initialCursors } ) {
-    //console.log('Product COUNT: ', productCount)
     const [products, setProducts] = useState([]);
     const [cursors] = useState([null, ...initialCursors]); // Initialized with null as the first element
     const [cursorIndex, setCursorIndex] = useState(0);

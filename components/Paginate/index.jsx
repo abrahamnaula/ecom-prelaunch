@@ -2,7 +2,7 @@ import {ArrowLeftIcon, ArrowRightIcon} from "@heroicons/react/20/solid";
 
 export default function Paginate({ MAX, productCount, cursorIndex, cursors, products, handlePrevClick, handleNextClick, fetchProducts, setCursorIndex }) {
     const totalNumPages = Math.ceil(productCount / MAX) ;
-    console.log('PRODUCT COUNT: ', productCount)
+    //console.log('PRODUCT COUNT: ', productCount)
     let startPage, endPage;
     if (totalNumPages <= 3) {
         startPage = 1;
