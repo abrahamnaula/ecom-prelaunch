@@ -188,7 +188,6 @@ export default function Search({ cursors }) {
 export async function getServerSideProps(context) {
 
     const  {search}  = context.query
-    console.log(search)
     const cursors = await getSearchCursors(search, 100);
     //console.log(cursors);
     return {

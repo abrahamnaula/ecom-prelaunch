@@ -43,7 +43,7 @@ export default function Collection({ productCount, cursors: initialCursors } ) {
 
         // Save scroll position on route change start
         const handleRouteChangeStart = (url) => {
-            console.log('Route change started, scroll position:', window.scrollY);
+            //console.log('Route change started, scroll position:', window.scrollY);
             sessionStorage.setItem('scrollPosition', window.scrollY);
             sessionStorage.setItem('previousPath', url);
         };
