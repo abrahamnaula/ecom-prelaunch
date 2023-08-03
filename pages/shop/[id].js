@@ -149,6 +149,7 @@ export default function Collection({ productCount, cursors: initialCursors } ) {
             window.scrollTo(0,0)
         }
     };
+
     const filteredProducts = products.filter(product => {
         // Check sizes
         const sizeMatch = sizes.length === 0 || sizes.includes(product.variants.edges[0]?.node?.title);
@@ -195,7 +196,10 @@ export default function Collection({ productCount, cursors: initialCursors } ) {
                       cursorIndex={cursorIndex}
                       cursors={cursors} products={products}
                       handlePrevClick={handlePrevClick}
-                      handleNextClick={handleNextClick} />
+                      handleNextClick={handleNextClick}
+                      fetchProducts={fetchProducts}
+                      setCursorIndex={setCursorIndex}
+                        />
             <NewFooter />
         </div>
     );
