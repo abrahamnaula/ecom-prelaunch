@@ -22,7 +22,7 @@ export default function Search({ cursors }) {
     const sizes = formattedFilters.filter(filter => knownSizes.includes(filter));
     const tags = formattedFilters.filter(filter => !knownSizes.includes(filter));
     const fetchProducts = async (cursor) => {
-        // Construct your GraphQL query
+
         const query = `
                 query ProductSearch($query: String!, $first: Int!, $after: String) {
                   products(first: $first, after: $after, query: $query) {
@@ -73,8 +73,8 @@ export default function Search({ cursors }) {
         try {
             const response = await ParamShopifyData(query, {
                 query: search,
-                first: 100, // Or your desired page size
-                after: cursor, // Use 'after' instead of 'cursor'
+                first: 100,
+                after: cursor,
             });
 
             if (response.errors || !response.data.products) {
@@ -216,8 +216,6 @@ export default function Search({ cursors }) {
         </div>
     );
 }
-
-// Rest of your component code...
 
 export async function getServerSideProps(context) {
 

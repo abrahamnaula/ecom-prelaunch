@@ -114,7 +114,7 @@ export default function Product({ product }) {
                                     <Image
                                         src={edge.node.url}
                                         alt={edge.node.altText || "Grey Era Vintage Product"}
-                                        layout="responsive" // This will maintain the aspect ratio of the image
+                                        layout="responsive" // maintains the aspect ratio of the image
                                         width={500}
                                         height={500}
                                         className="lg:w-full lg:object-cover lg:object-center lg:h-full  w-screen h-auto object-cover object-center"
