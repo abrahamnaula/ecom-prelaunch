@@ -38,7 +38,7 @@ export default function Pagination({ currentPage, totalPages, productSize }) {
                 className={`font-nhg font-medium text-bebe text-xxs sm:text-xs flex justify-center items-center p-2 
                             xs:mr-6 
                             mg:mr-2 ${currentPage === 1 ? 'bg-gray-500' : 'bg-black'}`}
-                onClick={() => router.push({ pathname: router.pathname, query: { ...router.query, page: currentPage - 1 } })}
+                onClick={() => router.replace({ pathname: router.pathname, query: { ...router.query, page: currentPage - 1 } })}
                 disabled={currentPage === 1}
             >
                 <ArrowLeftIcon className="text-bebe h-4"/>
