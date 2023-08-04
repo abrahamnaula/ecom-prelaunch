@@ -244,4 +244,25 @@ export async function getServerSideProps(context) {
             notFound: true,
         };
     }
+
+    const initialProducts = data.collection.products.edges.map(edge => {
+        return {
+            ...edge.node,
+            cursor: edge.cursor,
+            imageUrl: edge.node.images.edges[0]?.node?.url,
+        };
+    });
+
+    // Use .slice() to only send the products for the current page to the client
+    const offset = (chunkNumber - 1) * 240;  // calculate offset for slicing
+    const paginatedProducts = initialProducts.slice(offset + (pageNumber - 1) * productsPerPage, offset + pageNumber * productsPerPage);
+
+    return {
+        props: {
+            initialProducts: paginatedProducts,
+            hasNextPage: data.collection.products.pageInfo.hasNextPage,
+            collectionName: data.collection.title,
+            totalProductCount,
+        },
+    };
 }
