@@ -12,8 +12,8 @@ export default function WorkHeader({onSortSelect}) {
     const router = useRouter();
     const [cartOpen, setCartOpen] = useState(false);
     const { cart } = useCart(); // Use the CartContext hook
-    const showSortandRefine = router.pathname.startsWith('/shop') || router.pathname.startsWith('/search')
-                                        || router.pathname.startsWith('/copy-shop');
+    const showSortandRefine = router.pathname.startsWith('/shop') || router.pathname.startsWith('/search');
+
     const {
         setSelectedCategory, setSelectedCollection, setSelectedEra,
         setSelectedSizes, setFilterHistory, setFinalFilters, setFormattedFilters

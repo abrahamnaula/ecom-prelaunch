@@ -178,6 +178,21 @@ export default function Collection({ productCount, cursors: initialCursors } ) {
         default:
             break;
     }
+    if(!productCount > 0){
+        return(
+            <div className="flex flex-col min-h-screen bg-bebe">
+                <div className="fixed w-full top-0 z-50">
+                    <WorkHeader onSortSelect={handleSortSelect}/>
+                </div>
+                <div className="h-8.5 mg:h-[61px] sm:h-[60px]"/>
+                <main className="flex-grow">
+
+                        <NoProducts/>
+                </main>
+                <NewFooter />
+            </div>
+        );
+    }
     return (
         <div className="flex flex-col min-h-screen bg-bebe">
             <div className="fixed w-full top-0 z-50">
@@ -205,13 +220,17 @@ export default function Collection({ productCount, cursors: initialCursors } ) {
 }
 
 export async function getServerSideProps(context) {
-    const {id} = context.params
+    const {id} = context.params;
     try {
         const collectionId = await getCollectionId(id);
+        //console.log('Collection ID: ', collectionId);
         const productCount = await getCollectionProductCount(collectionId);
-        const cursors = await getCollectionCursors(id);
-        //console.log(cursors)
-        //console.log(productCount)
+        //console.log('Product Count: ',  productCount);
+        let cursors = [];
+        if (productCount > 0) {
+            cursors = await getCollectionCursors(id);
+        }
+        //console.log('Cursors: ', cursors);
         return {
             props: {
                 productCount,
@@ -220,7 +239,7 @@ export async function getServerSideProps(context) {
         };
     } catch (error) {
         // handle error
-        console.error('Error in SSR Function on copy-shop.js: ', error);
+        console.error('Error in SSR Function on shop/[id].js: \n', error);
         return {
             notFound: true,
         };
