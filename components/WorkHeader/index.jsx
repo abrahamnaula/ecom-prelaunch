@@ -13,12 +13,10 @@ export default function WorkHeader({onSortSelect}) {
     const [cartOpen, setCartOpen] = useState(false);
     const { cart } = useCart(); // Use the CartContext hook
     const showSortandRefine = router.pathname.startsWith('/shop') || router.pathname.startsWith('/search');
-
     const {
         setSelectedCategory, setSelectedCollection, setSelectedEra,
         setSelectedSizes, setFilterHistory, setFinalFilters, setFormattedFilters
     } = useFilter();
-
     const handleClear = (event) => {
         // stop the default navigation event
         event.preventDefault();
@@ -32,10 +30,8 @@ export default function WorkHeader({onSortSelect}) {
         setFilterHistory([]);
 
         // manually navigate to the homepage
-        router.push('/');
+        router.push('/collections-menu');
     };
-
-
     const handleNoRefine = (e) => {
         if(!showSortandRefine){
             alert('Nothing to \'refine\' while viewing a product.')

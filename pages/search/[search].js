@@ -164,10 +164,7 @@ export default function Search({ cursors }) {
         // Check tags
         const tagMatch = tags.length === 0 || tags.every(tag => product.tags.includes(tag));
 
-        //Check available for sale
-        const availableForSale = product.availableForSale;
-
-        return sizeMatch && tagMatch && availableForSale;
+        return sizeMatch && tagMatch ;
     });
     switch (sortOption) {
         case 'DATE, OLD TO NEW':
